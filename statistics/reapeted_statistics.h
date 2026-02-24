@@ -43,7 +43,7 @@ int Function free(int occupied, int all);
     @return Es wird der berechnete Wert zurück gegeben
 */
 
-int Function rate(int occupied);
+int Function rate(int count);
 
 
 /**
@@ -55,9 +55,28 @@ int Function rate(int occupied);
     Autos, sowie die Rate der hinein- und hinuasfahrenden Fahrzeuge. Nach dem ersten Aufruf wird für jeden Aufrauf, eine 
     neue Spalte dazu geschrieben. Dies wird in der Konsole ausgegeben.
 
-    @param[in] count, Eingabe von der Anzahl der Autos im Parkhaus und ggf. davor 
+    @param[in] occupied, Eingabe von der Anzahl der besetzten Parkplätze 
+    @param[in] all, Eingabe von der Anazhl aller Parkplätze 
+    @param[in] time, Eingabe von dem Aktuellen Zeitpunkt
 
-    @return Es wird der berechnete Wert zurück gegeben
+    @return Es wird eine Tabelle in der Kosole ausgegeben
 */
 
-int Function tabel(int occupied, int all);
+int Function tabel(int occupied, int all, int time);
+
+/**
+
+    @brief Es wird ein Säulendiagram in der Konsole ausgegeben 
+
+    Es wird, wenn die Funktion das erste mal aufgerufen wird, ein Säulendiagram erstellt. Es wird der Zeitpunkt des Aufrufens 
+    auf der X-Achse dargestellt und auf der Y-Achse wird die Prozentanzahl dargestellt (Maximal 100%). 
+    Nach dem ersten Aufruf wird für jeden Aufrauf, eine neue Säule ergänzt, um den Verlauf sehen zu können.
+
+    @param[in] occupied, Eingabe von der Anzahl der besetzten Parkplätze 
+    @param[in] all, Eingabe von der Anazhl aller Parkplätze 
+    @param[in] time, Eingabe von dem Aktuellen Zeitpunkt
+
+    @return Es wird ein Säulendiagram in der Konsole Ausgegeben
+*/
+
+int Function column_chart(int occupied, int all, int time);
