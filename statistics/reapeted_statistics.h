@@ -1,1 +1,63 @@
+/**  
+    Datei: reapeted_statistics.h
+    Beschreibung: Zusammenfasung aller Funktionen zur Ausgabe und Berechnung der wiederholten Statistiken.
+*/
 
+/**
+
+    @brief Es wird berechnet, wie voll das Parkhaus in Prozent ist.
+
+    Es wird die Anzahl der Belegten Parkplätze durch die Anazhl aller Parkplätze gerechnet und mit 100 multipliziert um einen 
+    Prozentwert zu erhalten. 
+
+    @param[in] occupied, Eingabe von der Anzahl der besetzten Parkplätze 
+    @param[in] all, Eingabe von der Anazhl aller Parkplätze 
+
+    @return Es wird der berechnete Wert zurück gegeben
+*/
+
+int Function fullness(int occupied, int all);
+
+/**
+
+    @brief Es wird berechnet, wie viele Parkplätze noch frei sind
+
+    Es wird die Anzahl aller Parkplätze minus die Anazhl der belegten Parkplätze gerechnet.
+
+    @param[in] occupied, Eingabe von der Anzahl der besetzten Parkplätze 
+    @param[in] all, Eingabe von der Anazhl aller Parkplätze 
+
+    @return Es wird der berechnete Wert zurück gegeben
+*/
+
+int Function free(int occupied, int all);
+
+/**
+
+    @brief Es wird berechnet, wie viele Autos seit dem letzten Zeitpunkt dazu gekommen sind 
+
+    Es wird der Wert, die Anzahl der Autos, des vorherigen Aufrufes gespeichert und von der jetzigen Anzahl der Autos abgezogen.
+
+    @param[in] count, Eingabe von der Anzahl der Autos im Parkhaus und ggf. davor 
+
+    @return Es wird der berechnete Wert zurück gegeben
+*/
+
+int Function rate(int occupied);
+
+
+/**
+
+    @brief Es wird eine Tabelle in der Konsole ausgegeben 
+
+    Es wird, wenn die Funktion das erste mal aufgerufen wird, eine Tabelle erstellt. Es wird der Zeitpunkt des Aufrufens 
+    dargestellt, sowie in den Zeilen dadrunter die Angabe der Füllmenge, Anzahl der freien Parkplätze, die Anzahl der 
+    Autos, sowie die Rate der hinein- und hinuasfahrenden Fahrzeuge. Nach dem ersten Aufruf wird für jeden Aufrauf, eine 
+    neue Spalte dazu geschrieben. Dies wird in der Konsole ausgegeben.
+
+    @param[in] count, Eingabe von der Anzahl der Autos im Parkhaus und ggf. davor 
+
+    @return Es wird der berechnete Wert zurück gegeben
+*/
+
+int Function tabel(int occupied, int all);
