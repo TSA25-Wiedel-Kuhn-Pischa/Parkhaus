@@ -21,8 +21,8 @@ void park_car(struct Car car){
 
 void remove_car(struct Car car){
   /*
-  remove car from array
-  remove specific car struct
+  entferne car struct aus dem array
+  entferne car struct
   */
 }
 
@@ -33,8 +33,9 @@ void check_parking_time(struct car *parking_garage, int array_size, int time_ste
       i++
     ELSE
       IF (time_step-(parking_garage[i]->arrival_time) == parking_garage[i]->parking_duration) THEN
-        parking_garage[i]->parking_duration_reached = 1       //set flag to true: maximum parking duration is reached
+        parking_garage[i]->parking_duration_reached = 1       //setze flag auf true wenn die maximale Parkdauer erreicht ist
       END IF
+      i++
     END IF
   END FOR
   */
