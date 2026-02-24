@@ -5,6 +5,7 @@
  */
 
 #include "parking_garage.h"
+/*#include "cars.h"*/
 
 struct car *create_garage(int parking_spaces){
   /*
@@ -12,13 +13,13 @@ struct car *create_garage(int parking_spaces){
   */
 }
 
-void park_car(struct car){
+void park_car(struct Car car){
   /*
   
   */
 }
 
-void remove_car(struct car){
+void remove_car(struct Car car){
   /*
   
   */
@@ -32,8 +33,6 @@ void check_parking_time(struct car *parking_garage){
 
 void manage_cars(struct car *parking_garage){
   /*
-  check_parking_time(parking_garage);
-  park_cars();
-  remove_cars();
+  
   */
 }
