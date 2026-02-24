@@ -3,7 +3,7 @@
 #include <string.h>
 
 
-struct car{
+typedef struct car{
     int car_id;
     float parking_duration;
     float remaining_parking_duration;
@@ -11,7 +11,7 @@ struct car{
     int ps;
     char brand[50];
     char modelname[50];
-};
+} car;
 
 void create_car(float parking_duration, float arrival_time, struct car* c){
     c->car_id = car_id_counter();
