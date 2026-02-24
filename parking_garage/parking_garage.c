@@ -1,7 +1,6 @@
 /*
  *  File: parking_garage.c
- *  Description: Functions used in relation to the parking-garage
- * 
+ *  Description: Funktionen, die für das Parkhaus und deren Verwaltung benutzt werden
  */
 
 #include "parking_garage.h"
@@ -15,7 +14,7 @@ struct car *create_garage(int parking_spaces){
 
 void park_car(struct Car car){
   /*
-  store specific car struct in non-occupied array-slots
+  speicher einzelne Autos in dem car-array
   */
 }
 
