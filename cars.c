@@ -13,8 +13,8 @@ struct car{
     char modelname[50];
 };
 
-void create_car(int car_id, float parking_duration, float arrival_time, struct car* c){
-    c->car_id = car_id;
+void create_car(float parking_duration, float arrival_time, struct car* c){
+    c->car_id = car_id_counter();
     c->parking_duration = parking_duration;
     c->remaining_parking_duration = parking_duration;
     c->arrival_time = arrival_time;
@@ -118,4 +118,11 @@ void create_car(int car_id, float parking_duration, float arrival_time, struct c
             c->ps = 100;
     }
     
+}
+
+
+int car_id_counter(){
+    static int counter = 0;
+    counter ++;
+    return counter;
 }
