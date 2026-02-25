@@ -5,13 +5,13 @@
 
 //Einbinden von reapeted_statistics.h
 
-/*int Function fullness(int occupied, int all)
+/* int Function fullness(int occupied, int all)
 (
     return von ((occupied/all) * 100) 
 )
 */
 
-/*int Function rate(int count)
+/* int Function rate(int count)
 (
     Beim ersten Aufruf der Funktion wird ein Array intialisiert. In diesem werden die Werte von count gespeichert.
     Bei jedem neuen Aufruf wird der Wert einen Schritt weiter gespeichert. 
@@ -21,7 +21,7 @@
 )
 */
 
-/*void Function output_data(int occupied, int all, int cars_in_line)
+/* void Function output_data(int occupied, int all, int cars_in_line)
 (
     i = 1
     i wird einmalig Initialisiert und bei jedem Aufruf der Funktion um eins erhöht.
@@ -35,7 +35,7 @@
 )
 */
 
-/*int Function save_data(int occupied, int all, int cars_in_line)
+/* int Function save_data(int occupied, int all, int cars_in_line)
 (
     Es wird die Funktion fullness mit den Werten occupied und all aufgerufen und in der Variable fullness_data gespeichert
     Es wird occupied von all abgezogen und in der Variable free_spaces gespeichert 
