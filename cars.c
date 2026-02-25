@@ -106,6 +106,26 @@ void create_car(float parking_duration, float arrival_time, struct car* c){
             strcpy(c->modelname, "CLE53");
             c->ps = 472;
             break;
+        case 18:
+            strcpy(c->brand, "Mercedes-Benz");
+            strcpy(c->modelname, "EQS450+");
+            c->ps = 360;
+            break;
+        case 19:
+            strcpy(c->brand, "Mercedes-Benz");
+            strcpy(c->modelname, "EQS500");
+            c->ps = 449;
+            break;
+        case 20:
+            strcpy(c->brand, "Mercedes-Benz");
+            strcpy(c->modelname, "EQS580");
+            c->ps = 544;
+            break;
+        case 21:
+            strcpy(c->brand, "Mercedes-Benz");
+            strcpy(c->modelname, "EQS53");
+            c->ps = 761;
+            break;
         
         case 50:
             strcpy(c->brand, "Porsche");
