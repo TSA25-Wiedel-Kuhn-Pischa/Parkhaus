@@ -1,6 +1,7 @@
-#include "cars.h"
-#include <stdio.h>
-#include <string.h>
+#ifndef CARS_H
+    #define CARS_H
+    #include "../include/cars.h"
+#endif
 
 
 typedef struct car{
@@ -16,7 +17,6 @@ typedef struct car{
 void create_car(float parking_duration, float arrival_time, struct car* c){
     c->car_id = car_id_counter();
     c->parking_duration = parking_duration;
-    c->remaining_parking_duration = parking_duration;
     c->arrival_time = arrival_time;
 
     int randommodelnumber = (rand() % (50) +1);
