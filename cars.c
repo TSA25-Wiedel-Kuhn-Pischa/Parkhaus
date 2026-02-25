@@ -6,7 +6,7 @@
 typedef struct car{
     int car_id;
     float parking_duration;
-    float remaining_parking_duration;
+    int parking_duration_reached;
     float arrival_time;
     int ps;
     char brand[50];
