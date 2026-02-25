@@ -3,6 +3,25 @@
  * Description: Funktion und struct von Autos
  */
 
+/**
+ * Pseudo-Code:
+ * create_car - Funktion mit Eingabe: AnkunftsZeit, Car Struct
+ *
+     * car id = nächste ID von car_id_counter() Funktion
+     * parking duration = übergebenes Argument parking_duration
+     * arrival time = übergebenes Argument arrival_time
+     * zufällige Zahl zwischen 1 und 50 generieren
+     * switch je nach Zahl wird:
+     * brand gesetzt
+     * modelname gesetzt
+     * ps gesetzt
+     *
+ * car_id_counter - Funktion ohne Eingabe
+     * einmalig counter auf 0 setzen
+     * counter um 1 erhöhen
+     * counter zurückgeben
+ */
+
 #ifndef CARS_H
     #define CARS_H
     #include "include/cars.h"
@@ -23,16 +42,12 @@
 
 
 void create_car(float parking_duration, float arrival_time, struct car* c){
-    /** 
-     * car id = nächste ID von car_id_counter() Funktion
-     * parking duration = übergebenes Argument parking_duration
-     * arrival time = übergebenes Argument arrival_time
-     * zufällige Zahl zwischen 1 und 50 generieren
-     * switch je nach Zahl wird:
-     * brand gesetzt
-     * modelname gesetzt
-     * ps gesetzt
-     */
+    /**
+    * @brief setzt die Werte eines Car-Structs
+    *        und parkt das Auto oder setzt es in die Warteschlange
+    *
+    * @param[in]  struct car* c  Pointer auf Car-Struct, dass bearbeitet wird
+    */
     c->car_id = car_id_counter();
     c->parking_duration = parking_duration;
     c->arrival_time = arrival_time;
@@ -189,6 +204,12 @@ void create_car(float parking_duration, float arrival_time, struct car* c){
 
 
 int car_id_counter(){
+    /**
+    * @brief zählt die IDs für die Autos hoch, damit jedes Auto eine eindeutige ID bekommt
+    *
+    * @param[out] counter aktuelle ID, die zurückgegeben wird, wenn die Funktion aufgerufen wird
+    * @return            gibt counter zurück
+    */
     static int counter = 0;
     counter ++;
     return counter;
