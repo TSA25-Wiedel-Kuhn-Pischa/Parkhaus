@@ -1,6 +1,6 @@
 /*
  *  File: parking_garage.c
- *  Description: Funktionen, die für das Parkhaus und deren Verwaltung benutzt werden
+ *  Description: Implementierung von Funktionen, die für das Parkhaus und deren Verwaltung benutzt werden
  */
 
 #include "parking_garage.h"
