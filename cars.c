@@ -1,5 +1,5 @@
 /*
- * File: cras.c
+ * File: cars.c
  * Description: Funktion und struct von Autos
  */
 
@@ -7,9 +7,8 @@
  * Pseudo-Code:
  * create_car - Funktion mit Eingabe: AnkunftsZeit, Car Struct
  *
+     * auf ungültige Eingabe prüfen
      * car id = nächste ID von car_id_counter() Funktion
-     * parking duration = übergebenes Argument parking_duration
-     * arrival time = übergebenes Argument arrival_time
      * zufällige Zahl zwischen 1 und 50 generieren
      * switch je nach Zahl wird:
      * brand gesetzt
@@ -20,6 +19,12 @@
      * einmalig counter auf 0 setzen
      * counter um 1 erhöhen
      * counter zurückgeben
+ * randomize_parking_duration - Funktion mit Eingabe maximale Parkdauer, Zeitschrittgröße
+     * auf ungültige Eingabe prüfen
+     * maximale Parkdauer in maximale Zeitschritte umrechnen
+     * zufällige Zahl zwischen 1 und maximale Zeitschritte generieren
+     * zufällige Zahl in Zeitdauer umrechnen
+     * Zeitdauer zurückgeben
  */
 
 #ifndef CARS_H
