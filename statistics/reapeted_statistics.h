@@ -2,7 +2,8 @@
     Datei: reapeted_statistics.h
     Beschreibung: Zusammenfasung aller Funktionen zur Ausgabe und Berechnung der wiederholten Statistiken.
 */
-
+//#ifndef REAPETED_STATISTICS
+//#define REAPETED_STATISTICS
 /**
 
     @brief Es wird berechnet, wie voll das Parkhaus in Prozent ist.
@@ -16,7 +17,7 @@
     @return Es wird der berechnete Wert zurück gegeben
 */
 
-int Function fullness(int occupied, int all);
+//int Function fullness(int occupied, int all);
 
 /**
 
@@ -30,7 +31,7 @@ int Function fullness(int occupied, int all);
     @return Es wird der berechnete Wert zurück gegeben
 */
 
-int Function free(int occupied, int all);
+//int Function free(int occupied, int all);
 
 /**
 
@@ -43,8 +44,35 @@ int Function free(int occupied, int all);
     @return Es wird der berechnete Wert zurück gegeben
 */
 
-int Function rate(int count);
+//int Function rate(int count);
 
+/**
+
+    @brief Es werden in der Konsole die aktuellen Daten ausgegeben
+
+    Es werden die berechneten Werte, fullnes und freie Parkplätze, sowie die Anzahl der Autos mit dem aktuellen 
+    Zeitschritt in der Konsole ausgegeben
+
+    @param[in] occupied, Eingabe von der Anzahl der besetzten Parkplätze 
+    @param[in] all, Eingabe von der Anazhl aller Parkplätze
+
+    @return Ausgabe von den aktuellen Werten 
+*/
+
+//int Function output_data(int occupied, int all);
+
+/**
+
+    @brief Es werden in der Konsole die aktuellen Daten ausgegeben
+
+    Es werden die berechneten Werte, fullnes und freie Parkplätze, sowie die Anzahl der Autos mit dem aktuellen 
+    Zeitschritt gespeichert 
+
+    @param[in] occupied, Eingabe von der Anzahl der besetzten Parkplätze 
+    @param[in] all, Eingabe von der Anazhl aller Parkplätze
+*/
+
+//int Function save_data(int occupied, int all);
 
 /**
 
@@ -56,13 +84,12 @@ int Function rate(int count);
     neue Spalte dazu geschrieben. Dies wird in der Konsole ausgegeben.
 
     @param[in] occupied, Eingabe von der Anzahl der besetzten Parkplätze 
-    @param[in] all, Eingabe von der Anazhl aller Parkplätze 
-    @param[in] time, Eingabe von dem Aktuellen Zeitpunkt
+    @param[in] all, Eingabe von der Anazhl aller Parkplätze
 
     @return Es wird eine Tabelle in der Kosole ausgegeben
 */
 
-int Function tabel(int occupied, int all, int time);
+//int Function tabel(int occupied, int all);
 
 /**
 
@@ -79,4 +106,6 @@ int Function tabel(int occupied, int all, int time);
     @return Es wird ein Säulendiagram in der Konsole Ausgegeben
 */
 
-int Function column_chart(int occupied, int all, int time);
+//int Function column_chart(int occupied, int all, int time);
+
+//#endif
