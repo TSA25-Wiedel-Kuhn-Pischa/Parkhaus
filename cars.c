@@ -1,18 +1,21 @@
 #ifndef CARS_H
     #define CARS_H
-    #include "../include/cars.h"
+    #include "include/cars.h"
+#endif
+#ifndef STDIO_H
+    #define STDIO_H
+    #include <stdio.h>
+#endif
+#ifndef STRING_H
+    #define STRING_H
+    #include <string.h>
+#endif
+#ifndef STDLIB_H
+    #define STDLIB_H
+    #include <stdlib.h>
 #endif
 
 
-typedef struct car{
-    int car_id;
-    float parking_duration;
-    int parking_duration_reached;
-    float arrival_time;
-    int ps;
-    char brand[50];
-    char modelname[50];
-} car;
 
 void create_car(float parking_duration, float arrival_time, struct car* c){
     c->car_id = car_id_counter();
@@ -125,6 +128,26 @@ void create_car(float parking_duration, float arrival_time, struct car* c){
             strcpy(c->brand, "Mercedes-Benz");
             strcpy(c->modelname, "EQS53");
             c->ps = 761;
+            break;
+        case 22:
+            strcpy(c->brand, "Mercedes-Benz");
+            strcpy(c->modelname, "GLE350de");
+            c->ps = 353;
+            break;
+        case 23:
+            strcpy(c->brand, "Mercedes-Benz");
+            strcpy(c->modelname, "GLE400e");
+            c->ps = 408;
+            break;
+        case 24:
+            strcpy(c->brand, "Mercedes-Benz");
+            strcpy(c->modelname, "GLE53");
+            c->ps = 544;
+            break;
+        case 25:
+            strcpy(c->brand, "Mercedes-Benz");
+            strcpy(c->modelname, "GLE63S");
+            c->ps = 612;
             break;
         
         case 50:
