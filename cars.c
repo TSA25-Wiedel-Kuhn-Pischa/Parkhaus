@@ -41,7 +41,7 @@
 
 
 
-void create_car(float parking_duration, float arrival_time, struct car* c){
+void create_car(float parking_duration, struct car* c){
     /**
     * @brief setzt die Werte eines Car-Structs
     *        und parkt das Auto oder setzt es in die Warteschlange
@@ -50,7 +50,6 @@ void create_car(float parking_duration, float arrival_time, struct car* c){
     */
     c->car_id = car_id_counter();
     c->parking_duration = parking_duration;
-    c->arrival_time = arrival_time;
 
     int randommodelnumber = (rand() % (50) +1);     //Zufällige um ein zufälliges Modell auszuwählen
     switch (randommodelnumber) {
