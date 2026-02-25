@@ -41,15 +41,23 @@
 
 
 
-void create_car(float parking_duration, struct car* c){
+int create_car(int max_parking_duration, int time_step_size, struct car* c){
     /**
     * @brief setzt die Werte eines Car-Structs
     *        und parkt das Auto oder setzt es in die Warteschlange
     *
     * @param[in]  struct car* c  Pointer auf Car-Struct, dass bearbeitet wird
+    * @param[in]  max_parking_duration maximale Parkdauer in Sekunden
+    * @param[in]  time_step_size Zeitschrittgröße für die Berechnung der Parkdauer
+    * 
+    * return   nur zur Fehlersignalisierung, wenn die Funktion -1 zurückgibt, ist ein Fehler aufgetreten
     */
+
+    if(c == NULL || max_parking_duration <= 0 || time_step_size <= 0){        //auf ungültige Eingabe prüfen
+        return -1;
+    }
+
     c->car_id = car_id_counter();
-    c->parking_duration = parking_duration;
 
     int randommodelnumber = (rand() % (50) +1);     //Zufällige um ein zufälliges Modell auszuwählen
     switch (randommodelnumber) {
@@ -198,7 +206,14 @@ void create_car(float parking_duration, struct car* c){
     else{
         //Auto wird in Warteschlange / Queue eingereiht
     }
-    
+
+    int temp_parking_duration = randomize_parking_duration(max_parking_duration, time_step_size);
+    if(temp_parking_duration == -1){
+        return -1;
+    }
+    c->parking_duration = temp_parking_duration;
+
+    return 0;    
 }
 
 
@@ -212,4 +227,25 @@ int car_id_counter(){
     static int counter = 0;
     counter ++;
     return counter;
+}
+
+int randomize_parking_duration(int r_max_parking_duration, int r_time_step_size){           //maximale Pardauer abrufen oder übergeben bekommen?
+    /**
+    * @brief gibt eine zufällige Parkdauer zurück
+    *
+    * @param[in]  r_max_parking_duration maximale Parkdauer
+    * @param[in]  r_time_step_size Zeitschrittgröße für die Berechnung der Parkdauer
+    * @param[out] random_parking_duration zufällige Parkdauer
+    * @return            gibt random_parking_duration zurück
+    */
+    if(r_max_parking_duration <= 0 || r_time_step_size <= 0){        //auf ungültige Eingabe prüfen
+        return -1;
+    }
+    int random_parking_duration = 0;
+    int temp_duaration_step = r_max_parking_duration / r_time_step_size;        //maximale Parkdauer in maximale Zeitschritte umrechnen
+    
+    random_parking_duration = rand() % temp_duaration_step + 1;
+    random_parking_duration *= r_time_step_size;                              //ermittelte zufällige Parkdauer in Zeit umrechnen
+
+    return random_parking_duration;
 }
