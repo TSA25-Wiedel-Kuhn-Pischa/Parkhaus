@@ -1,9 +1,9 @@
 /**  
-    Datei: reapeted_statistics.h
-    Beschreibung: Zusammenfasung aller Funktionen zur Ausgabe und Berechnung der wiederholten Statistiken.
+    Datei: statistics.h
+    Beschreibung: Zusammenfasung aller Funktionen zur Ausgabe und Berechnung der Statistiken.
 */
-//#ifndef REAPETED_STATISTICS
-//#define REAPETED_STATISTICS
+//#ifndef STATISTICS
+//#define STATISTICS
 /**
 
     @brief Es wird berechnet, wie voll das Parkhaus in Prozent ist.

@@ -1,6 +1,6 @@
 /**  
-    Datei: reapeted_statistics.c
-    Beschreibung: Beschreibung aller Funktionen zur Ausgabe und Berechnung der wiederholten Statistiken.
+    Datei: statistics.c
+    Beschreibung: Beschreibung aller Funktionen zur Ausgabe und Berechnung der Statistiken.
 */
 
 //Einbinden von reapeted_statistics.h
