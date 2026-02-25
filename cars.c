@@ -1,3 +1,8 @@
+/*
+ * File: cras.c
+ * Description: Funktion und struct von Autos
+ */
+
 #ifndef CARS_H
     #define CARS_H
     #include "include/cars.h"
@@ -18,11 +23,21 @@
 
 
 void create_car(float parking_duration, float arrival_time, struct car* c){
+    /** 
+     * car id = nächste ID von car_id_counter() Funktion
+     * parking duration = übergebenes Argument parking_duration
+     * arrival time = übergebenes Argument arrival_time
+     * zufällige Zahl zwischen 1 und 50 generieren
+     * switch je nach Zahl wird:
+     * brand gesetzt
+     * modelname gesetzt
+     * ps gesetzt
+     */
     c->car_id = car_id_counter();
     c->parking_duration = parking_duration;
     c->arrival_time = arrival_time;
 
-    int randommodelnumber = (rand() % (50) +1);
+    int randommodelnumber = (rand() % (50) +1);     //Zufällige um ein zufälliges Modell auszuwählen
     switch (randommodelnumber) {
         case 1:
             strcpy(c->brand, "Mercedes-Benz");
@@ -159,6 +174,15 @@ void create_car(float parking_duration, float arrival_time, struct car* c){
             strcpy(c->brand, "Unknown Brand");
             strcpy(c->modelname, "Unknown Model");
             c->ps = 100;
+    }
+
+    int time_stemp = 0; //abruf von timestep abrufen
+
+    if((check_for_free_space(struct Car *parking_garage) == 1)){                //woher bekomm ich die parking garage?
+        park_car(*c, struct Car *parking_garage, time_stemp);                   //brauch ich den time_stemp?
+    }
+    else{
+        //Auto wird in Warteschlange / Queue eingereiht
     }
     
 }
