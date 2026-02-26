@@ -81,14 +81,23 @@
 
 /* int Function tabel(int Array[])
 (
-    Es wird eine Variable erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
+    Es wird eine Variable steps erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
     Dafür wird die Größe des übergebenen Arrays ermittelt und durch die größe eines einzelnen Eintrags gerechnet 
     und danach nochmal durch 10 und durch 5, weil es 5 eingegbene Werte gibt, es wird auch eine Funktion 
     zum Runden verwendet, um ganze Zahlen zu erhalten.
 
-    Dann wird in einer Schleife das Array aufgerufen und zu den jeweiligen Abständen gestopt, um die Wert in ihne Spezifischen 
+    Dann wird in einer Schleife das Array aufgerufen und zu den jeweiligen Abständen, mit dem Faktor 5, gestopt, um die Wert in ihnre Spezifischen 
     Themengebiete zu Speichern. Dafür werden 5 neue Arrays angelegt. Daduch das die Werte hinterinander in dem übergebenen 
-    Array gespeichert wurden, kann die Stelle für jeden Wert um eins erhöht werden. 
+    Array gespeichert wurden, kann die Stelle für jeden Wert um eins erhöht werden. Damit meine ich, das pro Zeitschritt 
+    5 Werte, also 5 Schritte im Array, einzel gespeichert wurden und diese einzeln in unterschiedliche Arrays erneut gespeichert werden.
+    Dabei ist der erste Ausgelesene Wert, der Wert 0 und der letzte, der Letzte Simulationsschritt (also steps mal 10). 
+
+    Danach werden, über printf und eine Schleife, die einzelnen Zeitschritte (10) in der Konsole ausgegeben.
+    Dann folgt eine Trennungslinie in Form von "--------", zur Formatierung. 
+    Dann wird das Array zu den Werten von der Füllmenge ausgegeben, dann wieder eine Linie und dann die nächsten Werte, 
+    bis alle 5 Werte dargestellt wurden.
+
+    Gleichzeitig wird jede Ausgabe, die in die Konsole ausgegeben wurde, auch in eine extra .txt Datei ausgeben.
 )
 */
 /**
