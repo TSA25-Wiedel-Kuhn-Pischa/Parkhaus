@@ -61,7 +61,7 @@
 
 //int Function out_maxval(int Array[]);
 
-/**
+/** 
     @brief Es wird eine Tabelle in der Konsole ausgegeben 
 
     Es wird eine Tabelle erstellt, welche 10 Spalten und 8 Zeilen hat. 
@@ -79,8 +79,18 @@
     @return Es wird in der Kosole ausgegeben und in einem externen Dokument dargestellt 
 */
 
-//int Function tabel(int Array[]);
+/* int Function tabel(int Array[])
+(
+    Es wird eine Variable erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
+    Dafür wird die Größe des übergebenen Arrays ermittelt und durch die größe eines einzelnen Eintrags gerechnet 
+    und danach nochmal durch 10 und durch 5, weil es 5 eingegbene Werte gibt, es wird auch eine Funktion 
+    zum Runden verwendet, um ganze Zahlen zu erhalten.
 
+    Dann wird in einer Schleife das Array aufgerufen und zu den jeweiligen Abständen gestopt, um die Wert in ihne Spezifischen 
+    Themengebiete zu Speichern. Dafür werden 5 neue Arrays angelegt. Daduch das die Werte hinterinander in dem übergebenen 
+    Array gespeichert wurden, kann die Stelle für jeden Wert um eins erhöht werden. 
+)
+*/
 /**
     @brief Es wird ein Säulendiagram in der Konsole ausgegeben 
 
