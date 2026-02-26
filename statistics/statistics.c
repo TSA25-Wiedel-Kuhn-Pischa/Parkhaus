@@ -61,24 +61,6 @@
 
 //int Function out_maxval(int Array[]);
 
-/** 
-    @brief Es wird eine Tabelle in der Konsole ausgegeben 
-
-    Es wird eine Tabelle erstellt, welche 10 Spalten und 8 Zeilen hat. 
-    Es wird die Anzahl der gesamten Simulationsschritte durch 10 geteilt.
-    Dadurch erhält man den Absatand der einzelnen Schritte. Mit diesen gff. gerundeten Abständen 
-    wird von 0 bis zum letzten Simulatinsschritt durgegangen. 
-    In diesem Abständen wird die Tabelle geliedert. 
-    Als Wert dargestellt werdem soll die Füllmenge, die Anzahl der Autos insgesamt, im Parkhaus und in der Wartschlange,
-    sowie die Anzahl der freien Parkplätze und Rate.
-    Um die Werte zu Erhalten, werden die Daten aus dem Array von der Funktion save_data(), ausgelesen. Um Rate zu erhälten
-    wird mit der Anazhl der Autos die Funktion rate() aufgerufen. 
-
-    @param[in] Array, Eingabe von dem Array aus der Funktion save_data()
-
-    @return Es wird in der Kosole ausgegeben und in einem externen Dokument dargestellt 
-*/
-
 /* int Function tabel(int Array[])
 (
     Es wird eine Variable steps erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
@@ -97,24 +79,33 @@
     Dann wird das Array zu den Werten von der Füllmenge ausgegeben, dann wieder eine Linie und dann die nächsten Werte, 
     bis alle 5 Werte dargestellt wurden.
 
-    Gleichzeitig wird jede Ausgabe, die in die Konsole ausgegeben wurde, auch in eine extra .txt Datei ausgeben.
+    Gleichzeitig wird jede Ausgabe, die in die Konsole ausgegeben wurde, auch in eine extra .txt Datei geschrieben.
 )
 */
-/**
-    @brief Es wird ein Säulendiagram in der Konsole ausgegeben 
 
-    Es wird ein Säulendiagram erstellt. Auf der X-Achse werden 10 Zeitpunkte dargestellt, diese werden ermittelt, 
-    indem die Anzahl der gesamten Simulationsschritte durch 10 geteilt wird. Dadurch erhält man den Absatand der einzelnen 
-    Schritte. Mit diesen gff. gerundeten Abständen wird von 0 bis zum letzten Simulatinsschritt durgegangen. 
-    Auf der Y-Achse wird von 0 bis 100 in Prozent skaliert. 
-    Als Wert pro Zeitschritt wird die Füllmenge dargestellt, welche aus dem Array von der Funktion save_data() entnommen wird.
+/* int Function column_chart(int Array[])
+(
+    Es wird eine Variable steps erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
+    Dafür wird die Größe des übergebenen Arrays ermittelt und durch die größe eines einzelnen Eintrags gerechnet 
+    und danach nochmal durch 10 und durch 5, weil es 5 eingegbene Werte gibt, es wird auch eine Funktion 
+    zum Runden verwendet, um ganze Zahlen zu erhalten.
 
-    @param[in] Array, Eingabe von dem Array aus der Funktion save_data()
+    Dann wird in einer Schleife das Array aufgerufen und zu den jeweiligen Abständen, mit dem Faktor 5, gestopt, um die Füllmenge in 
+    Prozent zu speichern. Dafür werden ein Arrays angelegt. 
+    Dabei ist der erste Ausgelesene Wert, der Wert 0 und der letzte, der Letzte Simulationsschritt (also steps mal 10). 
 
-    @return Es wird ein Säulendiagram in der Konsole Ausgegeben und einem externen Dokument dargestellt
+    Dann werden die einzelnen Werte durch 10 geteilt und gerundet und in dem Array als Wert ersetzt. 
+    Dieser Wert wird dann so weiter verwendet, das die einzelnen größen der Säulen bestimmt werden. 
+    Das Diagramm wird von oben nach unten erstellt, dabei ist die oberste Zeile, die Zahl 11. Dann wird jeder Wert 
+    überprüft, ob er den Wert 11 hat, wenn ja, werden zwei Striche ausgeben | |. Wenn er genau eins kleiner ist, wird ein _ gesetzt.
+    Dies wird so weit für jede Zeile darunter Wiederholt, bis zur Zeile 1 dort werden wenn denn nur noch | | gesetzt. 
+    Zu beginn der Zeile wird jeweils noch ein | gesetzt um die Y-Achse darzustellen. 
+    In der Zeile 0  wird dann die X-Achse dargestellt und darunter die einzelnen Zeitschritte (steps).
+
+    Gleichzeitig wird jede Ausgabe, die in die Konsole ausgegeben wurde, auch in eine extra .txt Datei geschrieben.
+)
+
 */
-
-//int Function column_chart(int Array[]);
 
 /**
     @brief Es wird ein Balkendiagram in der Konsole ausgegeben 
