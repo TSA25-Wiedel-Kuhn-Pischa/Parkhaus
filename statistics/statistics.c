@@ -72,7 +72,8 @@
     Themengebiete zu Speichern. Dafür werden 5 neue Arrays angelegt. Daduch das die Werte hinterinander in dem übergebenen 
     Array gespeichert wurden, kann die Stelle für jeden Wert um eins erhöht werden. Damit meine ich, das pro Zeitschritt 
     5 Werte, also 5 Schritte im Array, einzel gespeichert wurden und diese einzeln in unterschiedliche Arrays erneut gespeichert werden.
-    Dabei ist der erste Ausgelesene Wert, der Wert 0 und der letzte, der Letzte Simulationsschritt (also steps mal 10). 
+    Dabei ist der erste Ausgelesene Wert, der Wert an der Stelle 0 und 
+    der letzte, an der Stelle vom letzte Simulationsschritt (also steps mal 10). 
 
     Danach werden, über printf und eine Schleife, die einzelnen Zeitschritte (10) in der Konsole ausgegeben.
     Dann folgt eine Trennungslinie in Form von "--------", zur Formatierung. 
@@ -91,12 +92,13 @@
     zum Runden verwendet, um ganze Zahlen zu erhalten.
 
     Dann wird in einer Schleife das Array aufgerufen und zu den jeweiligen Abständen, mit dem Faktor 5, gestopt, um die Füllmenge in 
-    Prozent zu speichern. Dafür werden ein Arrays angelegt. 
-    Dabei ist der erste Ausgelesene Wert, der Wert 0 und der letzte, der Letzte Simulationsschritt (also steps mal 10). 
+    Prozent zu speichern. Dafür wird ein Arrays angelegt. 
+    Dabei ist der erste Ausgelesene Wert, der Wert an der Stelle 0 und 
+    der letzte, an der Stelle vom letzte Simulationsschritt (also steps mal 10). 
 
-    Dann werden die einzelnen Werte durch 10 geteilt und gerundet und in dem Array als Wert ersetzt. 
+    Dann werden die einzelnen ausgelesenen Werte durch 10 geteilt und gerundet und in dem Array als Wert ersetzt. 
     Dieser Wert wird dann so weiter verwendet, das die einzelnen größen der Säulen bestimmt werden. 
-    Das Diagramm wird von oben nach unten erstellt, dabei ist die oberste Zeile, die Zahl 11. Dann wird jeder Wert 
+    Das Diagram wird von oben nach unten erstellt, dabei ist die oberste Zeile, die Zahl 11. Dann wird jeder Wert 
     überprüft, ob er den Wert 11 hat, wenn ja, werden zwei Striche ausgeben | |. Wenn er genau eins kleiner ist, wird ein _ gesetzt.
     Dies wird so weit für jede Zeile darunter Wiederholt, bis zur Zeile 1 dort werden wenn denn nur noch | | gesetzt. 
     Zu beginn der Zeile wird jeweils noch ein | gesetzt um die Y-Achse darzustellen. 
@@ -120,4 +122,29 @@
     @return Es wird ein Säulendiagram in der Konsole Ausgegeben
 */
 
-//int Function bar_chart(int Array[]);
+/* int Function bar_chart(int Array[])
+(
+    Es wird eine Variable steps_y erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
+    Dafür wird die Größe des übergebenen Arrays ermittelt und durch die größe eines einzelnen Eintrags gerechnet 
+    und danach nochmal durch 10 und durch 5, weil es 5 eingegbene Werte gibt, es wird auch eine Funktion 
+    zum Runden verwendet, um ganze Zahlen zu erhalten.
+
+    Dann wird in einer Schleife das Array aufgerufen und zu den jeweiligen Abständen, mit dem Faktor 5, an der 4. Stelle gestopt, 
+    um die Anazahl der Autos in der Warteschlange zu speichern. Dafür wird ein Arrays angelegt. 
+    Dabei ist der erste Ausgelesene Wert, der Wert an der Stelle 0 und 
+    der letzte, an der Stelle vom letzte Simulationsschritt (also steps_y mal 10). 
+
+    Dann wird ermittelt, welcher von den Ausgelsenen Werten der Größte ist, um die Größe der X-Achse zu bestimmen.
+    Die X-Achse wird 10 Spalten lang sein, wodruch der ausgelsene Wert geteielt durch 10 in steps_x gespeichert wird.
+    Das ist die Skalierung der X-Achse. Um zu erkenne wie groß jeder Balken, bei dieser Skalierung ist, wird jeder Wert 
+    durch steps_x geteilt 
+    Dieser Wert wird dann so weiter verwendet, das die einzelnen größen der Säulen bestimmt werden. 
+    Das Diagram wird von oben nach unten erstellt, dabei ist die oberste Zeile, die Zahl 11. Dann wird jeder Wert 
+    überprüft, ob er den Wert 11 hat, wenn ja, werden zwei Striche ausgeben | |. Wenn er genau eins kleiner ist, wird ein _ gesetzt.
+    Dies wird so weit für jede Zeile darunter Wiederholt, bis zur Zeile 1 dort werden wenn denn nur noch | | gesetzt. 
+    Zu beginn der Zeile wird jeweils noch ein | gesetzt um die Y-Achse darzustellen. 
+    In der Zeile 0  wird dann die X-Achse dargestellt und darunter die einzelnen Zeitschritte (steps).
+
+    Gleichzeitig wird jede Ausgabe, die in die Konsole ausgegeben wurde, auch in eine extra .txt Datei geschrieben.
+)
+*/
