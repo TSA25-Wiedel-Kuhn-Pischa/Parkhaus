@@ -1,6 +1,6 @@
 /*
  *  File: simulate.c
- *  Description: In main.c werden die Funktionen der src-Dateien zusammengeführt, um eine Simulation
+ *  Description: In simulate.c werden die Funktionen der src-Dateien zusammengeführt, um eine Simulation
  *               und das Testen der Funktionen zu ermöglichen.
  */
 
