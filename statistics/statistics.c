@@ -134,16 +134,14 @@
     Dabei ist der erste Ausgelesene Wert, der Wert an der Stelle 0 und 
     der letzte, an der Stelle vom letzte Simulationsschritt (also steps_y mal 10). 
 
-    Dann wird ermittelt, welcher von den Ausgelsenen Werten der Größte ist, um die Größe der X-Achse zu bestimmen.
+    Dann wird ermittelt, welcher von den Ausgelsenen Werten der Größte ist, um die Größe der Balken zu bestimmen.
     Die X-Achse wird 10 Spalten lang sein, wodruch der ausgelsene Wert geteielt durch 10 in steps_x gespeichert wird.
     Das ist die Skalierung der X-Achse. Um zu erkenne wie groß jeder Balken, bei dieser Skalierung ist, wird jeder Wert 
-    durch steps_x geteilt 
-    Dieser Wert wird dann so weiter verwendet, das die einzelnen größen der Säulen bestimmt werden. 
-    Das Diagram wird von oben nach unten erstellt, dabei ist die oberste Zeile, die Zahl 11. Dann wird jeder Wert 
-    überprüft, ob er den Wert 11 hat, wenn ja, werden zwei Striche ausgeben | |. Wenn er genau eins kleiner ist, wird ein _ gesetzt.
-    Dies wird so weit für jede Zeile darunter Wiederholt, bis zur Zeile 1 dort werden wenn denn nur noch | | gesetzt. 
-    Zu beginn der Zeile wird jeweils noch ein | gesetzt um die Y-Achse darzustellen. 
-    In der Zeile 0  wird dann die X-Achse dargestellt und darunter die einzelnen Zeitschritte (steps).
+    durch steps_x geteilt und gerundet. In der obersten Zeile wird die Skalierung der X-Achse, also 1 bis 10 ausgegeben. 
+    Eine Zeile tiefer wird eine Linie "------" ausgeben, um die X-Achse darzustellen.
+    Dann wird jede Zeile später, mit jeweils einer Zeile als Lücke, am Anfang der Zeitschritt und dann ein |, um die Y-Achse 
+    dargestellt. Danach relativ von der der Größe des Wertes zu diesem Zeitschritt, eine Menge an "====". 
+    Dies wird in einer Schleife wiederholt, bis alle Werte dargestellt wurden.
 
     Gleichzeitig wird jede Ausgabe, die in die Konsole ausgegeben wurde, auch in eine extra .txt Datei geschrieben.
 )
