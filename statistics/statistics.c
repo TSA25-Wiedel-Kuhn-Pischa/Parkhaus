@@ -46,13 +46,11 @@
     Diese werden jeweils einen Schritt weiter im Array gespeichert. 
 
     Das Array wird zurückgegeben.
-    
 )
 */
 
 /**
-
-    @brief Es wird jeweils der höchste Wert ausgegeben
+    @brief Es wird jeweils der höchste aufgezeichnete Wert ausgegeben
 
     ...
 
@@ -64,7 +62,6 @@
 //int Function out_maxval(int Array[]);
 
 /**
-
     @brief Es wird eine Tabelle in der Konsole ausgegeben 
 
     Es wird eine Tabelle erstellt, welche 10 Spalten und 8 Zeilen hat. 
@@ -85,7 +82,6 @@
 //int Function tabel(int Array[]);
 
 /**
-
     @brief Es wird ein Säulendiagram in der Konsole ausgegeben 
 
     Es wird ein Säulendiagram erstellt. Auf der X-Achse werden 10 Zeitpunkte dargestellt, diese werden ermittelt, 
@@ -102,7 +98,6 @@
 //int Function column_chart(int Array[]);
 
 /**
-
     @brief Es wird ein Balkendiagram in der Konsole ausgegeben 
 
     Es wird ein Balkendiagram erstellt. Auf der Y-Achse werden 10 Zeitpunkte dargestellt, diese werden ermittelt, 
@@ -112,12 +107,7 @@
     Als Wert pro Zeitschritt wird die Anzahl der Autos in der Warteschlange dargestellt, 
     welche aus dem Array von der Funktion save_data() entnommen werden.
 
-
-    @param[in] occupied, Eingabe von der Anzahl der besetzten Parkplätze 
-    @param[in] all, Eingabe von der Anazhl aller Parkplätze 
-    @param[in] time, Eingabe von dem Aktuellen Zeitpunkt
-
     @return Es wird ein Säulendiagram in der Konsole Ausgegeben
 */
 
-//int Function bar_chart(int occupied, int all, int time);
+//int Function bar_chart(int Array[]);

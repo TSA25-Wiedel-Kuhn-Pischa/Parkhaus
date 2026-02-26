@@ -128,13 +128,11 @@
     welche aus dem Array von der Funktion save_data() entnommen werden.
 
 
-    @param[in] occupied, Eingabe von der Anzahl der besetzten Parkplätze 
-    @param[in] all, Eingabe von der Anazhl aller Parkplätze 
-    @param[in] time, Eingabe von dem Aktuellen Zeitpunkt
+    @param[in] Array, Eingabe von dem Array aus der Funktion save_data()
 
     @return Es wird ein Säulendiagram in der Konsole Ausgegeben
 */
 
-//int Function bar_chart(int occupied, int all, int time);
+//int Function bar_chart(int Array[]);
 
 //#endif
