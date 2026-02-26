@@ -49,19 +49,25 @@
 )
 */
 
-/**
-    @brief Es wird jeweils der höchste aufgezeichnete Wert ausgegeben
+/* int Function out_maxval(double Array[])
+(
+    Es wird eine Variable size_ary erstellt, welches mit sizeof die größe des Arrays ermittelt und durch sizeof von einem 
+    Eintrag im Array teilt und dann wird durch 5 geteilt. Dadurch wird die Anzahl der Einträge ermittelt.
 
-    ...
+    Dann wird durch das Array von der jeweiligen Stelle für den Wert gegangen, indem die Stelle immer um 5 erhöht wird. 
+    Zubeginn wird der erste Wert in einer Variable max_(indize für die Füllmenge, Anzahl der Autos, ...) gespeichet. 
+    Danach wird in einer Schleife solange, um 5 Schritte weitergegangen, bis size_ary erreicht wird. Dabei wird jedesmal 
+    geschaut, ob der jetzige Wert größer ist als max_..., wenn ja, dann erhält max_... diesen Wert.
 
-    @param[in] Array, Eingabe von dem Array aus der Funktion save_data()
+    In der Konsole wird dann Ausgegeben: "Der Maxwert von ... beträgt: ...", für jeden Speichertyp, also für die 
+    Füllmenge, Anzahl der Autos, ... .
 
-    @return Es wird in der Kosole ausgegeben und in einem externen Dokument dargestellt 
+    Gleichzeitig wird jede Ausgabe, die in die Konsole ausgegeben wurde, auch in eine extra .txt Datei geschrieben.
+)
+
 */
 
-//int Function out_maxval(int Array[]);
-
-/* int Function tabel(int Array[])
+/* int Function tabel(double Array[])
 (
     Es wird eine Variable steps erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
     Dafür wird die Größe des übergebenen Arrays ermittelt und durch die größe eines einzelnen Eintrags gerechnet 
@@ -84,7 +90,7 @@
 )
 */
 
-/* int Function column_chart(int Array[])
+/* int Function column_chart(double Array[])
 (
     Es wird eine Variable steps erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
     Dafür wird die Größe des übergebenen Arrays ermittelt und durch die größe eines einzelnen Eintrags gerechnet 
@@ -109,20 +115,7 @@
 
 */
 
-/**
-    @brief Es wird ein Balkendiagram in der Konsole ausgegeben 
-
-    Es wird ein Balkendiagram erstellt. Auf der Y-Achse werden 10 Zeitpunkte dargestellt, diese werden ermittelt, 
-    indem die Anzahl der gesamten Simulationsschritte durch 10 geteilt wird. Dadurch erhält man den Absatand der einzelnen 
-    Schritte. Mit diesen gff. gerundeten Abständen wird von 0 bis zum letzten Simulatinsschritt durgegangen. 
-    Auf der X-Achse wird skaliert von 0 bis zum höchsten Wert von der Anzahl der Autos in der Warteschlange.
-    Als Wert pro Zeitschritt wird die Anzahl der Autos in der Warteschlange dargestellt, 
-    welche aus dem Array von der Funktion save_data() entnommen werden.
-
-    @return Es wird ein Säulendiagram in der Konsole Ausgegeben
-*/
-
-/* int Function bar_chart(int Array[])
+/* int Function bar_chart(double Array[])
 (
     Es wird eine Variable steps_y erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
     Dafür wird die Größe des übergebenen Arrays ermittelt und durch die größe eines einzelnen Eintrags gerechnet 
