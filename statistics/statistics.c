@@ -36,28 +36,25 @@ END FUNCTION
 END FUNCTION
 */
 
-/* int FUNCTION save_data(int occupied, int all, int cars_in_line)
+/* int FUNCTION save_data(int *save_data, int *size, int occupied, int all, int cars_in_line)
 
     int fullness_data = fullness(occupied, all)
     int free_spaces = all - occupied
     int all_cars = occupied + cars_in_line
-
-    einmaliges Initialisiern von int size = 0
-
-    einmaliges Initialisieren int *save_data = NULL
     
     int *temp = realloc(save_data, (size + 5) * sizeof(int))
 
     IF temp == NULL THEN
     return save_data
     END IF
+
     save_data = temp
     
     FOR g <- 1 TO 5 DO
         IF g = 1 THEN                               /* Dies wäre mit eine Switch-Case A bfrage besser und effizienter
-            save_data[size] = fullness_data                 * umgesetzt. Da wir dafür aber keine einheitliche Defintion haben
-        END IF                                      * lässt sich das nicht in Pseudocode umsetzten.
-                                                    * Es wird aber im Entwurf mit einer Switch_Case Abfrage umgesetzt.
+            save_data[size] = fullness_data         *  umgesetzt. Da wir dafür aber keine einheitliche Defintion haben
+        END IF                                      *  lässt sich das nicht in Pseudocode umsetzten.
+                                                    *  Es wird aber im Entwurf mit einer Switch_Case Abfrage umgesetzt.
         IF g = 2 THEN                               *//*
             save_data[size] = free_spaces
         END IF
@@ -77,12 +74,12 @@ END FUNCTION
         size = size + 1
     END FOR
 
-    return data[]
+    return save_data
 
 END FUNCTION
 */
 
-/* void FUNCTION out_maxval(int data[])
+/* void FUNCTION out_maxval(int data[], int size)
 
     Es wird eine Variable size_ary erstellt, welches mit sizeof die größe des Arrays ermittelt und durch sizeof von einem 
     Eintrag im Array teilt und dann wird durch 5 geteilt. Dadurch wird die Anzahl der Einträge ermittelt.

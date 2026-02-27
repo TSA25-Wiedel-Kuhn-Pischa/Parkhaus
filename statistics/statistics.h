@@ -65,7 +65,7 @@
     @return Rückgabe von dem erstellten Array, in dem die Werte gespeichert werden
 */
 
-//int FUNCTION save_data(int occupied, int all, int cars_in_line);
+//int FUNCTION save_data(int *data, int *size, int occupied, int all, int cars_in_line);
 
 /**
 
@@ -79,7 +79,7 @@
     @return Es wird in der Kosole ausgegeben und in einem externen Dokument dargestellt 
 */
 
-//void FUNCTION out_maxval(int data[]);
+//void FUNCTION out_maxval(int data[], int size);
 
 /**
 
