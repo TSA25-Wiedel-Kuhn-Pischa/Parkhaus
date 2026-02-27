@@ -11,13 +11,11 @@
 )
 */
 
-/* int Function rate(int count)
+/* int Function rate(int count_now, count_before)
 (
-    Beim ersten Aufruf der Funktion wird ein Array intialisiert. In diesem werden die Werte von count gespeichert.
-    Bei jedem neuen Aufruf wird der Wert einen Schritt weiter gespeichert. 
-    return (aktueller Wert, also array an der aktuellen Stelle, minus den
-    vorheriger Wert, also das Array an der vorherigen Stelle (aktuelle Stelle minus 1)
-    Wenn die Funktion zum ersten mal aufgerufen wird, wird der aktuelle Wert mit 0 subtrahiert.
+    int rate
+    rate = count_now - count_before
+    return rate
 )
 */
 
@@ -42,7 +40,7 @@
     Es wird occupied plus cars_in_line gerechnet und in der Variable all_cars gespeichert
 
     Beim ersten Aufruf der Funktion wird ein Array intialisiert.
-    In diesem werden die Werte fullness_data, free_data, occupied, cars_in_line und all_cars gespeichert.
+    In diesem werden die Werte fullness_data, free_data, occupied, cars_in_line, all_cars und gespeichert.
     Diese werden jeweils einen Schritt weiter im Array gespeichert. 
 
     Das Array wird zurückgegeben.
