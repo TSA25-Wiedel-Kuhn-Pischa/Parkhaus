@@ -104,7 +104,7 @@ int check_for_free_space(struct Car *parking_garage){
 
   END IF
   
-  Gebe free zurück
+  Gebe 0 zurück
   
 }
 
