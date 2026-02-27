@@ -88,7 +88,7 @@ END FUNCTION
 
     FOR g <- 0 TO 4 DO
         IF g = 0 THEN                               
-            FOR i = g TO size_ary DO (Schrittweite(i = i + 5))
+            FOR i <- g TO size_ary DO (Schrittweite(i = i + 5))
                 IF max[g] < data[i]
                     max[g] = data[i]  
                     max[g+5] = (i - g) / 5
@@ -106,26 +106,52 @@ END FUNCTION
 
 */
 
-/* void FUNCTION tabel(double Array[])
+/* void FUNCTION tabel(int data[], int size)
 
-    Es wird eine Variable steps erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
-    Dafür wird die Größe des übergebenen Arrays ermittelt und durch die größe eines einzelnen Eintrags gerechnet 
-    und danach nochmal durch 10 und durch 5, weil es 5 eingegbene Werte gibt, es wird auch eine Funktion 
-    zum Runden verwendet, um ganze Zahlen zu erhalten.
+    int size_ary = size / 5
+    int steps = size_ary / 10) 
 
-    Dann wird in einer Schleife das Array aufgerufen und zu den jeweiligen Abständen, mit dem Faktor 5, gestopt, um die Wert in ihnre Spezifischen 
-    Themengebiete zu Speichern. Dafür werden 5 neue Arrays angelegt. Daduch das die Werte hinterinander in dem übergebenen 
-    Array gespeichert wurden, kann die Stelle für jeden Wert um eins erhöht werden. Damit meine ich, das pro Zeitschritt 
-    5 Werte, also 5 Schritte im Array, einzel gespeichert wurden und diese einzeln in unterschiedliche Arrays erneut gespeichert werden.
-    Dabei ist der erste Ausgelesene Wert, der Wert an der Stelle 0 und 
-    der letzte, an der Stelle vom letzte Simulationsschritt (also steps mal 10). 
+    int info[50]
+    char typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"}
 
-    Danach werden, über printf und eine Schleife, die einzelnen Zeitschritte (10) in der Konsole ausgegeben.
-    Dann folgt eine Trennungslinie in Form von "--------", zur Formatierung. 
-    Dann wird das Array zu den Werten von der Füllmenge ausgegeben, dann wieder eine Linie und dann die nächsten Werte, 
-    bis alle 5 Werte dargestellt wurden.
+    FOR g <- 0 TO 4 DO
+        IF g = 0 THEN                               
+            FOR i <- g TO size_ary DO (Schrittweite(i = i + steps))
+                int f = 0 + 10*g
+                info[f] = data[i]
+                f = f + 1
+                IF (f-10*g) == 9 THEN
+                    info[f] = data[size_ary]
+                END IF
+            END FOR
+        END IF                                     
+    END FOR
 
-    Gleichzeitig wird jede Ausgabe, die in die Konsole ausgegeben wurde, auch in eine extra .txt Datei geschrieben.
+    FOR i <- 0 TO 9 DO
+        IF i < 9 THEN
+            OUTPUT steps * i |
+        ELSE if i == 9 THEN
+            OUTPUT size_ary
+        END IF 
+    END FOR 
+
+    OUTPUT ---------------------------------
+
+    FOR i <- 0 TO 4 DO
+        FOR g <- 0 TO 9 DO
+            OUTPUT (i+1) | 
+            fprintf(Auswertung.txt, (i+1) | )
+            OUTPUT info[g + 10*i] | 
+            fprintf(Auswertung.txt, info[g + 10*i] | )
+        END FOR
+        OUTPUT (Zeilenumbruch) --------------------------------- (Zeilenumbruch)
+        fprintf(Auswertung.txt, (Zeilenumbruch) --------------------------------- (Zeilenumbruch))
+    END FOR 
+
+    FOR i <-1 TO 5 DO
+        OUTPUT i = typ[i-1] (Zeilenumbruch)
+        fprintf(Auswertung.txt, (i = typ[i-1] (Zeilenumbruch))
+    END FOR
 
 END FUNCTION
 */
