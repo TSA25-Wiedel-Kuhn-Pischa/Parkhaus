@@ -51,7 +51,7 @@ END FUNCTION
     save_data = temp
     
     FOR g <- 1 TO 5 DO
-        IF g = 1 THEN                               /* Dies wäre mit eine Switch-Case A bfrage besser und effizienter
+        IF g = 1 THEN                               /* Dies wäre mit eine Switch-Case Abfrage besser und effizienter
             save_data[size] = fullness_data         *  umgesetzt. Da wir dafür aber keine einheitliche Defintion haben
         END IF                                      *  lässt sich das nicht in Pseudocode umsetzten.
                                                     *  Es wird aber im Entwurf mit einer Switch_Case Abfrage umgesetzt.
@@ -81,20 +81,26 @@ END FUNCTION
 
 /* void FUNCTION out_maxval(int data[], int size)
 
-    Es wird eine Variable size_ary erstellt, welches mit sizeof die größe des Arrays ermittelt und durch sizeof von einem 
-    Eintrag im Array teilt und dann wird durch 5 geteilt. Dadurch wird die Anzahl der Einträge ermittelt.
+    int size_ary = size / 5
 
-    Dann wird durch das Array von der jeweiligen Stelle für den Wert gegangen, indem die Stelle immer um 5 erhöht wird. 
-    Zubeginn wird der erste Wert in einer Variable max_(indize für die Füllmenge, Anzahl der Autos, ...) gespeichet. 
-    Danach wird in einer Schleife solange, um 5 Schritte weitergegangen, bis size_ary erreicht wird. Dabei wird jedesmal 
-    geschaut, ob der jetzige Wert größer ist als max_..., wenn ja, dann erhält max_... diesen Wert.
+    int max[] = {data[0], data[1], data[2], data[3], data[4], 0, 0, 0, 0, 0}
+    char typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"}
 
-    In der Konsole wird dann Ausgegeben: "Der Maxwert von ... beträgt: ...", für jeden Speichertyp, also für die 
-    Füllmenge, Anzahl der Autos, ... .
+    FOR g <- 0 TO 4 DO
+        IF g = 0 THEN                               
+            FOR i = g TO size_ary DO (Schrittweite(i = i + 5))
+                IF max[g] < data[i]
+                    max[g] = data[i]  
+                    max[g+5] = (i - g) / 5
+                END IF
+            END FOR
+        END IF                                     
+    END FOR
 
-    Gleichzeitig wird jede Ausgabe, die in die Konsole ausgegeben wurde, auch in eine extra .txt Datei geschrieben.
-
-    int size_ary = (sizeof(data))
+    FOR g <- 0 TO 4 DO
+        OUTPUT Die typ[g] war mit dem Wert max[g] zum Zeitpunkt max[g+5] am größten. (ein Zeilenumbruch)     
+        fprintf(Auswertung.txt, Die typ[g] war mit dem Wert max[g] zum Zeitpunkt max[g+5] am größten. (ein Zeilenumbruch))                  
+    END FOR
 
 END FUNCTION
 
