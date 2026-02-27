@@ -79,7 +79,7 @@
     @return Es wird in der Kosole ausgegeben und in einem externen Dokument dargestellt 
 */
 
-//int FUNCTION out_maxval(double Array[]);
+//void FUNCTION out_maxval(double Array[]);
 
 /**
 
@@ -98,7 +98,7 @@
     @return Es wird in der Kosole ausgegeben und in einem externen Dokument dargestellt 
 */
 
-//int FUNCTION tabel(double Array[]);
+//void FUNCTION tabel(double Array[]);
 
 /**
 
@@ -114,7 +114,7 @@
     @return Es wird ein Säulendiagram in der Konsole Ausgegeben und einem externen Dokument dargestellt
 */
 
-//int FUNCTION column_chart(double Array[]);
+//void FUNCTION column_chart(double Array[]);
 
 /**
 
@@ -132,6 +132,6 @@
     @return Es wird ein Balkendiagram in der Konsole Ausgegeben
 */
 
-//int FUNCTION bar_chart(double Array[]);
+//void FUNCTION bar_chart(double Array[]);
 
 //#endif

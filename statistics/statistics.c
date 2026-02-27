@@ -38,19 +38,44 @@ END FUNCTION
 
 /* int FUNCTION save_data(int occupied, int all, int cars_in_line)
 
-    Es wird die Funktion fullness mit den Werten occupied und all aufgerufen und in der Variable fullness_data gespeichert
-    Es wird occupied von all abgezogen und in der Variable free_spaces gespeichert 
-    Es wird occupied plus cars_in_line gerechnet und in der Variable all_cars gespeichert
+    int fullness_data = fullness(occupied, all)
+    int free_spaces = all - occupied
+    int all_cars = occupied + cars_in_line
 
-    Beim ersten Aufruf der Funktion wird ein Array intialisiert.
-    In diesem werden die Werte fullness_data, free_data, occupied, cars_in_line, all_cars und gespeichert.
-    Diese werden jeweils einen Schritt weiter im Array gespeichert. 
+    einmaliges Initialisiern von int i = 0
 
-    Das Array wird zurückgegeben.
+    einmaliges Initialisieren int data[] = leer
+    
+    FOR g <- 1 TO 5 DO
+        IF g = 1 THEN                               /* Dies wäre mit eine Switch-Case A bfrage besser und effizienter
+            data[i] = fullness_data                 * umgesetzt. Da wir dafür aber keine einheitliche Defintion haben
+        END IF                                      * lässt sich das nicht in Pseudocode umsetzten.
+                                                    * Es wird aber im Entwurf mit einer Switch_Case Abfrage umgesetzt.
+        IF g = 2 THEN                               *//*
+            data[i] = free_spaces
+        END IF
+
+        IF g = 3 THEN 
+            data[i] = occupied
+        END IF
+
+        IF g = 4 THEN 
+            data[i] = cars_in_line
+        END IF
+
+        IF g = 5 THEN 
+            data[i] = all_cars
+        END IF
+
+        i = i + 1
+    END FOR
+
+    return data[]
+
 END FUNCTION
 */
 
-/* int FUNCTION out_maxval(double Array[])
+/* void FUNCTION out_maxval(double Array[])
 
     Es wird eine Variable size_ary erstellt, welches mit sizeof die größe des Arrays ermittelt und durch sizeof von einem 
     Eintrag im Array teilt und dann wird durch 5 geteilt. Dadurch wird die Anzahl der Einträge ermittelt.
@@ -69,7 +94,7 @@ END FUNCTION
 
 */
 
-/* int FUNCTION tabel(double Array[])
+/* void FUNCTION tabel(double Array[])
 
     Es wird eine Variable steps erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
     Dafür wird die Größe des übergebenen Arrays ermittelt und durch die größe eines einzelnen Eintrags gerechnet 
@@ -93,7 +118,7 @@ END FUNCTION
 END FUNCTION
 */
 
-/* int FUNCTION column_chart(double Array[])
+/* void FUNCTION column_chart(double Array[])
 
     Es wird eine Variable steps erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
     Dafür wird die Größe des übergebenen Arrays ermittelt und durch die größe eines einzelnen Eintrags gerechnet 
@@ -119,7 +144,7 @@ END FUNCTION
 
 */
 
-/* int FUNCTION bar_chart(double Array[])
+/* void FUNCTION bar_chart(double Array[])
 
     Es wird eine Variable steps_y erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
     Dafür wird die Größe des übergebenen Arrays ermittelt und durch die größe eines einzelnen Eintrags gerechnet 
