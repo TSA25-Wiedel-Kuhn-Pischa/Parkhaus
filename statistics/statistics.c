@@ -5,36 +5,39 @@
 
 //Einbinden von reapeted_statistics.h
 
-/* int Function fullness(int occupied, int all)
-(
-    return von ((occupied/all) * 100) 
-)
+/* int FUNCTION fullness(int occupied, int all)
+
+    return von ((occupied/all) * 100)
+
+END FUNCTION
 */
 
-/* int Function rate(int count_now, count_before)
-(
+/* int FUNCTION rate(int count_now, count_before)
+
     int rate
     rate = count_now - count_before
     return rate
-)
+
+END FUNCTION
 */
 
-/* void Function output_data(int occupied, int all, int cars_in_line)
-(
-    i = 1
-    i wird einmalig Initialisiert und bei jedem Aufruf der Funktion um eins erhöht.
-    Es wird die Funktion fullness mit den Werten occupied und all aufgerufen und in der Variable fullness_data gespeichert
-    Es wird occupied von all abgezogen und in der Variable free_spaces gespeichert 
-    Es wird occupied plus cars_in_line gerechnet und in der Variable all_cars gespeichert 
+/* void FUNCTION output_data(int occupied, int all, int cars_in_line)
 
-    OUTPUT Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness_data(Ausgabe von dem Wert von fullnes_data)%     free spaces: free_data (Ausgabe von dem Wert von free_data)
-                                                        cars parked: occupied(Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line(Ausgabe von dem Wert von cars_in_line)
-                                                        all cars: all_cars(Ausgabe von dem Wert von all_cars)
-)
+    einmaliges Initialisiern von int i = 1
+    int free_spaces = all - occupied
+    int all_cars = occupied + cars_in_line
+
+    OUTPUT Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data)
+    OUTPUT                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line)
+    OUTPUT                                              all cars: all_cars (Ausgabe von dem Wert von all_cars)
+
+    i = i + 1
+
+END FUNCTION
 */
 
-/* int Function save_data(int occupied, int all, int cars_in_line)
-(
+/* int FUNCTION save_data(int occupied, int all, int cars_in_line)
+
     Es wird die Funktion fullness mit den Werten occupied und all aufgerufen und in der Variable fullness_data gespeichert
     Es wird occupied von all abgezogen und in der Variable free_spaces gespeichert 
     Es wird occupied plus cars_in_line gerechnet und in der Variable all_cars gespeichert
@@ -44,11 +47,11 @@
     Diese werden jeweils einen Schritt weiter im Array gespeichert. 
 
     Das Array wird zurückgegeben.
-)
+END FUNCTION
 */
 
-/* int Function out_maxval(double Array[])
-(
+/* int FUNCTION out_maxval(double Array[])
+
     Es wird eine Variable size_ary erstellt, welches mit sizeof die größe des Arrays ermittelt und durch sizeof von einem 
     Eintrag im Array teilt und dann wird durch 5 geteilt. Dadurch wird die Anzahl der Einträge ermittelt.
 
@@ -61,12 +64,13 @@
     Füllmenge, Anzahl der Autos, ... .
 
     Gleichzeitig wird jede Ausgabe, die in die Konsole ausgegeben wurde, auch in eine extra .txt Datei geschrieben.
-)
+
+END FUNCTION
 
 */
 
-/* int Function tabel(double Array[])
-(
+/* int FUNCTION tabel(double Array[])
+
     Es wird eine Variable steps erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
     Dafür wird die Größe des übergebenen Arrays ermittelt und durch die größe eines einzelnen Eintrags gerechnet 
     und danach nochmal durch 10 und durch 5, weil es 5 eingegbene Werte gibt, es wird auch eine Funktion 
@@ -85,11 +89,12 @@
     bis alle 5 Werte dargestellt wurden.
 
     Gleichzeitig wird jede Ausgabe, die in die Konsole ausgegeben wurde, auch in eine extra .txt Datei geschrieben.
-)
+
+END FUNCTION
 */
 
-/* int Function column_chart(double Array[])
-(
+/* int FUNCTION column_chart(double Array[])
+
     Es wird eine Variable steps erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
     Dafür wird die Größe des übergebenen Arrays ermittelt und durch die größe eines einzelnen Eintrags gerechnet 
     und danach nochmal durch 10 und durch 5, weil es 5 eingegbene Werte gibt, es wird auch eine Funktion 
@@ -109,12 +114,13 @@
     In der Zeile 0  wird dann die X-Achse dargestellt und darunter die einzelnen Zeitschritte (steps).
 
     Gleichzeitig wird jede Ausgabe, die in die Konsole ausgegeben wurde, auch in eine extra .txt Datei geschrieben.
-)
+
+END FUNCTION
 
 */
 
-/* int Function bar_chart(double Array[])
-(
+/* int FUNCTION bar_chart(double Array[])
+
     Es wird eine Variable steps_y erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
     Dafür wird die Größe des übergebenen Arrays ermittelt und durch die größe eines einzelnen Eintrags gerechnet 
     und danach nochmal durch 10 und durch 5, weil es 5 eingegbene Werte gibt, es wird auch eine Funktion 
@@ -135,5 +141,6 @@
     Dies wird in einer Schleife wiederholt, bis alle Werte dargestellt wurden.
 
     Gleichzeitig wird jede Ausgabe, die in die Konsole ausgegeben wurde, auch in eine extra .txt Datei geschrieben.
-)
+
+END FUNCTION
 */

@@ -17,7 +17,7 @@
 *    @return Es wird der berechnete Wert zurück gegeben
 */
 
-//int Function fullness(int occupied, int all);
+//int FUNCTION fullness(int occupied, int all);
 
 /**
 *
@@ -32,7 +32,7 @@
 *    @return Es wird der Wert von der Variable rate zurückgegeben
 */
 
-//int Function rate(int count_now, count_before);
+//int FUNCTION rate(int count_now, count_before);
 
 /**
 
@@ -49,7 +49,7 @@
     @return Ausgabe von den aktuellen Werten 
 */
 
-//void Function output_data(int occupied, int all, int cars_in_line);
+//void FUNCTION output_data(int occupied, int all, int cars_in_line);
 
 /**
 
@@ -65,7 +65,7 @@
     @return Rückgabe von dem erstellten Array, in dem die Werte gespeichert werden
 */
 
-//int Function save_data(int occupied, int all, int cars_in_line);
+//int FUNCTION save_data(int occupied, int all, int cars_in_line);
 
 /**
 
@@ -79,7 +79,7 @@
     @return Es wird in der Kosole ausgegeben und in einem externen Dokument dargestellt 
 */
 
-//int Function out_maxval(double Array[]);
+//int FUNCTION out_maxval(double Array[]);
 
 /**
 
@@ -98,7 +98,7 @@
     @return Es wird in der Kosole ausgegeben und in einem externen Dokument dargestellt 
 */
 
-//int Function tabel(double Array[]);
+//int FUNCTION tabel(double Array[]);
 
 /**
 
@@ -114,7 +114,7 @@
     @return Es wird ein Säulendiagram in der Konsole Ausgegeben und einem externen Dokument dargestellt
 */
 
-//int Function column_chart(double Array[]);
+//int FUNCTION column_chart(double Array[]);
 
 /**
 
@@ -132,6 +132,6 @@
     @return Es wird ein Balkendiagram in der Konsole Ausgegeben
 */
 
-//int Function bar_chart(double Array[]);
+//int FUNCTION bar_chart(double Array[]);
 
 //#endif
