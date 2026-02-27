@@ -42,32 +42,39 @@ END FUNCTION
     int free_spaces = all - occupied
     int all_cars = occupied + cars_in_line
 
-    einmaliges Initialisiern von int i = 0
+    einmaliges Initialisiern von int size = 0
 
-    einmaliges Initialisieren int data[] = leer
+    einmaliges Initialisieren int *save_data = NULL
+    
+    int *temp = realloc(save_data, (size + 5) * sizeof(int))
+
+    IF temp == NULL THEN
+    return save_data
+    END IF
+    save_data = temp
     
     FOR g <- 1 TO 5 DO
         IF g = 1 THEN                               /* Dies wäre mit eine Switch-Case A bfrage besser und effizienter
-            data[i] = fullness_data                 * umgesetzt. Da wir dafür aber keine einheitliche Defintion haben
+            save_data[size] = fullness_data                 * umgesetzt. Da wir dafür aber keine einheitliche Defintion haben
         END IF                                      * lässt sich das nicht in Pseudocode umsetzten.
                                                     * Es wird aber im Entwurf mit einer Switch_Case Abfrage umgesetzt.
         IF g = 2 THEN                               *//*
-            data[i] = free_spaces
+            save_data[size] = free_spaces
         END IF
 
         IF g = 3 THEN 
-            data[i] = occupied
+            save_data[size] = occupied
         END IF
 
         IF g = 4 THEN 
-            data[i] = cars_in_line
+            save_data[size] = cars_in_line
         END IF
 
         IF g = 5 THEN 
-            data[i] = all_cars
+            save_data[size] = all_cars
         END IF
 
-        i = i + 1
+        size = size + 1
     END FOR
 
     return data[]
@@ -75,7 +82,7 @@ END FUNCTION
 END FUNCTION
 */
 
-/* void FUNCTION out_maxval(double Array[])
+/* void FUNCTION out_maxval(int data[])
 
     Es wird eine Variable size_ary erstellt, welches mit sizeof die größe des Arrays ermittelt und durch sizeof von einem 
     Eintrag im Array teilt und dann wird durch 5 geteilt. Dadurch wird die Anzahl der Einträge ermittelt.
@@ -89,6 +96,8 @@ END FUNCTION
     Füllmenge, Anzahl der Autos, ... .
 
     Gleichzeitig wird jede Ausgabe, die in die Konsole ausgegeben wurde, auch in eine extra .txt Datei geschrieben.
+
+    int size_ary = (sizeof(data))
 
 END FUNCTION
 

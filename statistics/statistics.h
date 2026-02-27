@@ -79,7 +79,7 @@
     @return Es wird in der Kosole ausgegeben und in einem externen Dokument dargestellt 
 */
 
-//void FUNCTION out_maxval(double Array[]);
+//void FUNCTION out_maxval(int data[]);
 
 /**
 
