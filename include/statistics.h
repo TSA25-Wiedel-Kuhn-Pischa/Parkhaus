@@ -41,18 +41,17 @@
 
     Es wird in der externen .txt Datei eine kurz übersicht zu den eingebenen Parametern erstellt.
 
-
-    @param[in] spaces, Eingabe des Speicherbestandes aus der Funktion save_data()
-    @param[in] max_parking, Eingabe der Anzahl der Einträge des Arrays
-    @param[in] steps, Eingabe der Anzahl der Einträge des Arrays
-    @param[in] chance_of_new_cars, Eingabe der Anzahl der Einträge des Arrays
-    @param[in] Seed, Eingabe der Anzahl der Einträge des Arrays
+    @param[in] spaces, Eingabe Anzahl der Stellplätze
+    @param[in] max_parking, Eingabe Maximale Parkdauer
+    @param[in] steps, Eingabe Simulationsdauer (Zeitschritte)
+    @param[in] chance_of_new_cars, Eingabe Ankunftswahrscheinlichkeit neuer Fahrzeuge in %
+    @param[in] seed, Eingabe Zufalls-Seed für reprudzierbare Simulation
 
     @return Es wird in einem externen Dokument Auswertung.txt dargestellt, 
             aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-//void FUNCTION head_document(int spaces, int max_parking, int steps);
+//void FUNCTION head_document(int spaces, int max_parking, int steps, int chance_of_new_cras, int seed);
 /**
 
     @brief Es werden in der Konsole die aktuellen Daten ausgegeben
@@ -65,7 +64,7 @@
     @param[in] all, Eingabe von der Anazhl aller Parkplätze
     @param[in] cars_in_line, Eingabe von der Anazhl aller Autos in der Warteschlange
 
-    @return Ausgabe von den aktuellen Werten 
+    @return Ausgabe von den aktuellen Werten ind der Konsole und dem extra .txt Dokument 
 */
 
 

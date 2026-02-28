@@ -19,16 +19,29 @@ END FUNCTION
 END FUNCTION
 */
 
+/* void FUNCTION head_document(int spaces, int max_parking, int steps, int chance_of_new_cras, int seed, char document[])
+
+    fprintf(char document[], Anzahl der Stellplätze: spaces (Zeilenumbruch))
+    fprintf(char document[], Maximale Parkdauer: max_parking (Zeilenumbruch))
+    fprintf(char document[], Simulationsdauer: steps (Zeilenumbruch))
+    fprintf(char document[], Ankunftswahrscheinlichkeit neuer Fahrzeuge: chance_of_new_cars % (Zeilenumbruch))
+    fprintf(char document[], Der Zufalls-Seed: seed (Zeilenumbruch))
+
+END FUNCTION
+*/
 /* void FUNCTION output_data(int occupied, int all, int cars_in_line)
 
     einmaliges Initialisiern von int i = 1
     int free_spaces = all - occupied
     int all_cars = occupied + cars_in_line
 
-    OUTPUT Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data)
-    OUTPUT                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line)
-    OUTPUT                                              all cars: all_cars (Ausgabe von dem Wert von all_cars)
+    OUTPUT Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data) (Zeilenumbruch)
+    OUTPUT                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line) (Zeilenumbruch)
+    OUTPUT                                              all cars: all_cars (Ausgabe von dem Wert von all_cars) (Zeilenumbruch)
 
+    fprintf(Auswertung.txt, Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data) (Zeilenumbruch))
+    fprintf(Auswertung.txt,                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line) (Zeilenumbruch))
+    fprintf(Auswertung.txt,                                              all cars: all_cars (Ausgabe von dem Wert von all_cars) (Zeilenumbruch))
     i = i + 1
 
 END FUNCTION
@@ -77,32 +90,7 @@ END FUNCTION
 END FUNCTION
 */
 
-/* void FUNCTION out_maxval(int data[], int size)
 
-    int size_ary = round(size / 5)
-
-    int max[] = {data[0], data[1], data[2], data[3], data[4], 0, 0, 0, 0, 0}
-    char typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"}
-
-    FOR g <- 0 TO 4 DO
-        IF g = 0 THEN                               
-            FOR i <- g TO size_ary DO (Schrittweite(i = i + 5))                 // Sortieren von jedem einzelnem Wert nach dem größten
-                IF max[g] < data[i]
-                    max[g] = data[i]  
-                    max[g+5] = (i - g) / 5
-                END IF
-            END FOR
-        END IF                                     
-    END FOR
-
-    FOR g <- 0 TO 4 DO
-        OUTPUT Die typ[g] war mit dem Wert max[g] zum Zeitpunkt max[g+5] am größten. (ein Zeilenumbruch)            // Ausgabe des jeweils größten Wertes
-        fprintf(Auswertung.txt, Die typ[g] war mit dem Wert max[g] zum Zeitpunkt max[g+5] am größten. (ein Zeilenumbruch))                  
-    END FOR
-
-END FUNCTION
-
-*/
 
 /* void FUNCTION tabel(int data[], int size)
 
@@ -363,3 +351,37 @@ END FUNCTION
 END FUNCTION
 */
 
+/* void FUNCTION out_maxval(int data[], int size)
+
+    int size_ary = round(size / 5)
+
+    int max[] = {data[0], data[1], data[2], data[3], data[4], 0, 0, 0, 0, 0}
+    char typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"}
+
+    FOR g <- 0 TO 4 DO
+        IF g = 0 THEN                               
+            FOR i <- g TO size_ary DO (Schrittweite(i = i + 5))                 // Sortieren von jedem einzelnem Wert nach dem größten
+                IF max[g] < data[i]
+                    max[g] = data[i]  
+                    max[g+5] = (i - g) / 5
+                END IF
+            END FOR
+        END IF                                     
+    END FOR
+
+    FOR g <- 0 TO 4 DO
+        OUTPUT Die typ[g] war mit dem Wert max[g] zum Zeitpunkt max[g+5] am größten. (ein Zeilenumbruch)            // Ausgabe des jeweils größten Wertes
+        fprintf(Auswertung.txt, Die typ[g] war mit dem Wert max[g] zum Zeitpunkt max[g+5] am größten. (ein Zeilenumbruch))                  
+    END FOR
+
+    IF max[3] > 15 THEN 
+        OUTPUT Eine Bauliche Erweiterung wird empfohlen, da zu dem Zeitpunkt max[8], max[3] Autos in der Warteschlange waren.
+        fprintf(Auswertung.txt, Eine Bauliche Erweiterung wird empfohlen, da zu dem Zeitpunkt max[8], max[3] Autos in der Warteschlange waren)
+    ELSE IF max[3] <= 15 THEN 
+        OUTPUT Eine Bauliche Erweiterung wird nicht empfohlen, da zu dem Zeitpunkt max[8], nur max[3] Autos in der Warteschlange waren.
+        fprintf(Auswertung.txt, Eine Bauliche Erweiterung wird nicht empfohlen, da zu dem Zeitpunkt max[8], nur max[3] Autos in der Warteschlange waren.)
+    END IF
+
+END FUNCTION
+
+*/
