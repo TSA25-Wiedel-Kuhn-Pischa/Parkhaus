@@ -58,11 +58,13 @@
     Es werden die berechneten Werte, fullnes und freie Parkplätze, sowie die Anzahl der Autos im Parkhaus, 
     in der möglichen Warteschlange und Insgesamt mit dem aktuellen Zeitschritt gespeichert 
 
+    @param[in/out] *data, Eingabe des vorherigen Speicherbestandes 
+    @param[in/out] *size, Eingabe der größe des Arrays
     @param[in] occupied, Eingabe von der Anzahl der besetzten Parkplätze 
     @param[in] all, Eingabe von der Anazhl aller Parkplätze
     @param[in] cars_in_line, Eingabe von der Anazhl aller Autos in der Warteschlange
 
-    @return Rückgabe von dem erstellten Array, in dem die Werte gespeichert werden
+    @return Rückgabe von dem erstellten Array, in dem die Werte gespeichert werden, 
 */
 
 //int FUNCTION save_data(int *data, int *size, int occupied, int all, int cars_in_line);
@@ -74,9 +76,11 @@
     Es wird für jeden von den % Werten, der in save_data gespeichert wurde, der max wert ermittelt.
     Dies wird dann Formatiert ausgegeben.
 
-    @param[in] Array, Eingabe von dem Array aus der Funktion save_data()
+    @param[in] data[], Eingabe des Speicherbestandes aus der Funktion save_data()
+    @param[in] size, Eingabe der Anzahl der Einträge des Arrays
 
-    @return Es wird in der Kosole ausgegeben und in einem externen Dokument dargestellt 
+    @return Es wird in der Kosole ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
+            aber kein direkter return Wert, da die funktion den Datentyp void hat 
 */
 
 //void FUNCTION out_maxval(int data[], int size);
@@ -93,12 +97,14 @@
     Um die Werte zu Erhalten, werden die Daten aus dem Array von der Funktion save_data(), ausgelesen. Um Rate zu erhälten
     wird mit der Anazhl der Autos die Funktion rate() aufgerufen. 
 
-    @param[in] Array, Eingabe von dem Array aus der Funktion save_data()
+    @param[in] data[], Eingabe des Speicherbestandes aus der Funktion save_data()
+    @param[in] size, Eingabe der Anzahl der Einträge des Arrays
 
-    @return Es wird in der Kosole ausgegeben und in einem externen Dokument dargestellt 
+    @return Es wird in der Kosole ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
+            aber kein direkter return Wert, da die funktion den Datentyp void hat.
 */
 
-//void FUNCTION tabel(double Array[]);
+//void FUNCTION tabel(int data[], int size);
 
 /**
 
@@ -109,12 +115,14 @@
     Auf der Y-Achse wird von 0 bis 100 in Prozent skaliert. 
     Als Wert pro Zeitschritt wird die Füllmenge dargestellt, welche aus dem Array von der Funktion save_data() entnommen wird.
 
-    @param[in] Array, Eingabe von dem Array aus der Funktion save_data()
+    @param[in] data[], Eingabe des Speicherbestandes aus der Funktion save_data()
+    @param[in] size, Eingabe der Anzahl der Einträge des Arrays
 
-    @return Es wird ein Säulendiagram in der Konsole Ausgegeben und einem externen Dokument dargestellt
+    @return Es wird ein Säulendiagram in der Konsole Ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
+            aber kein direkter return Wert, da die funktion den Datentyp void hat.
 */
 
-//void FUNCTION column_chart(double Array[]);
+//void FUNCTION column_chart(int data[], int size);
 
 /**
 
@@ -127,11 +135,13 @@
     welche aus dem Array von der Funktion save_data() entnommen werden.
 
 
-    @param[in] Array, Eingabe von dem Array aus der Funktion save_data()
+    @param[in] data[], Eingabe des Speicherbestandes aus der Funktion save_data()
+    @param[in] size, Eingabe der Anzahl der Einträge des Arrays
 
-    @return Es wird ein Balkendiagram in der Konsole Ausgegeben
+    @return Es wird ein Balkendiagram in der Konsole und in einem externen Dokument Auswertung.txt Ausgegeben, 
+            aber kein direkter return Wert, da die funktion den Datentyp void hat.
 */
 
-//void FUNCTION bar_chart(double Array[]);
+//void FUNCTION bar_chart(int data[], int size);
 
 //#endif
