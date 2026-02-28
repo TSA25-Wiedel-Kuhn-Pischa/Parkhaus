@@ -182,8 +182,8 @@ END FUNCTION
             IF line > 0 THEN  
 
                 IF column == 0 && line == 11 THEN   
-                    OUTPUT spaces[3]                        // Setztes der Pfeilspitze für die Y-Achse
-                    fprintf(Auswertung.txt, spaces[3])
+                    OUTPUT spaces[3] (Zeilenumbruch)        // Setztes der Pfeilspitze für die Y-Achse
+                    fprintf(Auswertung.txt, spaces[3] (Zeilenumbruch))
 
                 ELSE IF column == 0 THEN                    // Setzten der Pfeillinie für die Y-Achse
                     OUTPUT spaces[6]
@@ -258,7 +258,7 @@ END FUNCTION
     int steps_y = round(size_ary / 10.f)                      // Bereuchnung der Skala von der Y-Achse
 
     int info[10] = {0}
-    char spaces[] = {"| |", "_", " ", "^", "-", ">", "|"}   // Verwendete Zeichen zur Erstellung des Säulendiagrams 
+    char spaces[] = {"| |", "_", " ", "^", "-", ">", "|", "="}   // Verwendete Zeichen zur Erstellung des Balkendiagrams  
 
                                  
     FOR i <- 3 TO size_ary DO (Schrittweite(i = i + steps_y))
@@ -288,17 +288,72 @@ END FUNCTION
         END IF
     END FOR
 
-    
-        
 
-    Dann wird ermittelt, welcher von den Ausgelsenen Werten der Größte ist, um die Größe der Balken zu bestimmen.
-    Die X-Achse wird 10 Spalten lang sein, wodruch der ausgelsene Wert geteielt durch 10 in steps_x gespeichert wird.
-    Das ist die Skalierung der X-Achse. Um zu erkenne wie groß jeder Balken, bei dieser Skalierung ist, wird jeder Wert 
-    durch steps_x geteilt und gerundet. In der obersten Zeile wird die Skalierung der X-Achse, also 1 bis 10 ausgegeben. 
-    Eine Zeile tiefer wird eine Linie "------" ausgeben, um die X-Achse darzustellen.
-    Dann wird jede Zeile später, mit jeweils einer Zeile als Lücke, am Anfang der Zeitschritt und dann ein |, um die Y-Achse 
-    dargestellt. Danach relativ von der der Größe des Wertes zu diesem Zeitschritt, eine Menge an "====". 
-    Dies wird in einer Schleife wiederholt, bis alle Werte dargestellt wurden.
+    int f = 0
+
+    FOR line <- 22 TO 0 DO                                  // durchgehen der Zeilen 
+        FOR column <- 0 TO 21 DO                            // durchgehen der Spalten
+            
+            IF line > 1 && line % 2 == 0 THEN  
+
+                IF column == 0 && line == 22 THEN   
+                    OUTPUT spaces[3] (Zeilenumbruch)        // Setztes der Pfeilspitze für die Y-Achse
+                    fprintf(Auswertung.txt, spaces[3] (Zeilenumbruch))
+
+                ELSE IF column == 0 THEN                    // Setzten der Pfeillinie für die Y-Achse
+                    OUTPUT spaces[6]  (Zeilenumbruch)
+                END IF 
+
+            IF line > 1 && line % 2 == 1 THEN  
+                OUTPUT f spaces[6]      
+                FOR i <- 1 TO (info[f]*2)
+                    OUTPUT spaces[7]
+                END FOR 
+                OUTPUT (Zeilenumbruch)
+            END IF
+            // Setzten der X-Achse
+
+            
+            ELSE IF line == 0 THEN
+                int f = 11
+                IF column % 2 == 1 || column == 0 THEN             
+                    OUTPUT spaces[2]                                // Setzten der Lücken, genauso wie zwischen den Säulen 
+                    fprintf(Auswertung.txt, spaces[2])
+                ELSE IF column % 2 == 0 && column != 0 THEN 
+                    OUTPUT f
+                    printf(Auswertung.txt, f)                      // Setzten der Nummerierungen 
+                    f = f + 1
+                END IF 
+
+            ELSE IF line == 1 THEN
+                IF column != 21 THEN
+                    OUTPUT spaces[4]                         
+                        printf(Auswertung.txt, spaces[4])
+                ELSE
+                    OUTPUT spaces[5]
+                    fprintf(Auswertung.txt, spaces[5])
+            END IF 
+
+        END FOR 
+        OUTPUT (Zeilenumbruch)
+        fprintf(Auswertung.txt, (Zeilenumbruch))
+    END FOR
+
+
+    OUTPUT (Zeilenumbruch)
+    fprintf(Auswertung.txt, (Zeilenumbruch))
+
+    // Erstellen von einer Legende für die Balken im Diagramm 
+
+    FOR i <-1 TO 10 DO
+        IF i < 10 THEN 
+            OUTPUT (i+10) = Wert steps_x*i (Zeilenumbruch)              
+            fprintf(Auswertung.txt, ((i+10) = Wert steps_x*i (Zeilenumbruch))
+        ELSE 
+            OUTPUT (i+10) = Zeitschritt max_x (Zeilenumbruch)
+            fprintf(Auswertung.txt, ((i+10) = Zeitschritt max_x (Zeilenumbruch))
+    END FOR
+        
 
     Gleichzeitig wird jede Ausgabe, die in die Konsole ausgegeben wurde, auch in eine extra .txt Datei geschrieben.
 
