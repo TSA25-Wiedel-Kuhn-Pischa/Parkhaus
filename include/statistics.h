@@ -43,15 +43,16 @@
 
     @param[in] spaces, Eingabe Anzahl der Stellplätze
     @param[in] max_parking, Eingabe Maximale Parkdauer
-    @param[in] steps, Eingabe Simulationsdauer (Zeitschritte)
+    @param[in] size, Eingabe Simulationsdauer (Zeitschritte)
     @param[in] chance_of_new_cars, Eingabe Ankunftswahrscheinlichkeit neuer Fahrzeuge in %
     @param[in] seed, Eingabe Zufalls-Seed für reprudzierbare Simulation
+    @param[in] document[], Eingabe der .txt Datein für die der Header erzeugt werden soll
 
     @return Es wird in einem externen Dokument Auswertung.txt dargestellt, 
             aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-//void FUNCTION head_document(int spaces, int max_parking, int steps, int chance_of_new_cras, int seed);
+//void FUNCTION head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, char document[]);
 /**
 
     @brief Es werden in der Konsole die aktuellen Daten ausgegeben
@@ -87,10 +88,10 @@
     @param[in] cars_in_line, Eingabe von der Anazhl aller Autos in der Warteschlange
 
 
-    @return Rückgabe von dem erstellten Array, in dem die Werte gespeichert werden, 
+    @return Es wird nichts zurückgegeben 
 */
 
-//int FUNCTION save_data(int *data, int *size, int occupied, int all, int cars_in_line);
+//void FUNCTION save_data(int *save_data, int size, int occupied, int all, int cars_in_line);
 
 
 /**

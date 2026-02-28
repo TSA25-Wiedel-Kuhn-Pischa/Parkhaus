@@ -19,11 +19,11 @@ END FUNCTION
 END FUNCTION
 */
 
-/* void FUNCTION head_document(int spaces, int max_parking, int steps, int chance_of_new_cras, int seed, char document[])
+/* void FUNCTION head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, char document[])
 
     fprintf(char document[], Anzahl der Stellplätze: spaces (Zeilenumbruch))            //Datein müssen in Main mit dem Modus "w" geöffnet werden
     fprintf(char document[], Maximale Parkdauer: max_parking (Zeilenumbruch))
-    fprintf(char document[], Simulationsdauer: steps (Zeilenumbruch))
+    fprintf(char document[], Simulationsdauer: size (Zeilenumbruch))
     fprintf(char document[], Ankunftswahrscheinlichkeit neuer Fahrzeuge: chance_of_new_cars % (Zeilenumbruch))
     fprintf(char document[], Der Zufalls-Seed: seed (Zeilenumbruch))
 
@@ -48,46 +48,38 @@ END FUNCTION
 END FUNCTION
 */
 
-/* int FUNCTION save_data(int *save_data, int *size, int occupied, int all, int cars_in_line)
+/* void FUNCTION save_data(int *save_data, int size, int occupied, int all, int cars_in_line)
 
     int fullness_data = fullness(occupied, all)                             //Berechnung der einzelnen Parameter
     int free_spaces = all - occupied
     int all_cars = occupied + cars_in_line
-    
-    int *temp = realloc(save_data, (size + 5) * sizeof(int))                //Arbeit mit realloc, da sonst eine größe des Arrays vorher vorgeben werden müsste  
+    Einmaliges Initialisieren int steps = 0
 
-    IF temp == NULL THEN
-    return save_data
+    IF steps < (size*5) THEN
+        FOR g <- 1 TO 5 DO
+            IF g = 1 THEN                              /* Dies wäre mit eine Switch-Case Abfrage besser und effizienter
+                save_data[steps] = fullness_data        *  umgesetzt. Da wir dafür aber keine einheitliche Defintion haben
+            END IF                                      *  lässt sich das nicht in Pseudocode umsetzten.
+                                                        *  Es wird aber im Entwurf mit einer Switch_Case Abfrage umgesetzt.
+            IF g = 2 THEN                               *//*
+                save_data[steps] = free_spaces
+            END IF
+
+            IF g = 3 THEN 
+                save_data[steps] = occupied
+            END IF
+
+            IF g = 4 THEN 
+                save_data[steps] = cars_in_line
+            END IF
+
+            IF g = 5 THEN 
+                save_data[steps] = all_cars
+            END IF
+
+            steps = steps + 1
+        END FOR
     END IF
-
-    save_data = temp
-    
-    FOR g <- 1 TO 5 DO
-        IF g = 1 THEN                               /* Dies wäre mit eine Switch-Case Abfrage besser und effizienter
-            save_data[size] = fullness_data         *  umgesetzt. Da wir dafür aber keine einheitliche Defintion haben
-        END IF                                      *  lässt sich das nicht in Pseudocode umsetzten.
-                                                    *  Es wird aber im Entwurf mit einer Switch_Case Abfrage umgesetzt.
-        IF g = 2 THEN                               *//*
-            save_data[size] = free_spaces
-        END IF
-
-        IF g = 3 THEN 
-            save_data[size] = occupied
-        END IF
-
-        IF g = 4 THEN 
-            save_data[size] = cars_in_line
-        END IF
-
-        IF g = 5 THEN 
-            save_data[size] = all_cars
-        END IF
-
-        size = size + 1
-    END FOR
-
-    return save_data
-
 END FUNCTION
 */
 
