@@ -19,90 +19,71 @@ END FUNCTION
 END FUNCTION
 */
 
+/* void FUNCTION head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, char document[])
+
+    fprintf(char document[], Anzahl der Stellplätze: spaces (Zeilenumbruch))            //Datein müssen in Main mit dem Modus "w" geöffnet werden
+    fprintf(char document[], Maximale Parkdauer: max_parking (Zeilenumbruch))
+    fprintf(char document[], Simulationsdauer: size (Zeilenumbruch))
+    fprintf(char document[], Ankunftswahrscheinlichkeit neuer Fahrzeuge: chance_of_new_cars % (Zeilenumbruch))
+    fprintf(char document[], Der Zufalls-Seed: seed (Zeilenumbruch))
+
+END FUNCTION
+
+*/
 /* void FUNCTION output_data(int occupied, int all, int cars_in_line)
 
     einmaliges Initialisiern von int i = 1
     int free_spaces = all - occupied
     int all_cars = occupied + cars_in_line
 
-    OUTPUT Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data)
-    OUTPUT                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line)
-    OUTPUT                                              all cars: all_cars (Ausgabe von dem Wert von all_cars)
+    OUTPUT Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data) (Zeilenumbruch)
+    OUTPUT                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line) (Zeilenumbruch)
+    OUTPUT                                              all cars: all_cars (Ausgabe von dem Wert von all_cars) (Zeilenumbruch) (Zeilenumbruch)
 
+    fprintf(Daten.txt, Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data) (Zeilenumbruch))
+    fprintf(Daten.txt,                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line) (Zeilenumbruch))
+    fprintf(Daten.txt,                                              all cars: all_cars (Ausgabe von dem Wert von all_cars) (Zeilenumbruch) (Zeilenumbruch))
     i = i + 1
 
 END FUNCTION
 */
 
-/* int FUNCTION save_data(int *save_data, int *size, int occupied, int all, int cars_in_line)
+/* void FUNCTION save_data(int *save_data, int size, int occupied, int all, int cars_in_line)
 
     int fullness_data = fullness(occupied, all)                             //Berechnung der einzelnen Parameter
     int free_spaces = all - occupied
     int all_cars = occupied + cars_in_line
-    
-    int *temp = realloc(save_data, (size + 5) * sizeof(int))                //Arbeit mit realloc, da sonst eine größe des Arrays vorher vorgeben werden müsste  
+    Einmaliges Initialisieren int steps = 0
 
-    IF temp == NULL THEN
-    return save_data
+    IF steps < (size*5) THEN
+        FOR g <- 1 TO 5 DO
+            IF g = 1 THEN                              /* Dies wäre mit eine Switch-Case Abfrage besser und effizienter
+                save_data[steps] = fullness_data        *  umgesetzt. Da wir dafür aber keine einheitliche Defintion haben
+            END IF                                      *  lässt sich das nicht in Pseudocode umsetzten.
+                                                        *  Es wird aber im Entwurf mit einer Switch_Case Abfrage umgesetzt.
+            IF g = 2 THEN                               *//*
+                save_data[steps] = free_spaces
+            END IF
+
+            IF g = 3 THEN 
+                save_data[steps] = occupied
+            END IF
+
+            IF g = 4 THEN 
+                save_data[steps] = cars_in_line
+            END IF
+
+            IF g = 5 THEN 
+                save_data[steps] = all_cars
+            END IF
+
+            steps = steps + 1
+        END FOR
     END IF
-
-    save_data = temp
-    
-    FOR g <- 1 TO 5 DO
-        IF g = 1 THEN                               /* Dies wäre mit eine Switch-Case Abfrage besser und effizienter
-            save_data[size] = fullness_data         *  umgesetzt. Da wir dafür aber keine einheitliche Defintion haben
-        END IF                                      *  lässt sich das nicht in Pseudocode umsetzten.
-                                                    *  Es wird aber im Entwurf mit einer Switch_Case Abfrage umgesetzt.
-        IF g = 2 THEN                               *//*
-            save_data[size] = free_spaces
-        END IF
-
-        IF g = 3 THEN 
-            save_data[size] = occupied
-        END IF
-
-        IF g = 4 THEN 
-            save_data[size] = cars_in_line
-        END IF
-
-        IF g = 5 THEN 
-            save_data[size] = all_cars
-        END IF
-
-        size = size + 1
-    END FOR
-
-    return save_data
-
 END FUNCTION
 */
 
-/* void FUNCTION out_maxval(int data[], int size)
 
-    int size_ary = round(size / 5)
-
-    int max[] = {data[0], data[1], data[2], data[3], data[4], 0, 0, 0, 0, 0}
-    char typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"}
-
-    FOR g <- 0 TO 4 DO
-        IF g = 0 THEN                               
-            FOR i <- g TO size_ary DO (Schrittweite(i = i + 5))                 // Sortieren von jedem einzelnem Wert nach dem größten
-                IF max[g] < data[i]
-                    max[g] = data[i]  
-                    max[g+5] = (i - g) / 5
-                END IF
-            END FOR
-        END IF                                     
-    END FOR
-
-    FOR g <- 0 TO 4 DO
-        OUTPUT Die typ[g] war mit dem Wert max[g] zum Zeitpunkt max[g+5] am größten. (ein Zeilenumbruch)            // Ausgabe des jeweils größten Wertes
-        fprintf(Auswertung.txt, Die typ[g] war mit dem Wert max[g] zum Zeitpunkt max[g+5] am größten. (ein Zeilenumbruch))                  
-    END FOR
-
-END FUNCTION
-
-*/
 
 /* void FUNCTION tabel(int data[], int size)
 
@@ -363,3 +344,37 @@ END FUNCTION
 END FUNCTION
 */
 
+/* void FUNCTION out_maxval(int data[], int size)
+
+    int size_ary = round(size / 5)
+
+    int max[] = {data[0], data[1], data[2], data[3], data[4], 0, 0, 0, 0, 0}
+    char typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"}
+
+    FOR g <- 0 TO 4 DO
+        IF g = 0 THEN                               
+            FOR i <- g TO size_ary DO (Schrittweite(i = i + 5))                 // Sortieren von jedem einzelnem Wert nach dem größten
+                IF max[g] < data[i]
+                    max[g] = data[i]  
+                    max[g+5] = (i - g) / 5
+                END IF
+            END FOR
+        END IF                                     
+    END FOR
+
+    FOR g <- 0 TO 4 DO
+        OUTPUT Die typ[g] war mit dem Wert max[g] zum Zeitpunkt max[g+5] am größten. (ein Zeilenumbruch)            // Ausgabe des jeweils größten Wertes
+        fprintf(Auswertung.txt, Die typ[g] war mit dem Wert max[g] zum Zeitpunkt max[g+5] am größten. (ein Zeilenumbruch))                  
+    END FOR
+
+    IF max[3] > 15 THEN 
+        OUTPUT Eine Bauliche Erweiterung wird empfohlen, da zu dem Zeitpunkt max[8], max[3] Autos in der Warteschlange waren.
+        fprintf(Auswertung.txt, Eine Bauliche Erweiterung wird empfohlen, da zu dem Zeitpunkt max[8], max[3] Autos in der Warteschlange waren)
+    ELSE IF max[3] <= 15 THEN 
+        OUTPUT Eine Bauliche Erweiterung wird nicht empfohlen, da zu dem Zeitpunkt max[8], nur max[3] Autos in der Warteschlange waren.
+        fprintf(Auswertung.txt, Eine Bauliche Erweiterung wird nicht empfohlen, da zu dem Zeitpunkt max[8], nur max[3] Autos in der Warteschlange waren.)
+    END IF
+
+END FUNCTION
+
+*/
