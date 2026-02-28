@@ -81,7 +81,7 @@ END FUNCTION
 
 /* void FUNCTION out_maxval(int data[], int size)
 
-    int size_ary = size / 5
+    int size_ary = round(size / 5)
 
     int max[] = {data[0], data[1], data[2], data[3], data[4], 0, 0, 0, 0, 0}
     char typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"}
@@ -108,16 +108,16 @@ END FUNCTION
 
 /* void FUNCTION tabel(int data[], int size)
 
-    int size_ary = size / 5
-    int steps = size_ary / 10) 
+    int size_ary = round(size / 5.f)
+    int steps = round(size_ary / 10.f) 
 
-    int info[50]
+    int info[50] = {0}
     char typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"}
 
     FOR g <- 0 TO 4 DO
         IF g = 0 THEN                               
             FOR i <- g TO size_ary DO (Schrittweite(i = i + steps))
-                int f = 0 + 10*g
+                einmaliges Intialisieren int f = 0 + 10*g
                 info[f] = data[i]
                 f = f + 1
                 IF (f-10*g) == 9 THEN
@@ -156,33 +156,103 @@ END FUNCTION
 END FUNCTION
 */
 
-/* void FUNCTION column_chart(double Array[])
+/* void FUNCTION column_chart(int data[], int size)
 
-    Es wird eine Variable steps erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
-    Dafür wird die Größe des übergebenen Arrays ermittelt und durch die größe eines einzelnen Eintrags gerechnet 
-    und danach nochmal durch 10 und durch 5, weil es 5 eingegbene Werte gibt, es wird auch eine Funktion 
-    zum Runden verwendet, um ganze Zahlen zu erhalten.
+    int size_ary = round(size / 5.f)
+    int steps = round(size_ary / 10.f)                      // Bereuchnung der Skala von der Y-Achse
 
-    Dann wird in einer Schleife das Array aufgerufen und zu den jeweiligen Abständen, mit dem Faktor 5, gestopt, um die Füllmenge in 
-    Prozent zu speichern. Dafür wird ein Arrays angelegt. 
-    Dabei ist der erste Ausgelesene Wert, der Wert an der Stelle 0 und 
-    der letzte, an der Stelle vom letzte Simulationsschritt (also steps mal 10). 
+    int info[10] = {0}
+    char spaces[] = {"| |", "_", " ", "^", "-", ">", "|"}   // Verwendete Zeichen zur Erstellung des Säulendiagrams 
 
-    Dann werden die einzelnen ausgelesenen Werte durch 10 geteilt und gerundet und in dem Array als Wert ersetzt. 
-    Dieser Wert wird dann so weiter verwendet, das die einzelnen größen der Säulen bestimmt werden. 
-    Das Diagram wird von oben nach unten erstellt, dabei ist die oberste Zeile, die Zahl 11. Dann wird jeder Wert 
-    überprüft, ob er den Wert 11 hat, wenn ja, werden zwei Striche ausgeben | |. Wenn er genau eins kleiner ist, wird ein _ gesetzt.
-    Dies wird so weit für jede Zeile darunter Wiederholt, bis zur Zeile 1 dort werden wenn denn nur noch | | gesetzt. 
-    Zu beginn der Zeile wird jeweils noch ein | gesetzt um die Y-Achse darzustellen. 
-    In der Zeile 0  wird dann die X-Achse dargestellt und darunter die einzelnen Zeitschritte (steps).
+                                 
+    FOR i <- 0 TO size_ary DO (Schrittweite(i = i + steps))
+        Einmaliges Intialisieren int f = 0 
+        info[f] = round(data[i] / 10.f)
+        f = f + 1
+        IF (f) == 9 THEN
+            info[f] = round(data[size_ary] / 10.f)
+        END IF
+    END FOR
 
-    Gleichzeitig wird jede Ausgabe, die in die Konsole ausgegeben wurde, auch in eine extra .txt Datei geschrieben.
+    // Erstellen des Säulendiagrams 
+
+    FOR line <- 11 TO 0 DO                                  // durchgehen der Zeilen 
+        FOR column <- 0 TO 21 DO                            // durchgehen der Spalten
+            int f = 0
+            IF line > 0 THEN  
+
+                IF column == 0 && line == 11 THEN   
+                    OUTPUT spaces[3]                        // Setztes der Pfeilspitze für die Y-Achse
+                    fprintf(Auswertung.txt, spaces[3])
+
+                ELSE IF column == 0 THEN                    // Setzten der Pfeillinie für die Y-Achse
+                    OUTPUT spaces[6]
+                END IF 
+
+                IF column % 2 == 1 THEN             
+                    OUTPUT spaces[2]                        // Setzten der Lücken zwischen den Säulen
+                    fprintf(Auswertung.txt, spaces[2]) 
+
+                ELSE IF column % 2 == 0 && column != 0 THEN 
+                    IF (info[f] + 1) == line THEN           // Überprüfen, ob die Säule eine Zeile Tiefer existiert 
+                        OUTPUT spaces[1]                    // Wenn ja, setzten eines Daches für die Säule 
+                        fprintf(Auswertung.txt, spaces[1])
+
+                    ELSE IF info[f] <= line THEN            // Überprüfen, ob der Wert groß genug ist, damit die Säule existiert
+                        OUTPUT spaces[0]                    // Setzten der Säulemwände
+                        fprintf(Auswertung.txt, spaces[0])
+                    END IF 
+                    f = f + 1
+                END IF 
+
+            // Setzten der X-Achse
+
+            ELSE 
+                IF column != 21 THEN
+                    OUTPUT spaces[4]                         
+                    fprintf(Auswertung.txt, spaces[4])
+                ELSE
+                    OUTPUT spaces[5]
+                    fprintf(Auswertung.txt, spaces[5])
+                END IF 
+            END IF
+
+        END FOR 
+        OUTPUT (Zeilenumbruch)
+        fprintf(Auswertung.txt, (Zeilenumbruch))
+    END FOR
+
+    FOR column <- 0 TO 21 DO
+        int f = 1
+        IF column % 2 == 1 || column == 0 THEN             
+            OUTPUT spaces[2]                                // Setzten der Lücken, genauso wie zwischen den Säulen 
+            fprintf(Auswertung.txt, spaces[2])
+        ELSE IF column % 2 == 0 && column != 0 THEN 
+            OUTPUT f
+            fprintf(Auswertung.txt, f)                      // Setzten der Nummerierungen 
+            f = f + 1
+        END IF 
+    END FOR 
+
+    OUTPUT (Zeilenumbruch)
+    fprintf(Auswertung.txt, (Zeilenumbruch))
+
+    // Erstellen von einer Legende für die Säulen im Diagramm 
+
+    FOR i <-1 TO 10 DO
+        IF i < 10 THEN 
+            OUTPUT i = Zeitschritt steps*i (Zeilenumbruch)              
+            fprintf(Auswertung.txt, (i = Zeitschritt steps*i (Zeilenumbruch))
+        ELSE 
+            OUTPUT i = Zeitschritt size_ary (Zeilenumbruch)
+            fprintf(Auswertung.txt, (i = Zeitschritt size_ary (Zeilenumbruch))
+    END FOR
 
 END FUNCTION
 
 */
 
-/* void FUNCTION bar_chart(double Array[])
+/* void FUNCTION bar_chart(int data[], int size)
 
     Es wird eine Variable steps_y erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
     Dafür wird die Größe des übergebenen Arrays ermittelt und durch die größe eines einzelnen Eintrags gerechnet 
