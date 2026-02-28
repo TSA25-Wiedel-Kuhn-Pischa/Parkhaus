@@ -14,9 +14,7 @@ END FUNCTION
 
 /* int FUNCTION rate(int count_now, count_before)
 
-    int rate
-    rate = count_now - count_before
-    return rate
+    return count_now - count_before
 
 END FUNCTION
 */
@@ -38,11 +36,11 @@ END FUNCTION
 
 /* int FUNCTION save_data(int *save_data, int *size, int occupied, int all, int cars_in_line)
 
-    int fullness_data = fullness(occupied, all)
+    int fullness_data = fullness(occupied, all)                             //Berechnung der einzelnen Parameter
     int free_spaces = all - occupied
     int all_cars = occupied + cars_in_line
     
-    int *temp = realloc(save_data, (size + 5) * sizeof(int))
+    int *temp = realloc(save_data, (size + 5) * sizeof(int))                //Arbeit mit realloc, da sonst eine größe des Arrays vorher vorgeben werden müsste  
 
     IF temp == NULL THEN
     return save_data
@@ -88,7 +86,7 @@ END FUNCTION
 
     FOR g <- 0 TO 4 DO
         IF g = 0 THEN                               
-            FOR i <- g TO size_ary DO (Schrittweite(i = i + 5))
+            FOR i <- g TO size_ary DO (Schrittweite(i = i + 5))                 // Sortieren von jedem einzelnem Wert nach dem größten
                 IF max[g] < data[i]
                     max[g] = data[i]  
                     max[g+5] = (i - g) / 5
@@ -98,7 +96,7 @@ END FUNCTION
     END FOR
 
     FOR g <- 0 TO 4 DO
-        OUTPUT Die typ[g] war mit dem Wert max[g] zum Zeitpunkt max[g+5] am größten. (ein Zeilenumbruch)     
+        OUTPUT Die typ[g] war mit dem Wert max[g] zum Zeitpunkt max[g+5] am größten. (ein Zeilenumbruch)            // Ausgabe des jeweils größten Wertes
         fprintf(Auswertung.txt, Die typ[g] war mit dem Wert max[g] zum Zeitpunkt max[g+5] am größten. (ein Zeilenumbruch))                  
     END FOR
 
@@ -111,12 +109,12 @@ END FUNCTION
     int size_ary = round(size / 5.f)
     int steps = round(size_ary / 10.f) 
 
-    int info[50] = {0}
+    int info[50] = {0}                                                      // Array zur Speicherung der Ausgelsenen Werte
     char typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"}
 
     FOR g <- 0 TO 4 DO
         IF g = 0 THEN                               
-            FOR i <- g TO size_ary DO (Schrittweite(i = i + steps))
+            FOR i <- g TO size_ary DO (Schrittweite(i = i + steps))         // Auslesen der Einzelnen Werte nach der Reinfolge der Speicherung
                 einmaliges Intialisieren int f = 0 + 10*g
                 info[f] = data[i]
                 f = f + 1
@@ -127,17 +125,20 @@ END FUNCTION
         END IF                                     
     END FOR
 
-    FOR i <- 0 TO 9 DO
+    FOR i <- 0 TO 9 DO                                                      // Ausgabe der Obersten Zeile einer Tabelle (der Zeitschritte)
         IF i < 9 THEN
             OUTPUT steps * i |
+            fprintf(Auswertung.txt, steps * i | )
         ELSE if i == 9 THEN
             OUTPUT size_ary
+            fprintf(Auswertung.txt, size_ary)
         END IF 
     END FOR 
 
-    OUTPUT ---------------------------------
+    OUTPUT --------------------------------- (Zeilenumbruch)
+    fprintf(Auswertung.txt, --------------------------------- (Zeilenumbruch))
 
-    FOR i <- 0 TO 4 DO
+    FOR i <- 0 TO 4 DO                                                      // Ausgabe der Einzelnen Werte
         FOR g <- 0 TO 9 DO
             OUTPUT (i+1) | 
             fprintf(Auswertung.txt, (i+1) | )
@@ -148,9 +149,9 @@ END FUNCTION
         fprintf(Auswertung.txt, (Zeilenumbruch) --------------------------------- (Zeilenumbruch))
     END FOR 
 
-    FOR i <-1 TO 5 DO
-        OUTPUT i = typ[i-1] (Zeilenumbruch)
-        fprintf(Auswertung.txt, (i = typ[i-1] (Zeilenumbruch))
+    FOR i <-1 TO 5 DO                                                       // Ausgabe der Legende für die Zeitschritte
+        OUTPUT i = Zeitschritt typ[i-1] (Zeilenumbruch)
+        fprintf(Auswertung.txt, (i = Zeitschritt typ[i-1] (Zeilenumbruch))
     END FOR
 
 END FUNCTION
