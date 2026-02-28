@@ -254,15 +254,42 @@ END FUNCTION
 
 /* void FUNCTION bar_chart(int data[], int size)
 
-    Es wird eine Variable steps_y erstellt, in welcher die Abstände der Simulations Schritte gespeichert werden. 
-    Dafür wird die Größe des übergebenen Arrays ermittelt und durch die größe eines einzelnen Eintrags gerechnet 
-    und danach nochmal durch 10 und durch 5, weil es 5 eingegbene Werte gibt, es wird auch eine Funktion 
-    zum Runden verwendet, um ganze Zahlen zu erhalten.
+    int size_ary = round(size / 5.f)
+    int steps_y = round(size_ary / 10.f)                      // Bereuchnung der Skala von der Y-Achse
 
-    Dann wird in einer Schleife das Array aufgerufen und zu den jeweiligen Abständen, mit dem Faktor 5, an der 4. Stelle gestopt, 
-    um die Anazahl der Autos in der Warteschlange zu speichern. Dafür wird ein Arrays angelegt. 
-    Dabei ist der erste Ausgelesene Wert, der Wert an der Stelle 0 und 
-    der letzte, an der Stelle vom letzte Simulationsschritt (also steps_y mal 10). 
+    int info[10] = {0}
+    char spaces[] = {"| |", "_", " ", "^", "-", ">", "|"}   // Verwendete Zeichen zur Erstellung des Säulendiagrams 
+
+                                 
+    FOR i <- 3 TO size_ary DO (Schrittweite(i = i + steps_y))
+        Einmaliges Intialisieren int f = 0 
+        info[f] = data[i] 
+        f = f + 1
+        IF (f) == 9 THEN
+            info[f] = data[size_ary]
+        END IF
+    END FOR
+
+    int max_x = info[0]
+    for i <- 0 TO 9 DO
+        IF max_x < info[i] THEN
+            max_x = info[i]
+        END IF 
+    END FOR
+
+    int steps_x = round(max_x / 10.f)
+
+    FOR i <- 0 TO 9 DO 
+        
+        info[i] = round(data[i] / steps.x) 
+
+        IF (i) == 9 THEN
+            info[i] = max_x
+        END IF
+    END FOR
+
+    
+        
 
     Dann wird ermittelt, welcher von den Ausgelsenen Werten der Größte ist, um die Größe der Balken zu bestimmen.
     Die X-Achse wird 10 Spalten lang sein, wodruch der ausgelsene Wert geteielt durch 10 in steps_x gespeichert wird.
