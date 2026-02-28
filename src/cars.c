@@ -1,22 +1,24 @@
-#include "cars.h"
-#include <stdio.h>
-#include <string.h>
+
+#ifndef CARS_H
+    #define CARS_H
+    #include "../include/cars.h"
+#endif
 
 
-struct car{
+typedef struct car{
     int car_id;
     float parking_duration;
-    float remaining_parking_duration;
+    int parking_duration_reached;
     float arrival_time;
     int ps;
     char brand[50];
     char modelname[50];
-};
 
-void create_car(int car_id, float parking_duration, float arrival_time, struct car* c){
-    c->car_id = car_id;
+} car;
+
+void create_car(float parking_duration, float arrival_time, struct car* c){
+    c->car_id = car_id_counter();
     c->parking_duration = parking_duration;
-    c->remaining_parking_duration = parking_duration;
     c->arrival_time = arrival_time;
 
     int randommodelnumber = (rand() % (50) +1);
@@ -118,4 +120,13 @@ void create_car(int car_id, float parking_duration, float arrival_time, struct c
             c->ps = 100;
     }
     
+
 }
+
+
+int car_id_counter(){
+    static int counter = 0;
+    counter ++;
+    return counter;
+}
+

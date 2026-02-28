@@ -5,6 +5,7 @@
 //#ifndef STATISTICS
 //#define STATISTICS
 /**
+
 *
 *    @brief Es wird berechnet, wie voll das Parkhaus in Prozent ist.
 *
@@ -49,7 +50,9 @@
     @return Ausgabe von den aktuellen Werten 
 */
 
+
 //void FUNCTION output_data(int occupied, int all, int cars_in_line);
+
 
 /**
 
@@ -58,20 +61,25 @@
     Es werden die berechneten Werte, fullnes und freie Parkplätze, sowie die Anzahl der Autos im Parkhaus, 
     in der möglichen Warteschlange und Insgesamt mit dem aktuellen Zeitschritt gespeichert 
 
+
     @param[in/out] *data, Eingabe des vorherigen Speicherbestandes 
     @param[in/out] *size, Eingabe der größe des Arrays
+
     @param[in] occupied, Eingabe von der Anzahl der besetzten Parkplätze 
     @param[in] all, Eingabe von der Anazhl aller Parkplätze
     @param[in] cars_in_line, Eingabe von der Anazhl aller Autos in der Warteschlange
+
 
     @return Rückgabe von dem erstellten Array, in dem die Werte gespeichert werden, 
 */
 
 //int FUNCTION save_data(int *data, int *size, int occupied, int all, int cars_in_line);
 
+
 /**
 
     @brief Es wird jeweils der höchste Wert ausgegeben
+
 
     Es wird für jeden von den % Werten, der in save_data gespeichert wurde, der max wert ermittelt.
     Dies wird dann Formatiert ausgegeben.
@@ -85,17 +93,21 @@
 
 //void FUNCTION out_maxval(int data[], int size);
 
+
 /**
 
     @brief Es wird eine Tabelle in der Konsole ausgegeben 
 
     Es wird eine Tabelle erstellt, welche 10 Spalten und 8 Zeilen hat. 
+
     In diesem Abständen wird die Tabelle geliedert, wird in jeweils einzehtel von den Gesamtschritten gegliedert und
     in Form von 10 Schritten dargestellt. 
+
     Als Wert dargestellt werdem soll die Füllmenge, die Anzahl der Autos insgesamt, im Parkhaus und in der Wartschlange,
     sowie die Anzahl der freien Parkplätze und Rate.
     Um die Werte zu Erhalten, werden die Daten aus dem Array von der Funktion save_data(), ausgelesen. Um Rate zu erhälten
     wird mit der Anazhl der Autos die Funktion rate() aufgerufen. 
+
 
     @param[in] data[], Eingabe des Speicherbestandes aus der Funktion save_data()
     @param[in] size, Eingabe der Anzahl der Einträge des Arrays
@@ -106,9 +118,11 @@
 
 //void FUNCTION tabel(int data[], int size);
 
+
 /**
 
     @brief Es wird ein Säulendiagram in der Konsole ausgegeben 
+
 
     Es wird ein Säulendiagram erstellt. Auf der X-Achse werden 10 Zeitpunkte dargestellt, diese werden einzehntel von 
     der gesamnt Anzahl der Zeitschritte sein. 
@@ -124,15 +138,15 @@
 
 //void FUNCTION column_chart(int data[], int size);
 
+
 /**
 
     @brief Es wird ein Balkendiagram in der Konsole ausgegeben 
 
+
     Es wird ein Balkendiagram erstellt. Auf der Y-Achse werden 10 Zeitpunkte dargestellt, diese werden einzehntel von 
     der gesamnt Anzahl der Zeitschritte sein. 
-    Auf der X-Achse wird skaliert von 0 bis zum höchsten Wert von der Anzahl der Autos in der Warteschlange.
-    Als Wert pro Zeitschritt wird die Anzahl der Autos in der Warteschlange dargestellt, 
-    welche aus dem Array von der Funktion save_data() entnommen werden.
+
 
 
     @param[in] data[], Eingabe des Speicherbestandes aus der Funktion save_data()
@@ -143,5 +157,6 @@
 */
 
 //void FUNCTION bar_chart(int data[], int size);
+
 
 //#endif
