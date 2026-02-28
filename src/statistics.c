@@ -21,13 +21,14 @@ END FUNCTION
 
 /* void FUNCTION head_document(int spaces, int max_parking, int steps, int chance_of_new_cras, int seed, char document[])
 
-    fprintf(char document[], Anzahl der Stellplätze: spaces (Zeilenumbruch))
+    fprintf(char document[], Anzahl der Stellplätze: spaces (Zeilenumbruch))            //Datein müssen in Main mit dem Modus "w" geöffnet werden
     fprintf(char document[], Maximale Parkdauer: max_parking (Zeilenumbruch))
     fprintf(char document[], Simulationsdauer: steps (Zeilenumbruch))
     fprintf(char document[], Ankunftswahrscheinlichkeit neuer Fahrzeuge: chance_of_new_cars % (Zeilenumbruch))
     fprintf(char document[], Der Zufalls-Seed: seed (Zeilenumbruch))
 
 END FUNCTION
+
 */
 /* void FUNCTION output_data(int occupied, int all, int cars_in_line)
 
@@ -37,11 +38,11 @@ END FUNCTION
 
     OUTPUT Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data) (Zeilenumbruch)
     OUTPUT                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line) (Zeilenumbruch)
-    OUTPUT                                              all cars: all_cars (Ausgabe von dem Wert von all_cars) (Zeilenumbruch)
+    OUTPUT                                              all cars: all_cars (Ausgabe von dem Wert von all_cars) (Zeilenumbruch) (Zeilenumbruch)
 
-    fprintf(Auswertung.txt, Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data) (Zeilenumbruch))
-    fprintf(Auswertung.txt,                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line) (Zeilenumbruch))
-    fprintf(Auswertung.txt,                                              all cars: all_cars (Ausgabe von dem Wert von all_cars) (Zeilenumbruch))
+    fprintf(Daten.txt, Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data) (Zeilenumbruch))
+    fprintf(Daten.txt,                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line) (Zeilenumbruch))
+    fprintf(Daten.txt,                                              all cars: all_cars (Ausgabe von dem Wert von all_cars) (Zeilenumbruch) (Zeilenumbruch))
     i = i + 1
 
 END FUNCTION
