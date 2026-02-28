@@ -1,3 +1,4 @@
+
 /*
  *  File: parking_garage.c
  *  Description: Implementierung von Funktionen, die für das Parkhaus und deren Verwaltung benutzt werden
@@ -141,3 +142,4 @@ int manage_cars(struct car *parking_garage, int time_step){
 }
 
 */
+

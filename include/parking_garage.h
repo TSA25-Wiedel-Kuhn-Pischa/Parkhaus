@@ -1,3 +1,4 @@
+
 /*
  *  File: parking_garage.h
  *  Description: Deklaration und Beschreibung der für das Parkhaus und deren Verwaltung benutzte Funktionen
