@@ -1,6 +1,6 @@
 /**  
     Datei: parameter.h
-    Beschreibung: Zusammenfasung aller Funktionen zur Eingabe der Parameter.
+    Beschreibung: Beinhaltung der Funktionen zur Eingabe der Parameter.
 */
 
 //#ifndef PARAMETER
@@ -24,6 +24,6 @@
 *    @return Es wird garnichts zurückgegeben, da void funktion. Die Werte werden über ihre Adressen übergeben 
 */
 
-//void FUNCTION input(int *spaces, int *max_parking, int *size, int *chance_of_new_cras, int *seed);
+//void FUNCTION input_parameter(int *spaces, float *max_parking, int *size, float *chance_of_new_cras, int *seed);
 
 //#endif
