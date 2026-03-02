@@ -1,11 +1,10 @@
-
 /*
  *  File: parking_garage.c
  *  Description: Implementierung von Funktionen, die für das Parkhaus und deren Verwaltung benutzt werden
  */
 
  /*
-struct car *create_garage(int parking_spaces){
+struct car *FUNCTION create_garage(int parking_spaces)
   
   Variable parking_spaces = übergabene Variable; Anzahl der Parkplätze
 
@@ -20,9 +19,11 @@ struct car *create_garage(int parking_spaces){
 
   END IF
   
-}
+END FUNCTION
 
-int get_free_space(struct car *parking_garage){
+
+
+int FUNCTION get_free_space(struct car *parking_garage)
   
   Überprüfe das Array darauf, wo sich ein freier Parkplatz befindet:
 
@@ -42,9 +43,11 @@ int get_free_space(struct car *parking_garage){
 
   Gebe index zurück
   
-}
+END FUNCTION
 
-void park_car(struct Car car, struct Car *parking_garage, int time_step){
+
+
+void FUNCTION park_car(struct Car car, struct Car *parking_garage, int time_step)
   
   Nimm ein Auto entgegen und speicher es in einem freien Platz des Arrays:
 
@@ -56,9 +59,11 @@ void park_car(struct Car car, struct Car *parking_garage, int time_step){
 
   Setze die Ankunftszeit des Autos auf time_step bzw. die aktuelle Zeit
   
-}
+END FUNCTION
 
-void remove_car(struct Car car, struct Car *parking_garage, int index){
+
+
+void FUNCTION remove_car(struct Car car, struct Car *parking_garage, int index)
   
   Nimm Nummer des Parplatzes entgegen, auf dem sich ein Auto befindet, dass seine maximale Parkdauer
   erreicht hat und entferne es aus dem Array:
@@ -67,9 +72,11 @@ void remove_car(struct Car car, struct Car *parking_garage, int index){
 
   Gebe den durch das Auto belegten Speicherplatz wieder frei
   
-}
+END FUNCTION
 
-int check_parking_time(struct Car car, int time_step){
+
+
+int FUNCTION check_parking_time(struct Car car, int time_step)
   
   Überprüfe, ob ein Auto die festgelegte maximale Parkdauer erreicht hat:
 
@@ -81,9 +88,11 @@ int check_parking_time(struct Car car, int time_step){
 
   Gebe -1 zurück
   
-}
+FUNCTION
 
-int check_for_free_space(struct Car *parking_garage){
+
+
+int FUNCTION check_for_free_space(struct Car *parking_garage)
   
   Überprüfe das Array darauf, ob es frei Plätze beinhaltet:
   
@@ -107,9 +116,11 @@ int check_for_free_space(struct Car *parking_garage){
   
   Gebe 0 zurück
   
-}
+END FUNCTION
 
-int manage_cars(struct car *parking_garage, int time_step){
+
+
+int FUNCTION manage_cars(struct car *parking_garage, int time_step)
   
   Parke Autos in freie Parkplätze und überprüfe die Parkdauern der Autos und entferne ggf. Autos aus dem Parkhaus:
 
@@ -139,7 +150,7 @@ int manage_cars(struct car *parking_garage, int time_step){
 
   Gebe den Rückgabewert des Aufrufs der Funktion check_for_free_space() zurück
   
-}
+END FUNCTION
 
 */
 
