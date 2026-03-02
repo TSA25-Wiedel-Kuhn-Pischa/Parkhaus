@@ -1,6 +1,6 @@
 /**  
     Datei: statistics.h
-    Beschreibung: Zusammenfasung aller Funktionen zur Ausgabe und Berechnung der Statistiken.
+    Beschreibung: Zusammenfassung aller Funktionen zur Ausgabe und Berechnung der Statistiken.
 */
 //#ifndef STATISTICS
 //#define STATISTICS
@@ -18,7 +18,7 @@
 *    @return Es wird der berechnete Wert zurück gegeben
 */
 
-//int FUNCTION fullness(int occupied, int all);
+//int FUNCTION fullness(int occupied, int all_spaces);
 
 /**
 *
@@ -52,7 +52,7 @@
             aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-//void FUNCTION head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, char document[]);
+//void FUNCTION head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, char* document[]);
 /**
 
     @brief Es werden in der Konsole die aktuellen Daten ausgegeben
@@ -69,7 +69,7 @@
 */
 
 
-//void FUNCTION output_data(int occupied, int all, int cars_in_line);
+//void FUNCTION output_data(int free_spaces, int all_spaces, int cars_in_line);
 
 
 /**
@@ -91,7 +91,7 @@
     @return Es wird nichts zurückgegeben 
 */
 
-//void FUNCTION save_data(int *save_data, int size, int occupied, int all, int cars_in_line);
+//void FUNCTION save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line);
 
 
 /**
@@ -116,7 +116,7 @@
             aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-//void FUNCTION tabel(int data[], int size);
+//void FUNCTION tabel(int data[], int size_ary);
 
 
 /**
@@ -136,7 +136,7 @@
             aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-//void FUNCTION column_chart(int data[], int size);
+//void FUNCTION column_chart(int data[], int size_ary);
 
 
 /**
@@ -156,7 +156,7 @@
             aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-//void FUNCTION bar_chart(int data[], int size);
+//void FUNCTION bar_chart(int data[], int size_ary);
 
 /**
 
@@ -173,6 +173,6 @@
             aber kein direkter return Wert, da die Funktion den Datentyp void hat 
 */
 
-//void FUNCTION out_maxval(int data[], int size);
+//void FUNCTION out_maxval(int data[], int size_ary);
 
 //#endif
