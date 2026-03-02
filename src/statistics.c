@@ -5,7 +5,7 @@
 
 //Einbinden von reapeted_statistics.h
 
-/* int FUNCTION fullness(int occupied, int all)
+/* int FUNCTION fullness(int occupied, int all_spaces)
 
     return von ((occupied/all) * 100)
 
@@ -19,24 +19,24 @@ END FUNCTION
 END FUNCTION
 */
 
-/* void FUNCTION head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, char document[])
+/* void FUNCTION head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, char* document[])
 
-    fprintf(char document[], Anzahl der Stellplätze: spaces (Zeilenumbruch))            //Datein müssen in Main mit dem Modus "w" geöffnet werden
-    fprintf(char document[], Maximale Parkdauer: max_parking (Zeilenumbruch))
-    fprintf(char document[], Simulationsdauer: size (Zeilenumbruch))
-    fprintf(char document[], Ankunftswahrscheinlichkeit neuer Fahrzeuge: chance_of_new_cars % (Zeilenumbruch))
-    fprintf(char document[], Der Zufalls-Seed: seed (Zeilenumbruch))
+    fprintf(document[], Anzahl der Stellplätze: spaces (Zeilenumbruch))            //Datein müssen in Main mit dem Modus "w" geöffnet werden
+    fprintf(document[], Maximale Parkdauer: max_parking (Zeilenumbruch))
+    fprintf(document[], Simulationsdauer: size (Zeilenumbruch))
+    fprintf(document[], Ankunftswahrscheinlichkeit neuer Fahrzeuge: chance_of_new_cars % (Zeilenumbruch))
+    fprintf(document[], Der Zufalls-Seed: seed (Zeilenumbruch))
 
 END FUNCTION
 
 */
-/* void FUNCTION output_data(int occupied, int all, int cars_in_line)
+/* void FUNCTION output_data(int free_spaces, int all_spaces, int cars_in_line)
 
     einmaliges Initialisiern von int i = 1
-    int free_spaces = all - occupied
+    int occupied = all_spaces - free_spaces
     int all_cars = occupied + cars_in_line
 
-    OUTPUT Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data) (Zeilenumbruch)
+    OUTPUT Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all_spaces) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data) (Zeilenumbruch)
     OUTPUT                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line) (Zeilenumbruch)
     OUTPUT                                              all cars: all_cars (Ausgabe von dem Wert von all_cars) (Zeilenumbruch) (Zeilenumbruch)
 
@@ -48,68 +48,62 @@ END FUNCTION
 END FUNCTION
 */
 
-/* void FUNCTION save_data(int *save_data, int size, int occupied, int all, int cars_in_line)
+/* void FUNCTION save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line)
 
-    int fullness_data = fullness(occupied, all)                             //Berechnung der einzelnen Parameter
-    int free_spaces = all - occupied
+    int occupied = all_spaces - free_spaces                                 //Berechnung der einzelnen Parameter
+    int fullness_data = fullness(occupied, all_spaces)
     int all_cars = occupied + cars_in_line
-    Einmaliges Initialisieren int steps = 0
+    Einmaliges Initialisieren int steps_data = 0
 
-    IF steps < (size*5) THEN
-        FOR g <- 1 TO 5 DO
-            IF g = 1 THEN                              /* Dies wäre mit eine Switch-Case Abfrage besser und effizienter
-                save_data[steps] = fullness_data        *  umgesetzt. Da wir dafür aber keine einheitliche Defintion haben
-            END IF                                      *  lässt sich das nicht in Pseudocode umsetzten.
-                                                        *  Es wird aber im Entwurf mit einer Switch_Case Abfrage umgesetzt.
-            IF g = 2 THEN                               *//*
-                save_data[steps] = free_spaces
-            END IF
+    IF steps_data < (size*5) THEN
+        save_data[steps_data] = fullness_data
+        steps_data = steps_data + 1        
+                                                                                
+        save_data[steps_data] = free_spaces
+        steps_data = steps_data + 1
 
-            IF g = 3 THEN 
-                save_data[steps] = occupied
-            END IF
+        save_data[steps_data] = occupied
+        steps_data = steps_data + 1
 
-            IF g = 4 THEN 
-                save_data[steps] = cars_in_line
-            END IF
+        save_data[steps_data] = cars_in_line
+        steps_data = steps_data + 1
 
-            IF g = 5 THEN 
-                save_data[steps] = all_cars
-            END IF
-
-            steps = steps + 1
-        END FOR
+        save_data[steps_data] = all_cars
+        steps_data = steps_data + 1
     END IF
 END FUNCTION
 */
 
 
 
-/* void FUNCTION tabel(int data[], int size)
+/* void FUNCTION tabel(int data[], int size_ary)
 
-    int size_ary = round(size / 5.f)
-    int steps = round(size_ary / 10.f) 
+    int steps_x = round(size_ary / 10.f) 
 
-    int info[50] = {0}                                                      // Array zur Speicherung der Ausgelsenen Werte
-    char typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"}
+    int info[60] = {0}                                                      // Array zur Speicherung der Ausgelsenen Werte
+    char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos", "die Änderungsrate"}
 
-    FOR g <- 0 TO 4 DO
-        IF g = 0 THEN                               
-            FOR i <- g TO size_ary DO (Schrittweite(i = i + steps))         // Auslesen der Einzelnen Werte nach der Reinfolge der Speicherung
-                einmaliges Intialisieren int f = 0 + 10*g
-                info[f] = data[i]
-                f = f + 1
-                IF (f-10*g) == 9 THEN
-                    info[f] = data[size_ary]
-                END IF
-            END FOR
-        END IF                                     
+    FOR g <- 0 TO 4 DO                              
+        FOR i <- g TO size_ary DO (Schrittweite(i = i + steps_x))         // Auslesen der Einzelnen Werte nach der Reinfolge der Speicherung
+            einmaliges Initialisieren int f = 0 + 10*g
+            info[f] = data[i]
+            f = f + 1
+            IF (f-10*g) == 9 THEN
+                info[f] = data[size_ary]
+            END IF
+        END FOR                                   
+    END FOR
+
+    FOR i <- (4 + steps_x) TO size_ary DO (Schrittweite i = i + steps_x)            
+        einmaliges Initalisieren int f = 51                                 // Beginnt eins Später, da das Array mit Nullen definiert ist und die erste Änderung ist 0.                                                  
+        info[f] = rate(data[i], data[i-steps_x]
+        f = f + 1
     END FOR
 
     FOR i <- 0 TO 9 DO                                                      // Ausgabe der Obersten Zeile einer Tabelle (der Zeitschritte)
         IF i < 9 THEN
-            OUTPUT steps * i |
-            fprintf(Auswertung.txt, steps * i | )
+            OUTPUT (steps_x * i) |
+            fprintf(Auswertung.txt, (steps_x * i) | )
         ELSE if i == 9 THEN
             OUTPUT size_ary
             fprintf(Auswertung.txt, size_ary)
@@ -119,10 +113,10 @@ END FUNCTION
     OUTPUT --------------------------------- (Zeilenumbruch)
     fprintf(Auswertung.txt, --------------------------------- (Zeilenumbruch))
 
-    FOR i <- 0 TO 4 DO                                                      // Ausgabe der Einzelnen Werte
-        FOR g <- 0 TO 9 DO
-            OUTPUT (i+1) | 
-            fprintf(Auswertung.txt, (i+1) | )
+    FOR i <- 0 TO 5 DO     
+        OUTPUT (i+1) | 
+        fprintf(Auswertung.txt, (i+1) | )                                                 
+        FOR g <- 0 TO 9 DO                                                  // Ausgabe der Einzelnen Werte
             OUTPUT info[g + 10*i] | 
             fprintf(Auswertung.txt, info[g + 10*i] | )
         END FOR
@@ -130,7 +124,7 @@ END FUNCTION
         fprintf(Auswertung.txt, (Zeilenumbruch) --------------------------------- (Zeilenumbruch))
     END FOR 
 
-    FOR i <-1 TO 5 DO                                                       // Ausgabe der Legende für die Zeitschritte
+    FOR i <-1 TO 6 DO                                                       // Ausgabe der Legende für die Zeitschritte
         OUTPUT i = Zeitschritt typ[i-1] (Zeilenumbruch)
         fprintf(Auswertung.txt, (i = Zeitschritt typ[i-1] (Zeilenumbruch))
     END FOR
