@@ -26,6 +26,10 @@ int main(){
   //Einlesen und Setzen der Simulationsparameter
   input_parameters(&spaces, &max_parking, &steps, &chance_of_new_cars, &seed)
 
+  //Einfügen von Kopfzeilen in den Dateien
+  head_document(spaces, max_parking, steps, chance_of_new_cars, seed, "Daten.txt")
+  head_document(spaces, max_parking, steps, chance_of_new_cars, seed, "Auswrtung.txt")
+
   //Datenarray für Simulationswerte initialisieren
   int data[(size*5)] = {0}
 
@@ -33,42 +37,29 @@ int main(){
   srand(seed) 
 
   //Array für das Parkhaus initalisieren
-  create_garage(spaces)
+  Car *parking_garage = create_garage(spaces)
 
+  //Simulationsdurchlauf
   FOR i <- 0 TO steps DO
 
-    int index = 0
+    manage_parking_garage(parking_garage, step)
 
-    FOR i <- 0 TO spaces DO
+    IF (check_for_free_space(parking_garage) > 0) DO
 
-      index = check_parking_time(parking_garage[i])
+      park_car(car)
 
-      Initialisiere und setze die Variable index auf den Rückgabewert von check_parking_time()
-
-      IF (Rückgabewert von check_parking_time() >= 0) DO
-
-        Aufruf der Funktion remove_car() mit index als übergebener Parameter
-
-      END IF
-
-    END FOR
-
-    Gebe den Rückgabewert des Aufrufs der Funktion check_for_free_space() zurück
-
-    
+    END IF
 
     output_data(check_for_free_space(parking_garage), spaces, CARS_IN_LINE)
     save_data(data, steps, check_for_free_space(parking_garage), spaces, CARS_IN_LINE)
 
   END FOR
 
-  //For schleife:
-    //Überprüfung von Autos im Parkhaus und entsprechendes Ausparken
-    //Erstellung von Autos und Fahren in die Warteschlange
-    //Einparken von Autos ins Parkhaus, falls Plätze frei sind
-    //Ausgabe von Statistiken
-
-  //Ausgabe von Endstatistiken
+  //Ausgabe der Endstatistiken
+  tabel(data, steps)
+  column_chart(data, steps)
+  bar_chart(data, steps)
+  out_maxval(data, steps)
 
   int success_daten = fclose(daten)
   int success_auswertung = fclose(auswertung)
