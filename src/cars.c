@@ -51,6 +51,9 @@ int create_car(int max_parking_duration, int time_stemp, struct car* c){
     }
 
     c->car_id = car_id_counter();
+    if(c->car_id <= 0){        //auf ungültige Eingabe prüfen
+        return -1;
+    }
 
     int randommodelnumber = (rand() % (50) +1);     //Zufällige um ein zufälliges Modell auszuwählen
     switch (randommodelnumber) {
