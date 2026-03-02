@@ -42,11 +42,11 @@ int main(){
   //Simulationsdurchlauf
   FOR i <- 0 TO steps DO
 
-    manage_parking_garage(parking_garage, step)
+    manage_parking_garage(parking_garage, step)   //Überprüfen der Parkzeiten + ggf. Ausparken
 
-    IF (check_for_free_space(parking_garage) > 0) DO
+    IF (check_for_free_space(parking_garage) > 0 && Auto in Warteschlange) DO
 
-      park_car(car)
+      park_car(Auto am Anfang der Warteschlange)
 
     END IF
 
