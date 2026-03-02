@@ -100,50 +100,56 @@ END FUNCTION
         f = f + 1
     END FOR
 
-    FOR i <- 0 TO 9 DO                                                      // Ausgabe der Obersten Zeile einer Tabelle (der Zeitschritte)
-        IF i < 9 THEN
-            OUTPUT (steps_x * i) |
-            fprintf(Auswertung.txt, (steps_x * i) | )
-        ELSE if i == 9 THEN
-            OUTPUT size_ary
-            fprintf(Auswertung.txt, size_ary)
-        END IF 
+    OUTPUT    |
+    fprintf(Auswertung.txt,   |)  
+    FOR i <- 1 TO 10 DO                                                      // Ausgabe der Obersten Zeile einer Tabelle (der Zeitschritte)
+        OUTPUT i  |
+        fprintf(Auswertung.txt, i | )  
     END FOR 
 
     OUTPUT --------------------------------- (Zeilenumbruch)
     fprintf(Auswertung.txt, --------------------------------- (Zeilenumbruch))
 
     FOR i <- 0 TO 5 DO     
-        OUTPUT (i+1) | 
-        fprintf(Auswertung.txt, (i+1) | )                                                 
+        OUTPUT (i+11) | 
+        fprintf(Auswertung.txt, (i+11) | )                                                 
         FOR g <- 0 TO 9 DO                                                  // Ausgabe der Einzelnen Werte
-            OUTPUT info[g + 10*i] | 
-            fprintf(Auswertung.txt, info[g + 10*i] | )
+            OUTPUT info[g + 10*i]| 
+            fprintf(Auswertung.txt, info[g + 10*i]|)
         END FOR
         OUTPUT (Zeilenumbruch) --------------------------------- (Zeilenumbruch)
         fprintf(Auswertung.txt, (Zeilenumbruch) --------------------------------- (Zeilenumbruch))
     END FOR 
 
-    FOR i <-1 TO 6 DO                                                       // Ausgabe der Legende für die Zeitschritte
-        OUTPUT i = Zeitschritt typ[i-1] (Zeilenumbruch)
-        fprintf(Auswertung.txt, (i = Zeitschritt typ[i-1] (Zeilenumbruch))
+    FOR i <- 1 TO 10 DO                                                      // Ausgabe der Legende zur Obersten Zeile 
+        IF i < 10 THEN
+            OUTPUT i = (steps_x * (i-1)) (Zeilenumbruch)
+            fprintf(Auswertung.txt, (steps_x * (i-1)) (Zeilenumbruch) )
+        ELSE if i == 10 THEN
+            OUTPUT size_ary (Zeilenumbruch)
+            fprintf(Auswertung.txt, size_ary) (Zeilenumbruch)
+        END IF 
+    END FOR 
+
+    FOR i <-11 TO 17 DO                                                       // Ausgabe der Legende für die einzelenen Zeilen Zeitschritte
+        OUTPUT i = Zeitschritt typ[i-10] (Zeilenumbruch)
+        fprintf(Auswertung.txt, (i = Zeitschritt typ[i-10] (Zeilenumbruch))
     END FOR
 
 END FUNCTION
 */
 
-/* void FUNCTION column_chart(int data[], int size)
+/* void FUNCTION column_chart(int data[], int size_ary)
 
-    int size_ary = round(size / 5.f)
-    int steps = round(size_ary / 10.f)                      // Bereuchnung der Skala von der Y-Achse
+    int steps_y = round(size_ary / 10.f)                      // Bereuchnung der Skala von der Y-Achse
 
     int info[10] = {0}
-    char spaces[] = {"| |", "_", " ", "^", "-", ">", "|"}   // Verwendete Zeichen zur Erstellung des Säulendiagrams 
+    char* spaces[] = {"| |", "_", " ", "^", "-", ">", "|"}   // Verwendete Zeichen zur Erstellung des Säulendiagrams 
 
                                  
-    FOR i <- 0 TO size_ary DO (Schrittweite(i = i + steps))
+    FOR i <- 0 TO size_ary DO (Schrittweite(i = i + steps_y))
         Einmaliges Intialisieren int f = 0 
-        info[f] = round(data[i] / 10.f)
+        info[f] = round(data[i] / 10.f)                     // Auslesen der Füllmenge und so umformen, das es zur Skalierung passt
         f = f + 1
         IF (f) == 9 THEN
             info[f] = round(data[size_ary] / 10.f)
@@ -218,8 +224,8 @@ END FUNCTION
 
     FOR i <-1 TO 10 DO
         IF i < 10 THEN 
-            OUTPUT i = Zeitschritt steps*i (Zeilenumbruch)              
-            fprintf(Auswertung.txt, (i = Zeitschritt steps*i (Zeilenumbruch))
+            OUTPUT i = Zeitschritt steps_y*i (Zeilenumbruch)              
+            fprintf(Auswertung.txt, (i = Zeitschritt steps_y*i (Zeilenumbruch))
         ELSE 
             OUTPUT i = Zeitschritt size_ary (Zeilenumbruch)
             fprintf(Auswertung.txt, (i = Zeitschritt size_ary (Zeilenumbruch))
@@ -229,16 +235,15 @@ END FUNCTION
 
 */
 
-/* void FUNCTION bar_chart(int data[], int size)
+/* void FUNCTION bar_chart(int data[], int size_ary)
 
-    int size_ary = round(size / 5.f)
     int steps_y = round(size_ary / 10.f)                        // Bereuchnung der Skala von der Y-Achse
 
     int info[10] = {0}
-    char spaces[] = { " ", "^", "-", ">", "|", "="}   // Verwendete Zeichen zur Erstellung des Balkendiagrams  
+    char* spaces[] = { " ", "^", "-", ">", "|", "="}   // Verwendete Zeichen zur Erstellung des Balkendiagrams  
 
                                  
-    FOR i <- 3 TO size_ary DO (Schrittweite(i = i + steps_y))
+    FOR i <- 3 TO size_ary DO (Schrittweite(i = i + steps_y))   // Auslesen der Werte 
         Einmaliges Intialisieren int f = 0 
         info[f] = data[i] 
         f = f + 1
@@ -343,17 +348,15 @@ END FUNCTION
     int size_ary = round(size / 5)
 
     int max[] = {data[0], data[1], data[2], data[3], data[4], 0, 0, 0, 0, 0}
-    char typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"}
+    char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"}
 
-    FOR g <- 0 TO 4 DO
-        IF g = 0 THEN                               
-            FOR i <- g TO size_ary DO (Schrittweite(i = i + 5))                 // Sortieren von jedem einzelnem Wert nach dem größten
-                IF max[g] < data[i]
-                    max[g] = data[i]  
-                    max[g+5] = (i - g) / 5
-                END IF
-            END FOR
-        END IF                                     
+    FOR g <- 0 TO 4 DO                             
+        FOR i <- g TO size_ary DO (Schrittweite(i = i + 5))                 // Sortieren von jedem einzelnem Wert nach dem größten
+            IF max[g] < data[i]
+                max[g] = data[i]  
+                max[g+5] = (i - g) / 5
+            END IF
+        END FOR                                    
     END FOR
 
     FOR g <- 0 TO 4 DO
