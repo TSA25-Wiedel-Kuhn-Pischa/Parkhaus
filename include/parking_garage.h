@@ -15,7 +15,7 @@
  * @param[in]  parking_spaces   Variable die die durch die/den NutzerIn eingegebene Größe des Parkhauses enthält 
  * @param[out]  parking_garage  leeres Car-Struct-Array, dass Car-Struct einspeichern kann
  */
-//struct car *create_garage(int parking_spaces);
+//struct car *FUNCTION create_garage(int parking_spaces);
 
 /*
  * @brief  Überprüfung der Parkgarage darauf, wo sich ein freier Parkplatz befindet
@@ -23,7 +23,7 @@
  * @param[in]  parking_garage   Car-Struct-Array, in welchem sich Autos befinden bzw. befinden können
  * @param[out]  integer         Index, an dem sich ein freier Parkplatz befindet
  */
-//int get_free_space(struct car *parking_garage)
+//int FUNCTION get_free_space(struct car *parking_garage);
 
 /*
  * @brief  Einparken von Car-Structs in dem parking_garage-Array;
@@ -34,7 +34,7 @@
  *              parking_garage  Car-Struct-Array, in welches das Auto gespeichert wird
  *              time_step       Aktuelle Zeit bzw- aktueller Zeitfortschritt
  */
-//void park_car(struct Car car, struct Car *parking_garage, int time_step);
+//void FUNCTION park_car(struct Car car, struct Car *parking_garage, int time_step);
 
 /*
  * @brief  Ausparken von Car-Structs aus dem parking_garage-Array;
@@ -45,7 +45,7 @@
  *              parking_garage  Car-Struct-Array, in welchem der Parkplatz geräumt wird
  *              index           Index, an welchem sich das Auto befindet, dass seine maximale Parkdauer erreicht hat
  */
-//void remove_car(struct Car car, struct Car *parking_garage, int index);
+//void FUNCTION remove_car(struct Car car, struct Car *parking_garage, int index);
 
 /*
  * @brief  Überprüfen und Abgleichen von Parkdauer und Ankunftszeiten von einem Auto, 
@@ -55,7 +55,7 @@
  *              time_step       Aktuelle Zeit bzw. aktueller Zeitfortschritt
  * @param[out]  integer         Index, an welchem sich ein Auto befindet, dass seine maximale Parkdauer erreicht hat
  */
-//int check_parking_time(struct Car car, int time_step);
+//int FUNCTION check_parking_time(struct Car car, int time_step);
 
 /*
  * @brief  Überprüfung des parking_garage-Arrays darauf, ob freie Parkplätze vorhanden sind
@@ -63,7 +63,7 @@
  * @param[in]   parking_garage  Car-Struct-Array, dass die Autos beinhaltet 
  * @param[out]  integer         Rückgabe, ob freie Parkplätze vorhanden sind (Rückgabewert = 1), oder nicht (Rückgabewert = 0)
  */
-//int check_for_free_space(struct Car *parking_garage)
+//int FUNCTION check_for_free_space(struct Car *parking_garage)
 
 /*
  * @brief  Verwaltung des Parkhauses, was das Ein- und Ausparken, die Überprüfung der Parkdauer der
@@ -72,6 +72,6 @@
  * @param[in]   parking_garage  Car-Struct-Array, dass die Autos beinhaltet
  * @param[out]  integer         Rückgabe des Funktionsaufrufes von check_for_free_space()
  */
-//int manage_cars(struct car *parking_garage, int time_step);
+//int FUNCTION manage_cars(struct car *parking_garage, int time_step);
 
 //#endif
