@@ -1,0 +1,27 @@
+# Ausgabedateien
+*.out
+*.exe
+*.app
+*.bin
+
+# Objekt Dateien
+*.o
+*.obj
+
+# Visual Studio
+*.sln
+*.v2
+*.vsidx
+*.suo
+*.vcxproj
+*.user
+
+# Ordner
+build/
+obj/
+bin/
+
+# Temporäre Dateien
+*.tmp
+*.log
+*.cache
