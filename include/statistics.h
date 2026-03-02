@@ -37,6 +37,24 @@
 
 /**
 
+    @brief Es wird ein Dateikopf für die externe datei erstellt
+
+    Es wird in der externen .txt Datei eine kurz übersicht zu den eingebenen Parametern erstellt.
+
+    @param[in] spaces, Eingabe Anzahl der Stellplätze
+    @param[in] max_parking, Eingabe Maximale Parkdauer
+    @param[in] size, Eingabe Simulationsdauer (Zeitschritte)
+    @param[in] chance_of_new_cars, Eingabe Ankunftswahrscheinlichkeit neuer Fahrzeuge in %
+    @param[in] seed, Eingabe Zufalls-Seed für reprudzierbare Simulation
+    @param[in] document[], Eingabe der .txt Datein für die der Header erzeugt werden soll
+
+    @return Es wird in einem externen Dokument Auswertung.txt dargestellt, 
+            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
+*/
+
+//void FUNCTION head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, char document[]);
+/**
+
     @brief Es werden in der Konsole die aktuellen Daten ausgegeben
 
     Es wird der berechnete Werte von der Funktion fullnes, sowie die Anzahl der Autos im Parkhaus, in der möglichen 
@@ -47,7 +65,7 @@
     @param[in] all, Eingabe von der Anazhl aller Parkplätze
     @param[in] cars_in_line, Eingabe von der Anazhl aller Autos in der Warteschlange
 
-    @return Ausgabe von den aktuellen Werten 
+    @return Ausgabe von den aktuellen Werten ind der Konsole und dem extra .txt Dokument 
 */
 
 
@@ -70,28 +88,10 @@
     @param[in] cars_in_line, Eingabe von der Anazhl aller Autos in der Warteschlange
 
 
-    @return Rückgabe von dem erstellten Array, in dem die Werte gespeichert werden, 
+    @return Es wird nichts zurückgegeben 
 */
 
-//int FUNCTION save_data(int *data, int *size, int occupied, int all, int cars_in_line);
-
-
-/**
-
-    @brief Es wird jeweils der höchste Wert ausgegeben
-
-
-    Es wird für jeden von den % Werten, der in save_data gespeichert wurde, der max wert ermittelt.
-    Dies wird dann Formatiert ausgegeben.
-
-    @param[in] data[], Eingabe des Speicherbestandes aus der Funktion save_data()
-    @param[in] size, Eingabe der Anzahl der Einträge des Arrays
-
-    @return Es wird in der Kosole ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
-            aber kein direkter return Wert, da die funktion den Datentyp void hat 
-*/
-
-//void FUNCTION out_maxval(int data[], int size);
+//void FUNCTION save_data(int *save_data, int size, int occupied, int all, int cars_in_line);
 
 
 /**
@@ -113,7 +113,7 @@
     @param[in] size, Eingabe der Anzahl der Einträge des Arrays
 
     @return Es wird in der Kosole ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
-            aber kein direkter return Wert, da die funktion den Datentyp void hat.
+            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
 //void FUNCTION tabel(int data[], int size);
@@ -133,7 +133,7 @@
     @param[in] size, Eingabe der Anzahl der Einträge des Arrays
 
     @return Es wird ein Säulendiagram in der Konsole Ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
-            aber kein direkter return Wert, da die funktion den Datentyp void hat.
+            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
 //void FUNCTION column_chart(int data[], int size);
@@ -153,10 +153,26 @@
     @param[in] size, Eingabe der Anzahl der Einträge des Arrays
 
     @return Es wird ein Balkendiagram in der Konsole und in einem externen Dokument Auswertung.txt Ausgegeben, 
-            aber kein direkter return Wert, da die funktion den Datentyp void hat.
+            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
 //void FUNCTION bar_chart(int data[], int size);
 
+/**
+
+    @brief Es wird jeweils der höchste Wert ausgegeben
+
+
+    Es wird für jeden von den % Werten, der in save_data gespeichert wurde, der max wert ermittelt.
+    Dies wird dann Formatiert ausgegeben. Ebenfalls wird beurteilt, ob eine Bauliche Erweiterung emphfohlen wird
+
+    @param[in] data[], Eingabe des Speicherbestandes aus der Funktion save_data()
+    @param[in] size, Eingabe der Anzahl der Einträge des Arrays
+
+    @return Es wird in der Kosole ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
+            aber kein direkter return Wert, da die Funktion den Datentyp void hat 
+*/
+
+//void FUNCTION out_maxval(int data[], int size);
 
 //#endif
