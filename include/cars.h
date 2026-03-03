@@ -21,6 +21,6 @@ typedef struct car{
     char modelname[50];
 } car;
 
-int create_car(int max_parking_duration, int time_stemp, struct car* c);
+int create_car(int max_parking_duration, int time_stemp, struct car* c, struct queue* queue1);
 int car_id_counter();
 int randomize_parking_duration(int max_parking_duration);
