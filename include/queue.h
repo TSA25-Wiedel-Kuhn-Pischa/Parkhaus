@@ -12,6 +12,7 @@
 #endif
 
 
+
 typedef struct Node {
     struct car *data;
     struct Node *next;
@@ -25,7 +26,7 @@ typedef struct {
 } Queue;
 
 
-Queue* queue_init();
-int queue_enqueue(Queue *q, struct car *new_car);
-struct car* queue_dequeue(Queue *q);
-int queue_get_size(Queue *q);
+Queue* queue_init(); 
+int queue_enqueue(Queue *q, struct car *new_car); 
+struct car* queue_dequeue(Queue *q); 
+int queue_get_size(Queue *q); 
