@@ -176,3 +176,4 @@
 //void FUNCTION out_maxval(int data[], int size_ary, File* auswertung);
 
 //#endif
+

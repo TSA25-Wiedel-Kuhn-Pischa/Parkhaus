@@ -5,11 +5,11 @@
 
  /*
 struct car *FUNCTION create_garage(int parking_spaces)
-  
-  Variable parking_spaces = übergabene Variable; Anzahl der Parkplätze
 
   Reservierung von Speicherplatz und gleichzeitiges Erstellen eines Arrays, 
   angepasst an die der Funktion übergebenen Anzahl an verfügbaren Parkplätzen:
+
+  Initialisiere den Pointer ptr_parking_garage
 
   IF (Reservierung von (parking_spaces * Größe eines Car-Structs) Bytes ist fehlgeschlagen) THEN
 
@@ -17,7 +17,13 @@ struct car *FUNCTION create_garage(int parking_spaces)
 
     Stoppe das Programm
 
+  ELSE
+
+    Übergebe den reservierten Speicherplatz an ptr_parking_garage
+
   END IF
+
+  Gebe den Pointer zurück
   
 END FUNCTION
 
@@ -114,25 +120,15 @@ int FUNCTION check_for_free_space(struct Car *parking_garage)
 
   END IF
   
-  Gebe 0 zurück
+  Gebe free zurück
   
 END FUNCTION
 
 
 
-int FUNCTION manage_cars(struct car *parking_garage, int time_step)
+void FUNCTION manage_parking_garage(struct car *parking_garage, int time_step)
   
-  Parke Autos in freie Parkplätze und überprüfe die Parkdauern der Autos und entferne ggf. Autos aus dem Parkhaus:
-
-  IF (Auto hat die Warteschlange verlassen und wurde an das Parkhaus übergeben) DO
-
-    Initialisiere die Variable index
-
-    Setze index auf den Rückgabewert des Aufrufs der Funktion get_free_space()
-
-    Aufruf der Funktion park_car() mit der Übergabe von index als übergebener Parameter
-
-  END IF
+  Überprüfe die Parkdauern der Autos und entferne ggf. Autos aus dem Parkhaus:
 
   FOR i <- 0 TO (Größe des Arrays) DO
 
@@ -147,8 +143,6 @@ int FUNCTION manage_cars(struct car *parking_garage, int time_step)
     END IF
 
   END FOR
-
-  Gebe den Rückgabewert des Aufrufs der Funktion check_for_free_space() zurück
   
 END FUNCTION
 

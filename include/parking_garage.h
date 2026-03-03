@@ -70,8 +70,7 @@
  *         eingeparkten Autos und die Rückgabe über die Anzahl freier Parkplätze beinhaltet
  *
  * @param[in]   parking_garage  Car-Struct-Array, dass die Autos beinhaltet
- * @param[out]  integer         Rückgabe des Funktionsaufrufes von check_for_free_space()
  */
-//int FUNCTION manage_cars(struct car *parking_garage, int time_step);
+//void FUNCTION manage_parking_garage(struct car *parking_garage, int time_step);
 
 //#endif
