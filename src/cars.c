@@ -14,7 +14,15 @@
      * brand gesetzt
      * modelname gesetzt
      * ps gesetzt
-     * 
+     * int temp_parking_duration = randomize_parking_duration(max_parking_duration)
+     * auf Fehler prüfen
+     * parking_duration auf temp_parking_duration setzen
+     * if((queue_get_size() == 0) && ((check_for_free_space() == 1))){             //prüft ob es eine Warteschlange und freie Plätze gibt
+        park_car(c, struct Car *parking_garage, time_stemp);                    //übergibt das Auto ans Parkhaus
+    }
+    else{
+        queue_enqueue(queue1, c);                                               //Auto wird in Warteschlange / Queue eingereiht
+    }
      *
  * car_id_counter - Funktion ohne Eingabe
      * einmalig counter auf 0 setzen
@@ -34,14 +42,15 @@
 
 
 
-int create_car(int max_parking_duration, int time_stemp, struct car* c){
+int create_car(int max_parking_duration, int time_stemp, struct car* c, struct queue* queue){
     /**
     * @brief setzt die Werte eines Car-Structs
     *        und parkt das Auto oder setzt es in die Warteschlange
     *
     * @param[in]  time_stemp  aktueller Zeitschritt, zu dem das Auto ankommt
     * @param[in]  struct car* c  Pointer auf Car-Struct, dass bearbeitet wird
-    * @param[in]  max_parking_duration maximale Parkdauer in Sekunden
+    * @param[in]  max_parking_duration maximale Parkdauer
+    * @param[in]  *queue1  Zeiger auf die Warteschlange
     * 
     * return   nur zur Fehlersignalisierung, wenn die Funktion -1 zurückgibt, ist ein Fehler aufgetreten
     */
@@ -200,11 +209,11 @@ int create_car(int max_parking_duration, int time_stemp, struct car* c){
     }
     c->parking_duration = temp_parking_duration;
 
-    if((check_for_free_space() == 1)){                                          //prüft ob es noch freie Parkplätze gibt
-        park_car(*c, struct Car *parking_garage, time_stemp);                   //übergibt das Auto ans Parkhaus
+    if((queue_get_size() == 0) && ((check_for_free_space() == 1))){             //prüft ob es eine Warteschlange und freie Plätze gibt
+        park_car(c, struct Car *parking_garage, time_stemp);                    //übergibt das Auto ans Parkhaus
     }
     else{
-        //Auto wird in Warteschlange / Queue eingereiht
+        queue_enqueue(queue1, c);                                               //Auto wird in Warteschlange / Queue eingereiht
     }
 
     
