@@ -71,6 +71,7 @@ END FUNCTION
         save_data[steps_data] = all_cars
         steps_data = steps_data + 1
     END IF
+
 END FUNCTION
 */
 
@@ -139,14 +140,13 @@ END FUNCTION
 END FUNCTION
 */
 
-/* void FUNCTION column_chart(int data[], int size_ary, File* auswertung)
-
+/* void FUNCTION column_chart(int data[], int size_ary, File* auswertung)       // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
+                                                                                // diese Funktion wird im Richtigen C-Code noch Modularisiert, aber Aktuell (als Pseudocode) im Sinne des Verständnisses so gelassen
     int steps_y = round(size_ary / 10.f)                     // Bereuchnung der Skala von der Y-Achse
 
     int info[10] = {0}
     char* spaces[] = {"| |", "_", " ", "^", "-", ">", "|"}   // Verwendete Zeichen zur Erstellung des Säulendiagrams 
-
-                                 
+                          
     FOR i <- 0 TO size_ary DO (Schrittweite(i = i + steps_y))
         Einmaliges Intialisieren int f = 0 
         info[f] = round(data[i] / 10.f)                     // Auslesen der Füllmenge und so umformen, das es zur Skalierung passt
@@ -157,7 +157,6 @@ END FUNCTION
     END FOR
 
     // Erstellen des Säulendiagrams 
-
     FOR line <- 11 TO 0 DO                                  // durchgehen der Zeilen 
         FOR column <- 0 TO 21 DO                            // durchgehen der Spalten
             int f = 0
@@ -189,7 +188,6 @@ END FUNCTION
                 END IF 
 
             // Setzten der X-Achse
-
             ELSE 
                 IF column != 21 THEN
                     OUTPUT spaces[4]                         
@@ -235,8 +233,8 @@ END FUNCTION
 
 */
 
-/* void FUNCTION bar_chart(int data[], int size_ary, File* auswertung)
-
+/* void FUNCTION bar_chart(int data[], int size_ary, File* auswertung)      // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
+                                                                            // diese Funktion wird im Richtigen C-Code noch Modularisiert, aber Aktuell (als Pseudocode) im Sinne des Verständnisses so gelassen
     int steps_y = round(size_ary / 10.f)                        // Bereuchnung der Skala von der Y-Achse
 
     int info[10] = {0}
@@ -262,14 +260,11 @@ END FUNCTION
     int steps_x = round(max_x / 10.f)                           // Berechnung der einzelnen Schrittweite der X-Achse
 
     FOR i <- 0 TO 9 DO 
-        
         info[i] = round(data[i] / steps.x)                      // Anpassen der Daten an die Skala
-
         IF (i) == 9 THEN
             info[i] = max_x
         END IF
     END FOR
-
 
     int f = 0
 
@@ -298,7 +293,6 @@ END FUNCTION
                 fprintf(auswertung, (Zeilenumbruch))
             END IF
             // Setzten der X-Achse
-
             
             ELSE IF line == 0 THEN                              // Setzten der Nummerierungen für die X-Achse
                 int f = 11
@@ -324,7 +318,6 @@ END FUNCTION
         OUTPUT (Zeilenumbruch)
         fprintf(auswertung, (Zeilenumbruch))
     END FOR
-
 
     OUTPUT (Zeilenumbruch)
     fprintf(auswertung, (Zeilenumbruch))
@@ -371,6 +364,7 @@ END FUNCTION
         OUTPUT Eine Bauliche Erweiterung wird nicht empfohlen, da zu dem Zeitpunkt max[8], nur max[3] Autos in der Warteschlange waren.
         fprintf(auswertung, Eine Bauliche Erweiterung wird nicht empfohlen, da zu dem Zeitpunkt max[8], nur max[3] Autos in der Warteschlange waren.)
     END IF
+
 END FUNCTION
 
 */
