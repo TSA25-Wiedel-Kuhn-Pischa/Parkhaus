@@ -52,7 +52,7 @@
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-//void FUNCTION head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, char* document[]);
+//void FUNCTION head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, File* document);
 /**
 *
 *    @brief Es werden in der Konsole die aktuellen Daten ausgegeben

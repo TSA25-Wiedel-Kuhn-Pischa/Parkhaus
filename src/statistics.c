@@ -19,13 +19,13 @@ END FUNCTION
 END FUNCTION
 */
 
-/* void FUNCTION head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, char* document[])
+/* void FUNCTION head_document(int spaces, int max_parking, int size, int chance_of_new_cras, File* document)
 
-    fprintf(document[], Anzahl der Stellplätze: spaces (Zeilenumbruch))            //Datein müssen in Main mit dem Modus "w" geöffnet werden
-    fprintf(document[], Maximale Parkdauer: max_parking (Zeilenumbruch))
-    fprintf(document[], Simulationsdauer: size (Zeilenumbruch))
-    fprintf(document[], Ankunftswahrscheinlichkeit neuer Fahrzeuge: chance_of_new_cars % (Zeilenumbruch))
-    fprintf(document[], Der Zufalls-Seed: seed (Zeilenumbruch))
+    fprintf(document, Anzahl der Stellplätze: spaces (Zeilenumbruch))            //Datein müssen in Main mit dem Modus "w" geöffnet werden
+    fprintf(document, Maximale Parkdauer: max_parking (Zeilenumbruch))
+    fprintf(document, Simulationsdauer: size (Zeilenumbruch))
+    fprintf(document, Ankunftswahrscheinlichkeit neuer Fahrzeuge: chance_of_new_cars % (Zeilenumbruch))
+    fprintf(document, Der Zufalls-Seed: seed (Zeilenumbruch))
 
 END FUNCTION
 
