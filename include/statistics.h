@@ -46,7 +46,7 @@
 *    @param[in] size, Eingabe Simulationsdauer (Zeitschritte)
 *    @param[in] chance_of_new_cars, Eingabe Ankunftswahrscheinlichkeit neuer Fahrzeuge in %
 *    @param[in] seed, Eingabe Zufalls-Seed für reprudzierbare Simulation
-*    @param[in] document[], Eingabe der .txt Datein für die der Header erzeugt werden soll
+*    @param[in] document, Eingabe der .txt Datein für die der Header erzeugt werden soll
 *
 *    @return Es wird in einem externen Dokument Auswertung.txt dargestellt, 
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
@@ -64,6 +64,7 @@
 *    @param[in] occupied, Eingabe von der Anzahl der besetzten Parkplätze 
 *    @param[in] all, Eingabe von der Anazhl aller Parkplätze
 *    @param[in] cars_in_line, Eingabe von der Anazhl aller Autos in der Warteschlange
+*    @param[in] daten, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
 *    @return Ausgabe von den aktuellen Werten ind der Konsole und dem extra .txt Dokument 
 */
@@ -111,6 +112,7 @@
 *
 *    @param[in] data[], Eingabe des Speicherbestandes aus der Funktion save_data()
 *    @param[in] size, Eingabe der Anzahl der Einträge des Arrays
+*    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
 *    @return Es wird in der Kosole ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
@@ -131,6 +133,7 @@
 *
 *    @param[in] data[], Eingabe des Speicherbestandes aus der Funktion save_data()
 *    @param[in] size, Eingabe der Anzahl der Einträge des Arrays
+*    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
 *    @return Es wird ein Säulendiagram in der Konsole Ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
@@ -151,6 +154,7 @@
 *
 *    @param[in] data[], Eingabe des Speicherbestandes aus der Funktion save_data()
 *    @param[in] size, Eingabe der Anzahl der Einträge des Arrays
+*    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
 *    @return Es wird ein Balkendiagram in der Konsole und in einem externen Dokument Auswertung.txt Ausgegeben, 
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
@@ -168,6 +172,7 @@
 *
 *    @param[in] data[], Eingabe des Speicherbestandes aus der Funktion save_data()
 *    @param[in] size, Eingabe der Anzahl der Einträge des Arrays
+*    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
 *    @return Es wird in der Kosole ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat 

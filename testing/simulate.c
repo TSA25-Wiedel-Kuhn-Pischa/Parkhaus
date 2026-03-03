@@ -30,8 +30,8 @@ int main(){
   input_parameters(&spaces, &max_parking, &steps, &chance_of_new_cars, &seed)
 
   //Einfügen von Kopfzeilen in den Dateien
-  head_document(spaces, max_parking, steps, chance_of_new_cars, seed, "Daten.txt")
-  head_document(spaces, max_parking, steps, chance_of_new_cars, seed, "Auswrtung.txt")
+  head_document(spaces, max_parking, steps, chance_of_new_cars, seed, daten)
+  head_document(spaces, max_parking, steps, chance_of_new_cars, seed, auswertung)
 
   //Datenarray für Simulationswerte initialisieren
   int data[(size*5)] = {0}
@@ -93,7 +93,7 @@ int main(){
     END IF
 
 
-    output_data(check_for_free_space(parking_garage), spaces, CARS_IN_LINE)
+    output_data(check_for_free_space(parking_garage), spaces, CARS_IN_LINE, daten)
     save_data(data, steps, check_for_free_space(parking_garage), spaces, CARS_IN_LINE)
 
 
@@ -101,10 +101,10 @@ int main(){
   END FOR
 
   //Ausgabe der Endstatistiken
-  tabel(data, steps)
-  column_chart(data, steps)
-  bar_chart(data, steps)
-  out_maxval(data, steps)
+  tabel(data, steps, auswertung)
+  column_chart(data, steps, auswertung)
+  bar_chart(data, steps, auswertung)
+  out_maxval(data, steps, auswertung)
 
   int success_daten = fclose(daten)
   int success_auswertung = fclose(auswertung)
