@@ -3,7 +3,7 @@
     Beschreibung: Genauere beschreibung der Funktion zur Eingabe der Parameter.
 */
 
-/*void FUNCTION input_parameter(int *spaces, float *max_parking, int *size, float *chance_of_new_cras, int *seed);
+/* void FUNCTION input_parameter(int *spaces, float *max_parking, int *size, float *chance_of_new_cars, int *seed);
 
     char name[] = {"Anazhl der Stellplätze", "Maximale Parkdauer eines Autos", "Simuationsdauer, also die Zeitschritte,", "Ankunftswahrscheinlichkeit in % (mind. 1%)", "Zufalls-Seed"}
     int *parameter_int[] = {spaces, 0, size, 0, seed}                               // Array zum Durchlauf der int Parameter
