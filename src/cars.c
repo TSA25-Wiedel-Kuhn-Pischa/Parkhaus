@@ -5,7 +5,7 @@
 
 /**
  * Pseudo-Code:
- * create_car - Funktion mit Eingabe: AnkunftsZeit, Car Struct
+ * create_car - Funktion mit Eingabe: AnkunftsZeit, Car Struct, maximale Parkdauer, Warteschlange Struct
  *
      * auf ungültige Eingabe prüfen
      * car id = nächste ID von car_id_counter() Funktion
@@ -14,12 +14,21 @@
      * brand gesetzt
      * modelname gesetzt
      * ps gesetzt
-     * 
-     *
+     * int temp_parking_duration = randomize_parking_duration(max_parking_duration)
+     * auf Fehler prüfen
+     * parking_duration auf temp_parking_duration setzen
+     * IF queue_get_size() == 0) && (check_for_free_space() == 1)) DO
+        * park_car(c, struct Car *parking_garage, time_stemp)
+     * ELSE DO
+         * queue_enqueue(queue1, c)
+     * END IF
+     * return 0
+
  * car_id_counter - Funktion ohne Eingabe
      * einmalig counter auf 0 setzen
      * counter um 1 erhöhen
      * counter zurückgeben
+
  * randomize_parking_duration - Funktion mit Eingabe maximale Parkdauer
      * auf ungültige Eingabe prüfen
      * zufällige Zahl zwischen 1 und maximale Parkdauer generieren
@@ -34,18 +43,7 @@
 
 
 
-int create_car(int max_parking_duration, int time_stemp, struct car* c){
-    /**
-    * @brief setzt die Werte eines Car-Structs
-    *        und parkt das Auto oder setzt es in die Warteschlange
-    *
-    * @param[in]  time_stemp  aktueller Zeitschritt, zu dem das Auto ankommt
-    * @param[in]  struct car* c  Pointer auf Car-Struct, dass bearbeitet wird
-    * @param[in]  max_parking_duration maximale Parkdauer in Sekunden
-    * 
-    * return   nur zur Fehlersignalisierung, wenn die Funktion -1 zurückgibt, ist ein Fehler aufgetreten
-    */
-
+int create_car(int max_parking_duration, int time_stemp, struct car* c, struct queue* queue1){
     if(c == NULL || max_parking_duration <= 0 || time_stemp < 0){        //auf ungültige Eingabe prüfen
         return -1;
     }
@@ -200,11 +198,11 @@ int create_car(int max_parking_duration, int time_stemp, struct car* c){
     }
     c->parking_duration = temp_parking_duration;
 
-    if((check_for_free_space() == 1)){                                          //prüft ob es noch freie Parkplätze gibt
-        park_car(*c, struct Car *parking_garage, time_stemp);                   //übergibt das Auto ans Parkhaus
+    if((queue_get_size() == 0) && ((check_for_free_space() == 1))){             //prüft ob es eine Warteschlange und freie Plätze gibt
+        park_car(c, struct Car *parking_garage, time_stemp);                    //übergibt das Auto ans Parkhaus
     }
     else{
-        //Auto wird in Warteschlange / Queue eingereiht
+        queue_enqueue(queue1, c);                                               //Auto wird in Warteschlange / Queue eingereiht
     }
 
     
@@ -214,26 +212,12 @@ int create_car(int max_parking_duration, int time_stemp, struct car* c){
 
 
 int car_id_counter(){
-    /**
-    * @brief zählt die IDs für die Autos hoch, damit jedes Auto eine eindeutige ID bekommt
-    *
-    * @param[out] counter aktuelle ID, die zurückgegeben wird, wenn die Funktion aufgerufen wird
-    * @return            gibt counter zurück
-    */
     static int counter = 0;
     counter ++;
     return counter;
 }
 
 int randomize_parking_duration(int r_max_parking_duration){           //maximale Pardauer abrufen oder übergeben bekommen?
-    /**
-    * @brief gibt eine zufällige Parkdauer zurück
-    *
-    * @param[in]  r_max_parking_duration maximale Parkdauer
-    * @param[in]  r_time_step_size Zeitschrittgröße für die Berechnung der Parkdauer
-    * @param[out] random_parking_duration zufällige Parkdauer
-    * @return            gibt random_parking_duration zurück
-    */
     if(r_max_parking_duration <= 0){        //auf ungültige Eingabe prüfen
         return -1;
     }

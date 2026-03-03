@@ -25,6 +25,7 @@ queue_enqueue - Funktion mit Eingabe Pointer auf Queue, Pointer auf Auto
         - tail auf neuen Node setzen
     END IF
     - count um 1 erhöhen
+    - return 0
 
 queue_dequeue - Funktion mit Eingabe Pointer auf Queue
     - auf ungültige Eingabe prüfen
