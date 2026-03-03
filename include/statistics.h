@@ -69,7 +69,7 @@
 */
 
 
-//void FUNCTION output_data(int free_spaces, int all_spaces, int cars_in_line);
+//void FUNCTION output_data(int free_spaces, int all_spaces, int cars_in_line, File* daten);
 
 
 /**
@@ -116,7 +116,7 @@
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-//void FUNCTION tabel(int data[], int size_ary);
+//void FUNCTION tabel(int data[], int size_ary, File* auswertung);
 
 
 /**
@@ -136,7 +136,7 @@
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-//void FUNCTION column_chart(int data[], int size_ary);
+//void FUNCTION column_chart(int data[], int size_ary, File* auswertung);
 
 
 /**
@@ -156,7 +156,7 @@
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-//void FUNCTION bar_chart(int data[], int size_ary);
+//void FUNCTION bar_chart(int data[], int size_ary, File* auswertung);
 
 /**
 *
@@ -173,6 +173,6 @@
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat 
 */
 
-//void FUNCTION out_maxval(int data[], int size_ary);
+//void FUNCTION out_maxval(int data[], int size_ary, File* auswertung);
 
 //#endif
