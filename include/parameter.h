@@ -24,6 +24,6 @@
 *    @return Es wird garnichts zurückgegeben, da void funktion. Die Werte werden über ihre Adressen übergeben 
 */
 
-//void FUNCTION input_parameter(int *spaces, float *max_parking, int *size, float *chance_of_new_cras, int *seed);
+//void FUNCTION input_parameter(int *spaces, float *max_parking, int *size, float *chance_of_new_cars, int *seed);
 
 //#endif
