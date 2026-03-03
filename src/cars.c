@@ -14,16 +14,16 @@
      * brand gesetzt
      * modelname gesetzt
      * ps gesetzt
+     * 
      *
  * car_id_counter - Funktion ohne Eingabe
      * einmalig counter auf 0 setzen
      * counter um 1 erhöhen
      * counter zurückgeben
- * randomize_parking_duration - Funktion mit Eingabe maximale Parkdauer, Zeitschrittgröße
+ * randomize_parking_duration - Funktion mit Eingabe maximale Parkdauer
      * auf ungültige Eingabe prüfen
-     * maximale Parkdauer in maximale Zeitschritte umrechnen
-     * zufällige Zahl zwischen 1 und maximale Zeitschritte generieren
-     * zufällige Zahl in Zeitdauer umrechnen
+     * zufällige Zahl zwischen 1 und maximale Parkdauer generieren
+     * auf Fehler prüfen
      * Zeitdauer zurückgeben
  */
 
