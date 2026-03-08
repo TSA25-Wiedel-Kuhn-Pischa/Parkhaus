@@ -2,8 +2,11 @@
     Datei: statistics.h
     Beschreibung: Zusammenfassung aller Funktionen zur Ausgabe und Berechnung der Statistiken.
 */
-//#ifndef STATISTICS
-//#define STATISTICS
+#ifndef STATISTICS
+#define STATISTICS
+
+#include <stdio.h>
+#include <stdlib.h>
 /**
 
 *
@@ -13,12 +16,12 @@
 *    Prozentwert zu erhalten. 
 *
 *    @param[in] occupied, Eingabe von der Anzahl der besetzten Parkplätze 
-*    @param[in] all, Eingabe von der Anazhl aller Parkplätze 
+*    @param[in] all_spaces, Eingabe von der Anazhl aller Parkplätze 
 *
 *    @return Es wird der berechnete Wert zurück gegeben
 */
 
-//int FUNCTION fullness(int occupied, int all_spaces);
+int fullness(int occupied, int all_spaces);
 
 /**
 *
@@ -33,7 +36,7 @@
 *    @return Es wird der Wert von der Variable rate zurückgegeben
 */
 
-//int FUNCTION rate(int count_now, count_before);
+int rate(int count_now, int count_before);
 
 /**
 *
@@ -52,7 +55,7 @@
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-//void FUNCTION head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, File* document);
+void head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, FILE* document);
 /**
 *
 *    @brief Es werden in der Konsole die aktuellen Daten ausgegeben
@@ -61,8 +64,8 @@
 *    Warteschlange und Insgesamt ausgegeben, und auch die Anzahl der freien Parkplätze.
 *    All dies wird mit dem aktuellen Zeitschritt in der Konsole ausgegeben
 *
-*    @param[in] occupied, Eingabe von der Anzahl der besetzten Parkplätze 
-*    @param[in] all, Eingabe von der Anazhl aller Parkplätze
+*    @param[in] free_spaces, Eingabe von der Anzahl der besetzten Parkplätze 
+*    @param[in] all_spaces, Eingabe von der Anazhl aller Parkplätze
 *    @param[in] cars_in_line, Eingabe von der Anazhl aller Autos in der Warteschlange
 *    @param[in] daten, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
@@ -70,7 +73,7 @@
 */
 
 
-//void FUNCTION output_data(int free_spaces, int all_spaces, int cars_in_line, File* daten);
+//void FUNCTION output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten);
 
 
 /**
@@ -81,11 +84,11 @@
 *    in der möglichen Warteschlange und Insgesamt mit dem aktuellen Zeitschritt gespeichert 
 *
 *
-*    @param[in/out] *data, Eingabe des vorherigen Speicherbestandes 
+*    @param[in/out] *save_data, Eingabe des vorherigen Speicherbestandes 
 *    @param[in/out] *size, Eingabe der größe des Arrays
 *
-*    @param[in] occupied, Eingabe von der Anzahl der besetzten Parkplätze 
-*    @param[in] all, Eingabe von der Anazhl aller Parkplätze
+*    @param[in] free_spaces, Eingabe von der Anzahl der freien Parkplätze 
+*    @param[in] all_spaces, Eingabe von der Anazhl aller Parkplätze
 *    @param[in] cars_in_line, Eingabe von der Anazhl aller Autos in der Warteschlange
 *
 *
@@ -111,14 +114,14 @@
 *
 *
 *    @param[in] data[], Eingabe des Speicherbestandes aus der Funktion save_data()
-*    @param[in] size, Eingabe der Anzahl der Einträge des Arrays
+*    @param[in] size_ary, Eingabe der Anzahl der Einträge des Arrays
 *    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
 *    @return Es wird in der Kosole ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-//void FUNCTION tabel(int data[], int size_ary, File* auswertung);
+//void FUNCTION tabel(int data[], int size_ary, FILE* auswertung);
 
 
 /**
@@ -132,14 +135,14 @@
 *    Als Wert pro Zeitschritt wird die Füllmenge dargestellt, welche aus dem Array von der Funktion save_data() entnommen wird.
 *
 *    @param[in] data[], Eingabe des Speicherbestandes aus der Funktion save_data()
-*    @param[in] size, Eingabe der Anzahl der Einträge des Arrays
+*    @param[in] size_ary, Eingabe der Anzahl der Einträge des Arrays
 *    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
 *    @return Es wird ein Säulendiagram in der Konsole Ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-//void FUNCTION column_chart(int data[], int size_ary, File* auswertung);
+//void FUNCTION column_chart(int data[], int size_ary, FILE* auswertung);
 
 
 /**
@@ -153,14 +156,14 @@
 *
 *
 *    @param[in] data[], Eingabe des Speicherbestandes aus der Funktion save_data()
-*    @param[in] size, Eingabe der Anzahl der Einträge des Arrays
+*    @param[in] size_ary, Eingabe der Anzahl der Einträge des Arrays
 *    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
 *    @return Es wird ein Balkendiagram in der Konsole und in einem externen Dokument Auswertung.txt Ausgegeben, 
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-//void FUNCTION bar_chart(int data[], int size_ary, File* auswertung);
+//void FUNCTION bar_chart(int data[], int size_ary, FILE* auswertung);
 
 /**
 *
@@ -171,14 +174,14 @@
 *    Dies wird dann Formatiert ausgegeben. Ebenfalls wird beurteilt, ob eine Bauliche Erweiterung emphfohlen wird
 *
 *    @param[in] data[], Eingabe des Speicherbestandes aus der Funktion save_data()
-*    @param[in] size, Eingabe der Anzahl der Einträge des Arrays
+*    @param[in] size_ary, Eingabe der Anzahl der Einträge des Arrays
 *    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
 *    @return Es wird in der Kosole ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat 
 */
 
-//void FUNCTION out_maxval(int data[], int size_ary, File* auswertung);
+//void FUNCTION out_maxval(int data[], int size_ary, FILE* auswertung);
 
-//#endif
+#endif
 

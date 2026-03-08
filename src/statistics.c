@@ -3,34 +3,30 @@
     Beschreibung: Beschreibung aller Funktionen zur Ausgabe und Berechnung der Statistiken.
 */
 
-//Einbinden von reapeted_statistics.h
+#include "../include/statistics.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-/* int FUNCTION fullness(int occupied, int all_spaces)
+int fullness(int occupied, int all_spaces)
+{
+    return von (((float)occupied/all_spaces) * 100.f);
+}
 
-    return von ((occupied/all) * 100)
+int rate(int count_now, int count_before)
+{
+    return count_now - count_before;
+}
 
-END FUNCTION
-*/
+void head_document(int spaces, int max_parking, int size, int chance_of_new_cras, FILE* document)
+{
+    fprintf(document, "Anzahl der Stellplätze: spaces \n");            //Datein müssen in Main mit dem Modus "w" geöffnet werden
+    fprintf(document, "Maximale Parkdauer: max_parking \n");
+    fprintf(document, "Simulationsdauer: size \n");
+    fprintf(document, "Ankunftswahrscheinlichkeit neuer Fahrzeuge: chance_of_new_cars %% \n");
+    fprintf(document, "Der Zufalls-Seed: seed \n");
+}
 
-/* int FUNCTION rate(int count_now, count_before)
-
-    return count_now - count_before
-
-END FUNCTION
-*/
-
-/* void FUNCTION head_document(int spaces, int max_parking, int size, int chance_of_new_cras, File* document)
-
-    fprintf(document, Anzahl der Stellplätze: spaces (Zeilenumbruch))            //Datein müssen in Main mit dem Modus "w" geöffnet werden
-    fprintf(document, Maximale Parkdauer: max_parking (Zeilenumbruch))
-    fprintf(document, Simulationsdauer: size (Zeilenumbruch))
-    fprintf(document, Ankunftswahrscheinlichkeit neuer Fahrzeuge: chance_of_new_cars % (Zeilenumbruch))
-    fprintf(document, Der Zufalls-Seed: seed (Zeilenumbruch))
-
-END FUNCTION
-
-*/
-/* void FUNCTION output_data(int free_spaces, int all_spaces, int cars_in_line, File* daten)
+/* void FUNCTION output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
 
     einmaliges Initialisiern von int i = 1
     int occupied = all_spaces - free_spaces
@@ -77,7 +73,7 @@ END FUNCTION
 
 
 
-/* void FUNCTION tabel(int data[], int size_ary, File* auswertung)
+/* void FUNCTION tabel(int data[], int size_ary, FILE* auswertung)
 
     int steps_x = round(size_ary / 10.f) 
 
@@ -140,7 +136,7 @@ END FUNCTION
 END FUNCTION
 */
 
-/* void FUNCTION column_chart(int data[], int size_ary, File* auswertung)       // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
+/* void FUNCTION column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
                                                                                 // diese Funktion wird im Richtigen C-Code noch Modularisiert, aber Aktuell (als Pseudocode) im Sinne des Verständnisses so gelassen
     int steps_y = round(size_ary / 10.f)                     // Bereuchnung der Skala von der Y-Achse
 
@@ -233,7 +229,7 @@ END FUNCTION
 
 */
 
-/* void FUNCTION bar_chart(int data[], int size_ary, File* auswertung)      // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
+/* void FUNCTION bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
                                                                             // diese Funktion wird im Richtigen C-Code noch Modularisiert, aber Aktuell (als Pseudocode) im Sinne des Verständnisses so gelassen
     int steps_y = round(size_ary / 10.f)                        // Bereuchnung der Skala von der Y-Achse
 
@@ -336,7 +332,7 @@ END FUNCTION
 END FUNCTION
 */
 
-/* void FUNCTION out_maxval(int data[], int size, File* auswertung)
+/* void FUNCTION out_maxval(int data[], int size, FILE* auswertung)
 
     int size_ary = round(size / 5)
 
