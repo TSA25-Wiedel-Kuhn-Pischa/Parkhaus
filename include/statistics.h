@@ -60,7 +60,7 @@ void head_document(int spaces, int max_parking, int size, int chance_of_new_cras
 *
 *    @brief Es werden in der Konsole die aktuellen Daten ausgegeben
 *
-*    Es wird der berechnete Werte von der Funktion fullnes, sowie die Anzahl der Autos im Parkhaus, in der möglichen 
+*    Es wird der berechnete Werte von der Funktion fullness, sowie die Anzahl der Autos im Parkhaus, in der möglichen 
 *    Warteschlange und Insgesamt ausgegeben, und auch die Anzahl der freien Parkplätze.
 *    All dies wird mit dem aktuellen Zeitschritt in der Konsole ausgegeben
 *
@@ -69,7 +69,8 @@ void head_document(int spaces, int max_parking, int size, int chance_of_new_cras
 *    @param[in] cars_in_line, Eingabe von der Anazhl aller Autos in der Warteschlange
 *    @param[in] daten, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
-*    @return Ausgabe von den aktuellen Werten ind der Konsole und dem extra .txt Dokument 
+*    @return Ausgabe von den aktuellen Werten ind der Konsole und dem extra .txt Dokument
+             Funktion an sich hat keinen return Wert.
 */
 
 

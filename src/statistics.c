@@ -42,10 +42,14 @@ void output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
     printf("waiting cars: %5d\n", cars_in_line);
     printf("%21call cars: %9d \n\n", empty, all_cars);
 
-    fprintf(daten, Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data) (Zeilenumbruch));
-    fprintf(daten,                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line) (Zeilenumbruch));
-    fprintf(daten,                                              all cars: all_cars (Ausgabe von dem Wert von all_cars) (Zeilenumbruch) (Zeilenumbruch));
-    i++;
+    // Ausgabe in einem externen Document Daten.txt
+    fprintf("Zeitpunkt %8d:  ", i);                                   
+    fprintf("fullness: %8d%%  ", fullness(occupied, all_spaces));
+    fprintf("free spaces: %6d\n", free_spaces);
+    fprintf("%21ccars parked: %6d", empty, occupied);                      
+    fprintf("waiting cars: %5d\n", cars_in_line);
+    fprintf("%21call cars: %9d \n\n", empty, all_cars);
+    i++;                                                                // Erhöhung des Simulationsschrittes
 }
 
 /* void FUNCTION save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line)
