@@ -6,6 +6,7 @@
 #include "../include/statistics.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 int fullness(int occupied, int all_spaces)
 {
@@ -31,17 +32,20 @@ void output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
     static int i = 1;
     int occupied = all_spaces - free_spaces;
     int all_cars = occupied + cars_in_line;
+    char empty = ' ';
 
-    printf("Zeitpunkt %7d:       ", i);                                     // Verwendung von festen Formatierungen, damit die Zeichen sich nicht verschieben
-    printf("fullness: %3d%%      ", fullness(occupied, all_spaces));
-    printf("free spaces: %4d\n", free_spaces);
-    OUTPUT                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line) (Zeilenumbruch)
-    OUTPUT                                              all cars: all_cars (Ausgabe von dem Wert von all_cars) (Zeilenumbruch) (Zeilenumbruch)
+    // Ausgabe in der Konsole 
+    printf("Zeitpunkt %8d:  ", i);                                     // Verwendung von festen Formatierungen, damit die Zeichen sich nicht verschieben
+    printf("fullness: %8d%%  ", fullness(occupied, all_spaces));
+    printf("free spaces: %6d\n", free_spaces);
+    printf("%21ccars parked: %6d", empty, occupied);                        // durch empty, wird einen Lücke am Anfang geschaffen
+    printf("waiting cars: %5d\n", cars_in_line);
+    printf("%21call cars: %9d \n\n", empty, all_cars);
 
-    fprintf(daten, Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data) (Zeilenumbruch))
-    fprintf(daten,                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line) (Zeilenumbruch))
-    fprintf(daten,                                              all cars: all_cars (Ausgabe von dem Wert von all_cars) (Zeilenumbruch) (Zeilenumbruch))
-    i = i + 1
+    fprintf(daten, Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data) (Zeilenumbruch));
+    fprintf(daten,                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line) (Zeilenumbruch));
+    fprintf(daten,                                              all cars: all_cars (Ausgabe von dem Wert von all_cars) (Zeilenumbruch) (Zeilenumbruch));
+    i++;
 }
 
 /* void FUNCTION save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line)
