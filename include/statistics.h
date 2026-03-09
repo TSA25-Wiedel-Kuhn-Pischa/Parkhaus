@@ -73,7 +73,7 @@ void head_document(int spaces, int max_parking, int size, int chance_of_new_cras
 */
 
 
-//void FUNCTION output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten);
+void output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten);
 
 
 /**

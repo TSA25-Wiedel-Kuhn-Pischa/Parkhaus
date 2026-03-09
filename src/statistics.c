@@ -17,22 +17,24 @@ int rate(int count_now, int count_before)
     return count_now - count_before;
 }
 
-void head_document(int spaces, int max_parking, int size, int chance_of_new_cras, FILE* document)
+void head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, FILE* document)
 {
-    fprintf(document, "Anzahl der Stellplätze: spaces \n");            //Datein müssen in Main mit dem Modus "w" geöffnet werden
-    fprintf(document, "Maximale Parkdauer: max_parking \n");
-    fprintf(document, "Simulationsdauer: size \n");
-    fprintf(document, "Ankunftswahrscheinlichkeit neuer Fahrzeuge: chance_of_new_cars %% \n");
-    fprintf(document, "Der Zufalls-Seed: seed \n");
+    fprintf(document, "Anzahl der Stellplätze: %d \n", spaces);            //Datein müssen in Main mit dem Modus "w" geöffnet werden
+    fprintf(document, "Maximale Parkdauer: %d \n", max_parking);
+    fprintf(document, "Simulationsdauer: %d \n", size);
+    fprintf(document, "Ankunftswahrscheinlichkeit neuer Fahrzeuge: %d %% \n", chance_of_new_cras);
+    fprintf(document, "Der Zufalls-Seed: %d \n\n\n", seed);
 }
 
-/* void FUNCTION output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
+void output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
+{
+    static int i = 1;
+    int occupied = all_spaces - free_spaces;
+    int all_cars = occupied + cars_in_line;
 
-    einmaliges Initialisiern von int i = 1
-    int occupied = all_spaces - free_spaces
-    int all_cars = occupied + cars_in_line
-
-    OUTPUT Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all_spaces) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data) (Zeilenumbruch)
+    printf("Zeitpunkt %7d:       ", i);                                     // Verwendung von festen Formatierungen, damit die Zeichen sich nicht verschieben
+    printf("fullness: %3d%%      ", fullness(occupied, all_spaces));
+    printf("free spaces: %4d\n", free_spaces);
     OUTPUT                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line) (Zeilenumbruch)
     OUTPUT                                              all cars: all_cars (Ausgabe von dem Wert von all_cars) (Zeilenumbruch) (Zeilenumbruch)
 
@@ -40,9 +42,7 @@ void head_document(int spaces, int max_parking, int size, int chance_of_new_cras
     fprintf(daten,                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line) (Zeilenumbruch))
     fprintf(daten,                                              all cars: all_cars (Ausgabe von dem Wert von all_cars) (Zeilenumbruch) (Zeilenumbruch))
     i = i + 1
-
-END FUNCTION
-*/
+}
 
 /* void FUNCTION save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line)
 
