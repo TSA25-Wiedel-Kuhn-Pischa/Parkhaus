@@ -81,8 +81,8 @@ void output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
 *
 *    @brief Es werden die Daten von dem aktuellen Zeitpunkt gespeichert
 *
-*    Es werden die berechneten Werte, fullnes und freie Parkplätze, sowie die Anzahl der Autos im Parkhaus, 
-*    in der möglichen Warteschlange und Insgesamt mit dem aktuellen Zeitschritt gespeichert 
+*    Es werden die berechneten Werte, von fullness und den belegte Parkplätzen, sowie die Anzahl der freien Parkplätze im Parkhaus, 
+*    die Anzahl der Autos in der möglichen Warteschlange und Insgesamt, an dem aktuellen Zeitschritt gespeichert. 
 *
 *
 *    @param[in/out] *save_data, Eingabe des vorherigen Speicherbestandes 
@@ -96,7 +96,7 @@ void output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
 *    @return Es wird nichts zurückgegeben 
 */
 
-//void FUNCTION save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line);
+void save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line);
 
 
 /**

@@ -52,33 +52,32 @@ void output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
     i++;                                                                // Erhöhung des Simulationsschrittes
 }
 
-/* void FUNCTION save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line)
+void save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line)
+{
+    int occupied = all_spaces - free_spaces;                                // Berechnung der einzelnen Parameter
+    int fullness_data = fullness(occupied, all_spaces);
+    int all_cars = occupied + cars_in_line;
 
-    int occupied = all_spaces - free_spaces                                 //Berechnung der einzelnen Parameter
-    int fullness_data = fullness(occupied, all_spaces)
-    int all_cars = occupied + cars_in_line
-    Einmaliges Initialisieren int steps_data = 0
+    static int steps_data = 0;                                              // Initialisierung der Variable, welche die Position im Array speichert
 
-    IF steps_data < (size*5) THEN
-        save_data[steps_data] = fullness_data
-        steps_data = steps_data + 1        
+    if (steps_data < (size*5)) 
+    {
+        save_data[steps_data] = fullness_data;
+        steps_data++;        
                                                                                 
-        save_data[steps_data] = free_spaces
-        steps_data = steps_data + 1
+        save_data[steps_data] = free_spaces;
+        steps_data++;
 
-        save_data[steps_data] = occupied
-        steps_data = steps_data + 1
+        save_data[steps_data] = occupied;
+        steps_data++;
 
-        save_data[steps_data] = cars_in_line
-        steps_data = steps_data + 1
+        save_data[steps_data] = cars_in_line;
+        steps_data++;
 
-        save_data[steps_data] = all_cars
-        steps_data = steps_data + 1
-    END IF
-
-END FUNCTION
-*/
-
+        save_data[steps_data] = all_cars;
+        steps_data++;
+    }
+}
 
 
 /* void FUNCTION tabel(int data[], int size_ary, FILE* auswertung)
