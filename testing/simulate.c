@@ -55,11 +55,19 @@ int main(){
   //Simulationsdurchlauf
   FOR i <- 0 TO steps DO
 
-    manage_parking_garage(parking_garage, i)   //Überprüfen der Parkzeiten + ggf. Ausparken
+    manage_parking_garage(parking_garage, i)                              //Überprüfen der Parkzeiten + ggf. Ausparken
 
-    IF (check_for_free_space(parking_garage) > 0 && Auto in Warteschlange) DO
+    int cars_in_queue = queue_get_size(p_queue1)                          //Anzahl der Autos in der Warteschlange abrufen
+    IF cars_in_queue < 0 DO
 
-      struct car* p_temp_first_car_in_queue = queue_dequeue(p_queue1)   //Auto aus Warteschlange entfernen
+      OUTPUT "Fehler beim Abrufen der Anzahl der Autos in der Warteschlange."
+      return 1
+
+    END IF
+    
+    IF (check_for_free_space(parking_garage) > 0 && (cars_in_queue > 0)) DO
+
+      struct car* p_temp_first_car_in_queue = queue_dequeue(p_queue1)     //Auto aus Warteschlange entfernen
       IF (p_temp_first_car_in_queue == NULL) DO
 
         OUTPUT "Fehler beim Entfernen eines Autos aus der Warteschlange."
@@ -161,7 +169,7 @@ int main(){
   */
 
   //Warteschlange vor dem Parkhaus initialisieren
-  struct queue *p_queue1 = queue_init();      //Warteschlange vor dem Parkhaus initialisieren
+  struct queue *p_queue1 = queue_init();                                //Warteschlange vor dem Parkhaus initialisieren
 
   if(p_queue1 == NULL)
   {
@@ -172,11 +180,17 @@ int main(){
   //Simulationsdurchlauf
   for(i = 0; i < steps; i++)
   {
-    manage_parking_garage(parking_garage, i);   //Überprüfen der Parkzeiten + ggf. Ausparken
+    manage_parking_garage(parking_garage, i);                           //Überprüfen der Parkzeiten + ggf. Ausparken
 
-    if(check_for_free_space(parking_garage) > 0 && Auto in Warteschlange)
+    int cars_in_queue = queue_get_size(p_queue1);                          //Anzahl der Autos in der Warteschlange abrufen
+    if(cars_in_queue < 0)
     {
-      struct car* p_temp_first_car_in_queue = queue_dequeue(p_queue1);   //Auto aus Warteschlange entfernen
+      printf("Fehler beim Abrufen der Anzahl der Autos in der Warteschlange.");
+      return 1;
+    }
+    if(check_for_free_space(parking_garage) > 0 && (cars_in_queue > 0))
+    {
+      struct car* p_temp_first_car_in_queue = queue_dequeue(p_queue1);  //Auto aus Warteschlange entfernen
       if(p_temp_first_car_in_queue == NULL)
       {
         printf("Fehler beim Entfernen eines Autos aus der Warteschlange.");
