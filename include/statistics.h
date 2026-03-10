@@ -100,6 +100,22 @@ void save_data(int *save_data, int size, int free_spaces, int all_spaces, int ca
 
 /**
 *
+*    @brief Es wird die Tabelle erzeugt 
+*
+*    Die Funktion gibt geordnet alle sortierten Werte in einer Tabelle aus.
+*
+*
+*    @param[in] info[], Eingabe der sortierten Werte
+*    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
+*
+*    @return Es wird in der Kosole ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
+*            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
+*/
+
+void tabel_creation(int info[], FILE* auswertung);
+
+/**
+*
 *    @brief Es wird eine Legende für die Tabelle erzeugt 
 *
 *    Die Funktion gibt die Zeitschritte zu der Tabelle aus, sowie welche Zeile welchen Wert entspricht.

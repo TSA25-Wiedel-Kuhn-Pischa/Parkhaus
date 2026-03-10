@@ -80,6 +80,36 @@ void save_data(int *save_data, int size, int free_spaces, int all_spaces, int ca
     }
 }
 
+//***********************************************************************************************************************************
+//Hilfsfunktionen für tabel()
+
+void tabel_creation(int info[], FILE* auswertung)
+{
+    printf("   | ");
+    fprintf(auswertung,"   | ");  
+    for (int i = 1; i < 11; i++)                            // Ausgabe der Obersten Zeile einer Tabelle (der Zeitschritte)
+    {                                                      
+        printf("\033[1m%8d\033[0m | ", i);                  // gibt Fettgedruckte Zahlen aus, damit die Skalierung besser unterschieden werden kann
+        fprintf(auswertung,"\033[1m%8d\033[0m | ", i);  
+    }
+
+    printf("\n-------------------------------------------------------------------------------------------------------------------\n"); 
+    fprintf(auswertung, "\n-------------------------------------------------------------------------------------------------------------------\n");
+
+    for (int i = 0; i < 6; i++)
+    {   
+        printf("\033[1m%d\033[0m | ", i+11);
+        fprintf(auswertung, "\033[1m%d\033[0m | ", i+11);                                                 
+        for (int g = 0; g < 10; g++)                                                 // Ausgabe der Einzelnen Werte
+        {
+            printf("%8d | ", info[g + 10*i]);
+            fprintf(auswertung, "%8d | ", info[g + 10*i]);
+        }
+        printf("\n-------------------------------------------------------------------------------------------------------------------\n");
+        fprintf(auswertung, "\n-------------------------------------------------------------------------------------------------------------------\n");
+    }
+}
+
 void tabel_legend(int steps_x, int size_ary, FILE* auswertung)
 {
     char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos", "die Änderungsrate"};
@@ -95,8 +125,8 @@ void tabel_legend(int steps_x, int size_ary, FILE* auswertung)
         }
         else if (i == 10) 
         {
-            printf("\033[1m%d\033[0m. = %7d. Simulationsschritt\n", i, size_ary);
-            fprintf(auswertung, "\033[1m%d\033[0m. = %7d. Simulationsschritt\n", i, size_ary);
+            printf("\033[1m%d\033[0m. = %7d. Simulationsschritt\n\n", i, size_ary);
+            fprintf(auswertung, "\033[1m%d\033[0m. = %7d. Simulationsschritt\n\n", i, size_ary);
         }
         else if (i > 10)                                                                // Ausgabe der Legende für die einzelenen Zeilen Zeitschritte
         {
@@ -105,6 +135,8 @@ void tabel_legend(int steps_x, int size_ary, FILE* auswertung)
         }
     }
 }
+
+//***********************************************************************************************************************************
 
 void tabel(int data[], int size_ary, FILE* auswertung)
 {
@@ -133,33 +165,9 @@ void tabel(int data[], int size_ary, FILE* auswertung)
         f = f + 1;
     }
 
-    printf("    | ");
-    fprintf(auswertung,"   | ");  
-    for (int i = 1; i < 11; i++)                            // Ausgabe der Obersten Zeile einer Tabelle (der Zeitschritte)
-    {                                                      
-        printf("\033[1m%8d\033[0m | ", i);                  // gibt Fettgedruckte Zahlen aus, damit die Skalierung besser unterschieden werden kann
-        fprintf(auswertung,"\033[1m%8d\033[0m | ", i);  
-    }
-
-    printf("\n-------------------------------------------------------------------------------------------------------------------\n"); 
-    fprintf(auswertung, "\n-------------------------------------------------------------------------------------------------------------------\n");
-
-    for (int i = 0; i < 6; i++)
-    {   
-        printf("\033[1m%d\033[0m | ", i+11);
-        fprintf(auswertung, "\033[1m%d\033[0m | ", i+11);                                                 
-        for (int g = 0; g < 10; g++)                                                 // Ausgabe der Einzelnen Werte
-        {
-            printf("%8d | ", info[g + 10*i]);
-            fprintf(auswertung, "%8d | ", info[g + 10*i]);
-        }
-        printf("\n-------------------------------------------------------------------------------------------------------------------\n");
-        fprintf(auswertung, "\n-------------------------------------------------------------------------------------------------------------------\n");
-    }
-
+    tabel_creation(info, auswertung);
     tabel_legend(steps_x, size_ary, auswertung);
 }
-
 
 /* void FUNCTION column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
                                                                                 // diese Funktion wird im Richtigen C-Code noch Modularisiert, aber Aktuell (als Pseudocode) im Sinne des Verständnisses so gelassen
