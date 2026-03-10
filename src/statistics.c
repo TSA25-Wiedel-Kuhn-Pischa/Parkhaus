@@ -134,20 +134,26 @@ void tabel(int data[], int size_ary, FILE* auswertung)
         fprintf(auswertung, "\n---------------------------------------------------------------------------------------------------------\n");
     }
 
-    FOR i <- 1 TO 10 DO                                                       // Ausgabe der Legende zur Obersten Zeile 
-        IF i < 10 THEN
-            OUTPUT i = (steps_x * (i-1)) (Zeilenumbruch)
-            fprintf(auswertung, (steps_x * (i-1)) (Zeilenumbruch) )
-        ELSE if i == 10 THEN
-            OUTPUT size_ary (Zeilenumbruch)
-            fprintf(auswertung, size_ary) (Zeilenumbruch)
-        END IF 
-    END FOR 
-
-    FOR i <-11 TO 17 DO                                                       // Ausgabe der Legende für die einzelenen Zeilen Zeitschritte
-        OUTPUT i = Zeitschritt typ[i-10] (Zeilenumbruch)
-        fprintf(auswertung, (i = Zeitschritt typ[i-10] (Zeilenumbruch))
-    END FOR
+    printf("\nLegende zur Tabelle: \n\n");
+    fprintf(auswertung, "\nLegende zur Tabelle: \n\n");
+    for(int i = 1; i < 18; i++)                                                       
+    { 
+        if (i < 10)                                                                     // Ausgabe der Legende zur Obersten Zeile
+        {
+            printf("%2d. = %7d. Simulationsschritt\n", i, steps_x*(i-1));
+            fprintf(auswertung, "%2d. = %7d. Simulationsschritt\n", i, steps_x*(i-1));
+        }
+        else if (i == 10) 
+        {
+            printf("%d. = %7d. Simulationsschritt\n", i, size_ary);
+            fprintf(auswertung, "%d. = %7d. Simulationsschritt\n", i, size_ary);
+        }
+        else if (i > 10)                                                                // Ausgabe der Legende für die einzelenen Zeilen Zeitschritte
+        {
+            printf("%d. = Simulationsschritt %s \n", i, typ[i-11]);
+            fprintf(auswertung, "%d. = Simulationsschritt %s \n", i, typ[i-11]);
+        }
+    }
 }
 
 /* void FUNCTION column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
