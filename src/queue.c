@@ -68,10 +68,12 @@ int queue_enqueue(Queue *q, struct car *new_car){
     if(q == NULL || new_car == NULL){
         return -1;
     }
+
     Node *new_node = (Node *)malloc(sizeof(Node));
     if(new_node == NULL){
         return -1;
     }
+
     new_node->data = new_car;
     new_node->next = NULL;
 
@@ -88,27 +90,20 @@ int queue_enqueue(Queue *q, struct car *new_car){
 }
 
 struct car* queue_dequeue(Queue *q){
-    
+    if(q == NULL || q->head == NULL){
+        return NULL;
+    }
+
+    Node *temp = q->head;
+    struct car *ptr_car = temp->data;
+    q->head = q->head->next;
+    if(q->head == NULL){
+        q->tail = NULL;
+    }
+    free(temp);
+    q->count--;
+    return ptr_car;
 }
-/**
-    * @brief nimmt das erste Auto aus der Warteschlange und gibt es zurück
-    *
-    * @param[in]  *queue1  Zeiger auf die Warteschlange
-    * @param[out] struct car* car Zeiger auf das Auto, das aus der Warteschlange genommen wurde
-    * 
-    * return struct car* car Zeiger auf das Auto, das aus der Warteschlange genommen wurde
-*/
-queue_dequeue - Funktion mit Eingabe Pointer auf Queue
-    - auf ungültige Eingabe prüfen
-    - temp Node auf head setzen
-    - car Pointer auf data von temp Node setzen
-    - head auf nextes Auto setzen
-    - IF head == NULL DO
-        - tail auf NULL setzen
-    END IF
-    - free temp Node
-    - count um 1 verringern
-    - car Pointer zurückgeben
 
 queue_get_size - Funktion mit Eingabe Pointer auf Queue
     - auf ungültige Eingabe prüfen
