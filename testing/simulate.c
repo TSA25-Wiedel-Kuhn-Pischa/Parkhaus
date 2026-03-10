@@ -172,8 +172,7 @@ int main(){
   //Simulationsdurchlauf
   for(i = 0; i < steps; i++)
   {
-
-    manage_parking_garage(parking_garage, i)   //Überprüfen der Parkzeiten + ggf. Ausparken
+    manage_parking_garage(parking_garage, i);   //Überprüfen der Parkzeiten + ggf. Ausparken
 
     if(check_for_free_space(parking_garage) > 0 && Auto in Warteschlange)
     {
@@ -184,7 +183,6 @@ int main(){
         return 1;
       }
       park_car(p_temp_first_car_in_queue);
-
     }
 
 
@@ -193,7 +191,7 @@ int main(){
     {
       if(random() < chance_of_new_cars)
       {
-        car* p_Auto = malloc(sizeof(car))                                 //Speicher wird hier in der main reserviert
+        car* p_Auto = malloc(sizeof(car));                                  //Speicher wird hier in der main reserviert
 
         int result_temp = create_car(max_parking, step, p_Auto, p_queue1);  //Auto erstellen und parken oder in Warteschlange einreihen
         if(result_temp != 0)
@@ -201,7 +199,6 @@ int main(){
           printf("Fehler bei der Erstellung eines Autos.");
           return 1;
         }
-
       }
     }
 
@@ -214,8 +211,8 @@ int main(){
     }
 
     /**
-    output_data(check_for_free_space(parking_garage), spaces, CARS_IN_LINE, daten)
-    save_data(data, steps, check_for_free_space(parking_garage), spaces, CARS_IN_LINE)
+    output_data(check_for_free_space(parking_garage), spaces, CARS_IN_LINE, daten);
+    save_data(data, steps, check_for_free_space(parking_garage), spaces, CARS_IN_LINE);
     */
 
 
@@ -234,9 +231,7 @@ int main(){
   {
     printf("Fehler beim Schließen von mindestens einer Datei.");
     return 1;
-
   }
-
 */
 
     return 0;
