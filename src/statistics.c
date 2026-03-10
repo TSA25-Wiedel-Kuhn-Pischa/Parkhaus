@@ -89,7 +89,7 @@ void tabel(int data[], int size_ary, FILE* auswertung)
     int info[60] = {0};                                                      // Array zur Speicherung der Ausgelsenen Werte
     char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos", "die Änderungsrate"};
 
-    for (int g = 0; g <= 4; g++)
+    for (int g = 0; g < 5; g++)
     {                             
         for (int i = g; i<= size_ary; i= i + steps_x)                       // Auslesen der Einzelnen Werte nach der Reinfolge der Speicherung
         {      
@@ -110,26 +110,29 @@ void tabel(int data[], int size_ary, FILE* auswertung)
         f = f + 1;
     }
 
-    OUTPUT    |
-    fprintf(auswertung,   |)  
-    FOR i <- 1 TO 10 DO                                                      // Ausgabe der Obersten Zeile einer Tabelle (der Zeitschritte)
-        OUTPUT i  |
-        fprintf(auswertung, i | )  
-    END FOR 
+    printf("    | ");
+    fprintf(auswertung,"   | ");  
+    for (int i = 1; i < 11; i++)                           // Ausgabe der Obersten Zeile einer Tabelle (der Zeitschritte)
+    {                                                      
+        printf("%7d | ", i);
+        fprintf(auswertung,"%7d | ", i);  
+    }
 
-    OUTPUT --------------------------------- (Zeilenumbruch)
-    fprintf(auswertung, --------------------------------- (Zeilenumbruch))
+    printf("\n---------------------------------------------------------------------------------------------------------\n"); 
+    fprintf(auswertung, "\n---------------------------------------------------------------------------------------------------------\n");
 
-    FOR i <- 0 TO 5 DO     
-        OUTPUT (i+11) | 
-        fprintf(auswertung, (i+11) | )                                                 
-        FOR g <- 0 TO 9 DO                                                  // Ausgabe der Einzelnen Werte
-            OUTPUT info[g + 10*i]| 
-            fprintf(auswertung, info[g + 10*i]|)
-        END FOR
-        OUTPUT (Zeilenumbruch) --------------------------------- (Zeilenumbruch)
-        fprintf(auswertung, (Zeilenumbruch) --------------------------------- (Zeilenumbruch))
-    END FOR 
+    for (int i = 0; i < 6; i++)
+    {   
+        printf("%d | ", i+11);
+        fprintf(auswertung, "%d | ", i+11);                                                 
+        for (int g = 0; g < 10; g++)                                                 // Ausgabe der Einzelnen Werte
+        {
+            printf("%7d | ", info[g + 10*i]);
+            fprintf(auswertung, "%7d | ", info[g + 10*i]);
+        }
+        printf("\n---------------------------------------------------------------------------------------------------------\n");
+        fprintf(auswertung, "\n---------------------------------------------------------------------------------------------------------\n");
+    }
 
     FOR i <- 1 TO 10 DO                                                       // Ausgabe der Legende zur Obersten Zeile 
         IF i < 10 THEN
