@@ -61,6 +61,7 @@ Queue* queue_init(){
     q->head = NULL;
     q->tail = NULL;
     q->count = 0;
+
     return q;
 }
 
@@ -86,6 +87,7 @@ int queue_enqueue(Queue *q, struct car *new_car){
         q->tail = new_node;
     }
     q->count++;
+
     return 0;
 }
 
@@ -102,9 +104,13 @@ struct car* queue_dequeue(Queue *q){
     }
     free(temp);
     q->count--;
+
     return ptr_car;
 }
 
-queue_get_size - Funktion mit Eingabe Pointer auf Queue
-    - auf ungültige Eingabe prüfen
-    - count zurückgeben
+int queue_get_size(Queue *q){
+    if(q == NULL){
+        return -1;
+    }
+    return q->count;
+}
