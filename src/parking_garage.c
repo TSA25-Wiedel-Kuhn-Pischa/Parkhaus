@@ -3,148 +3,91 @@
  *  Description: Implementierung von Funktionen, die für das Parkhaus und deren Verwaltung benutzt werden
  */
 
- /*
-struct car *FUNCTION create_garage(int parking_spaces)
+#include "../include/cars.h"
+#include "../include/parking_garage.h"
 
-  Reservierung von Speicherplatz und gleichzeitiges Erstellen eines Arrays, 
-  angepasst an die der Funktion übergebenen Anzahl an verfügbaren Parkplätzen:
+car **create_garage(int parking_spaces){
 
-  Initialisiere den Pointer ptr_parking_garage
+  //Erstelle einen Pointer und reserviere Speicherplatz für ein Array
+  car **ptr_parking_garage = calloc(parking_spaces, sizeof(car *));
 
-  IF (Reservierung von (parking_spaces * Größe eines Car-Structs) Bytes ist fehlgeschlagen) THEN
-
-    OUTPUT ERROR
-
-    Stoppe das Programm
-
-  ELSE
-
-    Übergebe den reservierten Speicherplatz an ptr_parking_garage
-
-  END IF
-
-  Gebe den Pointer zurück
+  //Überprüfung, ob die Reservierung erfolgreich war
+  if(ptr_parking_garage == NULL){
+    return NULL;
+  }
   
-END FUNCTION
+  return ptr_parking_garage;
+}
 
+int get_free_space(car **parking_garage, int parking_spaces){
 
+  //Überprüfung jedes Parkplatzes daraufhin, ob es einen Pointer auf ein Car-Struct enthält
+  for(int i=0; i<parking_spaces; i++){
+    if(parking_garage[i] == NULL){
+      return i;
+    }
+  }
 
-int FUNCTION get_free_space(struct car *parking_garage)
-  
-  Überprüfe das Array darauf, wo sich ein freier Parkplatz befindet:
+  return -1;  //Fehler
+}
 
-  Initialisiere die Variable index
+int park_car(car *car, car **parking_garage, int parking_spaces, int time_step){
 
-  FOR i <- TO (Größe des Arrays) DO
+  int index = get_free_space(parking_garage, parking_spaces);
+  if(index < 0){
+    return -1;    //Fehler
+  }
 
-    IF (Aktuelle betrachteter Platz des Arrays ist nicht belegt) DO
+  parking_garage[index] = car;
+  car->arrival_time = time_step;
 
-      Setze index auf den aktuellen Index des Arrays
+  return 0;
+}
 
-      Springe aus der For-Schleife
+void remove_car(car *car, car **parking_garage, int index){
 
-    END IF
+  parking_garage[index] = NULL;   //entferne den Pointer aus dem Array
+  free(car);  //Free den Speicherplatz, auf den der Pointer zeigt
+  car = NULL;   //setze den Pointer auf den Speicherplatz auf NULL
+}
 
-  END FOR
+int check_parking_time(car *car, int time_step){
 
-  Gebe index zurück
-  
-END FUNCTION
+  if((time_step - car->arrival_time) == car->parking_duration){  //maximale Parkdauer wurde erreicht
+    return 1;
+  }
 
+  if((time_step - car->arrival_time) > car->parking_duration){
+    return -1;  //Fehler
+  }
 
+  return 0;
+}
 
-void FUNCTION park_car(struct Car car, struct Car *parking_garage, int time_step)
-  
-  Nimm ein Auto entgegen und speicher es in einem freien Platz des Arrays:
+int check_for_free_space(car **parking_garage, int parking_spaces){
 
-  Rufe die Funktion get_free_space() auf
+  int free = 0;
 
-  Initialisiere und setze die Variable index auf diesen Wert
+  for(int i=0; i<parking_spaces; i++){
+    if(parking_garage[i] == NULL){
+      free++;
+    }
+  }
 
-  Speicher das Auto in dem Array an dem Index von index
+  return free;
+}
 
-  Setze die Ankunftszeit des Autos auf time_step bzw. die aktuelle Zeit
-  
-END FUNCTION
+void manage_parking_garage(car **parking_garage, int parking_spaces, int time_step){
 
+  for(int i=0; i<parking_spaces; i++){
 
+    if(parking_garage[i] == NULL){
+      continue;
+    }
 
-void FUNCTION remove_car(struct Car car, struct Car *parking_garage, int index)
-  
-  Nimm Nummer des Parplatzes entgegen, auf dem sich ein Auto befindet, dass seine maximale Parkdauer
-  erreicht hat und entferne es aus dem Array:
-
-  Gebe den Inhalt vom Index index des Arrays frei, indem der Inhalt auf NULL gesetzt wird
-
-  Gebe den durch das Auto belegten Speicherplatz wieder frei
-  
-END FUNCTION
-
-
-
-int FUNCTION check_parking_time(struct Car car, int time_step)
-  
-  Überprüfe, ob ein Auto die festgelegte maximale Parkdauer erreicht hat:
-
-  IF (maximale Parkdauer ist erreicht) DO
-
-    Gebe den Index des Autos im Array zurück
-
-  END IF
-
-  Gebe -1 zurück
-  
-FUNCTION
-
-
-
-int FUNCTION check_for_free_space(struct Car *parking_garage)
-  
-  Überprüfe das Array darauf, ob es frei Plätze beinhaltet:
-  
-  Initialisiere und setze die Variable free auf 0
-
-  FOR i <- 0 TO (Größe des Arrays) DO
-
-    IF (Parkplatz ist nicht belegt) DO
-
-      Erhöhe free um 1
-
-    END IF
-
-  END FOR
-
-  IF (free ist größer als 0) DO
-
-    Gebe 1 zurück
-
-  END IF
-  
-  Gebe free zurück
-  
-END FUNCTION
-
-
-
-void FUNCTION manage_parking_garage(struct car *parking_garage, int time_step)
-  
-  Überprüfe die Parkdauern der Autos und entferne ggf. Autos aus dem Parkhaus:
-
-  FOR i <- 0 TO (Größe des Arrays) DO
-
-    Aufruf der Funktion check_parking_time()
-
-    Initialisiere und setze die Variable index auf den Rückgabewert von check_parking_time()
-
-    IF (Rückgabewert von check_parking_time() >= 0) DO
-
-      Aufruf der Funktion remove_car() mit index als übergebener Parameter
-
-    END IF
-
-  END FOR
-  
-END FUNCTION
-
-*/
-
+    int check = check_parking_time(parking_garage[i], time_step);
+    if(check){
+      remove_car(parking_garage[i], parking_garage, i);
+    }
+  }
+}

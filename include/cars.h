@@ -11,6 +11,9 @@
     #include <stdlib.h>
 #endif
 
+#ifndef CARS_H
+#define CARS_H
+
 typedef struct car{
     int car_id;
     float parking_duration;
@@ -52,3 +55,5 @@ int randomize_parking_duration(int max_parking_duration);
     * @param[out] random_parking_duration zufällige Parkdauer
     * @return            gibt random_parking_duration zurück
 */
+
+#endif

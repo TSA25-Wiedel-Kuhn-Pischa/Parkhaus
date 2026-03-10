@@ -11,7 +11,8 @@
     #include <stdlib.h>
 #endif
 
-
+#ifndef QUEUE_H
+#define QUEUE_H
 
 typedef struct Node {
     struct car *data;
@@ -62,3 +63,5 @@ int queue_get_size(Queue *q);
     * @param[in]  *queue1  Zeiger auf die Warteschlange
     * @return count     Anzahl der Autos in der Warteschlange
 */
+
+#endif
