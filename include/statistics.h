@@ -98,6 +98,22 @@ void output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
 
 void save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line);
 
+/**
+*
+*    @brief Es wird eine Legende für die Tabelle erzeugt 
+*
+*    Die Funktion gibt die Zeitschritte zu der Tabelle aus, sowie welche Zeile welchen Wert entspricht.
+*
+*
+*    @param[in] steps_x, Eingabe der Schrittweite der X-Achse
+*    @param[in] size_ary, Eingabe der Anzahl der Einträge des Arrays
+*    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
+*
+*    @return Es wird in der Kosole ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
+*            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
+*/
+
+void tabel_legend(int steps_x, int size_ary, FILE* auswertung);
 
 /**
 *
@@ -122,8 +138,7 @@ void save_data(int *save_data, int size, int free_spaces, int all_spaces, int ca
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-//void FUNCTION tabel(int data[], int size_ary, FILE* auswertung);
-
+void tabel(int data[], int size_ary, FILE* auswertung);
 
 /**
 *
