@@ -54,7 +54,7 @@ queue_get_size - Funktion mit Eingabe Pointer auf Queue
 #endif
 
 Queue* queue_init(){
-    Queue *q = (Queue *)malloc(sizeof(Queue));
+    Queue *q = malloc(sizeof(Queue));
     if(q == NULL){
         return NULL;
     }
@@ -70,7 +70,7 @@ int queue_enqueue(Queue *q, struct car *new_car){
         return -1;
     }
 
-    Node *new_node = (Node *)malloc(sizeof(Node));
+    Node *new_node = malloc(sizeof(Node));
     if(new_node == NULL){
         return -1;
     }
@@ -112,5 +112,6 @@ int queue_get_size(Queue *q){
     if(q == NULL){
         return -1;
     }
+
     return q->count;
 }
