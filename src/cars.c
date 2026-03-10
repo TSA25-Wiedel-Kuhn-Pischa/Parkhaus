@@ -191,6 +191,16 @@ int create_car(int max_parking_duration, int time_stemp, struct car* p_c, struct
             strcpy(p_c->modelname, "AMGPureSpeed");
             p_c->ps = 585;
             break;
+        case 28:
+            strcpy(p_c->brand, "Mercedes-Benz");
+            strcpy(p_c->modelname, "S680");
+            p_c->ps = 612;
+            break;
+        case 29:
+            strcpy(p_c->brand, "Mercedes-Benz");
+            strcpy(p_c->modelname, "EQS680SUV");
+            p_c->ps = 658;
+            break;
         
         case 30:
             strcpy(p_c->brand, "Aston Martin");
