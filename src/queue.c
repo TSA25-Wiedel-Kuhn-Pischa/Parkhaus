@@ -54,19 +54,19 @@ queue_get_size - Funktion mit Eingabe Pointer auf Queue
 #endif
 
 Queue* queue_init(){
-    Queue *q = malloc(sizeof(Queue));
-    if(q == NULL){
+    Queue *p_q = malloc(sizeof(Queue));
+    if(p_q == NULL){                              //auf ungültige Eingabe prüfen
         return NULL;
     }
-    q->head = NULL;
-    q->tail = NULL;
-    q->count = 0;
+    p_q->head = NULL;
+    p_q->tail = NULL;
+    p_q->count = 0;                               //Anzahl der Autos in der Queue auf 0 setzen
 
-    return q;
+    return p_q;
 }
 
-int queue_enqueue(Queue *q, struct car *new_car){
-    if(q == NULL || new_car == NULL){
+int queue_enqueue(Queue *p_q, struct car *p_new_car){
+    if(p_q == NULL || p_new_car == NULL){
         return -1;
     }
 
@@ -75,43 +75,43 @@ int queue_enqueue(Queue *q, struct car *new_car){
         return -1;
     }
 
-    new_node->data = new_car;
+    new_node->data = p_new_car;
     new_node->next = NULL;
 
-    if(q->tail == NULL){
-        q->head = new_node;
-        q->tail = new_node;
+    if(p_q->tail == NULL){
+        p_q->head = new_node;
+        p_q->tail = new_node;
     }
     else{
-        q->tail->next = new_node;
-        q->tail = new_node;
+        p_q->tail->next = new_node;
+        p_q->tail = new_node;
     }
-    q->count++;
+    p_q->count++;
 
     return 0;
 }
 
-struct car* queue_dequeue(Queue *q){
-    if(q == NULL || q->head == NULL){
+struct car* queue_dequeue(Queue *p_q){
+    if(p_q == NULL || p_q->head == NULL){
         return NULL;
     }
 
-    Node *temp = q->head;
-    struct car *ptr_car = temp->data;
-    q->head = q->head->next;
-    if(q->head == NULL){
-        q->tail = NULL;
+    Node *p_temp = p_q->head;
+    struct car *p_car = p_temp->data;
+    p_q->head = p_q->head->next;
+    if(p_q->head == NULL){
+        p_q->tail = NULL;
     }
-    free(temp);
-    q->count--;
+    free(p_temp);
+    p_q->count--;
 
-    return ptr_car;
+    return p_car;
 }
 
-int queue_get_size(Queue *q){
-    if(q == NULL){
+int queue_get_size(Queue *p_q){
+    if(p_q == NULL){
         return -1;
     }
 
-    return q->count;
+    return p_q->count;
 }

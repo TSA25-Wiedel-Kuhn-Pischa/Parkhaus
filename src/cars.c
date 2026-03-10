@@ -205,8 +205,6 @@ int create_car(int max_parking_duration, int time_stemp, struct car* c, struct q
         queue_enqueue(queue1, c);                                               //Auto wird in Warteschlange / Queue eingereiht
     }
 
-    
-
     return 0;    
 }
 
@@ -214,6 +212,7 @@ int create_car(int max_parking_duration, int time_stemp, struct car* c, struct q
 int car_id_counter(){
     static int counter = 0;
     counter ++;
+    
     return counter;
 }
 
