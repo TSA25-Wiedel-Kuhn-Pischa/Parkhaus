@@ -60,8 +60,9 @@ void save_data(int *save_data, int size, int free_spaces, int all_spaces, int ca
 
     static int steps_data = 0;                                              // Initialisierung der Variable, welche die Position im Array speichert
 
-    if (steps_data < (size*5)) 
+    if (steps_data < (size*5))                                              // Überprüfung ob die Vorgegebenen Simulationsschritte überschritten wurden 
     {
+        //Speichern der einzelnen Simulationsschritte
         save_data[steps_data] = fullness_data;
         steps_data++;        
                                                                                 
@@ -80,29 +81,34 @@ void save_data(int *save_data, int size, int free_spaces, int all_spaces, int ca
 }
 
 
-/* void FUNCTION tabel(int data[], int size_ary, FILE* auswertung)
+void tabel(int data[], int size_ary, FILE* auswertung)
+{
 
-    int steps_x = round(size_ary / 10.f) 
+    int steps_x = round(size_ary / 10.f); 
 
-    int info[60] = {0}                                                      // Array zur Speicherung der Ausgelsenen Werte
-    char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos", "die Änderungsrate"}
+    int info[60] = {0};                                                      // Array zur Speicherung der Ausgelsenen Werte
+    char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos", "die Änderungsrate"};
 
-    FOR g <- 0 TO 4 DO                              
-        FOR i <- g TO size_ary DO (Schrittweite(i = i + steps_x))         // Auslesen der Einzelnen Werte nach der Reinfolge der Speicherung
-            einmaliges Initialisieren int f = 0 + 10*g
-            info[f] = data[i]
-            f = f + 1
-            IF (f-10*g) == 9 THEN
-                info[f] = data[size_ary]
-            END IF
-        END FOR                                   
-    END FOR
+    for (int g = 0; g <= 4; g++)
+    {                             
+        for (int i = g; i<= size_ary; i= i + steps_x)                       // Auslesen der Einzelnen Werte nach der Reinfolge der Speicherung
+        {      
+            static int f = 0;
+            info[f] = data[i];                                              // Speichern des Wertes an der jeweiligen Stelle
+            f = f + 1;
+            if ((f-10*g) == 9) 
+            {
+                info[f] = data[size_ary];
+            }
+        }                                 
+    }
 
-    FOR i <- (4 + steps_x) TO size_ary DO (Schrittweite i = i + steps_x)            
-        einmaliges Initalisieren int f = 51                                 // Beginnt eins Später, da das Array mit Nullen definiert ist und die erste Änderung ist 0.                                                  
-        info[f] = rate(data[i], data[i-steps_x]
-        f = f + 1
-    END FOR
+    for (int i = (4 + steps_x); i <= size_ary; i = i+ steps_x)
+    {          
+        static int f = 51;                                 // Beginnt eins Später, da es zum Simulationsbeginn keine Änderungsrate gibt.                                                  
+        info[f] = rate(data[i], data[i-steps_x]);
+        f = f + 1;
+    }
 
     OUTPUT    |
     fprintf(auswertung,   |)  
@@ -139,9 +145,7 @@ void save_data(int *save_data, int size, int free_spaces, int all_spaces, int ca
         OUTPUT i = Zeitschritt typ[i-10] (Zeilenumbruch)
         fprintf(auswertung, (i = Zeitschritt typ[i-10] (Zeilenumbruch))
     END FOR
-
-END FUNCTION
-*/
+}
 
 /* void FUNCTION column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
                                                                                 // diese Funktion wird im Richtigen C-Code noch Modularisiert, aber Aktuell (als Pseudocode) im Sinne des Verständnisses so gelassen
