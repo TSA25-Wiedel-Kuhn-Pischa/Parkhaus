@@ -181,7 +181,52 @@ int create_car(int max_parking_duration, int time_stemp, struct car* p_c, struct
             strcpy(p_c->modelname, "GLE63S");
             p_c->ps = 612;
             break;
-
+        case 26:
+            strcpy(p_c->brand, "Mercedes-Benz");
+            strcpy(p_c->modelname, "AMGONE");
+            p_c->ps = 1063;
+            break;
+        case 27:
+            strcpy(p_c->brand, "Mercedes-Benz");
+            strcpy(p_c->modelname, "AMGPureSpeed");
+            p_c->ps = 585;
+            break;
+        
+        case 30:
+            strcpy(p_c->brand, "Aston Martin");
+            strcpy(p_c->modelname, "Valkyrie");
+            p_c->ps = 1155;
+            break;
+        case 31:
+            strcpy(p_c->brand, "Aston Martin");
+            strcpy(p_c->modelname, "Valhalla");
+            p_c->ps = 1012;
+            break;
+        case 32:
+            strcpy(p_c->brand, "Aston Martin");
+            strcpy(p_c->modelname, "Vanquish (2025)");
+            p_c->ps = 835;
+            break;
+        case 33:
+            strcpy(p_c->brand, "Aston Martin");
+            strcpy(p_c->modelname, "DBS770Ultimate");
+            p_c->ps = 770;
+            break;
+        case 34:
+            strcpy(p_c->brand, "Aston Martin");
+            strcpy(p_c->modelname, "DBX707");
+            p_c->ps = 707;
+            break;
+        case 35:
+            strcpy(p_c->brand, "Aston Martin");
+            strcpy(p_c->modelname, "DB12");
+            p_c->ps = 680;
+            break;
+        case 36:
+            strcpy(p_c->brand, "Aston Martin");
+            strcpy(p_c->modelname, "Vantage (2024)");
+            p_c->ps = 665;
+            break;
         case 37:
             strcpy(p_c->brand, "Lamborghini");
             strcpy(p_c->modelname, "Revuelto");
