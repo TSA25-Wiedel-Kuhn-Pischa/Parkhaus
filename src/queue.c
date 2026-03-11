@@ -48,12 +48,10 @@ queue_get_size - Funktion mit Eingabe Pointer auf Queue
 
 
 
-#ifndef QUEUE_H
-    #define QUEUE_H
-    #include "include/queue.h"
-#endif
+#include "include/queue.h"
 
-Queue* queue_init(){
+Queue* queue_init()
+{
     Queue *p_q = malloc(sizeof(Queue));
     if(p_q == NULL){                              //auf ungültige Eingabe prüfen
         return NULL;
@@ -65,7 +63,8 @@ Queue* queue_init(){
     return p_q;
 }
 
-int queue_enqueue(Queue *p_q, struct car *p_new_car){
+int queue_enqueue(Queue *p_q, struct car *p_new_car)
+{
     if(p_q == NULL || p_new_car == NULL){
         return -1;
     }
@@ -78,11 +77,13 @@ int queue_enqueue(Queue *p_q, struct car *p_new_car){
     new_node->data = p_new_car;
     new_node->next = NULL;
 
-    if(p_q->tail == NULL){
+    if(p_q->tail == NULL)
+    {
         p_q->head = new_node;
         p_q->tail = new_node;
     }
-    else{
+    else
+    {
         p_q->tail->next = new_node;
         p_q->tail = new_node;
     }
@@ -91,7 +92,8 @@ int queue_enqueue(Queue *p_q, struct car *p_new_car){
     return 0;
 }
 
-struct car* queue_dequeue(Queue *p_q){
+struct car* queue_dequeue(Queue *p_q)
+{
     if(p_q == NULL || p_q->head == NULL){
         return NULL;
     }
@@ -99,7 +101,8 @@ struct car* queue_dequeue(Queue *p_q){
     Node *p_temp = p_q->head;
     struct car *p_car = p_temp->data;
     p_q->head = p_q->head->next;
-    if(p_q->head == NULL){
+    if(p_q->head == NULL)
+    {
         p_q->tail = NULL;
     }
     free(p_temp);
@@ -108,8 +111,10 @@ struct car* queue_dequeue(Queue *p_q){
     return p_car;
 }
 
-int queue_get_size(Queue *p_q){
-    if(p_q == NULL){
+int queue_get_size(Queue *p_q)
+{
+    if(p_q == NULL)
+    {
         return -1;
     }
 

@@ -25,15 +25,15 @@ typedef struct car{
 } car;
 
 
-int create_car(int max_parking_duration, int time_stemp, struct car* c, struct queue* queue1); 
+int create_car(int max_parking_duration, int time_stemp, struct car* p_c, struct queue* p_queue1);
 /**
     * @brief setzt die Werte eines Car-Structs
     *        und parkt das Auto oder setzt es in die Warteschlange
     *
-    * @param[in]  time_stemp  aktueller Zeitschritt, zu dem das Auto ankommt
-    * @param[in]  struct car* c  Pointer auf Car-Struct, dass bearbeitet wird
     * @param[in]  max_parking_duration maximale Parkdauer
-    * @param[in]  *queue1  Zeiger auf die Warteschlange
+    * @param[in]  time_stemp  aktueller Zeitschritt, zu dem das Auto ankommt
+    * @param[in]  struct car* p_c  Pointer auf Car-Struct, dass bearbeitet wird
+    * @param[in]  *p_queue1  Zeiger auf die Warteschlange
     * 
     * return   nur zur Fehlersignalisierung, wenn die Funktion -1 zurückgibt, ist ein Fehler aufgetreten
 */
