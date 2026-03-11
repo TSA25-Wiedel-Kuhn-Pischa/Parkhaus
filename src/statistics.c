@@ -142,7 +142,7 @@ void tabel(int data[], int size_ary, FILE* auswertung)
 {
     int steps_x = round(size_ary / 10.f); 
 
-    int info[60] = {0};                                                      // Array zur Speicherung der Ausgelsenen Werte
+    int info[60] = {0};                                                     // Array zur Speicherung der Ausgelsenen Werte
 
     for (int g = 0; g < 5; g++)
     {                             
@@ -169,32 +169,37 @@ void tabel(int data[], int size_ary, FILE* auswertung)
     tabel_legend(steps_x, size_ary, auswertung);
 }
 
-/* void FUNCTION column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
-                                                                                // diese Funktion wird im Richtigen C-Code noch Modularisiert, aber Aktuell (als Pseudocode) im Sinne des Verständnisses so gelassen
-    int steps_y = round(size_ary / 10.f)                     // Bereuchnung der Skala von der Y-Achse
+void column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
+{                                                                                // diese Funktion wird im Richtigen C-Code noch Modularisiert, aber Aktuell (als Pseudocode) im Sinne des Verständnisses so gelassen
+    int steps_y = round(size_ary / 10.f);                     // Bereuchnung der Skala von der Y-Achse
 
-    int info[10] = {0}
-    char* spaces[] = {"| |", "_", " ", "^", "-", ">", "|"}   // Verwendete Zeichen zur Erstellung des Säulendiagrams 
+    int info[10] = {0};
+    char* spaces[] = {"| |", "_", " ", "^", "-", ">", "|"};   // Verwendete Zeichen zur Erstellung des Säulendiagrams 
                           
-    FOR i <- 0 TO size_ary DO (Schrittweite(i = i + steps_y))
-        Einmaliges Intialisieren int f = 0 
-        info[f] = round(data[i] / 10.f)                     // Auslesen der Füllmenge und so umformen, das es zur Skalierung passt
-        f = f + 1
-        IF (f) == 9 THEN
-            info[f] = round(data[size_ary] / 10.f)
-        END IF
-    END FOR
+    for(int i = 0; i <= size_ary;i = i + steps_y)
+    {
+        static int f = 0;
+        info[f] = round(data[i] / 10.f);                     // Auslesen der Füllmenge und so umformen, das es zur Skalierung passt
+        f++;
+        if (f == 9)
+        {
+            info[f] = round(data[size_ary] / 10.f);
+        }
+    }
 
     // Erstellen des Säulendiagrams 
-    FOR line <- 11 TO 0 DO                                  // durchgehen der Zeilen 
-        FOR column <- 0 TO 21 DO                            // durchgehen der Spalten
-            int f = 0
-            IF line > 0 THEN  
-
-                IF column == 0 && line == 11 THEN   
-                    OUTPUT spaces[3] (Zeilenumbruch)        // Setztes der Pfeilspitze für die Y-Achse
-                    fprintf(auswertung, spaces[3] (Zeilenumbruch))
-
+    for(int line = 11; line < -1; line--)                                 // durchgehen der Zeilen 
+    {
+        for(int column = 0; column < 22; column++)                            // durchgehen der Spalten
+        {
+            int f = 0;
+            if (line > 0)
+            {  
+                if(column == 0 && line == 11) 
+                {  
+                    printf("%s \n", spaces[3]);        // Setztes der Pfeilspitze für die Y-Achse
+                    fprintf(auswertung, "%s \n", spaces[3]);
+                }
                 ELSE IF column == 0 THEN                    // Setzten der Pfeillinie für die Y-Achse
                     OUTPUT spaces[6]
                     fprintf(auswertung, spaces[6])
@@ -225,12 +230,11 @@ void tabel(int data[], int size_ary, FILE* auswertung)
                     OUTPUT spaces[5]
                     fprintf(auswertung, spaces[5])
                 END IF 
-            END IF
-
-        END FOR 
+            }
+        } 
         OUTPUT (Zeilenumbruch)
         fprintf(auswertung, (Zeilenumbruch))
-    END FOR
+    }
 
     FOR column <- 0 TO 21 DO
         int f = 1
@@ -257,10 +261,7 @@ void tabel(int data[], int size_ary, FILE* auswertung)
             OUTPUT i = Zeitschritt size_ary (Zeilenumbruch)
             fprintf(auswertung, (i = Zeitschritt size_ary (Zeilenumbruch))
     END FOR
-
-END FUNCTION
-
-*/
+}
 
 /* void FUNCTION bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
                                                                             // diese Funktion wird im Richtigen C-Code noch Modularisiert, aber Aktuell (als Pseudocode) im Sinne des Verständnisses so gelassen
