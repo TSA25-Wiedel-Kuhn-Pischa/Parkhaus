@@ -191,27 +191,35 @@ void column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codin
     for(int line = 11; line > -1; line--)                                 // durchgehen der Zeilen 
     {
         int f = 0;
-        for(int column = 0; column < 22; column++)                            // durchgehen der Spalten
+        for(int column = 0; column < 23; column++)                            // durchgehen der Spalten
         {
             if (line > 0)
             {  
-                if(column == 0 && line == 11) 
+                if(column == 1 && line == 11) 
                 {  
                     printf("%s", spaces[3]);        // Setztes der Pfeilspitze für die Y-Achse
                     fprintf(auswertung, "%s", spaces[3]);
                 }
-                else if (column == 0)                  // Setzten der Pfeillinie für die Y-Achse
+                else if (column == 1)                  // Setzten der Pfeillinie für die Y-Achse
                 {
                     printf("%s", spaces[6]);
                     fprintf(auswertung, "%s", spaces[6]);
                 }
 
-                else if (column % 2 == 1) 
-                {            
-                    printf("%s", spaces[2]);                        // Setzten der Lücken zwischen den Säulen
-                    fprintf(auswertung, "%s", spaces[2]);
+                else if (column % 2 == 0) 
+                {   
+                    if (column == 0 && line != 11)
+                    {
+                        printf("%3d ", line*10);
+                        fprintf(auswertung, "%3d ", line*10);
+                    }  
+                    else 
+                    {
+                        printf("%s", spaces[2]);                        // Setzten der Lücken zwischen den Säulen
+                        fprintf(auswertung, "%s", spaces[2]);
+                    }       
                 }
-                else if (column % 2 == 0 && column != 0) 
+                else if (column % 2 == 1 && column != 1) 
                 { 
                     if ((info[f] + 1) == line)              // Überprüfen, ob die Säule eine Zeile Tiefer existiert
                     { 
@@ -234,15 +242,20 @@ void column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codin
             // Setzten der X-Achse
             else 
             {
-                if (column == 21) 
+                if (column == 22) 
                 {
                     printf("%s", spaces[5]);                          
                     fprintf(auswertung, "%s", spaces[5]);
                 }
-                else
+                else if (column > 1)
                 {
                     printf("%s", spaces[4]); 
                     fprintf(auswertung, "%s", spaces[4]);
+                }
+                else 
+                {
+                    printf("  ");
+                    fprintf(auswertung, "  ");
                 }
             }
         } 
@@ -250,17 +263,23 @@ void column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codin
         fprintf(auswertung, ("\n"));
     }
 
-    FOR column <- 0 TO 21 DO
-        int f = 1
-        IF column % 2 == 1 || column == 0 THEN             
-            OUTPUT spaces[2]                                // Setzten der Lücken, genauso wie zwischen den Säulen 
-            fprintf(auswertung, spaces[2])
-        ELSE IF column % 2 == 0 && column != 0 THEN 
-            OUTPUT f
-            fprintf(auswertung, f)                          // Setzten der Nummerierungen 
-            f = f + 1
-        END IF 
-    END FOR 
+    //Erzeugen der Skalierung für die X-Achse
+    printf(" ");
+    for (int column = 0; column < 22; column++)
+    {
+        static int f = 1;
+        if (column % 2 == 1 || column == 0) 
+        {             
+            printf("%s", spaces[2]);                                 // Setzten der Lücken, genauso wie zwischen den Säulen 
+            fprintf(auswertung, "%s", spaces[2]);
+        }
+        else if (column % 2 == 0 && column != 0)  
+        {
+            printf("%3d", f); 
+            fprintf(auswertung, "%3d", f);                          // Setzten der Nummerierungen 
+            f++;
+        }
+    }
 
     OUTPUT (Zeilenumbruch)
     fprintf(auswertung, (Zeilenumbruch))
