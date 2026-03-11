@@ -1,3 +1,6 @@
+#ifdef DEBUG
+ printf("Debug-Modus aktiv\n");
+
 #ifndef ASSERT_H
     #define ASSERT_H
     #include <assert.h>
@@ -85,3 +88,5 @@ int main(void) {
  printf("Alle Tests wurden erfolgreich bestanden.\n");
  return 0; //Tests bestanden
 }
+
+#endif
