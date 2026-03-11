@@ -319,40 +319,46 @@ void column_chart(int data[], int size_ary, FILE* auswertung)
     column_chart_legend(steps_x, size_ary, auswertung);
 }
 
-/* void FUNCTION bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
-                                                                            // diese Funktion wird im Richtigen C-Code noch Modularisiert, aber Aktuell (als Pseudocode) im Sinne des Verständnisses so gelassen
-    int steps_y = round(size_ary / 10.f)                        // Bereuchnung der Skala von der Y-Achse
+void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
+{                                                                            // diese Funktion wird im Richtigen C-Code noch Modularisiert, aber Aktuell (als Pseudocode) im Sinne des Verständnisses so gelassen
+    int steps_y = round(size_ary / 10.f);                        // Bereuchnung der Skala von der Y-Achse
 
-    int info[10] = {0}
-    char* spaces[] = { " ", "^", "-", ">", "|", "="}   // Verwendete Zeichen zur Erstellung des Balkendiagrams  
+    int info[10] = {0};
+    char* spaces[] = { " ", "^", "-", ">", "|", "="};   // Verwendete Zeichen zur Erstellung des Balkendiagrams  
 
                                  
-    FOR i <- 3 TO size_ary DO (Schrittweite(i = i + steps_y))   // Auslesen der Werte 
-        Einmaliges Intialisieren int f = 0 
-        info[f] = data[i] 
-        f = f + 1
-        IF (f) == 9 THEN
-            info[f] = data[size_ary]
-        END IF
-    END FOR
+    for(int i = 3; i <= size_ary; i = i + steps_y)  // Auslesen der Werte 
+    {
+        static int f = 0;
+        info[f] = data[i]; 
+        f++;
+        if (f == 9) 
+        {
+            info[f] = data[size_ary];
+        }
+    }
 
-    int max_x = info[0]                                                                  
-    for i <- 0 TO 9 DO                                          // Berechnung des Max_Wertes für die X-Achse
-        IF max_x < info[i] THEN
-            max_x = info[i]
-        END IF 
-    END FOR
+    int max_x = info[0];                                                                  
+    for (int i = 0; i < 10; i ++)                                          // Berechnung des Max_Wertes für die X-Achse
+    {
+        if (max_x < info[i]) 
+        {
+            max_x = info[i];
+        }
+    }
 
-    int steps_x = round(max_x / 10.f)                           // Berechnung der einzelnen Schrittweite der X-Achse
+    int steps_x = round(max_x / 10.f);                           // Berechnung der einzelnen Schrittweite der X-Achse
 
-    FOR i <- 0 TO 9 DO 
-        info[i] = round(data[i] / steps.x)                      // Anpassen der Daten an die Skala
-        IF (i) == 9 THEN
-            info[i] = max_x
-        END IF
-    END FOR
+    for (int i = 0; i < 10; i++)
+    { 
+        info[i] = round(data[i] / steps_x);                      // Anpassen der Daten an die Skala
+        if (i == 9)
+        {
+            info[i] = max_x;
+        }
+    }
 
-    int f = 0
+    int f = 0;
 
     FOR line <- 22 TO 0 DO                                      // durchgehen der Zeilen 
         FOR column <- 0 TO 21 DO                                // durchgehen der Spalten
@@ -419,8 +425,7 @@ void column_chart(int data[], int size_ary, FILE* auswertung)
             fprintf(auswertung, ((i+10) = Zeitschritt max_x (Zeilenumbruch))
     END FOR
 
-END FUNCTION
-*/
+}
 
 /* void FUNCTION out_maxval(int data[], int size, FILE* auswertung)
 
