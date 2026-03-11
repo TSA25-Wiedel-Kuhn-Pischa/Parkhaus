@@ -158,7 +158,40 @@ void tabel(int data[], int size_ary, FILE* auswertung);
 
 /**
 *
-*    @brief Es wird ein Säulendiagram in der Konsole ausgegeben 
+*    @brief Es wird ein Säulendiagramm erstellt
+*
+*
+*    Es wird ein Säulendiagram erstellt, welches dann in der Konsole und einem extra Document ausgegeben wird
+*
+*    @param[in] info[], Eingabe des Speicherbestandes aus der Funktion save_data()
+*    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
+*
+*    @return Es wird ein Säulendiagram in der Konsole Ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
+*            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
+*/
+
+void column_chart_creation(int info[], FILE* auswertung);
+
+/**
+*
+*    @brief Es wird eine Legende erstellt
+*
+*
+*    Es wird eine Legende zum Säuelndiagramm mit Hilfe von Schleifen erzeugt.
+*
+*    @param[in] steps_x, Eingabe der Schrittweite an der X-Achse
+*    @param[in] size_ary, Eingabe der größe des Arrays
+*    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
+*
+*    @return Es wird ein Säulendiagram in der Konsole Ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
+*            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
+*/
+
+void column_chart_legend(int steps_x, int size_ary, FILE* auswertung);
+
+/**
+*
+*    @brief Es wird ein Säulendiagram in der Konsole und einem extra Document ausgegeben 
 *
 *
 *    Es wird ein Säulendiagram erstellt. Auf der X-Achse werden 10 Zeitpunkte dargestellt, diese werden einzehntel von 
@@ -174,7 +207,7 @@ void tabel(int data[], int size_ary, FILE* auswertung);
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-//void FUNCTION column_chart(int data[], int size_ary, FILE* auswertung);
+void column_chart(int data[], int size_ary, FILE* auswertung);
 
 
 /**

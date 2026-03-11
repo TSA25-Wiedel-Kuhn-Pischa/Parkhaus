@@ -160,32 +160,21 @@ void tabel(int data[], int size_ary, FILE* auswertung)
 
     for (int i = (4 + steps_x); i <= size_ary; i = i+ steps_x)
     {          
-        static int f = 51;                                 // Beginnt eins Später, da es zum Simulationsbeginn keine Änderungsrate gibt.                                                  
+        static int f = 51;                                  // Beginnt eins Später, da es zum Simulationsbeginn keine Änderungsrate gibt.                                                  
         info[f] = rate(data[i], data[i-steps_x]);
         f = f + 1;
     }
 
-    tabel_creation(info, auswertung);
-    tabel_legend(steps_x, size_ary, auswertung);
+    tabel_creation(info, auswertung);                       // Erstellen der Tabelle
+    tabel_legend(steps_x, size_ary, auswertung);            // Erstellen der Legende zur Tabelle 
 }
 
-void column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
-{                                                                                // diese Funktion wird im Richtigen C-Code noch Modularisiert, aber Aktuell (als Pseudocode) im Sinne des Verständnisses so gelassen
-    int steps_y = round(size_ary / 10.f);                     // Bereuchnung der Skala von der Y-Achse
+//***********************************************************************************************************************************
+//Hilfsfunktionen für column_chart()
 
-    int info[10] = {0};
+void column_chart_creation(int info[], FILE* auswertung)
+{
     char* spaces[] = {"| |", "_", "   ", "^", "---", ">", "|"};   // Verwendete Zeichen zur Erstellung des Säulendiagrams 
-                          
-    for(int i = steps_y; i <= size_ary;i = i + steps_y)
-    {
-        static int f = 0;
-        info[f] = round(data[i] / 10.f);                     // Auslesen der Füllmenge und so umformen, das es zur Skalierung passt
-        f++;
-        if (f == 9)
-        {
-            info[f] = round(data[size_ary] / 10.f);
-        }
-    }
 
     // Erstellen des Säulendiagrams 
     for(int line = 11; line > -1; line--)                                 // durchgehen der Zeilen 
@@ -281,18 +270,21 @@ void column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codin
             f++;
         }
     }
+}
+
+void column_chart_legend(int steps_x, int size_ary, FILE* auswertung)
+{
+    // Erstellen von einer Legende für die Säulen im Diagramm 
 
     printf("\n\n"); 
     fprintf(auswertung, "\n\n");
-
-    // Erstellen von einer Legende für die Säulen im Diagramm 
 
     for (int i = 1; i < 11; i++)
     {
         if (i < 10) 
         { 
-            printf("\033[1m%2d\033[0m = %7d. Simulationsschritt\n", i, steps_y*i);              
-            fprintf(auswertung, "\033[1m%2d\033[0m = %7d. Simulationsschritt\n", i, steps_y*i);
+            printf("\033[1m%2d\033[0m = %7d. Simulationsschritt\n", i, steps_x*i);              
+            fprintf(auswertung, "\033[1m%2d\033[0m = %7d. Simulationsschritt\n", i, steps_x*i);
         }
         else
         {
@@ -300,6 +292,31 @@ void column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codin
             fprintf(auswertung, "\033[1m%d\033[0m = %7d. Simulationsschritt\n", i, size_ary);
         }
     }
+}
+
+//***********************************************************************************************************************************
+
+void column_chart(int data[], int size_ary, FILE* auswertung)       
+{                                                                                
+    int steps_x = round(size_ary / 10.f);                     // Bereuchnung der Skala von der X-Achse
+
+    int info[10] = {0};
+                          
+    for(int i = steps_x; i <= size_ary;i = i + steps_x)
+    {
+        static int f = 0;
+        info[f] = round(data[i] / 10.f);                     // Auslesen der Füllmenge und so umformen, das es zur Skalierung passt
+        f++;
+        if (f == 9)
+        {
+            info[f] = round(data[size_ary] / 10.f);
+        }
+    }
+
+    //Ausgabe des Säulendiagramms 
+    column_chart_creation(info, auswertung);
+    //Ausgabe der Legende zum Säulendiagramm 
+    column_chart_legend(steps_x, size_ary, auswertung);
 }
 
 /* void FUNCTION bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
