@@ -233,6 +233,7 @@ int main(){
 
   }
 
+
   /**
   //Ausgabe der Endstatistiken
   tabel(data, steps, auswertung);
@@ -247,7 +248,8 @@ int main(){
     printf("Fehler beim Schließen von mindestens einer Datei.");
     return 1;
   }
-*/
+  */
+  free(p_queue1);                   // Speicher der Warteschlange freigeben
 
-    return 0;
+  return 0;
 }

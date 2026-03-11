@@ -1,0 +1,51 @@
+#ifndef ASSERT_H
+    #define ASSERT_H
+    #include <assert.h>
+#endif
+
+//Alle eigenen include Dateien einbinden
+#include "include/cars.h"
+#include "include/parameter.h"
+#include "include/parking_garage.h"
+#include "include/queue.h"
+#include "include/statistics.h"
+
+
+int main(void) {
+ // Tests für cars.c:
+
+    //Tests für create_car()
+    struct car test_car_one;
+    struct queue *test_queue = queue_init();
+    assert(test_queue != NULL);                                 //Queue überprüfen
+    assert(create_car(120, 0, &test_car_one, test_queue) == 0);
+    assert(test_car_one.car_id > 0);                            //car_id überprüfen
+    assert(test_car_one.parking_duration > 0);                  //Parkdauer überprüfen
+    assert(test_car_one.ps > 0);                                //PS überprüfen
+    assert(test_car_one.brand[0] != '\0');                      //Marke überprüfen
+    assert(test_car_one.modelname[0] != '\0');                  //Modellname überprüfen
+    
+    struct car test_car_two;
+    assert(create_car(80, 0, &test_car_two, test_queue) == 0);
+    assert(test_car_two.car_id > 0);                            //car_id überprüfen
+    assert(test_car_two.parking_duration > 0);                  //Parkdauer überprüfen
+    assert(test_car_two.ps > 0);                                //PS überprüfen
+    assert(test_car_two.brand[0] != '\0');                      //Marke überprüfen
+    assert(test_car_two.modelname[0] != '\0');                  //Modellname überprüfen
+
+    //Tests für car_id_counter()
+    int id1 = car_id_counter();
+    int id2 = car_id_counter();
+    assert(id2 == id1 + 1);
+    id2 = car_id_counter();
+    id2 = car_id_counter();
+    id2 = car_id_counter();
+    assert(id2 == id1 + 4);
+
+    //Tests für randomize_parking_duration()
+    assert(randomize_parking_duration(120) > 0);
+    assert(randomize_parking_duration(0) == -1);
+    assert(randomize_parking_duration(-5) == -1);
+
+ return 0; //Tests bestanden
+}
