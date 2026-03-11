@@ -408,32 +408,41 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingcon
             }
             else if (line == 1) 
             {                              //Setzten der Linie für die X-Achse
-                if (column != 21) THEN
-                    OUTPUT spaces[2]                         
-                    printf(auswertung, spaces[2])
-                ELSE
-                    OUTPUT spaces[3]
-                    fprintf(auswertung, spaces[3])
+                if (column != 21) 
+                {
+                    printf("%s", spaces[2]);                         
+                    printf(auswertung, "%s", spaces[2]);
+                }
+                else
+                {
+                    printf("%s", spaces[3]);
+                    fprintf(auswertung, "%s", spaces[3]);
+                }
             } 
 
         } 
-        OUTPUT (Zeilenumbruch)
-        fprintf(auswertung, (Zeilenumbruch))
+        printf("\n"); 
+        fprintf(auswertung, "\n");
     }
 
-    OUTPUT (Zeilenumbruch)
-    fprintf(auswertung, (Zeilenumbruch))
+    printf("\n"); 
+    fprintf(auswertung, "\n");
 
     // Erstellen von einer Legende nur für die X-Achse im Diagramm, da die Werte von dem Säuelendiagramm mit den Zeitpunkten übereinstimmen 
 
-    FOR i <-1 TO 10 DO
-        IF i < 10 THEN 
-            OUTPUT (i+10) = Wert steps_x*i (Zeilenumbruch)              
-            fprintf(auswertung, ((i+10) = Wert steps_x*i (Zeilenumbruch))
-        ELSE 
-            OUTPUT (i+10) = Zeitschritt max_x (Zeilenumbruch)
-            fprintf(auswertung, ((i+10) = Zeitschritt max_x (Zeilenumbruch))
-    END FOR
+    for (int i = 1; i < 11; i++) 
+    {
+        if (i < 10) 
+        {
+            printf("%d= Wert %d \n", (i+10), steps_x*i);             
+            fprintf(auswertung, "%d= Wert %d \n", (i+10), steps_x*i);
+        }
+        else
+        {
+            printf("%d = Zeitschritt %d \n", (i+10), max_x);
+            fprintf(auswertung, "%d = Zeitschritt %d \n", (i+10), max_x);
+        }
+    }
 
 }
 

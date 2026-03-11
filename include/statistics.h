@@ -228,7 +228,7 @@ void column_chart(int data[], int size_ary, FILE* auswertung);
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-//void FUNCTION bar_chart(int data[], int size_ary, FILE* auswertung);
+void bar_chart(int data[], int size_ary, FILE* auswertung);
 
 /**
 *
