@@ -174,7 +174,7 @@ void column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codin
     int steps_y = round(size_ary / 10.f);                     // Bereuchnung der Skala von der Y-Achse
 
     int info[10] = {0};
-    char* spaces[] = {"| |", "_", " ", "^", "-", ">", "|"};   // Verwendete Zeichen zur Erstellung des Säulendiagrams 
+    char* spaces[] = {"| |", "_", "   ", "^", "-", ">", "|"};   // Verwendete Zeichen zur Erstellung des Säulendiagrams 
                           
     for(int i = 0; i <= size_ary;i = i + steps_y)
     {
@@ -190,53 +190,59 @@ void column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codin
     // Erstellen des Säulendiagrams 
     for(int line = 11; line > -1; line--)                                 // durchgehen der Zeilen 
     {
+        int f = 0;
         for(int column = 0; column < 22; column++)                            // durchgehen der Spalten
         {
-            int f = 0;
             if (line > 0)
             {  
                 if(column == 0 && line == 11) 
                 {  
-                    printf("%s \n", spaces[3]);        // Setztes der Pfeilspitze für die Y-Achse
-                    fprintf(auswertung, "%s \n", spaces[3]);
+                    printf("%s", spaces[3]);        // Setztes der Pfeilspitze für die Y-Achse
+                    fprintf(auswertung, "%s", spaces[3]);
                 }
                 else if (column == 0)                  // Setzten der Pfeillinie für die Y-Achse
                 {
-                    printf("%s ", spaces[6]);
-                    fprintf(auswertung, "%s ", spaces[6]);
+                    printf("%s", spaces[6]);
+                    fprintf(auswertung, "%s", spaces[6]);
                 }
 
-                if (column % 2 == 1) 
+                else if (column % 2 == 1) 
                 {            
-                    printf("%s ", spaces[2]);                        // Setzten der Lücken zwischen den Säulen
-                    fprintf(auswertung, "%s ", spaces[2]);
+                    printf("%s", spaces[2]);                        // Setzten der Lücken zwischen den Säulen
+                    fprintf(auswertung, "%s", spaces[2]);
                 }
                 else if (column % 2 == 0 && column != 0) 
                 { 
                     if ((info[f] + 1) == line)              // Überprüfen, ob die Säule eine Zeile Tiefer existiert
                     { 
-                        printf("%s ", spaces[1]);                    // Wenn ja, setzten eines Daches für die Säule 
-                        fprintf(auswertung, "%s ", spaces[1]);
+                        printf("%2s ", spaces[1]);                    // Wenn ja, setzten eines Daches für die Säule 
+                        fprintf(auswertung, "%2s ", spaces[1]);
                     }
                     else if (info[f] <= line)               // Überprüfen, ob der Wert groß genug ist, damit die Säule existiert
                     {
-                        printf("%s", spaces[0]);                     // Setzten der Säulemwände
-                        fprintf(auswertung, "%s", spaces[0]);
+                        printf("%2s", spaces[0]);                     // Setzten der Säulemwände
+                        fprintf(auswertung, "%2s", spaces[0]);
                     } 
+                    else 
+                    {
+                        printf("%s", spaces[2]);
+                        fprintf(auswertung, "%s", spaces[2]);
+                    }
                     f++;
                 } 
-
+            }
             // Setzten der X-Achse
             else 
-                if (column != 21) 
+            {
+                if (column == 21) 
                 {
-                    printf("%s", spaces[4]);                          
-                    fprintf(auswertung, "%s", spaces[4]);
+                    printf("%s", spaces[5]);                          
+                    fprintf(auswertung, "%s", spaces[5]);
                 }
                 else
                 {
-                    printf("%s", spaces[5]); 
-                    fprintf(auswertung, "%s", spaces[5]);
+                    printf("%s", spaces[4]); 
+                    fprintf(auswertung, "%s", spaces[4]);
                 }
             }
         } 
