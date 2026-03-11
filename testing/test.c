@@ -18,6 +18,7 @@ int main(void) {
     struct car test_car_one;
     struct queue *test_queue = queue_init();
     assert(test_queue != NULL);                                 //Queue überprüfen
+    assert(queue_get_size(test_queue2) == 0);                   //Größe der Queue überprüfen
     assert(create_car(120, 0, &test_car_one, test_queue) == 0);
     assert(test_car_one.car_id > 0);                            //car_id überprüfen
     assert(test_car_one.parking_duration > 0);                  //Parkdauer überprüfen
@@ -26,7 +27,7 @@ int main(void) {
     assert(test_car_one.modelname[0] != '\0');                  //Modellname überprüfen
     
     struct car test_car_two;
-    assert(create_car(80, 0, &test_car_two, test_queue) == 0);
+    assert(create_car(80, 3, &test_car_two, test_queue) == 0);
     assert(test_car_two.car_id > 0);                            //car_id überprüfen
     assert(test_car_two.parking_duration > 0);                  //Parkdauer überprüfen
     assert(test_car_two.ps > 0);                                //PS überprüfen
@@ -46,6 +47,20 @@ int main(void) {
     assert(randomize_parking_duration(120) > 0);
     assert(randomize_parking_duration(0) == -1);
     assert(randomize_parking_duration(-5) == -1);
+
+
+//Tests für queue.c:
+
+    //Tests für queue_init()
+    struct queue *test_queue2 = queue_init();
+    assert(test_queue2 != NULL);                                //Queue überprüfen
+    assert(queue_get_size(test_queue2) == 0);                   //Größe der Queue überprüfen
+
+    //Tests für queue_get_size()
+    assert(queue_get_size(test_queue2) == 0);
+    struct car test_car_five;
+    assert(queue_enqueue(test_queue2, &test_car_five) == 0);
+    assert(queue_get_size(test_queue2) == 1);
 
  return 0; //Tests bestanden
 }
