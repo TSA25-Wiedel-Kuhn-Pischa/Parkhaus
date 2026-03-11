@@ -174,9 +174,9 @@ void column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codin
     int steps_y = round(size_ary / 10.f);                     // Bereuchnung der Skala von der Y-Achse
 
     int info[10] = {0};
-    char* spaces[] = {"| |", "_", "   ", "^", "-", ">", "|"};   // Verwendete Zeichen zur Erstellung des Säulendiagrams 
+    char* spaces[] = {"| |", "_", "   ", "^", "---", ">", "|"};   // Verwendete Zeichen zur Erstellung des Säulendiagrams 
                           
-    for(int i = 0; i <= size_ary;i = i + steps_y)
+    for(int i = steps_y; i <= size_ary;i = i + steps_y)
     {
         static int f = 0;
         info[f] = round(data[i] / 10.f);                     // Auslesen der Füllmenge und so umformen, das es zur Skalierung passt
@@ -197,7 +197,7 @@ void column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codin
             {  
                 if(column == 1 && line == 11) 
                 {  
-                    printf("%s", spaces[3]);        // Setztes der Pfeilspitze für die Y-Achse
+                    printf(" %s", spaces[3]);        // Setztes der Pfeilspitze für die Y-Achse
                     fprintf(auswertung, "%s", spaces[3]);
                 }
                 else if (column == 1)                  // Setzten der Pfeillinie für die Y-Achse
@@ -226,7 +226,7 @@ void column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codin
                         printf("%2s ", spaces[1]);                    // Wenn ja, setzten eines Daches für die Säule 
                         fprintf(auswertung, "%2s ", spaces[1]);
                     }
-                    else if (info[f] <= line)               // Überprüfen, ob der Wert groß genug ist, damit die Säule existiert
+                    else if (info[f] >= line)               // Überprüfen, ob der Wert groß genug ist, damit die Säule existiert
                     {
                         printf("%2s", spaces[0]);                     // Setzten der Säulemwände
                         fprintf(auswertung, "%2s", spaces[0]);
@@ -265,6 +265,7 @@ void column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codin
 
     //Erzeugen der Skalierung für die X-Achse
     printf(" ");
+    fprintf(auswertung, " ");
     for (int column = 0; column < 22; column++)
     {
         static int f = 1;
@@ -281,19 +282,24 @@ void column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codin
         }
     }
 
-    OUTPUT (Zeilenumbruch)
-    fprintf(auswertung, (Zeilenumbruch))
+    printf("\n\n"); 
+    fprintf(auswertung, "\n\n");
 
     // Erstellen von einer Legende für die Säulen im Diagramm 
 
-    FOR i <-1 TO 10 DO
-        IF i < 10 THEN 
-            OUTPUT i = Zeitschritt steps_y*i (Zeilenumbruch)              
-            fprintf(auswertung, (i = Zeitschritt steps_y*i (Zeilenumbruch))
-        ELSE 
-            OUTPUT i = Zeitschritt size_ary (Zeilenumbruch)
-            fprintf(auswertung, (i = Zeitschritt size_ary (Zeilenumbruch))
-    END FOR
+    for (int i = 1; i < 11; i++)
+    {
+        if (i < 10) 
+        { 
+            printf("\033[1m%2d\033[0m = %7d. Simulationsschritt\n", i, steps_y*i);              
+            fprintf(auswertung, "\033[1m%2d\033[0m = %7d. Simulationsschritt\n", i, steps_y*i);
+        }
+        else
+        {
+            printf("\033[1m%d\033[0m = %7d. Simulationsschritt\n", i, size_ary);              
+            fprintf(auswertung, "\033[1m%d\033[0m = %7d. Simulationsschritt\n", i, size_ary);
+        }
+    }
 }
 
 /* void FUNCTION bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
