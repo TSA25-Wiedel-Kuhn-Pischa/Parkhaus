@@ -188,7 +188,7 @@ void column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codin
     }
 
     // Erstellen des Säulendiagrams 
-    for(int line = 11; line < -1; line--)                                 // durchgehen der Zeilen 
+    for(int line = 11; line > -1; line--)                                 // durchgehen der Zeilen 
     {
         for(int column = 0; column < 22; column++)                            // durchgehen der Spalten
         {
@@ -200,40 +200,48 @@ void column_chart(int data[], int size_ary, FILE* auswertung)       // Die Codin
                     printf("%s \n", spaces[3]);        // Setztes der Pfeilspitze für die Y-Achse
                     fprintf(auswertung, "%s \n", spaces[3]);
                 }
-                ELSE IF column == 0 THEN                    // Setzten der Pfeillinie für die Y-Achse
-                    OUTPUT spaces[6]
-                    fprintf(auswertung, spaces[6])
-                END IF 
+                else if (column == 0)                  // Setzten der Pfeillinie für die Y-Achse
+                {
+                    printf("%s ", spaces[6]);
+                    fprintf(auswertung, "%s ", spaces[6]);
+                }
 
-                IF column % 2 == 1 THEN             
-                    OUTPUT spaces[2]                        // Setzten der Lücken zwischen den Säulen
-                    fprintf(auswertung, spaces[2]) 
-
-                ELSE IF column % 2 == 0 && column != 0 THEN 
-                    IF (info[f] + 1) == line THEN           // Überprüfen, ob die Säule eine Zeile Tiefer existiert 
-                        OUTPUT spaces[1]                    // Wenn ja, setzten eines Daches für die Säule 
-                        fprintf(auswertung, spaces[1])
-
-                    ELSE IF info[f] <= line THEN            // Überprüfen, ob der Wert groß genug ist, damit die Säule existiert
-                        OUTPUT spaces[0]                    // Setzten der Säulemwände
-                        fprintf(auswertung, spaces[0])
-                    END IF 
-                    f = f + 1
-                END IF 
+                if (column % 2 == 1) 
+                {            
+                    printf("%s ", spaces[2]);                        // Setzten der Lücken zwischen den Säulen
+                    fprintf(auswertung, "%s ", spaces[2]);
+                }
+                else if (column % 2 == 0 && column != 0) 
+                { 
+                    if ((info[f] + 1) == line)              // Überprüfen, ob die Säule eine Zeile Tiefer existiert
+                    { 
+                        printf("%s ", spaces[1]);                    // Wenn ja, setzten eines Daches für die Säule 
+                        fprintf(auswertung, "%s ", spaces[1]);
+                    }
+                    else if (info[f] <= line)               // Überprüfen, ob der Wert groß genug ist, damit die Säule existiert
+                    {
+                        printf("%s", spaces[0]);                     // Setzten der Säulemwände
+                        fprintf(auswertung, "%s", spaces[0]);
+                    } 
+                    f++;
+                } 
 
             // Setzten der X-Achse
-            ELSE 
-                IF column != 21 THEN
-                    OUTPUT spaces[4]                         
-                    fprintf(auswertung, spaces[4])
-                ELSE
-                    OUTPUT spaces[5]
-                    fprintf(auswertung, spaces[5])
-                END IF 
+            else 
+                if (column != 21) 
+                {
+                    printf("%s", spaces[4]);                          
+                    fprintf(auswertung, "%s", spaces[4]);
+                }
+                else
+                {
+                    printf("%s", spaces[5]); 
+                    fprintf(auswertung, "%s", spaces[5]);
+                }
             }
         } 
-        OUTPUT (Zeilenumbruch)
-        fprintf(auswertung, (Zeilenumbruch))
+        printf("\n");
+        fprintf(auswertung, ("\n"));
     }
 
     FOR column <- 0 TO 21 DO
