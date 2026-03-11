@@ -18,7 +18,7 @@ int main(void) {
     struct car test_car_one;
     struct queue *test_queue = queue_init();
     assert(test_queue != NULL);                                 //Queue überprüfen
-    assert(queue_get_size(test_queue2) == 0);                   //Größe der Queue überprüfen
+    assert(queue_get_size(test_queue) == 0);                   //Größe der Queue überprüfen
     assert(create_car(120, 0, &test_car_one, test_queue) == 0);
     assert(test_car_one.car_id > 0);                            //car_id überprüfen
     assert(test_car_one.parking_duration > 0);                  //Parkdauer überprüfen
@@ -61,6 +61,10 @@ int main(void) {
     struct car test_car_five;
     assert(queue_enqueue(test_queue2, &test_car_five) == 0);
     assert(queue_get_size(test_queue2) == 1);
+    assert(queue_get_size(NULL) == -1);
+
+    //Tests für queue_enqueue()
+    assert(queue_enqueue(NULL, NULL) == -1);
 
  return 0; //Tests bestanden
 }
