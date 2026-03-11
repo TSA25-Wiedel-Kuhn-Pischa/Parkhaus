@@ -36,11 +36,11 @@
      * Zeitdauer zurückgeben
  */
 
-#include "include/cars.h"
+#include "../include/cars.h"
 
 
 
-int create_car(int max_parking_duration, int time_stemp, struct car* p_c, struct queue* p_queue1)
+int create_car(int max_parking_duration, int time_stemp, struct car* p_c, Queue* p_queue1)
 { 
     if(p_c == NULL || max_parking_duration <= 0 || time_stemp < 0 || p_queue1 == NULL)        //auf ungültige Eingabe prüfen
     {
@@ -319,7 +319,7 @@ int create_car(int max_parking_duration, int time_stemp, struct car* p_c, struct
         return -1;
     }
     p_c->parking_duration = temp_parking_duration;
-
+    
     if((queue_get_size(p_queue1) == 0) && ((check_for_free_space() == 1)))                  //prüft ob es eine Warteschlange und freie Plätze gibt
     {
         park_car(p_c, struct Car *parking_garage, time_stemp);                      //übergibt das Auto ans Parkhaus

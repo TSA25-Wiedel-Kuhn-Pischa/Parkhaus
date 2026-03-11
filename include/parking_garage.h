@@ -17,7 +17,7 @@
  * @param[in]  parking_spaces   Variable die die durch die/den NutzerIn eingegebene Größe des Parkhauses enthält 
  * @param[out]  ptr_parking_garage  Pointer auf das Car-Struct-Pointer-Array
  */
-car **create_garage(int parking_spaces);
+struct car **create_garage(int parking_spaces);
 
 /*
  * @brief  Überprüfung der Parkgarage darauf, wo sich ein freier Parkplatz befindet
@@ -26,7 +26,7 @@ car **create_garage(int parking_spaces);
  * @param[in]  parking_spaces   Anzahl der Parkplätze des Parkhauses
  * @param[out]  integer         Index, an dem sich ein freier Parkplatz befindet
  */
-int get_free_space(car **parking_garage, int parking_spaces);
+int get_free_space(struct car **parking_garage, int parking_spaces);
 
 /*
  * @brief  Einparken von Autos in dem Parkhaus;
@@ -39,7 +39,7 @@ int get_free_space(car **parking_garage, int parking_spaces);
  * @param[in]   parking_spaces  Anzahl der Parkplätze im Parkhaus
  * @param[in]   time_step       Aktueller Zeitpunkt in der Simulation bzw. aktueller Zeitfortschritt
  */
-int park_car(car *car, car **parking_garage, int parking_spaces, int time_step);
+int park_car(struct car *car, struct car **parking_garage, int parking_spaces, int time_step);
 
 /*
  * @brief  Ausparken von Car-Structs aus dem parking_garage-Array;
@@ -50,7 +50,7 @@ int park_car(car *car, car **parking_garage, int parking_spaces, int time_step);
  * @param[in]   parking_garage  Car-Struct-Pointer-Array, in welchem der Parkplatz geräumt wird
  * @param[in]   index           Index, an welchem sich das Auto befindet, dass seine maximale Parkdauer erreicht hat
  */
-void remove_car(car *car, car **parking_garage, int index);
+void remove_car(struct car *car, struct car **parking_garage, int index);
 
 /*
  * @brief  Überprüfen und Abgleichen von Parkdauer und Ankunftszeiten von einem Auto, 

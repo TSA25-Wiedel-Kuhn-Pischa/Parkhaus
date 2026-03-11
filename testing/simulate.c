@@ -127,11 +127,11 @@ int main(){
 
 
 // Alle include Dateien einbinden
-#include "include/cars.h"
-#include "include/parameter.h"
-#include "include/parking_garage.h"
-#include "include/queue.h"
-#include "include/statistics.h"
+#include "../include/cars.h"
+#include "../include/parameter.h"
+#include "../include/parking_garage.h"
+#include "../include/queue.h"
+#include "../include/statistics.h"
 
 
 //Ab hier der C-Code: 
