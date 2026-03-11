@@ -42,13 +42,13 @@
 
 int create_car(int max_parking_duration, int time_stemp, struct car* p_c, struct queue* p_queue1)
 { 
-    if(p_c == NULL || max_parking_duration <= 0 || time_stemp < 0)        //auf ungültige Eingabe prüfen
+    if(p_c == NULL || max_parking_duration <= 0 || time_stemp < 0 || p_queue1 == NULL)        //auf ungültige Eingabe prüfen
     {
         return -1;
     }
 
     p_c->car_id = car_id_counter();
-    if(p_c->car_id <= 0)        //auf ungültige Eingabe prüfen
+    if(p_c->car_id <= 0)                            //auf ungültige Eingabe prüfen
     {
         return -1;
     }
