@@ -360,56 +360,66 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingcon
 
     int f = 0;
 
-    FOR line <- 22 TO 0 DO                                      // durchgehen der Zeilen 
-        FOR column <- 0 TO 21 DO                                // durchgehen der Spalten
-            
-            IF line > 1 && line % 2 == 0 THEN  
-
-                IF column == 0 && line == 22 THEN   
-                    OUTPUT spaces[1] (Zeilenumbruch)            // Setztes der Pfeilspitze für die Y-Achse
-                    fprintf(auswertung, spaces[1] (Zeilenumbruch))
-
-                ELSE IF column == 0 THEN                        // Setzten der Pfeillinie für die Y-Achse
-                    OUTPUT spaces[4]  (Zeilenumbruch)
-                    fprintf(auswertung, spaces[4] (Zeilenumbruch))
-                END IF 
-
-            IF line > 1 && line % 2 == 1 THEN                   // Zeile in der die Balken gesetzt werden
-                OUTPUT f spaces[4]  
-                fprintf(auswertung, f spaces[4])    
-                FOR i <- 1 TO (info[f]*2)                       // Bestimmung der Länge der Balken
-                    OUTPUT spaces[5]
-                    fprintf(auswertung, spaces[5])
-                END FOR 
-                OUTPUT (Zeilenumbruch)
-                fprintf(auswertung, (Zeilenumbruch))
-            END IF
+    for (int line = 22; line > -1; line--)                                      // durchgehen der Zeilen 
+    {
+        for(int column = 0; column < 22; column++)                               // durchgehen der Spalten
+        {
+            if (line > 1 && line % 2 == 0)   
+            {
+                if (column == 0 && line == 22) 
+                {   
+                    printf("%s\n", spaces[1]);            // Setztes der Pfeilspitze für die Y-Achse
+                    fprintf(auswertung, "%s\n", spaces[1]);
+                }
+                else if (column == 0)
+                {                            // Setzten der Pfeillinie für die Y-Achse
+                    printf("%s \n", spaces[4]);
+                    fprintf(auswertung, "%s \n", spaces[4]);
+                } 
+            }
+            if (line > 1 && line % 2 == 1)                   // Zeile in der die Balken gesetzt werden
+            {
+                printf("%d %s", f, spaces[4]);  
+                fprintf(auswertung, "%d %s", f, spaces[4]);    
+                for (int i = 1; i <= (info[f]*2); f++)                       // Bestimmung der Länge der Balken
+                {
+                    printf("%s", spaces[5]); 
+                    fprintf(auswertung, "%s", spaces[5]);
+                }
+                printf ("\n"); 
+                fprintf(auswertung, "\n");
+            }
             // Setzten der X-Achse
             
-            ELSE IF line == 0 THEN                              // Setzten der Nummerierungen für die X-Achse
-                int f = 11
-                IF column % 2 == 1 || column == 0 THEN             
-                    OUTPUT spaces[0]                                
-                    fprintf(auswertung, spaces[0])
-                ELSE IF column % 2 == 0 && column != 0 THEN 
-                    OUTPUT f
-                    printf(auswertung, f)                     
-                    f = f + 1
-                END IF 
-
-            ELSE IF line == 1 THEN                              //Setzten der Linie für die X-Achse
-                IF column != 21 THEN
+            else if (line == 0)                               // Setzten der Nummerierungen für die X-Achse
+            {
+                int f = 11;
+                if (column % 2 == 1 || column == 0) 
+                {             
+                    printf("%s", spaces[0]);                                
+                    fprintf(auswertung, "%s", spaces[0]);
+                }
+                else if (column % 2 == 0 && column != 0) 
+                {
+                    printf("%d", f);
+                    printf(auswertung, "%d", f);                     
+                    f++;
+                }
+            }
+            else if (line == 1) 
+            {                              //Setzten der Linie für die X-Achse
+                if (column != 21) THEN
                     OUTPUT spaces[2]                         
                     printf(auswertung, spaces[2])
                 ELSE
                     OUTPUT spaces[3]
                     fprintf(auswertung, spaces[3])
-            END IF 
+            } 
 
-        END FOR 
+        } 
         OUTPUT (Zeilenumbruch)
         fprintf(auswertung, (Zeilenumbruch))
-    END FOR
+    }
 
     OUTPUT (Zeilenumbruch)
     fprintf(auswertung, (Zeilenumbruch))
