@@ -324,7 +324,7 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingcon
     int steps_y = round(size_ary / 10.f);                        // Bereuchnung der Skala von der Y-Achse
 
     int info[10] = {0};
-    char* spaces[] = {" ", "   ^", "-", ">", "   |", "="};   // Verwendete Zeichen zur Erstellung des Balkendiagrams  
+    char* spaces[] = {" ", "   ^", "-", ">", "|", "="};   // Verwendete Zeichen zur Erstellung des Balkendiagrams  
 
                                  
     for(int i = 3; i <= size_ary; i = i + steps_y)  // Auslesen der Werte 
@@ -351,7 +351,7 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingcon
 
     for (int i = 0; i < 10; i++)
     { 
-        info[i] = round((float)data[i] / steps_x);                      // Anpassen der Daten an die Skala
+        info[i] = round((float)info[i] / steps_x);                      // Anpassen der Daten an die Skala
         if (i == 9)
         {
             info[i] = max_x;
@@ -368,18 +368,20 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingcon
             {   
                 printf("%s\n", spaces[1]);            // Setztes der Pfeilspitze für die Y-Achse
                 fprintf(auswertung, "%s\n", spaces[1]);
+                printf("   %s\n", spaces[4]);
+                fprintf(auswertung, "   %s\n", spaces[4]);
             }
             else 
             {                            // Setzten der Pfeillinie für die Y-Achse
-                printf("%s \n", spaces[4]);
-                fprintf(auswertung, "%s \n", spaces[4]);
+                printf("   %s\n", spaces[4]);
+                fprintf(auswertung, "   %s\n", spaces[4]);
             } 
         }
         else if (line > 1 && line % 2 == 1)                   // Zeile in der die Balken gesetzt werden
         {
             printf("%2d %s", f, spaces[4]);  
             fprintf(auswertung, "%2d %s", f, spaces[4]);    
-            for (int i = 1; i <= (info[f]*2); i++)                       // Bestimmung der Länge der Balken
+            for (int i = 0; i < (info[f]*2); i++)                       // Bestimmung der Länge der Balken
             {
                 printf("%s", spaces[5]); 
                 fprintf(auswertung, "%s", spaces[5]);
@@ -388,42 +390,47 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingcon
             fprintf(auswertung, "\n");
             f++;
         }
-        // Setzten der X-Achse
-            
-        else if (line == 0)                               // Setzten der Nummerierungen für die X-Achse
-        {
-            int f = 11;
-            if (column % 2 == 1 || column == 0) 
-            {             
-                printf("%s", spaces[0]);                                
-                fprintf(auswertung, "%s", spaces[0]);
-            }
-            else if (column % 2 == 0 && column != 0) 
-            {
-                printf("%d", f);
-                printf(auswertung, "%d", f);                     
-                f++;
-            }
-        }
+            // Setzten der X-Achse
         else if (line == 1) 
         {                              //Setzten der Linie für die X-Achse
-            if (column != 21) 
+            printf("   ");
+            fprintf(auswertung, "   ");
+            for(int column = 0; column < 22; column++)
             {
-                printf("%s", spaces[2]);                         
-                printf(auswertung, "%s", spaces[2]);
-            }
-            else
+                if (column != 21) 
+                {
+                    printf("%s", spaces[2]);                         
+                    fprintf(auswertung, "%s", spaces[2]);
+                }
+                else
+                {
+                    printf("%s\n", spaces[3]);
+                    fprintf(auswertung, "%s", spaces[3]);
+                }
+            } 
+        }    
+        else if (line == 0)                               // Setzten der Nummerierungen für die X-Achse
+        {
+            f = 10;
+            for(int column = 0; column < 22; column++)
             {
-                printf("%s", spaces[3]);
-                fprintf(auswertung, "%s", spaces[3]);
+                if (column % 4 != 0 && column % 2 != 0 || column == 0) 
+                {             
+                    printf("%s", spaces[0]);                                
+                    fprintf(auswertung, "%s", spaces[0]);
+                }
+                else if (column % 4 == 0 && column != 0) 
+                {
+                    printf("%d", f);
+                    printf(auswertung, "%d", f);                     
+                    f = f + 2;
+                }
             }
-        } 
-    printf("\n"); 
-    fprintf(auswertung, "\n");
-}
+        }
+    }
 
-    printf("\n"); 
-    fprintf(auswertung, "\n");
+    printf("\n\n"); 
+    fprintf(auswertung, "\n\n");
 
     // Erstellen von einer Legende nur für die X-Achse im Diagramm, da die Werte von dem Säuelendiagramm mit den Zeitpunkten übereinstimmen 
 
