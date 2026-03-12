@@ -98,6 +98,9 @@ void output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
 
 void save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line);
 
+//*************************************************
+// Hilfsfunktionen für tabel()
+
 /**
 *
 *    @brief Es wird die Tabelle erzeugt 
@@ -131,6 +134,8 @@ void tabel_creation(int info[], FILE* auswertung);
 
 void tabel_legend(int steps_x, int size_ary, FILE* auswertung);
 
+//*************************************************
+
 /**
 *
 *    @brief Es wird eine Tabelle in der Konsole ausgegeben 
@@ -155,6 +160,9 @@ void tabel_legend(int steps_x, int size_ary, FILE* auswertung);
 */
 
 void tabel(int data[], int size_ary, FILE* auswertung);
+
+//*************************************************
+// Hilfsfunktionen für column_chart()
 
 /**
 *
@@ -183,11 +191,12 @@ void column_chart_creation(int info[], FILE* auswertung);
 *    @param[in] size_ary, Eingabe der größe des Arrays
 *    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
-*    @return Es wird ein Säulendiagram in der Konsole Ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
-*            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
+*    @return Es wird eine Legende zum Säulendiagramm in der Konsole ausgegeben 
 */
 
 void column_chart_legend(int steps_x, int size_ary, FILE* auswertung);
+
+//*************************************************
 
 /**
 *
@@ -209,6 +218,37 @@ void column_chart_legend(int steps_x, int size_ary, FILE* auswertung);
 
 void column_chart(int data[], int size_ary, FILE* auswertung);
 
+/**
+*
+*    @brief Es wird ein Balkendiagramm erstellt
+*
+*
+*    Es wird ein Balkendiagramm erstellt, welches dann in der Konsole und einem extra Document ausgegeben wird
+*
+*    @param[in] info[], Eingabe des Speicherbestandes aus der Funktion save_data()
+*    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
+*
+*    @return Es wird ein Balkendiagramm in der Konsole Ausgegeben und in einem externen Dokument Auswertung.txt dargestellt, 
+*            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
+*/
+
+void bar_chart_creation(int info[], FILE* auswertung);
+
+/**
+*
+*    @brief Es wird eine Legende erstellt
+*
+*
+*    Es wird eine Legende zum Balkendiagramm mit Hilfe von Schleifen erzeugt.
+*
+*    @param[in] steps_x, Eingabe der Schrittweite an der X-Achse
+*    @param[in] size_ary, Eingabe der größe des Arrays
+*    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
+*
+*    @return Es wird eine Legende zum Balkendiagramm in der Konsole ausgegeben 
+*/
+
+void bar_chart_legend(int steps_x, int size_ary, FILE* auswertung);
 
 /**
 *
@@ -246,7 +286,7 @@ void bar_chart(int data[], int size_ary, FILE* auswertung);
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat 
 */
 
-//void FUNCTION out_maxval(int data[], int size_ary, FILE* auswertung);
+void out_maxval(int data[], int size_ary, FILE* auswertung);
 
 #endif
 

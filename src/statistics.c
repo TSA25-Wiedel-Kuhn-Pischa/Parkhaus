@@ -457,36 +457,40 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)
     bar_chart_legend(steps_x, size_ary, auswertung);
 }
 
-/* void FUNCTION out_maxval(int data[], int size, FILE* auswertung)
+void out_maxval(int data[], int size, FILE* auswertung)
+{
+    int size_ary = round(size / 5);
 
-    int size_ary = round(size / 5)
+    int max[] = {data[0], data[1], data[2], data[3], data[4], 0, 0, 0, 0, 0};
+    char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"};
 
-    int max[] = {data[0], data[1], data[2], data[3], data[4], 0, 0, 0, 0, 0}
-    char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"}
+    for (int g = 0; g < 5; g++) 
+    {                             
+        for(int i = g; i <= size_ary; i = i + 5)                 // Sortieren von jedem einzelnem Wert nach dem größten
+        {
+            if (max[g] < data[i])
+            {
+                max[g] = data[i]; 
+                max[g+5] = (i - g) / 5;
+            }
+        }                                    
+    }
 
-    FOR g <- 0 TO 4 DO                             
-        FOR i <- g TO size_ary DO (Schrittweite(i = i + 5))                 // Sortieren von jedem einzelnem Wert nach dem größten
-            IF max[g] < data[i]
-                max[g] = data[i]  
-                max[g+5] = (i - g) / 5
-            END IF
-        END FOR                                    
-    END FOR
+    for (int g = 0; g < 5; g++)
+    {
+        printf("Die %s war mit dem Wert %d zum Zeitpunkt %d am größten. \n", typ[g], max[g], max[g+5]); // Ausgabe des jeweils größten Wertes
+        fprintf(auswertung, "Die %s war mit dem Wert %d zum Zeitpunkt %d am größten. \n", typ[g], max[g], max[g+5]);                
+    }
 
-    FOR g <- 0 TO 4 DO
-        OUTPUT Die typ[g] war mit dem Wert max[g] zum Zeitpunkt max[g+5] am größten. (ein Zeilenumbruch)            // Ausgabe des jeweils größten Wertes
-        fprintf(auswertung, Die typ[g] war mit dem Wert max[g] zum Zeitpunkt max[g+5] am größten. (ein Zeilenumbruch))                  
-    END FOR
-
-    IF max[3] > 15 THEN 
-        OUTPUT Eine Bauliche Erweiterung wird empfohlen, da zu dem Zeitpunkt max[8], max[3] Autos in der Warteschlange waren.
-        fprintf(auswertung, Eine Bauliche Erweiterung wird empfohlen, da zu dem Zeitpunkt max[8], max[3] Autos in der Warteschlange waren)
-    ELSE IF max[3] <= 15 THEN 
-        OUTPUT Eine Bauliche Erweiterung wird nicht empfohlen, da zu dem Zeitpunkt max[8], nur max[3] Autos in der Warteschlange waren.
-        fprintf(auswertung, Eine Bauliche Erweiterung wird nicht empfohlen, da zu dem Zeitpunkt max[8], nur max[3] Autos in der Warteschlange waren.)
-    END IF
-
-END FUNCTION
-
-*/
+    if (max[3] > 15) 
+    { 
+        printf("Eine Bauliche Erweiterung \033[1mwird\033 empfohlen, da zu dem Zeitpunkt %d, %d Autos in der Warteschlange waren.", max[8], max[3]); 
+        fprintf(auswertung, "Eine Bauliche Erweiterung wird empfohlen, da zu dem Zeitpunkt %d, %d Autos in der Warteschlange waren.", max[8], max[3]);
+    }
+    else if (max[3] <= 15) 
+    { 
+        printf("Eine Bauliche Erweiterung wird \033[1mnicht\033 empfohlen, da zu dem Zeitpunkt %d, nur %d Autos in der Warteschlange waren.", max[8], max[3]); 
+        fprintf(auswertung, "Eine Bauliche Erweiterung wird nicht empfohlen, da zu dem Zeitpunkt %d, nur %d Autos in der Warteschlange waren.", max[8], max[3]);
+    }
+}
 
