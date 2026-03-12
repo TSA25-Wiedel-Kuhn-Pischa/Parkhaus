@@ -362,6 +362,7 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingcon
 
     for (int line = 22; line > -1; line--)                                      // durchgehen der Zeilen 
     {
+
         if (line > 1 && line % 2 == 0)   
         {
             if (line == 22) 
@@ -379,8 +380,8 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingcon
         }
         else if (line > 1 && line % 2 == 1)                   // Zeile in der die Balken gesetzt werden
         {
-            printf("%2d %s", f, spaces[4]);  
-            fprintf(auswertung, "%2d %s", f, spaces[4]);    
+            printf("\033[1m%2d\033[0m %s", f, spaces[4]);  
+            fprintf(auswertung, "\033[1m%2d\033[0m %s", f, spaces[4]);    
             for (int i = 0; i < (info[f]*2); i++)                       // Bestimmung der Länge der Balken
             {
                 printf("%s", spaces[5]); 
@@ -421,33 +422,27 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingcon
                 }
                 else if (column % 4 == 0 && column != 0) 
                 {
-                    printf("%d", f);
-                    printf(auswertung, "%d", f);                     
+                    printf("\033[1m%2d\033[0m", f);
+                    printf(auswertung, "\033[1m%2d\033[0m", f);                     
                     f = f + 2;
                 }
             }
         }
     }
 
-    printf("\n\n"); 
-    fprintf(auswertung, "\n\n");
+    printf("\n\nSkalierung zur X-Achse:\n"); 
+    fprintf(auswertung, "\n\nSkalierung zur X-Achse:\n");
 
     // Erstellen von einer Legende nur für die X-Achse im Diagramm, da die Werte von dem Säuelendiagramm mit den Zeitpunkten übereinstimmen 
 
-    for (int i = 1; i < 11; i++) 
+    for (int i = 0; i < 10; i= i + 2) 
     {
-        if (i < 10) 
+        if (i < 9) 
         {
-            printf("%d= Wert %d \n", (i+10), steps_x*i);             
-            fprintf(auswertung, "%d= Wert %d \n", (i+10), steps_x*i);
-        }
-        else
-        {
-            printf("%d = Zeitschritt %d \n", (i+10), max_x);
-            fprintf(auswertung, "%d = Zeitschritt %d \n", (i+10), max_x);
+            printf("\033[1m%2d\033[0m = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);             
+            fprintf(auswertung, "\033[1m%2d\033[0m = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);
         }
     }
-
 }
 
 /* void FUNCTION out_maxval(int data[], int size, FILE* auswertung)
