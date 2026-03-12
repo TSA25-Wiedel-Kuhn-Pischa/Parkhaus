@@ -415,11 +415,12 @@ void bar_chart_legend(int steps_x, int size_ary, FILE* auswertung)
 //***********************************************************************************************************************************
 
 void bar_chart(int data[], int size_ary, FILE* auswertung)      
-{                                                                            
+{    
+    //Berechnung der Skalierung der Achsen, sowie das Auslesen der Werte                                                                        
     int steps_y = round(size_ary / 10.f);                        // Bereuchnung der Skala von der Y-Achse
     int info[10] = {0};
                     
-    for(int i = 3; i <= size_ary; i = i + steps_y)  // Auslesen der Werte mit der Schritweite steps_y und speichern in info[]
+    for(int i = 3; i <= size_ary; i = i + steps_y)              // Auslesen der Werte mit der Schritweite steps_y und speichern in info[]
     {
         static int f = 0;
         info[f] = data[i]; 
@@ -431,7 +432,7 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)
     }
 
     int max_x = info[0];                                                                  
-    for (int i = 0; i < 10; i++)                                          // Berechnung des Max_Wertes, um die Länge der X-Achse zu ermitteln
+    for (int i = 0; i < 10; i++)                                // Berechnung des Max_Wertes, um die Länge der X-Achse zu ermitteln
     {
         if (max_x < info[i]) 
         {
@@ -439,18 +440,20 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)
         }
     }
 
-    int steps_x = round(max_x / 10.f);                           // Berechnung der einzelnen Schrittweite der X-Achse
+    int steps_x = round(max_x / 10.f);                          // Berechnung der einzelnen Schrittweite der X-Achse
 
     for (int i = 0; i < 10; i++)
     { 
-        info[i] = round((float)info[i] / steps_x);                      // Anpassen der Daten an die Skala
+        info[i] = round((float)info[i] / steps_x);              // Anpassen der Daten an die Skala
         if (i == 9)
         {
             info[i] = max_x;
         }
     }
 
+    //Ausgabe des Balkendiagramms
     bar_chart_creation(info, auswertung);
+    //Ausgabe der Legende zum Balkendiagramm
     bar_chart_legend(steps_x, size_ary, auswertung);
 }
 
