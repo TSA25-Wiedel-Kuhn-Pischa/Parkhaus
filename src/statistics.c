@@ -324,7 +324,7 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingcon
     int steps_y = round(size_ary / 10.f);                        // Bereuchnung der Skala von der Y-Achse
 
     int info[10] = {0};
-    char* spaces[] = { " ", "^", "-", ">", "|", "="};   // Verwendete Zeichen zur Erstellung des Balkendiagrams  
+    char* spaces[] = {" ", "   ^", "-", ">", "   |", "="};   // Verwendete Zeichen zur Erstellung des Balkendiagrams  
 
                                  
     for(int i = 3; i <= size_ary; i = i + steps_y)  // Auslesen der Werte 
@@ -339,7 +339,7 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingcon
     }
 
     int max_x = info[0];                                                                  
-    for (int i = 0; i < 10; i ++)                                          // Berechnung des Max_Wertes für die X-Achse
+    for (int i = 0; i < 10; i++)                                          // Berechnung des Max_Wertes für die X-Achse
     {
         if (max_x < info[i]) 
         {
@@ -351,7 +351,7 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingcon
 
     for (int i = 0; i < 10; i++)
     { 
-        info[i] = round(data[i] / steps_x);                      // Anpassen der Daten an die Skala
+        info[i] = round((float)data[i] / steps_x);                      // Anpassen der Daten an die Skala
         if (i == 9)
         {
             info[i] = max_x;
@@ -362,68 +362,65 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingcon
 
     for (int line = 22; line > -1; line--)                                      // durchgehen der Zeilen 
     {
-        for(int column = 0; column < 22; column++)                               // durchgehen der Spalten
+        if (line > 1 && line % 2 == 0)   
         {
-            if (line > 1 && line % 2 == 0)   
-            {
-                if (column == 0 && line == 22) 
-                {   
-                    printf("%s\n", spaces[1]);            // Setztes der Pfeilspitze für die Y-Achse
-                    fprintf(auswertung, "%s\n", spaces[1]);
-                }
-                else if (column == 0)
-                {                            // Setzten der Pfeillinie für die Y-Achse
-                    printf("%s \n", spaces[4]);
-                    fprintf(auswertung, "%s \n", spaces[4]);
-                } 
+            if (line == 22) 
+            {   
+                printf("%s\n", spaces[1]);            // Setztes der Pfeilspitze für die Y-Achse
+                fprintf(auswertung, "%s\n", spaces[1]);
             }
-            if (line > 1 && line % 2 == 1)                   // Zeile in der die Balken gesetzt werden
-            {
-                printf("%d %s", f, spaces[4]);  
-                fprintf(auswertung, "%d %s", f, spaces[4]);    
-                for (int i = 1; i <= (info[f]*2); f++)                       // Bestimmung der Länge der Balken
-                {
-                    printf("%s", spaces[5]); 
-                    fprintf(auswertung, "%s", spaces[5]);
-                }
-                printf ("\n"); 
-                fprintf(auswertung, "\n");
-            }
-            // Setzten der X-Achse
-            
-            else if (line == 0)                               // Setzten der Nummerierungen für die X-Achse
-            {
-                int f = 11;
-                if (column % 2 == 1 || column == 0) 
-                {             
-                    printf("%s", spaces[0]);                                
-                    fprintf(auswertung, "%s", spaces[0]);
-                }
-                else if (column % 2 == 0 && column != 0) 
-                {
-                    printf("%d", f);
-                    printf(auswertung, "%d", f);                     
-                    f++;
-                }
-            }
-            else if (line == 1) 
-            {                              //Setzten der Linie für die X-Achse
-                if (column != 21) 
-                {
-                    printf("%s", spaces[2]);                         
-                    printf(auswertung, "%s", spaces[2]);
-                }
-                else
-                {
-                    printf("%s", spaces[3]);
-                    fprintf(auswertung, "%s", spaces[3]);
-                }
+            else 
+            {                            // Setzten der Pfeillinie für die Y-Achse
+                printf("%s \n", spaces[4]);
+                fprintf(auswertung, "%s \n", spaces[4]);
             } 
-
+        }
+        else if (line > 1 && line % 2 == 1)                   // Zeile in der die Balken gesetzt werden
+        {
+            printf("%2d %s", f, spaces[4]);  
+            fprintf(auswertung, "%2d %s", f, spaces[4]);    
+            for (int i = 1; i <= (info[f]*2); i++)                       // Bestimmung der Länge der Balken
+            {
+                printf("%s", spaces[5]); 
+                fprintf(auswertung, "%s", spaces[5]);
+            }
+            printf ("\n"); 
+            fprintf(auswertung, "\n");
+            f++;
+        }
+        // Setzten der X-Achse
+            
+        else if (line == 0)                               // Setzten der Nummerierungen für die X-Achse
+        {
+            int f = 11;
+            if (column % 2 == 1 || column == 0) 
+            {             
+                printf("%s", spaces[0]);                                
+                fprintf(auswertung, "%s", spaces[0]);
+            }
+            else if (column % 2 == 0 && column != 0) 
+            {
+                printf("%d", f);
+                printf(auswertung, "%d", f);                     
+                f++;
+            }
+        }
+        else if (line == 1) 
+        {                              //Setzten der Linie für die X-Achse
+            if (column != 21) 
+            {
+                printf("%s", spaces[2]);                         
+                printf(auswertung, "%s", spaces[2]);
+            }
+            else
+            {
+                printf("%s", spaces[3]);
+                fprintf(auswertung, "%s", spaces[3]);
+            }
         } 
-        printf("\n"); 
-        fprintf(auswertung, "\n");
-    }
+    printf("\n"); 
+    fprintf(auswertung, "\n");
+}
 
     printf("\n"); 
     fprintf(auswertung, "\n");
