@@ -14,6 +14,8 @@
 #ifndef CARS_H
 #define CARS_H
 
+#include "queue.h"
+
 typedef struct car{
     int car_id;
     float parking_duration;
@@ -25,7 +27,7 @@ typedef struct car{
 } car;
 
 
-int create_car(int max_parking_duration, int time_stemp, struct car* p_c, struct queue* p_queue1);
+int create_car(int max_parking_duration, int time_stemp, struct car* p_c, Queue* p_queue1);
 /**
     * @brief setzt die Werte eines Car-Structs
     *        und parkt das Auto oder setzt es in die Warteschlange
