@@ -1,5 +1,5 @@
-#ifndef TEST_CARS_H
-#define TEST_CARS_H
+#ifndef TEST_QUEUE_H
+#define TEST_QUEUE_H
 
 #ifndef ASSERT_H
     #define ASSERT_H
@@ -13,12 +13,12 @@
 #include "queue.h"
 #include "statistics.h"
 
-#include "test_queue.h"
+#include "test_cars.h"
 
 
-int test_cars(void);
+int test_queue(void);
 /**
-* @brief unit tests for cars.c
+* @brief unit tests for queue.c
 *
 *
 * @param[out] 0 Wenn ohne Fehler durchgelaufen

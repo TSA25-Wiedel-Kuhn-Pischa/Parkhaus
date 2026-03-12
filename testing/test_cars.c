@@ -1,6 +1,9 @@
 #ifdef DEBUG
  printf("Debug-Modus aktiv\n");
 
+#include "../include/test_queue.h"
+#include "../include/test_cars.h"
+
 int test_cars()
 {
  // Tests für cars.c:
