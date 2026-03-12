@@ -319,47 +319,14 @@ void column_chart(int data[], int size_ary, FILE* auswertung)
     column_chart_legend(steps_x, size_ary, auswertung);
 }
 
-void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
-{                                                                            // diese Funktion wird im Richtigen C-Code noch Modularisiert, aber Aktuell (als Pseudocode) im Sinne des Verständnisses so gelassen
-    int steps_y = round(size_ary / 10.f);                        // Bereuchnung der Skala von der Y-Achse
+//***********************************************************************************************************************************
+// Hilfsfunktionen für bar_chart()
 
-    int info[10] = {0};
+void bar_chart_creation(int info[], FILE* auswertung)
+{
     char* spaces[] = {" ", "   ^", "-", ">", "|", "="};   // Verwendete Zeichen zur Erstellung des Balkendiagrams  
 
-                                 
-    for(int i = 3; i <= size_ary; i = i + steps_y)  // Auslesen der Werte 
-    {
-        static int f = 0;
-        info[f] = data[i]; 
-        f++;
-        if (f == 9) 
-        {
-            info[f] = data[size_ary];
-        }
-    }
-
-    int max_x = info[0];                                                                  
-    for (int i = 0; i < 10; i++)                                          // Berechnung des Max_Wertes für die X-Achse
-    {
-        if (max_x < info[i]) 
-        {
-            max_x = info[i];
-        }
-    }
-
-    int steps_x = round(max_x / 10.f);                           // Berechnung der einzelnen Schrittweite der X-Achse
-
-    for (int i = 0; i < 10; i++)
-    { 
-        info[i] = round((float)info[i] / steps_x);                      // Anpassen der Daten an die Skala
-        if (i == 9)
-        {
-            info[i] = max_x;
-        }
-    }
-
     int f = 0;
-
     for (int line = 22; line > -1; line--)                                      // durchgehen der Zeilen 
     {
 
@@ -391,7 +358,7 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingcon
             fprintf(auswertung, "\n");
             f++;
         }
-            // Setzten der X-Achse
+        // Setzten der X-Achse
         else if (line == 1) 
         {                              //Setzten der Linie für die X-Achse
             printf("   ");
@@ -410,6 +377,7 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingcon
                 }
             } 
         }    
+        // Setzen der Skalierung für die X-Achse
         else if (line == 0)                               // Setzten der Nummerierungen für die X-Achse
         {
             f = 10;
@@ -429,20 +397,61 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)      // Die Codingcon
             }
         }
     }
+}
 
+void bar_chart_legend(int steps_x, int size_ary, FILE* auswertung)
+{
     printf("\n\nSkalierung zur X-Achse:\n"); 
     fprintf(auswertung, "\n\nSkalierung zur X-Achse:\n");
 
     // Erstellen von einer Legende nur für die X-Achse im Diagramm, da die Werte von dem Säuelendiagramm mit den Zeitpunkten übereinstimmen 
-
     for (int i = 0; i < 10; i= i + 2) 
     {
-        if (i < 9) 
+        printf("\033[1m%2d\033[0m = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);             
+        fprintf(auswertung, "\033[1m%2d\033[0m = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);
+    }
+}
+
+//***********************************************************************************************************************************
+
+void bar_chart(int data[], int size_ary, FILE* auswertung)      
+{                                                                            
+    int steps_y = round(size_ary / 10.f);                        // Bereuchnung der Skala von der Y-Achse
+    int info[10] = {0};
+                    
+    for(int i = 3; i <= size_ary; i = i + steps_y)  // Auslesen der Werte mit der Schritweite steps_y und speichern in info[]
+    {
+        static int f = 0;
+        info[f] = data[i]; 
+        f++;
+        if (f == 9) 
         {
-            printf("\033[1m%2d\033[0m = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);             
-            fprintf(auswertung, "\033[1m%2d\033[0m = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);
+            info[f] = data[size_ary];
         }
     }
+
+    int max_x = info[0];                                                                  
+    for (int i = 0; i < 10; i++)                                          // Berechnung des Max_Wertes, um die Länge der X-Achse zu ermitteln
+    {
+        if (max_x < info[i]) 
+        {
+            max_x = info[i];
+        }
+    }
+
+    int steps_x = round(max_x / 10.f);                           // Berechnung der einzelnen Schrittweite der X-Achse
+
+    for (int i = 0; i < 10; i++)
+    { 
+        info[i] = round((float)info[i] / steps_x);                      // Anpassen der Daten an die Skala
+        if (i == 9)
+        {
+            info[i] = max_x;
+        }
+    }
+
+    bar_chart_creation(info, auswertung);
+    bar_chart_legend(steps_x, size_ary, auswertung);
 }
 
 /* void FUNCTION out_maxval(int data[], int size, FILE* auswertung)
