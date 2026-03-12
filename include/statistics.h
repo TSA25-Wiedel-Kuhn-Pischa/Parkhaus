@@ -275,8 +275,8 @@ void bar_chart(int data[], int size_ary, FILE* auswertung);
 *    @brief Es wird jeweils der höchste Wert ausgegeben
 *
 *
-*    Es wird für jeden von den % Werten, der in save_data gespeichert wurde, der max wert ermittelt.
-*    Dies wird dann Formatiert ausgegeben. Ebenfalls wird beurteilt, ob eine Bauliche Erweiterung emphfohlen wird
+*    Es wird für jeden von den Werten, der in save_data gespeichert wurde, der maximale Wert ermittelt.
+*    Dieser wird dann Formatiert ausgegeben. Ebenfalls wird beurteilt, ob eine Bauliche Erweiterung empfohlen wird.
 *
 *    @param[in] data[], Eingabe des Speicherbestandes aus der Funktion save_data()
 *    @param[in] size_ary, Eingabe der Anzahl der Einträge des Arrays

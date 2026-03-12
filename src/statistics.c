@@ -457,10 +457,8 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)
     bar_chart_legend(steps_x, size_ary, auswertung);
 }
 
-void out_maxval(int data[], int size, FILE* auswertung)
+void out_maxval(int data[], int size_ary, FILE* auswertung)
 {
-    int size_ary = round(size / 5);
-
     int max[] = {data[0], data[1], data[2], data[3], data[4], 0, 0, 0, 0, 0};
     char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"};
 
@@ -478,19 +476,19 @@ void out_maxval(int data[], int size, FILE* auswertung)
 
     for (int g = 0; g < 5; g++)
     {
-        printf("Die %s war mit dem Wert %d zum Zeitpunkt %d am größten. \n", typ[g], max[g], max[g+5]); // Ausgabe des jeweils größten Wertes
-        fprintf(auswertung, "Die %s war mit dem Wert %d zum Zeitpunkt %d am größten. \n", typ[g], max[g], max[g+5]);                
+        printf("- Die \033[1m%s\033[0m war mit dem Wert \033[1m%d\033[0m beim \033[1m%d.\033[0m Simulationsschritt am größten. \n\n", typ[g], max[g], max[g+5]); // Ausgabe des jeweils größten Wertes
+        //fprintf(auswertung, "- Die \033[1m%s\033[0m war mit dem Wert \033[1m%d\033[0m beim \033[1m%d.\033[0m Simulationsschritt am größten. \n\n", typ[g], max[g], max[g+5]);                
     }
 
     if (max[3] > 15) 
     { 
-        printf("Eine Bauliche Erweiterung \033[1mwird\033 empfohlen, da zu dem Zeitpunkt %d, %d Autos in der Warteschlange waren.", max[8], max[3]); 
-        fprintf(auswertung, "Eine Bauliche Erweiterung wird empfohlen, da zu dem Zeitpunkt %d, %d Autos in der Warteschlange waren.", max[8], max[3]);
+        printf("Eine Bauliche Erweiterung \033[1mwird\033[0m empfohlen, da zum %d. Simulationsschritt, %d Autos in der Warteschlange waren.", max[8], max[3]); 
+        //fprintf(auswertung, "Eine Bauliche Erweiterung \033[1mwird\033[0m empfohlen, da zum %d. Simulationsschritt, %d Autos in der Warteschlange waren.", max[8], max[3]);
     }
     else if (max[3] <= 15) 
     { 
-        printf("Eine Bauliche Erweiterung wird \033[1mnicht\033 empfohlen, da zu dem Zeitpunkt %d, nur %d Autos in der Warteschlange waren.", max[8], max[3]); 
-        fprintf(auswertung, "Eine Bauliche Erweiterung wird nicht empfohlen, da zu dem Zeitpunkt %d, nur %d Autos in der Warteschlange waren.", max[8], max[3]);
+        printf("Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange waren.", max[8], max[3]); 
+        //fprintf(auswertung, "Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange waren.", max[8], max[3]);
     }
 }
 
