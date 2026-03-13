@@ -85,8 +85,7 @@ void manage_parking_garage(car **parking_garage, int parking_spaces, int time_st
       continue;
     }
 
-    int check = check_parking_time(parking_garage[i], time_step);
-    if(check){
+    if(check_parking_time(parking_garage[i], time_step)){
       remove_car(parking_garage[i], parking_garage, i);
     }
   }
