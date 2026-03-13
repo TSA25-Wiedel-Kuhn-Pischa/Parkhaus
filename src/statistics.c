@@ -3,369 +3,492 @@
     Beschreibung: Beschreibung aller Funktionen zur Ausgabe und Berechnung der Statistiken.
 */
 
-//Einbinden von reapeted_statistics.h
+#include "../include/statistics.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 
-/* int FUNCTION fullness(int occupied, int all_spaces)
+int fullness(int occupied, int all_spaces)
+{
+    return von (((float)occupied/all_spaces) * 100.f);
+}
 
-    return von ((occupied/all) * 100)
+int rate(int count_now, int count_before)
+{
+    return count_now - count_before;
+}
 
-END FUNCTION
-*/
+void head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, FILE* document)
+{
+    fprintf(document, "Anzahl der Stellplätze: %d \n", spaces);            //Datein müssen in Main mit dem Modus "w" geöffnet werden
+    fprintf(document, "Maximale Parkdauer: %d \n", max_parking);
+    fprintf(document, "Simulationsdauer: %d \n", size);
+    fprintf(document, "Ankunftswahrscheinlichkeit neuer Fahrzeuge: %d %% \n", chance_of_new_cras);
+    fprintf(document, "Der Zufalls-Seed: %d \n\n\n", seed);
+}
 
-/* int FUNCTION rate(int count_now, count_before)
+void output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
+{
+    static int i = 1;
+    int occupied = all_spaces - free_spaces;
+    int all_cars = occupied + cars_in_line;
+    char empty = ' ';
 
-    return count_now - count_before
+    // Ausgabe in der Konsole 
+    printf("Zeitpunkt %8d:  ", i);                                     // Verwendung von festen Formatierungen, damit die Zeichen sich nicht verschieben
+    printf("fullness: %8d%%  ", fullness(occupied, all_spaces));
+    printf("free spaces: %6d\n", free_spaces);
+    printf("%21ccars parked: %6d", empty, occupied);                        // durch empty, wird einen Lücke am Anfang geschaffen
+    printf("waiting cars: %5d\n", cars_in_line);
+    printf("%21call cars: %9d \n\n", empty, all_cars);
 
-END FUNCTION
-*/
+    // Ausgabe in einem externen Document Daten.txt
+    fprintf("Zeitpunkt %8d:  ", i);                                   
+    fprintf("fullness: %8d%%  ", fullness(occupied, all_spaces));
+    fprintf("free spaces: %6d\n", free_spaces);
+    fprintf("%21ccars parked: %6d", empty, occupied);                      
+    fprintf("waiting cars: %5d\n", cars_in_line);
+    fprintf("%21call cars: %9d \n\n", empty, all_cars);
+    i++;                                                                // Erhöhung des Simulationsschrittes
+}
 
-/* void FUNCTION head_document(int spaces, int max_parking, int size, int chance_of_new_cras, File* document)
+void save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line)
+{
+    int occupied = all_spaces - free_spaces;                                // Berechnung der einzelnen Parameter
+    int fullness_data = fullness(occupied, all_spaces);
+    int all_cars = occupied + cars_in_line;
 
-    fprintf(document, Anzahl der Stellplätze: spaces (Zeilenumbruch))            //Datein müssen in Main mit dem Modus "w" geöffnet werden
-    fprintf(document, Maximale Parkdauer: max_parking (Zeilenumbruch))
-    fprintf(document, Simulationsdauer: size (Zeilenumbruch))
-    fprintf(document, Ankunftswahrscheinlichkeit neuer Fahrzeuge: chance_of_new_cars % (Zeilenumbruch))
-    fprintf(document, Der Zufalls-Seed: seed (Zeilenumbruch))
+    static int steps_data = 0;                                              // Initialisierung der Variable, welche die Position im Array speichert
 
-END FUNCTION
-
-*/
-/* void FUNCTION output_data(int free_spaces, int all_spaces, int cars_in_line, File* daten)
-
-    einmaliges Initialisiern von int i = 1
-    int occupied = all_spaces - free_spaces
-    int all_cars = occupied + cars_in_line
-
-    OUTPUT Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all_spaces) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data) (Zeilenumbruch)
-    OUTPUT                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line) (Zeilenumbruch)
-    OUTPUT                                              all cars: all_cars (Ausgabe von dem Wert von all_cars) (Zeilenumbruch) (Zeilenumbruch)
-
-    fprintf(daten, Zeitpunkt i(Ausgabe von dem Wert von i):     fullness: fullness(occupied, all) (Ausgabe des Wertes, der in der Funktion berechnet wurde)%     free spaces: free_data (Ausgabe von dem Wert von free_data) (Zeilenumbruch))
-    fprintf(daten,                                              cars parked: occupied (Ausgabe von dem Wert von occupied)            waiting cars: cars_in_line (Ausgabe von dem Wert von cars_in_line) (Zeilenumbruch))
-    fprintf(daten,                                              all cars: all_cars (Ausgabe von dem Wert von all_cars) (Zeilenumbruch) (Zeilenumbruch))
-    i = i + 1
-
-END FUNCTION
-*/
-
-/* void FUNCTION save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line)
-
-    int occupied = all_spaces - free_spaces                                 //Berechnung der einzelnen Parameter
-    int fullness_data = fullness(occupied, all_spaces)
-    int all_cars = occupied + cars_in_line
-    Einmaliges Initialisieren int steps_data = 0
-
-    IF steps_data < (size*5) THEN
-        save_data[steps_data] = fullness_data
-        steps_data = steps_data + 1        
+    if (steps_data < (size*5))                                              // Überprüfung ob die Vorgegebenen Simulationsschritte überschritten wurden 
+    {
+        //Speichern der einzelnen Simulationsschritte
+        save_data[steps_data] = fullness_data;
+        steps_data++;        
                                                                                 
-        save_data[steps_data] = free_spaces
-        steps_data = steps_data + 1
+        save_data[steps_data] = free_spaces;
+        steps_data++;
 
-        save_data[steps_data] = occupied
-        steps_data = steps_data + 1
+        save_data[steps_data] = occupied;
+        steps_data++;
 
-        save_data[steps_data] = cars_in_line
-        steps_data = steps_data + 1
+        save_data[steps_data] = cars_in_line;
+        steps_data++;
 
-        save_data[steps_data] = all_cars
-        steps_data = steps_data + 1
-    END IF
+        save_data[steps_data] = all_cars;
+        steps_data++;
+    }
+}
 
-END FUNCTION
-*/
+//***********************************************************************************************************************************
+//Hilfsfunktionen für tabel()
 
+void tabel_creation(int info[], FILE* auswertung)
+{
+    printf("   | ");
+    fprintf(auswertung,"   | ");  
+    for (int i = 1; i < 11; i++)                            // Ausgabe der Obersten Zeile einer Tabelle (der Zeitschritte)
+    {                                                      
+        printf("\033[1m%8d\033[0m | ", i);                  // gibt Fettgedruckte Zahlen aus, damit die Skalierung besser unterschieden werden kann
+        fprintf(auswertung,"\033[1m%8d\033[0m | ", i);  
+    }
 
+    printf("\n-------------------------------------------------------------------------------------------------------------------\n"); 
+    fprintf(auswertung, "\n-------------------------------------------------------------------------------------------------------------------\n");
 
-/* void FUNCTION tabel(int data[], int size_ary, File* auswertung)
+    for (int i = 0; i < 6; i++)
+    {   
+        printf("\033[1m%d\033[0m | ", i+11);
+        fprintf(auswertung, "\033[1m%d\033[0m | ", i+11);                                                 
+        for (int g = 0; g < 10; g++)                                                 // Ausgabe der Einzelnen Werte
+        {
+            printf("%8d | ", info[g + 10*i]);
+            fprintf(auswertung, "%8d | ", info[g + 10*i]);
+        }
+        printf("\n-------------------------------------------------------------------------------------------------------------------\n");
+        fprintf(auswertung, "\n-------------------------------------------------------------------------------------------------------------------\n");
+    }
+}
 
-    int steps_x = round(size_ary / 10.f) 
+void tabel_legend(int steps_x, int size_ary, FILE* auswertung)
+{
+    char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos", "die Änderungsrate"};
 
-    int info[60] = {0}                                                      // Array zur Speicherung der Ausgelsenen Werte
-    char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos", "die Änderungsrate"}
+    printf("\nLegende zur Tabelle: \n\n");
+    fprintf(auswertung, "\nLegende zur Tabelle: \n\n");
+    for(int i = 1; i < 18; i++)                                                       
+    { 
+        if (i < 10)                                                                     // Ausgabe der Legende zur Obersten Zeile
+        {
+            printf("\033[1m%2d\033[0m. = %7d. Simulationsschritt\n", i, steps_x*(i-1));
+            fprintf(auswertung, "\033[1m%2d\033[0m. = %7d. Simulationsschritt\n", i, steps_x*(i-1));
+        }
+        else if (i == 10) 
+        {
+            printf("\033[1m%d\033[0m. = %7d. Simulationsschritt\n\n", i, size_ary);
+            fprintf(auswertung, "\033[1m%d\033[0m. = %7d. Simulationsschritt\n\n", i, size_ary);
+        }
+        else if (i > 10)                                                                // Ausgabe der Legende für die einzelenen Zeilen Zeitschritte
+        {
+            printf("\033[1m%d\033[0m. = Simulationsschritt %s \n", i, typ[i-11]);
+            fprintf(auswertung, "\033[1m%d\033[0m. = Simulationsschritt %s \n", i, typ[i-11]);
+        }
+    }
+}
 
-    FOR g <- 0 TO 4 DO                              
-        FOR i <- g TO size_ary DO (Schrittweite(i = i + steps_x))         // Auslesen der Einzelnen Werte nach der Reinfolge der Speicherung
-            einmaliges Initialisieren int f = 0 + 10*g
-            info[f] = data[i]
-            f = f + 1
-            IF (f-10*g) == 9 THEN
-                info[f] = data[size_ary]
-            END IF
-        END FOR                                   
-    END FOR
+//***********************************************************************************************************************************
 
-    FOR i <- (4 + steps_x) TO size_ary DO (Schrittweite i = i + steps_x)            
-        einmaliges Initalisieren int f = 51                                 // Beginnt eins Später, da das Array mit Nullen definiert ist und die erste Änderung ist 0.                                                  
-        info[f] = rate(data[i], data[i-steps_x]
-        f = f + 1
-    END FOR
+void tabel(int data[], int size_ary, FILE* auswertung)
+{
+    int steps_x = round(size_ary / 10.f); 
 
-    OUTPUT    |
-    fprintf(auswertung,   |)  
-    FOR i <- 1 TO 10 DO                                                      // Ausgabe der Obersten Zeile einer Tabelle (der Zeitschritte)
-        OUTPUT i  |
-        fprintf(auswertung, i | )  
-    END FOR 
+    int info[60] = {0};                                                     // Array zur Speicherung der Ausgelsenen Werte
 
-    OUTPUT --------------------------------- (Zeilenumbruch)
-    fprintf(auswertung, --------------------------------- (Zeilenumbruch))
+    for (int g = 0; g < 5; g++)
+    {                             
+        for (int i = g; i<= size_ary; i= i + steps_x)                       // Auslesen der Einzelnen Werte nach der Reinfolge der Speicherung
+        {      
+            static int f = 0;
+            info[f] = data[i];                                              // Speichern des Wertes an der jeweiligen Stelle
+            f = f + 1;
+            if ((f-10*g) == 9) 
+            {
+                info[f] = data[size_ary];
+            }
+        }                                 
+    }
 
-    FOR i <- 0 TO 5 DO     
-        OUTPUT (i+11) | 
-        fprintf(auswertung, (i+11) | )                                                 
-        FOR g <- 0 TO 9 DO                                                  // Ausgabe der Einzelnen Werte
-            OUTPUT info[g + 10*i]| 
-            fprintf(auswertung, info[g + 10*i]|)
-        END FOR
-        OUTPUT (Zeilenumbruch) --------------------------------- (Zeilenumbruch)
-        fprintf(auswertung, (Zeilenumbruch) --------------------------------- (Zeilenumbruch))
-    END FOR 
+    for (int i = (4 + steps_x); i <= size_ary; i = i+ steps_x)
+    {          
+        static int f = 51;                                  // Beginnt eins Später, da es zum Simulationsbeginn keine Änderungsrate gibt.                                                  
+        info[f] = rate(data[i], data[i-steps_x]);
+        f = f + 1;
+    }
 
-    FOR i <- 1 TO 10 DO                                                       // Ausgabe der Legende zur Obersten Zeile 
-        IF i < 10 THEN
-            OUTPUT i = (steps_x * (i-1)) (Zeilenumbruch)
-            fprintf(auswertung, (steps_x * (i-1)) (Zeilenumbruch) )
-        ELSE if i == 10 THEN
-            OUTPUT size_ary (Zeilenumbruch)
-            fprintf(auswertung, size_ary) (Zeilenumbruch)
-        END IF 
-    END FOR 
+    tabel_creation(info, auswertung);                       // Erstellen der Tabelle
+    tabel_legend(steps_x, size_ary, auswertung);            // Erstellen der Legende zur Tabelle 
+}
 
-    FOR i <-11 TO 17 DO                                                       // Ausgabe der Legende für die einzelenen Zeilen Zeitschritte
-        OUTPUT i = Zeitschritt typ[i-10] (Zeilenumbruch)
-        fprintf(auswertung, (i = Zeitschritt typ[i-10] (Zeilenumbruch))
-    END FOR
+//***********************************************************************************************************************************
+//Hilfsfunktionen für column_chart()
 
-END FUNCTION
-*/
-
-/* void FUNCTION column_chart(int data[], int size_ary, File* auswertung)       // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
-                                                                                // diese Funktion wird im Richtigen C-Code noch Modularisiert, aber Aktuell (als Pseudocode) im Sinne des Verständnisses so gelassen
-    int steps_y = round(size_ary / 10.f)                     // Bereuchnung der Skala von der Y-Achse
-
-    int info[10] = {0}
-    char* spaces[] = {"| |", "_", " ", "^", "-", ">", "|"}   // Verwendete Zeichen zur Erstellung des Säulendiagrams 
-                          
-    FOR i <- 0 TO size_ary DO (Schrittweite(i = i + steps_y))
-        Einmaliges Intialisieren int f = 0 
-        info[f] = round(data[i] / 10.f)                     // Auslesen der Füllmenge und so umformen, das es zur Skalierung passt
-        f = f + 1
-        IF (f) == 9 THEN
-            info[f] = round(data[size_ary] / 10.f)
-        END IF
-    END FOR
+void column_chart_creation(int info[], FILE* auswertung)
+{
+    char* spaces[] = {"| |", "_", "   ", "^", "---", ">", "|"};   // Verwendete Zeichen zur Erstellung des Säulendiagrams 
 
     // Erstellen des Säulendiagrams 
-    FOR line <- 11 TO 0 DO                                  // durchgehen der Zeilen 
-        FOR column <- 0 TO 21 DO                            // durchgehen der Spalten
-            int f = 0
-            IF line > 0 THEN  
+    for(int line = 11; line > -1; line--)                                 // durchgehen der Zeilen 
+    {
+        int f = 0;
+        for(int column = 0; column < 23; column++)                            // durchgehen der Spalten
+        {
+            if (line > 0)
+            {  
+                if(column == 1 && line == 11) 
+                {  
+                    printf(" %s", spaces[3]);        // Setztes der Pfeilspitze für die Y-Achse
+                    fprintf(auswertung, "%s", spaces[3]);
+                }
+                else if (column == 1)                  // Setzten der Pfeillinie für die Y-Achse
+                {
+                    printf("%s", spaces[6]);
+                    fprintf(auswertung, "%s", spaces[6]);
+                }
 
-                IF column == 0 && line == 11 THEN   
-                    OUTPUT spaces[3] (Zeilenumbruch)        // Setztes der Pfeilspitze für die Y-Achse
-                    fprintf(auswertung, spaces[3] (Zeilenumbruch))
-
-                ELSE IF column == 0 THEN                    // Setzten der Pfeillinie für die Y-Achse
-                    OUTPUT spaces[6]
-                    fprintf(auswertung, spaces[6])
-                END IF 
-
-                IF column % 2 == 1 THEN             
-                    OUTPUT spaces[2]                        // Setzten der Lücken zwischen den Säulen
-                    fprintf(auswertung, spaces[2]) 
-
-                ELSE IF column % 2 == 0 && column != 0 THEN 
-                    IF (info[f] + 1) == line THEN           // Überprüfen, ob die Säule eine Zeile Tiefer existiert 
-                        OUTPUT spaces[1]                    // Wenn ja, setzten eines Daches für die Säule 
-                        fprintf(auswertung, spaces[1])
-
-                    ELSE IF info[f] <= line THEN            // Überprüfen, ob der Wert groß genug ist, damit die Säule existiert
-                        OUTPUT spaces[0]                    // Setzten der Säulemwände
-                        fprintf(auswertung, spaces[0])
-                    END IF 
-                    f = f + 1
-                END IF 
-
+                else if (column % 2 == 0) 
+                {   
+                    if (column == 0 && line != 11)
+                    {
+                        printf("%3d ", line*10);
+                        fprintf(auswertung, "%3d ", line*10);
+                    }  
+                    else 
+                    {
+                        printf("%s", spaces[2]);                        // Setzten der Lücken zwischen den Säulen
+                        fprintf(auswertung, "%s", spaces[2]);
+                    }       
+                }
+                else if (column % 2 == 1 && column != 1) 
+                { 
+                    if ((info[f] + 1) == line)              // Überprüfen, ob die Säule eine Zeile Tiefer existiert
+                    { 
+                        printf("%2s ", spaces[1]);                    // Wenn ja, setzten eines Daches für die Säule 
+                        fprintf(auswertung, "%2s ", spaces[1]);
+                    }
+                    else if (info[f] >= line)               // Überprüfen, ob der Wert groß genug ist, damit die Säule existiert
+                    {
+                        printf("%2s", spaces[0]);                     // Setzten der Säulemwände
+                        fprintf(auswertung, "%2s", spaces[0]);
+                    } 
+                    else 
+                    {
+                        printf("%s", spaces[2]);
+                        fprintf(auswertung, "%s", spaces[2]);
+                    }
+                    f++;
+                } 
+            }
             // Setzten der X-Achse
-            ELSE 
-                IF column != 21 THEN
-                    OUTPUT spaces[4]                         
-                    fprintf(auswertung, spaces[4])
-                ELSE
-                    OUTPUT spaces[5]
-                    fprintf(auswertung, spaces[5])
-                END IF 
-            END IF
+            else 
+            {
+                if (column == 22) 
+                {
+                    printf("%s", spaces[5]);                          
+                    fprintf(auswertung, "%s", spaces[5]);
+                }
+                else if (column > 1)
+                {
+                    printf("%s", spaces[4]); 
+                    fprintf(auswertung, "%s", spaces[4]);
+                }
+                else 
+                {
+                    printf("  ");
+                    fprintf(auswertung, "  ");
+                }
+            }
+        } 
+        printf("\n");
+        fprintf(auswertung, ("\n"));
+    }
 
-        END FOR 
-        OUTPUT (Zeilenumbruch)
-        fprintf(auswertung, (Zeilenumbruch))
-    END FOR
+    //Erzeugen der Skalierung für die X-Achse
+    printf(" ");
+    fprintf(auswertung, " ");
+    for (int column = 0; column < 22; column++)
+    {
+        static int f = 1;
+        if (column % 2 == 1 || column == 0) 
+        {             
+            printf("%s", spaces[2]);                                 // Setzten der Lücken, genauso wie zwischen den Säulen 
+            fprintf(auswertung, "%s", spaces[2]);
+        }
+        else if (column % 2 == 0 && column != 0)  
+        {
+            printf("%3d", f); 
+            fprintf(auswertung, "%3d", f);                          // Setzten der Nummerierungen 
+            f++;
+        }
+    }
+}
 
-    FOR column <- 0 TO 21 DO
-        int f = 1
-        IF column % 2 == 1 || column == 0 THEN             
-            OUTPUT spaces[2]                                // Setzten der Lücken, genauso wie zwischen den Säulen 
-            fprintf(auswertung, spaces[2])
-        ELSE IF column % 2 == 0 && column != 0 THEN 
-            OUTPUT f
-            fprintf(auswertung, f)                          // Setzten der Nummerierungen 
-            f = f + 1
-        END IF 
-    END FOR 
-
-    OUTPUT (Zeilenumbruch)
-    fprintf(auswertung, (Zeilenumbruch))
-
+void column_chart_legend(int steps_x, int size_ary, FILE* auswertung)
+{
     // Erstellen von einer Legende für die Säulen im Diagramm 
 
-    FOR i <-1 TO 10 DO
-        IF i < 10 THEN 
-            OUTPUT i = Zeitschritt steps_y*i (Zeilenumbruch)              
-            fprintf(auswertung, (i = Zeitschritt steps_y*i (Zeilenumbruch))
-        ELSE 
-            OUTPUT i = Zeitschritt size_ary (Zeilenumbruch)
-            fprintf(auswertung, (i = Zeitschritt size_ary (Zeilenumbruch))
-    END FOR
+    printf("\n\n"); 
+    fprintf(auswertung, "\n\n");
 
-END FUNCTION
+    for (int i = 1; i < 11; i++)
+    {
+        if (i < 10) 
+        { 
+            printf("\033[1m%2d\033[0m = %7d. Simulationsschritt\n", i, steps_x*i);              
+            fprintf(auswertung, "\033[1m%2d\033[0m = %7d. Simulationsschritt\n", i, steps_x*i);
+        }
+        else
+        {
+            printf("\033[1m%d\033[0m = %7d. Simulationsschritt\n", i, size_ary);              
+            fprintf(auswertung, "\033[1m%d\033[0m = %7d. Simulationsschritt\n", i, size_ary);
+        }
+    }
+}
 
-*/
+//***********************************************************************************************************************************
 
-/* void FUNCTION bar_chart(int data[], int size_ary, File* auswertung)      // Die Codingconvetion besagt, dass eine Funktion kürzer als 30 Lines sein soll
-                                                                            // diese Funktion wird im Richtigen C-Code noch Modularisiert, aber Aktuell (als Pseudocode) im Sinne des Verständnisses so gelassen
-    int steps_y = round(size_ary / 10.f)                        // Bereuchnung der Skala von der Y-Achse
+void column_chart(int data[], int size_ary, FILE* auswertung)       
+{                                                                                
+    int steps_x = round(size_ary / 10.f);                     // Bereuchnung der Skala von der X-Achse
 
-    int info[10] = {0}
-    char* spaces[] = { " ", "^", "-", ">", "|", "="}   // Verwendete Zeichen zur Erstellung des Balkendiagrams  
+    int info[10] = {0};
+                          
+    for(int i = steps_x; i <= size_ary;i = i + steps_x)
+    {
+        static int f = 0;
+        info[f] = round(data[i] / 10.f);                     // Auslesen der Füllmenge und so umformen, das es zur Skalierung passt
+        f++;
+        if (f == 9)
+        {
+            info[f] = round(data[size_ary] / 10.f);
+        }
+    }
 
-                                 
-    FOR i <- 3 TO size_ary DO (Schrittweite(i = i + steps_y))   // Auslesen der Werte 
-        Einmaliges Intialisieren int f = 0 
-        info[f] = data[i] 
-        f = f + 1
-        IF (f) == 9 THEN
-            info[f] = data[size_ary]
-        END IF
-    END FOR
+    //Ausgabe des Säulendiagramms 
+    column_chart_creation(info, auswertung);
+    //Ausgabe der Legende zum Säulendiagramm 
+    column_chart_legend(steps_x, size_ary, auswertung);
+}
 
-    int max_x = info[0]                                                                  
-    for i <- 0 TO 9 DO                                          // Berechnung des Max_Wertes für die X-Achse
-        IF max_x < info[i] THEN
-            max_x = info[i]
-        END IF 
-    END FOR
+//***********************************************************************************************************************************
+// Hilfsfunktionen für bar_chart()
 
-    int steps_x = round(max_x / 10.f)                           // Berechnung der einzelnen Schrittweite der X-Achse
+void bar_chart_creation(int info[], FILE* auswertung)
+{
+    char* spaces[] = {" ", "   ^", "-", ">", "|", "="};   // Verwendete Zeichen zur Erstellung des Balkendiagrams  
 
-    FOR i <- 0 TO 9 DO 
-        info[i] = round(data[i] / steps.x)                      // Anpassen der Daten an die Skala
-        IF (i) == 9 THEN
-            info[i] = max_x
-        END IF
-    END FOR
+    int f = 0;
+    for (int line = 22; line > -1; line--)                                      // durchgehen der Zeilen 
+    {
 
-    int f = 0
+        if (line > 1 && line % 2 == 0)   
+        {
+            if (line == 22) 
+            {   
+                printf("%s\n", spaces[1]);            // Setztes der Pfeilspitze für die Y-Achse
+                fprintf(auswertung, "%s\n", spaces[1]);
+                printf("   %s\n", spaces[4]);
+                fprintf(auswertung, "   %s\n", spaces[4]);
+            }
+            else 
+            {                            // Setzten der Pfeillinie für die Y-Achse
+                printf("   %s\n", spaces[4]);
+                fprintf(auswertung, "   %s\n", spaces[4]);
+            } 
+        }
+        else if (line > 1 && line % 2 == 1)                   // Zeile in der die Balken gesetzt werden
+        {
+            printf("\033[1m%2d\033[0m %s", f, spaces[4]);  
+            fprintf(auswertung, "\033[1m%2d\033[0m %s", f, spaces[4]);    
+            for (int i = 0; i < (info[f]*2); i++)                       // Bestimmung der Länge der Balken
+            {
+                printf("%s", spaces[5]); 
+                fprintf(auswertung, "%s", spaces[5]);
+            }
+            printf ("\n"); 
+            fprintf(auswertung, "\n");
+            f++;
+        }
+        // Setzten der X-Achse
+        else if (line == 1) 
+        {                              //Setzten der Linie für die X-Achse
+            printf("   ");
+            fprintf(auswertung, "   ");
+            for(int column = 0; column < 22; column++)
+            {
+                if (column != 21) 
+                {
+                    printf("%s", spaces[2]);                         
+                    fprintf(auswertung, "%s", spaces[2]);
+                }
+                else
+                {
+                    printf("%s\n", spaces[3]);
+                    fprintf(auswertung, "%s", spaces[3]);
+                }
+            } 
+        }    
+        // Setzen der Skalierung für die X-Achse
+        else if (line == 0)                               // Setzten der Nummerierungen für die X-Achse
+        {
+            f = 10;
+            for(int column = 0; column < 22; column++)
+            {
+                if (column % 4 != 0 && column % 2 != 0 || column == 0) 
+                {             
+                    printf("%s", spaces[0]);                                
+                    fprintf(auswertung, "%s", spaces[0]);
+                }
+                else if (column % 4 == 0 && column != 0) 
+                {
+                    printf("\033[1m%2d\033[0m", f);
+                    printf(auswertung, "\033[1m%2d\033[0m", f);                     
+                    f = f + 2;
+                }
+            }
+        }
+    }
+}
 
-    FOR line <- 22 TO 0 DO                                      // durchgehen der Zeilen 
-        FOR column <- 0 TO 21 DO                                // durchgehen der Spalten
-            
-            IF line > 1 && line % 2 == 0 THEN  
-
-                IF column == 0 && line == 22 THEN   
-                    OUTPUT spaces[1] (Zeilenumbruch)            // Setztes der Pfeilspitze für die Y-Achse
-                    fprintf(auswertung, spaces[1] (Zeilenumbruch))
-
-                ELSE IF column == 0 THEN                        // Setzten der Pfeillinie für die Y-Achse
-                    OUTPUT spaces[4]  (Zeilenumbruch)
-                    fprintf(auswertung, spaces[4] (Zeilenumbruch))
-                END IF 
-
-            IF line > 1 && line % 2 == 1 THEN                   // Zeile in der die Balken gesetzt werden
-                OUTPUT f spaces[4]  
-                fprintf(auswertung, f spaces[4])    
-                FOR i <- 1 TO (info[f]*2)                       // Bestimmung der Länge der Balken
-                    OUTPUT spaces[5]
-                    fprintf(auswertung, spaces[5])
-                END FOR 
-                OUTPUT (Zeilenumbruch)
-                fprintf(auswertung, (Zeilenumbruch))
-            END IF
-            // Setzten der X-Achse
-            
-            ELSE IF line == 0 THEN                              // Setzten der Nummerierungen für die X-Achse
-                int f = 11
-                IF column % 2 == 1 || column == 0 THEN             
-                    OUTPUT spaces[0]                                
-                    fprintf(auswertung, spaces[0])
-                ELSE IF column % 2 == 0 && column != 0 THEN 
-                    OUTPUT f
-                    printf(auswertung, f)                     
-                    f = f + 1
-                END IF 
-
-            ELSE IF line == 1 THEN                              //Setzten der Linie für die X-Achse
-                IF column != 21 THEN
-                    OUTPUT spaces[2]                         
-                    printf(auswertung, spaces[2])
-                ELSE
-                    OUTPUT spaces[3]
-                    fprintf(auswertung, spaces[3])
-            END IF 
-
-        END FOR 
-        OUTPUT (Zeilenumbruch)
-        fprintf(auswertung, (Zeilenumbruch))
-    END FOR
-
-    OUTPUT (Zeilenumbruch)
-    fprintf(auswertung, (Zeilenumbruch))
+void bar_chart_legend(int steps_x, int size_ary, FILE* auswertung)
+{
+    printf("\n\nSkalierung zur X-Achse:\n"); 
+    fprintf(auswertung, "\n\nSkalierung zur X-Achse:\n");
 
     // Erstellen von einer Legende nur für die X-Achse im Diagramm, da die Werte von dem Säuelendiagramm mit den Zeitpunkten übereinstimmen 
+    for (int i = 0; i < 10; i= i + 2) 
+    {
+        printf("\033[1m%2d\033[0m = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);             
+        fprintf(auswertung, "\033[1m%2d\033[0m = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);
+    }
+}
 
-    FOR i <-1 TO 10 DO
-        IF i < 10 THEN 
-            OUTPUT (i+10) = Wert steps_x*i (Zeilenumbruch)              
-            fprintf(auswertung, ((i+10) = Wert steps_x*i (Zeilenumbruch))
-        ELSE 
-            OUTPUT (i+10) = Zeitschritt max_x (Zeilenumbruch)
-            fprintf(auswertung, ((i+10) = Zeitschritt max_x (Zeilenumbruch))
-    END FOR
+//***********************************************************************************************************************************
 
-END FUNCTION
-*/
+void bar_chart(int data[], int size_ary, FILE* auswertung)      
+{    
+    //Berechnung der Skalierung der Achsen, sowie das Auslesen der Werte                                                                        
+    int steps_y = round(size_ary / 10.f);                        // Bereuchnung der Skala von der Y-Achse
+    int info[10] = {0};
+                    
+    for(int i = 3; i <= size_ary; i = i + steps_y)              // Auslesen der Werte mit der Schritweite steps_y und speichern in info[]
+    {
+        static int f = 0;
+        info[f] = data[i]; 
+        f++;
+        if (f == 9) 
+        {
+            info[f] = data[size_ary];
+        }
+    }
 
-/* void FUNCTION out_maxval(int data[], int size, File* auswertung)
+    int max_x = info[0];                                                                  
+    for (int i = 0; i < 10; i++)                                // Berechnung des Max_Wertes, um die Länge der X-Achse zu ermitteln
+    {
+        if (max_x < info[i]) 
+        {
+            max_x = info[i];
+        }
+    }
 
-    int size_ary = round(size / 5)
+    int steps_x = round(max_x / 10.f);                          // Berechnung der einzelnen Schrittweite der X-Achse
 
-    int max[] = {data[0], data[1], data[2], data[3], data[4], 0, 0, 0, 0, 0}
-    char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"}
+    for (int i = 0; i < 10; i++)
+    { 
+        info[i] = round((float)info[i] / steps_x);              // Anpassen der Daten an die Skala
+        if (i == 9)
+        {
+            info[i] = max_x;
+        }
+    }
 
-    FOR g <- 0 TO 4 DO                             
-        FOR i <- g TO size_ary DO (Schrittweite(i = i + 5))                 // Sortieren von jedem einzelnem Wert nach dem größten
-            IF max[g] < data[i]
-                max[g] = data[i]  
-                max[g+5] = (i - g) / 5
-            END IF
-        END FOR                                    
-    END FOR
+    //Ausgabe des Balkendiagramms
+    bar_chart_creation(info, auswertung);
+    //Ausgabe der Legende zum Balkendiagramm
+    bar_chart_legend(steps_x, size_ary, auswertung);
+}
 
-    FOR g <- 0 TO 4 DO
-        OUTPUT Die typ[g] war mit dem Wert max[g] zum Zeitpunkt max[g+5] am größten. (ein Zeilenumbruch)            // Ausgabe des jeweils größten Wertes
-        fprintf(auswertung, Die typ[g] war mit dem Wert max[g] zum Zeitpunkt max[g+5] am größten. (ein Zeilenumbruch))                  
-    END FOR
+void out_maxval(int data[], int size_ary, FILE* auswertung)
+{
+    int max[] = {data[0], data[1], data[2], data[3], data[4], 0, 0, 0, 0, 0};
+    char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"};
 
-    IF max[3] > 15 THEN 
-        OUTPUT Eine Bauliche Erweiterung wird empfohlen, da zu dem Zeitpunkt max[8], max[3] Autos in der Warteschlange waren.
-        fprintf(auswertung, Eine Bauliche Erweiterung wird empfohlen, da zu dem Zeitpunkt max[8], max[3] Autos in der Warteschlange waren)
-    ELSE IF max[3] <= 15 THEN 
-        OUTPUT Eine Bauliche Erweiterung wird nicht empfohlen, da zu dem Zeitpunkt max[8], nur max[3] Autos in der Warteschlange waren.
-        fprintf(auswertung, Eine Bauliche Erweiterung wird nicht empfohlen, da zu dem Zeitpunkt max[8], nur max[3] Autos in der Warteschlange waren.)
-    END IF
+    for (int g = 0; g < 5; g++) 
+    {                             
+        for(int i = g; i <= size_ary; i = i + 5)                 // Sortieren von jedem einzelnem Wert nach dem größten
+        {
+            if (max[g] < data[i])
+            {
+                max[g] = data[i]; 
+                max[g+5] = (i - g) / 5;
+            }
+        }                                    
+    }
 
-END FUNCTION
+    for (int g = 0; g < 5; g++)
+    {
+        printf("- Die \033[1m%s\033[0m war mit dem Wert \033[1m%d\033[0m beim \033[1m%d.\033[0m Simulationsschritt am größten. \n\n", typ[g], max[g], max[g+5]); // Ausgabe des jeweils größten Wertes
+        //fprintf(auswertung, "- Die \033[1m%s\033[0m war mit dem Wert \033[1m%d\033[0m beim \033[1m%d.\033[0m Simulationsschritt am größten. \n\n", typ[g], max[g], max[g+5]);                
+    }
 
-*/
+    if (max[3] > 15) 
+    { 
+        printf("Eine Bauliche Erweiterung \033[1mwird\033[0m empfohlen, da zum %d. Simulationsschritt, %d Autos in der Warteschlange waren.", max[8], max[3]); 
+        //fprintf(auswertung, "Eine Bauliche Erweiterung \033[1mwird\033[0m empfohlen, da zum %d. Simulationsschritt, %d Autos in der Warteschlange waren.", max[8], max[3]);
+    }
+    else if (max[3] <= 15) 
+    { 
+        printf("Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange waren.", max[8], max[3]); 
+        //fprintf(auswertung, "Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange waren.", max[8], max[3]);
+    }
+}
 
