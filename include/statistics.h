@@ -96,7 +96,7 @@ int output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten);
 *    @return Es wird nichts zurückgegeben 
 */
 
-void save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line);
+int save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line);
 
 //*************************************************
 // Hilfsfunktionen für tabel()
@@ -115,7 +115,7 @@ void save_data(int *save_data, int size, int free_spaces, int all_spaces, int ca
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-void tabel_creation(int info[], FILE* auswertung);
+int tabel_creation(int info[], FILE* auswertung);
 
 /**
 *
@@ -132,7 +132,7 @@ void tabel_creation(int info[], FILE* auswertung);
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-void tabel_legend(int steps_x, int size_ary, FILE* auswertung);
+int tabel_legend(int steps_x, int size_ary, FILE* auswertung);
 
 //*************************************************
 
@@ -159,7 +159,7 @@ void tabel_legend(int steps_x, int size_ary, FILE* auswertung);
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-void tabel(int data[], int size_ary, FILE* auswertung);
+int tabel(int data[], int size_ary, FILE* auswertung);
 
 //*************************************************
 // Hilfsfunktionen für column_chart()
@@ -178,7 +178,7 @@ void tabel(int data[], int size_ary, FILE* auswertung);
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-void column_chart_creation(int info[], FILE* auswertung);
+int column_chart_creation(int info[], FILE* auswertung);
 
 /**
 *
@@ -194,7 +194,7 @@ void column_chart_creation(int info[], FILE* auswertung);
 *    @return Es wird eine Legende zum Säulendiagramm in der Konsole ausgegeben 
 */
 
-void column_chart_legend(int steps_x, int size_ary, FILE* auswertung);
+int column_chart_legend(int steps_x, int size_ary, FILE* auswertung);
 
 //*************************************************
 
