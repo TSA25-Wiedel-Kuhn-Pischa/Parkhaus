@@ -55,7 +55,7 @@ int rate(int count_now, int count_before);
 *            aber kein direkter return Wert, da die Funktion den Datentyp void hat.
 */
 
-void head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, FILE* document);
+int head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, FILE* document);
 /**
 *
 *    @brief Es werden in der Konsole die aktuellen Daten ausgegeben
@@ -74,7 +74,7 @@ void head_document(int spaces, int max_parking, int size, int chance_of_new_cras
 */
 
 
-void output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten);
+int output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten);
 
 
 /**

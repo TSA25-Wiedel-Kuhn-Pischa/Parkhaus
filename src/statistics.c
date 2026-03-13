@@ -18,17 +18,34 @@ int rate(int count_now, int count_before)
     return count_now - count_before;
 }
 
-void head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, FILE* document)
+int head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, FILE* document)
 {
+    if (document == NULL)
+    {
+        printf("Ein falscher Pointer wurde übergeben");
+        return 1;
+    }
     fprintf(document, "Anzahl der Stellplätze: %d \n", spaces);            //Datein müssen in Main mit dem Modus "w" geöffnet werden
     fprintf(document, "Maximale Parkdauer: %d \n", max_parking);
     fprintf(document, "Simulationsdauer: %d \n", size);
     fprintf(document, "Ankunftswahrscheinlichkeit neuer Fahrzeuge: %d %% \n", chance_of_new_cras);
     fprintf(document, "Der Zufalls-Seed: %d \n\n\n", seed);
+
+    return 0;
 }
 
-void output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
+int output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
 {
+    if (daten == NULL)
+    {
+        printf("Ein falscher Pointer wurde übergeben");
+        return 1;
+    }
+    else if (all_spaces<free_spaces)
+    {
+        printf("Falsche Werte wurden übergeben");
+        return 1;
+    }
     static int i = 1;
     int occupied = all_spaces - free_spaces;
     int all_cars = occupied + cars_in_line;
@@ -50,6 +67,8 @@ void output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
     fprintf("waiting cars: %5d\n", cars_in_line);
     fprintf("%21call cars: %9d \n\n", empty, all_cars);
     i++;                                                                // Erhöhung des Simulationsschrittes
+
+    return 0;
 }
 
 void save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line)
