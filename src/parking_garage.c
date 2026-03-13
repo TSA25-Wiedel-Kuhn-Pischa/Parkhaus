@@ -31,7 +31,7 @@ int get_free_space(car **parking_garage, int parking_spaces){
   return -1;  //Fehler
 }
 
-int park_car(car *car, car **parking_garage, int parking_spaces, int time_step){
+int park_car(car *car, struct car **parking_garage, int parking_spaces, int time_step){
 
   int index = get_free_space(parking_garage, parking_spaces);
   if(index < 0){
@@ -44,7 +44,7 @@ int park_car(car *car, car **parking_garage, int parking_spaces, int time_step){
   return 0;
 }
 
-void remove_car(car *car, car **parking_garage, int index){
+void remove_car(car *car, struct car **parking_garage, int index){
 
   parking_garage[index] = NULL;   //entferne den Pointer aus dem Array
   free(car);  //Free den Speicherplatz, auf den der Pointer zeigt
