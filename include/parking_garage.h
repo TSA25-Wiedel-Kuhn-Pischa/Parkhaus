@@ -7,8 +7,8 @@
 #ifndef PARKING_GARAGE_H
 #define PARKING_GARAGE_H
 
-#include "cars.h"
-#include "queue.h"
+#include "../include/cars.h"
+#include "../include/queue.h"
 
 /*
  * @brief  Erstellung eines Arrays, das Pointer auf Car-Structs enthält und damit das Parkhaus
