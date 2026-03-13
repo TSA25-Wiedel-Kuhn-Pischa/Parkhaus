@@ -251,5 +251,9 @@ int main(){
   */
   free(p_queue1);                   // Speicher der Warteschlange freigeben
 
+  //Speicher des Parkhauses freigeben und Pointer auf NULL setzen
+  free(ptr_parking_garage);
+  ptr_parking_garage = NULL;
+
   return 0;
 }
