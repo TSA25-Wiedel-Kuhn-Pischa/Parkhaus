@@ -1,5 +1,5 @@
 #include <assert.h>
-#include "../include/parking_garage.h"
+#include "../include/test_parking_garage.h"
 
 int test_parking_garage(int parking_spaces){
 //Unit-Tests für das Parkhaus:
