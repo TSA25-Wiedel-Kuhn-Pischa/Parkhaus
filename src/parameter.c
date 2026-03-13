@@ -23,17 +23,20 @@ void input_parameter(int *spaces, float *max_parking, int *size, float *chance_o
         if (i == 1 || i == 3)                                       // Frage nach max_parking oder chance_of_new_cars da float
         {
             printf("Bitte geben Sie die %s an: ", name[i]); 
-            IF INPUT scanf(%f, parameter_float[i]) != 1 THEN
-                OUTPUT Ungültige Eingabe, bitte Wiederholen.
-                i = i - 1
-            END IF
+            if (scanf("%f", parameter_float[i]) != 1)
+            {
+                printf("Ungültige Eingabe, bitte Wiederholen. \n");
+                i--;
+            }
         }
-        IF (i == 4) THEN                                                // Änderung des Anfänglichen Outputs, passt zum Satzbau für Zufalls-Seed besser
-            OUTPUT Bitte geben Sie einen name[i] an
-            IF INPUT scanf(%d, parameter_int[i]) != 1 THEN
-                OUTPUT Ungültige Eingabe, bitte Wiederholen.
-                i = i - 1
-            END IF
-        END IF 
+        if (i == 4)                                                 // Änderung des Anfänglichen Outputs, passt zum Satzbau für Zufalls-Seed besser
+        {
+            printf("Bitte geben Sie einen %s an: ", name[i]);
+            if (scanf("%d", parameter_int[i]) != 1) 
+            {
+                printf("Ungültige Eingabe, bitte Wiederholen. \n"); 
+                i--;
+            }
+        }
     }
 }
