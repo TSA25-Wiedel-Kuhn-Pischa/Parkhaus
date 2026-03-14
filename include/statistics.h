@@ -7,8 +7,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-/**
 
+/**
 *
 *    @brief Es wird berechnet, wie voll das Parkhaus in Prozent ist.
 *
@@ -31,10 +31,11 @@ int fullness(int occupied, int all_spaces);
 *
 *    @param[in] count_now, Eingabe von der Anzahl der Autos im Parkhaus 
 *    @param[in] count_before, Eingabe von der Anzahl der Autos im Parkhaus von einem vorherigen Simulationsschritt
+*    @param[out] int *zwischenspeicher, Eingabe der Variable in der der Wert zurückgegeben werden soll
 *
-*    @return Es wird der Wert von der Variable rate zurückgegeben
+*    @return Gibt -1 bei einem Fehler zurück und 0 beim efolgreichen Kompilieren
 */
-int rate(int count_now, int count_before);
+int rate(int count_now, int count_before, int *zwischenspeicher);
 
 /**
 *

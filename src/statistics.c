@@ -10,18 +10,24 @@
 
 int fullness(int occupied, int all_spaces)
 {
-    if (all_spaces == 0)
+    if (occupied > all_spaces || all_spaces <= 0 || occupied <0)
     {
-        printf("Die Falschen werte wurden übertragen");
+        printf("Die Falschen Werte wurden übertragen");
         return -1;
     }
 
     return von (((float)occupied/all_spaces) * 100.f);
 }
 
-int rate(int count_now, int count_before)
+int rate(int count_now, int count_before, int *zwischenspeicher)
 {
-    return count_now - count_before;
+    if (count_before < 0 || count_now < 0)
+    {
+        printf("Die Falschen Werte wurden übertragen");
+        return -1;
+    }
+    *zwischenspeicher = count_now - count_before;
+    return 0;
 }
 
 int head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, FILE* document)
@@ -222,8 +228,10 @@ int tabel(int data[], int size_ary, FILE* auswertung)
 
     for (int i = (4 + steps_x); i <= size_ary; i = i+ steps_x)
     {          
-        static int f = 51;                                  // Beginnt eins Später, da es zum Simulationsbeginn keine Änderungsrate gibt.                                                  
-        info[f] = rate(data[i], data[i-steps_x]);
+        static int f = 51;                                  // Beginnt eins Später, da es zum Simulationsbeginn keine Änderungsrate gibt.
+        static int zwischenspeicher = 0;   
+        rate(data[i], data[i-steps_x], &zwischenspeicher);                                              
+        info[f] = zwischenspeicher;
         f = f + 1;
     }
 
