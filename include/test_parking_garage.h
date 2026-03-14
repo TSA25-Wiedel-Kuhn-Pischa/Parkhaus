@@ -1,3 +1,8 @@
+/*
+ *  File: test_parking_garage.h
+ *  Description: Inkludierung der Funktion für das Testen der Funktionalität von parking_garage.c
+ */
+
 #ifndef TEST_PARKING_GARAGE_H
 #define TEST_PARKING_GARAGE_H
 

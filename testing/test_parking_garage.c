@@ -1,3 +1,8 @@
+/*
+ *  File: test_parking_garage.c
+ *  Description: Überprüfung und Test von Funktionen, die für das Parkhaus und deren Verwaltung benutzt werden
+ */
+
 #include <assert.h>
 #include "../include/test_parking_garage.h"
 
