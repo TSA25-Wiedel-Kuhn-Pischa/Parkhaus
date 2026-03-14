@@ -10,25 +10,56 @@
 
 int fullness(int occupied, int all_spaces)
 {
+    if (occupied > all_spaces || all_spaces <= 0 || occupied <0)
+    {
+        printf("Die Falschen Werte wurden übertragen");
+        return -1;
+    }
+
     return von (((float)occupied/all_spaces) * 100.f);
 }
 
-int rate(int count_now, int count_before)
+int rate(int count_now, int count_before, int *zwischenspeicher)
 {
-    return count_now - count_before;
+    if (count_before < 0 || count_now < 0)
+    {
+        printf("Die Falschen Werte wurden übertragen");
+        return -1;
+    }
+    *zwischenspeicher = count_now - count_before;
+    return 0;
 }
 
-void head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, FILE* document)
+int head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, FILE* document)
 {
+    // Überprüfung davon, ob der richtige Pointer übergeben wurde
+    if (document == NULL)
+    {
+        printf("Ein falscher Pointer wurde übergeben");
+        return -1;
+    }
     fprintf(document, "Anzahl der Stellplätze: %d \n", spaces);            //Datein müssen in Main mit dem Modus "w" geöffnet werden
     fprintf(document, "Maximale Parkdauer: %d \n", max_parking);
     fprintf(document, "Simulationsdauer: %d \n", size);
     fprintf(document, "Ankunftswahrscheinlichkeit neuer Fahrzeuge: %d %% \n", chance_of_new_cras);
     fprintf(document, "Der Zufalls-Seed: %d \n\n\n", seed);
+
+    return 0;
 }
 
-void output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
+int output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
 {
+    // Überprüfung davon, ob der richtige Pointer übergeben wurde und ob die richtigen Werte übergeben wurden
+    if (daten == NULL)
+    {
+        printf("Ein falscher Pointer wurde übergeben");
+        return -1;
+    }
+    else if (all_spaces < free_spaces || cars_in_line < 0 || free_spaces < 0)
+    {
+        printf("Falsche Werte wurden übergeben");
+        return -1;
+    }
     static int i = 1;
     int occupied = all_spaces - free_spaces;
     int all_cars = occupied + cars_in_line;
@@ -50,10 +81,18 @@ void output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
     fprintf("waiting cars: %5d\n", cars_in_line);
     fprintf("%21call cars: %9d \n\n", empty, all_cars);
     i++;                                                                // Erhöhung des Simulationsschrittes
+
+    return 0;
 }
 
-void save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line)
+int save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line)
 {
+    // Überprüfung davon, ob die richtigen Werte übergeben wurde
+    if (all_spaces < free_spaces || cars_in_line < 0 || free_spaces < 0)
+    {
+        printf("Falsche Werte wurden übergeben");
+        return -1;
+    }
     int occupied = all_spaces - free_spaces;                                // Berechnung der einzelnen Parameter
     int fullness_data = fullness(occupied, all_spaces);
     int all_cars = occupied + cars_in_line;
@@ -78,13 +117,21 @@ void save_data(int *save_data, int size, int free_spaces, int all_spaces, int ca
         save_data[steps_data] = all_cars;
         steps_data++;
     }
+
+    return 0;
 }
 
 //***********************************************************************************************************************************
 //Hilfsfunktionen für tabel()
 
-void tabel_creation(int info[], FILE* auswertung)
+int tabel_creation(int info[], FILE* auswertung)
 {
+    // Überprüfung davon, ob der richtige Pointer übergeben wurde
+    if (auswertung == NULL)
+    {
+        printf("Ein falscher Pointer wurde übergeben");
+        return -1;
+    }
     printf("   | ");
     fprintf(auswertung,"   | ");  
     for (int i = 1; i < 11; i++)                            // Ausgabe der Obersten Zeile einer Tabelle (der Zeitschritte)
@@ -108,10 +155,23 @@ void tabel_creation(int info[], FILE* auswertung)
         printf("\n-------------------------------------------------------------------------------------------------------------------\n");
         fprintf(auswertung, "\n-------------------------------------------------------------------------------------------------------------------\n");
     }
+
+    return 0;
 }
 
-void tabel_legend(int steps_x, int size_ary, FILE* auswertung)
+int tabel_legend(int steps_x, int size_ary, FILE* auswertung)
 {
+    // Überprüfung davon, ob der richtige Pointer übergeben wurde und ob die richtigen Werte übergeben wurden
+    if (auswertung == NULL)
+    {
+        printf("Ein falscher Pointer wurde übergeben");
+        return -1;
+    }
+    if (steps_x > size_ary)
+    {
+        printf("Falsche Werte wurden übergeben");
+        return -1;
+    }
     char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos", "die Änderungsrate"};
 
     printf("\nLegende zur Tabelle: \n\n");
@@ -134,12 +194,20 @@ void tabel_legend(int steps_x, int size_ary, FILE* auswertung)
             fprintf(auswertung, "\033[1m%d\033[0m. = Simulationsschritt %s \n", i, typ[i-11]);
         }
     }
+    
+    return 0;
 }
 
 //***********************************************************************************************************************************
 
-void tabel(int data[], int size_ary, FILE* auswertung)
+int tabel(int data[], int size_ary, FILE* auswertung)
 {
+    // Überprüfung davon, ob der richtige Pointer übergeben wurde
+    if (auswertung == NULL)
+    {
+        printf("Ein falscher Pointer wurde übergeben");
+        return -1;
+    }
     int steps_x = round(size_ary / 10.f); 
 
     int info[60] = {0};                                                     // Array zur Speicherung der Ausgelsenen Werte
@@ -160,20 +228,31 @@ void tabel(int data[], int size_ary, FILE* auswertung)
 
     for (int i = (4 + steps_x); i <= size_ary; i = i+ steps_x)
     {          
-        static int f = 51;                                  // Beginnt eins Später, da es zum Simulationsbeginn keine Änderungsrate gibt.                                                  
-        info[f] = rate(data[i], data[i-steps_x]);
+        static int f = 51;                                  // Beginnt eins Später, da es zum Simulationsbeginn keine Änderungsrate gibt.
+        static int zwischenspeicher = 0;   
+        rate(data[i], data[i-steps_x], &zwischenspeicher);                                              
+        info[f] = zwischenspeicher;
         f = f + 1;
     }
 
     tabel_creation(info, auswertung);                       // Erstellen der Tabelle
     tabel_legend(steps_x, size_ary, auswertung);            // Erstellen der Legende zur Tabelle 
+
+    return 0;
 }
 
 //***********************************************************************************************************************************
 //Hilfsfunktionen für column_chart()
 
-void column_chart_creation(int info[], FILE* auswertung)
+int column_chart_creation(int info[], FILE* auswertung)
 {
+    // Überprüfung davon, ob der richtige Pointer übergeben wurde
+    if (auswertung == NULL)
+    {
+        printf("Ein falscher Pointer wurde übergeben");
+        return -1;
+    }
+
     char* spaces[] = {"| |", "_", "   ", "^", "---", ">", "|"};   // Verwendete Zeichen zur Erstellung des Säulendiagrams 
 
     // Erstellen des Säulendiagrams 
@@ -270,12 +349,24 @@ void column_chart_creation(int info[], FILE* auswertung)
             f++;
         }
     }
+    
+    return 0;
 }
 
-void column_chart_legend(int steps_x, int size_ary, FILE* auswertung)
+int column_chart_legend(int steps_x, int size_ary, FILE* auswertung)
 {
+    // Überprüfung davon, ob der richtige Pointer übergeben wurde und ob die richtigen Werte übergeben wurden
+    if (auswertung == NULL)
+    {
+        printf("Ein falscher Pointer wurde übergeben");
+        return -1;
+    }
+    if (steps_x > size_ary)
+    {
+        printf("Falsche Werte wurden übergeben");
+        return -1;
+    }
     // Erstellen von einer Legende für die Säulen im Diagramm 
-
     printf("\n\n"); 
     fprintf(auswertung, "\n\n");
 
@@ -292,12 +383,20 @@ void column_chart_legend(int steps_x, int size_ary, FILE* auswertung)
             fprintf(auswertung, "\033[1m%d\033[0m = %7d. Simulationsschritt\n", i, size_ary);
         }
     }
+
+    return 0;
 }
 
 //***********************************************************************************************************************************
 
-void column_chart(int data[], int size_ary, FILE* auswertung)       
-{                                                                                
+int column_chart(int data[], int size_ary, FILE* auswertung)       
+{   
+    // Überprüfung davon, ob der richtige Pointer übergeben wurde
+    if (auswertung == NULL)
+    {
+        printf("Ein falscher Pointer wurde übergeben");
+        return -1;
+    }                                                                             
     int steps_x = round(size_ary / 10.f);                     // Bereuchnung der Skala von der X-Achse
 
     int info[10] = {0};
@@ -317,13 +416,21 @@ void column_chart(int data[], int size_ary, FILE* auswertung)
     column_chart_creation(info, auswertung);
     //Ausgabe der Legende zum Säulendiagramm 
     column_chart_legend(steps_x, size_ary, auswertung);
+
+    return 0;
 }
 
 //***********************************************************************************************************************************
 // Hilfsfunktionen für bar_chart()
 
-void bar_chart_creation(int info[], FILE* auswertung)
+int bar_chart_creation(int info[], FILE* auswertung)
 {
+    // Überprüfung davon, ob der richtige Pointer übergeben wurde
+    if (auswertung == NULL)
+    {
+        printf("Ein falscher Pointer wurde übergeben");
+        return -1;
+    }
     char* spaces[] = {" ", "   ^", "-", ">", "|", "="};   // Verwendete Zeichen zur Erstellung des Balkendiagrams  
 
     int f = 0;
@@ -397,10 +504,23 @@ void bar_chart_creation(int info[], FILE* auswertung)
             }
         }
     }
+
+    return 0;
 }
 
-void bar_chart_legend(int steps_x, int size_ary, FILE* auswertung)
+int bar_chart_legend(int steps_x, int size_ary, FILE* auswertung)
 {
+    // Überprüfung davon, ob der richtige Pointer übergeben wurde und ob die richtigen Werte übergeben wurden
+    if (auswertung == NULL)
+    {
+        printf("Ein falscher Pointer wurde übergeben");
+        return -1;
+    }
+    if (steps_x > size_ary)
+    {
+        printf("Falsche Werte wurden übergeben");
+        return -1;
+    }
     printf("\n\nSkalierung zur X-Achse:\n"); 
     fprintf(auswertung, "\n\nSkalierung zur X-Achse:\n");
 
@@ -410,12 +530,19 @@ void bar_chart_legend(int steps_x, int size_ary, FILE* auswertung)
         printf("\033[1m%2d\033[0m = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);             
         fprintf(auswertung, "\033[1m%2d\033[0m = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);
     }
+    return 0;
 }
 
 //***********************************************************************************************************************************
 
-void bar_chart(int data[], int size_ary, FILE* auswertung)      
+int bar_chart(int data[], int size_ary, FILE* auswertung)      
 {    
+    // Überprüfung davon, ob der Richtige Pointer übergeben wurde
+    if (auswertung == NULL)
+    {
+        printf("Ein falscher Pointer wurde übergeben");
+        return -1;
+    }
     //Berechnung der Skalierung der Achsen, sowie das Auslesen der Werte                                                                        
     int steps_y = round(size_ary / 10.f);                        // Bereuchnung der Skala von der Y-Achse
     int info[10] = {0};
@@ -455,10 +582,18 @@ void bar_chart(int data[], int size_ary, FILE* auswertung)
     bar_chart_creation(info, auswertung);
     //Ausgabe der Legende zum Balkendiagramm
     bar_chart_legend(steps_x, size_ary, auswertung);
+
+    return 0;
 }
 
-void out_maxval(int data[], int size_ary, FILE* auswertung)
+int out_maxval(int data[], int size_ary, FILE* auswertung)
 {
+    // Überprüfung davon, ob der Richtige Pointer übergeben wurde
+    if (auswertung == NULL)
+    {
+        printf("Ein falscher Pointer wurde übergeben");
+        return -1;
+    }
     int max[] = {data[0], data[1], data[2], data[3], data[4], 0, 0, 0, 0, 0};
     char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"};
 
@@ -490,5 +625,7 @@ void out_maxval(int data[], int size_ary, FILE* auswertung)
         printf("Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange waren.", max[8], max[3]); 
         //fprintf(auswertung, "Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange waren.", max[8], max[3]);
     }
+    
+    return 0;
 }
 
