@@ -36,7 +36,7 @@ int head_document(int spaces, int max_parking, int size, int chance_of_new_cras,
     if (document == NULL)
     {
         printf("Ein falscher Pointer wurde übergeben");
-        return 1;
+        return -1;
     }
     fprintf(document, "Anzahl der Stellplätze: %d \n", spaces);            //Datein müssen in Main mit dem Modus "w" geöffnet werden
     fprintf(document, "Maximale Parkdauer: %d \n", max_parking);
@@ -53,12 +53,12 @@ int output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
     if (daten == NULL)
     {
         printf("Ein falscher Pointer wurde übergeben");
-        return 1;
+        return -1;
     }
-    else if (all_spaces < free_spaces && cars_in_line < 0)
+    else if (all_spaces < free_spaces || cars_in_line < 0 || free_spaces < 0)
     {
         printf("Falsche Werte wurden übergeben");
-        return 1;
+        return -1;
     }
     static int i = 1;
     int occupied = all_spaces - free_spaces;
@@ -88,10 +88,10 @@ int output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
 int save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line)
 {
     // Überprüfung davon, ob die richtigen Werte übergeben wurde
-    if (all_spaces < free_spaces && cars_in_line < 0)
+    if (all_spaces < free_spaces || cars_in_line < 0 || free_spaces < 0)
     {
         printf("Falsche Werte wurden übergeben");
-        return 1;
+        return -1;
     }
     int occupied = all_spaces - free_spaces;                                // Berechnung der einzelnen Parameter
     int fullness_data = fullness(occupied, all_spaces);

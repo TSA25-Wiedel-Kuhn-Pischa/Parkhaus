@@ -51,7 +51,7 @@ int rate(int count_now, int count_before, int *zwischenspeicher);
 *    @param[in] seed, Eingabe Zufalls-Seed für reprudzierbare Simulation
 *    @param[in] document, Eingabe der .txt Datein für die der Header erzeugt werden soll
 *
-*    @return Bei einem Fehler (beispielsweise der Falschen Angabe eines Pointers) wird der Wert 1 zurück 
+*    @return Bei einem Fehler (beispielsweise der Falschen Angabe eines Pointers) wird der Wert -1 zurück 
 *            gegeben, sonst 0.
 */
 int head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, FILE* document);
@@ -69,7 +69,7 @@ int head_document(int spaces, int max_parking, int size, int chance_of_new_cras,
 *    @param[in] cars_in_line, Eingabe von der Anazhl aller Autos in der Warteschlange
 *    @param[in] daten, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
-*    @return Bei einem Fehler (beispielsweise der Falschen Angabe eines Pointers) wird der Wert 1 zurück 
+*    @return Bei einem Fehler (beispielsweise der Falschen Angabe eines Pointers) wird der Wert -1 zurück 
 *            gegeben, sonst 0.
 */
 int output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten);
@@ -91,7 +91,7 @@ int output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten);
 *    @param[in] cars_in_line, Eingabe von der Anazhl aller Autos in der Warteschlange
 *
 *
-*    @return Bei einem Fehler (beispielsweise bei der Falschen Angabe von Werten) wird der Wert 1 zurück 
+*    @return Bei einem Fehler (beispielsweise bei der Falschen Angabe von Werten) wird der Wert -1 zurück 
 *            gegeben, sonst 0.
 */
 int save_data(int *save_data, int size, int free_spaces, int all_spaces, int cars_in_line);
