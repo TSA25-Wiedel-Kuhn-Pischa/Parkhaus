@@ -109,7 +109,7 @@ int save_data(int *save_data, int size, int free_spaces, int all_spaces, int car
 *    @param[in] info[], Eingabe der sortierten Werte
 *    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
-*    @return Bei einem Fehler (beispielsweise der Falschen Angabe eines Pointers) wird der Wert 1 zurück 
+*    @return Bei einem Fehler (beispielsweise der Falschen Angabe eines Pointers) wird der Wert -1 zurück 
 *            gegeben, sonst 0.
 */
 int tabel_creation(int info[], FILE* auswertung);
@@ -125,7 +125,7 @@ int tabel_creation(int info[], FILE* auswertung);
 *    @param[in] size_ary, Eingabe der Anzahl der Einträge des Arrays
 *    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
-*    @return Bei einem Fehler (beispielsweise der Falschen Angabe eines Pointers) wird der Wert 1 zurück 
+*    @return Bei einem Fehler (beispielsweise der Falschen Angabe eines Pointers) wird der Wert -1 zurück 
 *            gegeben, sonst 0.
 */
 int tabel_legend(int steps_x, int size_ary, FILE* auswertung);
@@ -152,7 +152,7 @@ int tabel_legend(int steps_x, int size_ary, FILE* auswertung);
 *    @param[in] size_ary, Eingabe der Anzahl der Einträge des Arrays
 *    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
-*    @return Bei einem Fehler (beispielsweise der Falschen Angabe eines Pointers) wird der Wert 1 zurück 
+*    @return Bei einem Fehler (beispielsweise der Falschen Angabe eines Pointers) wird der Wert -1 zurück 
 *            gegeben, sonst 0.
 */
 int tabel(int data[], int size_ary, FILE* auswertung);
@@ -171,7 +171,7 @@ int tabel(int data[], int size_ary, FILE* auswertung);
 *    @param[in] info[], Eingabe des Speicherbestandes aus der Funktion save_data()
 *    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
-*    @return Bei einem Fehler (beispielsweise der Falschen Angabe eines Pointers) wird der Wert 1 zurück 
+*    @return Bei einem Fehler (beispielsweise der Falschen Angabe eines Pointers) wird der Wert -1 zurück 
 *            gegeben, sonst 0.
 */
 int column_chart_creation(int info[], FILE* auswertung);
@@ -188,7 +188,7 @@ int column_chart_creation(int info[], FILE* auswertung);
 *    @param[in] size_ary, Eingabe der größe des Arrays
 *    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
-*    @return Bei einem Fehler (beispielsweise der Falschen Angabe eines Pointers) wird der Wert 1 zurück 
+*    @return Bei einem Fehler (beispielsweise der Falschen Angabe eines Pointers) wird der Wert -1 zurück 
 *            gegeben, sonst 0.
 */
 int column_chart_legend(int steps_x, int size_ary, FILE* auswertung);
@@ -210,7 +210,7 @@ int column_chart_legend(int steps_x, int size_ary, FILE* auswertung);
 *    @param[in] size_ary, Eingabe der Anzahl der Einträge des Arrays
 *    @param[in] auswertung, Eingabe des Pointers für die Datei in die geschrieben werden soll
 *
-*    @return Bei einem Fehler (beispielsweise der Falschen Angabe eines Pointers) wird der Wert 1 zurück 
+*    @return Bei einem Fehler (beispielsweise der Falschen Angabe eines Pointers) wird der Wert -1 zurück 
 *            gegeben, sonst 0.
 */
 int column_chart(int data[], int size_ary, FILE* auswertung);

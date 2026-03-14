@@ -130,7 +130,7 @@ int tabel_creation(int info[], FILE* auswertung)
     if (auswertung == NULL)
     {
         printf("Ein falscher Pointer wurde übergeben");
-        return 1;
+        return -1;
     }
     printf("   | ");
     fprintf(auswertung,"   | ");  
@@ -165,12 +165,12 @@ int tabel_legend(int steps_x, int size_ary, FILE* auswertung)
     if (auswertung == NULL)
     {
         printf("Ein falscher Pointer wurde übergeben");
-        return 1;
+        return -1;
     }
     if (steps_x > size_ary)
     {
         printf("Falsche Werte wurden übergeben");
-        return 1;
+        return -1;
     }
     char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos", "die Änderungsrate"};
 
@@ -206,7 +206,7 @@ int tabel(int data[], int size_ary, FILE* auswertung)
     if (auswertung == NULL)
     {
         printf("Ein falscher Pointer wurde übergeben");
-        return 1;
+        return -1;
     }
     int steps_x = round(size_ary / 10.f); 
 
@@ -250,7 +250,7 @@ int column_chart_creation(int info[], FILE* auswertung)
     if (auswertung == NULL)
     {
         printf("Ein falscher Pointer wurde übergeben");
-        return 1;
+        return -1;
     }
 
     char* spaces[] = {"| |", "_", "   ", "^", "---", ">", "|"};   // Verwendete Zeichen zur Erstellung des Säulendiagrams 
@@ -359,12 +359,12 @@ int column_chart_legend(int steps_x, int size_ary, FILE* auswertung)
     if (auswertung == NULL)
     {
         printf("Ein falscher Pointer wurde übergeben");
-        return 1;
+        return -1;
     }
     if (steps_x > size_ary)
     {
         printf("Falsche Werte wurden übergeben");
-        return 1;
+        return -1;
     }
     // Erstellen von einer Legende für die Säulen im Diagramm 
     printf("\n\n"); 
@@ -395,7 +395,7 @@ int column_chart(int data[], int size_ary, FILE* auswertung)
     if (auswertung == NULL)
     {
         printf("Ein falscher Pointer wurde übergeben");
-        return 1;
+        return -1;
     }                                                                             
     int steps_x = round(size_ary / 10.f);                     // Bereuchnung der Skala von der X-Achse
 

@@ -80,6 +80,61 @@ int test_statistics()
     assert(save_data(data_test,6, -2, 10, 0) == -1);        // Die Anzahl der freien Parkplätze ist negativ
     assert(save_data(data_test,6, 2, 10, -5) == -1);        // Die Anzahl der Autos in der Warteschlange ist negativ
 
+    // Test für tabel_creation()
+
+    // Zugelassene Pointer:
+    assert(tabel_creation(data_test, document) == 0);            // Richtige Übergabe
+
+    // Nicht zugelassene Pointer:
+    assert(tabel_creation(data_test, error) == -1);               // Übergabe von einem NULL Pointer
+
+    // Test für tabel_legend()
+
+    // Zugelassene Pointer / Werte:
+    assert(tabel_legend(1,10, document) == 0);                  // Richtige Übergabe
+
+    // Nicht zugelassene Pointer / Werte: 
+    assert(tabel_legend(3, 2, document) == -1);                 // Die Schrittweite ist größer als die größe des Arrays
+    assert(tabel_legend(1,2, error) == -1);                     // Übergabe vom Falschen Pointer
+
+    // Test für tabel()
+
+    // Zugelassene Pointer:
+    assert(tabel(data_test, 3, document) == 0);
+
+    // Nicht zugelassener Pointer:
+    assert(tabel(data_test, 3, error) == -1);                   // Ein Falcher Pointer wurde übergeben
+
+    // Test für column_chart_creation()
+
+    // Zugelassene Pointer:
+    assert(column_chart_creation(data_test, document) == 0);
+
+    // Nicht zugelassene Pointer:
+    assert(column_chart_creation(data_test, error) == -1);
+
+    // Test für column_chart_legend
+
+    // Zugelassene Pointer / Werte:
+    assert(column_chart_legend(1,10,document) == 0);
+
+    // Nicht zugelassene Pointer / Werte:
+    assert(column_chart_legend(12, 10 , document) == -1);               // Die Anzahl der Schritte auf der X-Achse ist größer als die Y-Achse
+    assert(column_chart_legend(1,10,error) == -1);                      // Übergabe eines NULL Pointers
+
+
+    // Test für column_chart()
+
+    // Zugelassene Pointer:
+    assert(column_chart(data_test, 3, document) == 0); 
+
+    // Nicht zugelassene Pointer:
+    assert(column_chart(data_test, 3, error) == -1);                     // Übergabe von einem NULL Pointer
+
+
+
+
+
 
     // Schließen der geöffneten Datei und überprüfen ob es geklappt hat
     int success_test = fclose(document);
