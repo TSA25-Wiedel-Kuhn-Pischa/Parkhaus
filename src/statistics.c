@@ -429,7 +429,7 @@ int bar_chart_creation(int info[], FILE* auswertung)
     if (auswertung == NULL)
     {
         printf("Ein falscher Pointer wurde übergeben");
-        return 1;
+        return -1;
     }
     char* spaces[] = {" ", "   ^", "-", ">", "|", "="};   // Verwendete Zeichen zur Erstellung des Balkendiagrams  
 
@@ -514,12 +514,12 @@ int bar_chart_legend(int steps_x, int size_ary, FILE* auswertung)
     if (auswertung == NULL)
     {
         printf("Ein falscher Pointer wurde übergeben");
-        return 1;
+        return -1;
     }
     if (steps_x > size_ary)
     {
         printf("Falsche Werte wurden übergeben");
-        return 1;
+        return -1;
     }
     printf("\n\nSkalierung zur X-Achse:\n"); 
     fprintf(auswertung, "\n\nSkalierung zur X-Achse:\n");
@@ -541,7 +541,7 @@ int bar_chart(int data[], int size_ary, FILE* auswertung)
     if (auswertung == NULL)
     {
         printf("Ein falscher Pointer wurde übergeben");
-        return 1;
+        return -1;
     }
     //Berechnung der Skalierung der Achsen, sowie das Auslesen der Werte                                                                        
     int steps_y = round(size_ary / 10.f);                        // Bereuchnung der Skala von der Y-Achse
@@ -592,7 +592,7 @@ int out_maxval(int data[], int size_ary, FILE* auswertung)
     if (auswertung == NULL)
     {
         printf("Ein falscher Pointer wurde übergeben");
-        return 1;
+        return -1;
     }
     int max[] = {data[0], data[1], data[2], data[3], data[4], 0, 0, 0, 0, 0};
     char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"};

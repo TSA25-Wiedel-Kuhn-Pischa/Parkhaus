@@ -23,21 +23,23 @@ int test_statistics()
     // Da es die Tests nicht beeinflusst, kann es so deklariert werden
     int data_test[30] = {0};
 
-    // Unit Tests für statistics 
+    // Unit Tests für statistics.c
 
-    // Test für fullness():
+
+    // Tests für fullness():
 
     //Zugelassene Werte:
-    assert(fullness(0, 10) == 0); 
+    assert(fullness(0, 10) == 0);                           // Richtige übergabe, Tests mit verschiedenen Werten, ob die Kobinationen Fehlerfrei funktionieren
     assert(fullness(5, 10) == 50);
     assert(fullness(10,10) == 100);
 
     // Nicht zugelassene Werte:
-    assert(fullness(-1, 10) == -1);
-    assert(fullness(2, 0) == -1);
-    assert(fullness(8, 5) == -1);
+    assert(fullness(-1, 10) == -1);                         // Übergabe von einer negativen Anzahl an besetzten Parkplätzen 
+    assert(fullness(2, 0) == -1);                           // Übergabe von null Parkplätzen im Parkhaus
+    assert(fullness(8, 5) == -1);                           // Übergabe von mehr besetzten Parkplätzen, als es Parkplätze gibt
 
-    // Test für rate()
+
+    // Tests für rate()
     
     // zugelassene Werte:
     int zwischenspeicher = 0;
@@ -50,7 +52,8 @@ int test_statistics()
     assert(rate(1, -2, &zwischenspeicher) == -1);
     assert(rate(-1, -10, &zwischenspeicher) == -1);
 
-    // Test für head_document()
+
+    // Tests für head_document()
 
     // Zugelassene Pointer:
     assert(head_document(3,3,3,3,3, document) == 0);
@@ -59,7 +62,7 @@ int test_statistics()
     assert(head_document(3,3,3,3,3,error) == -1);
 
 
-    // Test für output_data()
+    // Tests für output_data()
 
     // Zugelassene Werte / Pointer:
     assert(output_data(4, 10, 0, document) == 0);
@@ -70,7 +73,8 @@ int test_statistics()
     assert(output_data(3, 10, -5, document) == -1);          // Die Anzahl der Autos in der Warteschlange ist negativ
     assert(output_data(-3, 10, 0, document) == -1);          // Die Anzahl der Freien Parkplätze ist negativ
 
-    // Test für save_data()
+
+    // Tests für save_data()
 
     // Zugelassene Werte:
     assert(save_data(data_test,6,2,10,0) == 0);
@@ -80,7 +84,8 @@ int test_statistics()
     assert(save_data(data_test,6, -2, 10, 0) == -1);        // Die Anzahl der freien Parkplätze ist negativ
     assert(save_data(data_test,6, 2, 10, -5) == -1);        // Die Anzahl der Autos in der Warteschlange ist negativ
 
-    // Test für tabel_creation()
+
+    // Tests für tabel_creation()
 
     // Zugelassene Pointer:
     assert(tabel_creation(data_test, document) == 0);            // Richtige Übergabe
@@ -88,7 +93,8 @@ int test_statistics()
     // Nicht zugelassene Pointer:
     assert(tabel_creation(data_test, error) == -1);               // Übergabe von einem NULL Pointer
 
-    // Test für tabel_legend()
+
+    // Tests für tabel_legend()
 
     // Zugelassene Pointer / Werte:
     assert(tabel_legend(1,10, document) == 0);                  // Richtige Übergabe
@@ -97,7 +103,8 @@ int test_statistics()
     assert(tabel_legend(3, 2, document) == -1);                 // Die Schrittweite ist größer als die größe des Arrays
     assert(tabel_legend(1,2, error) == -1);                     // Übergabe vom Falschen Pointer
 
-    // Test für tabel()
+
+    // Tests für tabel()
 
     // Zugelassene Pointer:
     assert(tabel(data_test, 3, document) == 0);
@@ -105,7 +112,8 @@ int test_statistics()
     // Nicht zugelassener Pointer:
     assert(tabel(data_test, 3, error) == -1);                   // Ein Falcher Pointer wurde übergeben
 
-    // Test für column_chart_creation()
+
+    // Tests für column_chart_creation()
 
     // Zugelassene Pointer:
     assert(column_chart_creation(data_test, document) == 0);
@@ -113,7 +121,8 @@ int test_statistics()
     // Nicht zugelassene Pointer:
     assert(column_chart_creation(data_test, error) == -1);
 
-    // Test für column_chart_legend
+
+    // Tests für column_chart_legend
 
     // Zugelassene Pointer / Werte:
     assert(column_chart_legend(1,10,document) == 0);
@@ -123,7 +132,7 @@ int test_statistics()
     assert(column_chart_legend(1,10,error) == -1);                      // Übergabe eines NULL Pointers
 
 
-    // Test für column_chart()
+    // Tests für column_chart()
 
     // Zugelassene Pointer:
     assert(column_chart(data_test, 3, document) == 0); 
@@ -131,8 +140,42 @@ int test_statistics()
     // Nicht zugelassene Pointer:
     assert(column_chart(data_test, 3, error) == -1);                     // Übergabe von einem NULL Pointer
 
+    
+    // Tests für bar_chart_creation()
+
+    // Zugelassene Pointer:
+    assert(bar_chart_creation(data_test, document) == 0);
+
+    // Nicht zugelassene Pointer:
+    assert(bar_chart_creation(data_test, error) == -1);                     // Übergabe von einem NULL Pointer
 
 
+    // Tests für bar_chart_legend()
+
+    // Zugelassene Pointer / Werte:
+    assert(bar_chart_legend(1, 10, document) == 0);
+
+    // Nicht zugelassene Pointer / Werte:
+    assert(bar_chart_legend(12,10,document) == -1);                         // Die Schrittweite der X-Achse ist größer als die X-Achse
+    assert(bar_chart_legend(1,10,error) == -1);                             // Übergabe von einem NULL Pointer
+
+
+    // Tests für bar_chart()
+
+    // Zugelassene Pointer:
+    assert(bar_chart(data_test,3,document) == 0);
+
+    // Nicht zugelassene Pointer:
+    assert(bar_chart(data_test, 3, error) == -1);                           // Übergabe von einem NULL Pointer
+
+
+    // Tests für out_maxval()
+    
+    // Zugelassene Pointer:
+    assert(out_maxval(data_test,3,document) == 0);
+
+    // Nicht zugelassene Pointer:
+    assert(out_maxval(data_test,3,error) == -1);                            // Übergabe von einem NULL Pointer 
 
 
 
