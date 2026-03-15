@@ -3,8 +3,8 @@
     Beschreibung: Beinhaltung der Funktionen zur Eingabe der Parameter.
 */
 
-//#ifndef PARAMETER
-//#define PARAMETER
+#ifndef PARAMETER
+#define PARAMETER
 
 
 /**
@@ -24,6 +24,6 @@
 *    @return Es wird garnichts zurückgegeben, da void funktion. Die Werte werden über ihre Adressen übergeben 
 */
 
-//void FUNCTION input_parameter(int *spaces, float *max_parking, int *size, float *chance_of_new_cars, int *seed);
+void input_parameter(int *spaces, float *max_parking, int *size, float *chance_of_new_cars, int *seed);
 
-//#endif
+#endif
