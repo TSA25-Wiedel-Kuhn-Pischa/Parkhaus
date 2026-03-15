@@ -160,8 +160,12 @@ int main(){
 
   //Datenarray für Simulationswerte initialisieren
   int data[steps * 5];
-  for ()
+  for (int i = 0; i <= (steps * 5); i++)
+  {
+    data[i] = 0;
+  }
 
+  /*
   //Random Seed für Simulation setzen
   srand(seed);
 
@@ -179,7 +183,7 @@ int main(){
   }
 
   //Simulationsdurchlauf
-  for(i = 0; i < steps; i++)
+  for(int i = 0; i < steps; i++)
   {
     manage_parking_garage(parking_garage, i);                           //Überprüfen der Parkzeiten + ggf. Ausparken
 
@@ -225,16 +229,13 @@ int main(){
       return 1;
     }
 
-    /**
+    
     output_data(check_for_free_space(parking_garage), spaces, CARS_IN_LINE, daten);
     save_data(data, steps, check_for_free_space(parking_garage), spaces, CARS_IN_LINE);
-    */
-
-
   }
 
 
-  /**
+  
   //Ausgabe der Endstatistiken
   tabel(data, steps, auswertung);
   column_chart(data, steps, auswertung);
@@ -248,7 +249,7 @@ int main(){
     printf("Fehler beim Schließen von mindestens einer Datei.");
     return 1;
   }
-  */
+  
   free(p_queue1);                   // Speicher der Warteschlange freigeben
 
   //Speicher des Parkhauses freigeben und Pointer auf NULL setzen
