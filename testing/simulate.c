@@ -111,8 +111,8 @@ int main(){
     }
 
     
-    output_data(check_for_free_space(parking_garage), spaces, cars_in_line, daten);
-    save_data(data, steps, check_for_free_space(parking_garage), spaces, cars_in_line);
+    output_data(check_for_free_space(parking_garage, spaces), spaces, cars_in_line, daten);
+    save_data(data, steps, check_for_free_space(parking_garage, spaces), spaces, cars_in_line);
   }
 
 
