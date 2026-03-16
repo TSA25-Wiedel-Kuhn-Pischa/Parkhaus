@@ -5,6 +5,7 @@
 
 #include "../include/cars.h"
 #include "../include/parking_garage.h"
+#include <stdio.h>
 
 car **create_garage(int parking_spaces){
 
@@ -13,6 +14,7 @@ car **create_garage(int parking_spaces){
 
   //Überprüfung, ob die Reservierung erfolgreich war
   if(ptr_parking_garage == NULL){
+    printf("Fehler beim Reservieren von Speicherplatz für das Parkhaus\n");
     return NULL;
   }
   
@@ -28,6 +30,7 @@ int get_free_space(car **parking_garage, int parking_spaces){
     }
   }
 
+  printf("Fehler bei dem Aufruf von 'get_free_space'");
   return -1;  //Fehler
 }
 
@@ -35,6 +38,7 @@ int park_car(car *car, struct car **parking_garage, int parking_spaces, int time
 
   int index = get_free_space(parking_garage, parking_spaces);
   if(index < 0){
+    printf("Fehler beim Aufruf von 'park_car'");
     return -1;    //Fehler
   }
 
@@ -58,6 +62,7 @@ int check_parking_time(car *car, int time_step){
   }
 
   if((time_step - car->arrival_time) > car->parking_duration){
+    printf("Fehler: Parkdauer von Auto mit ID %d wurde überschritten\n", car->car_id);
     return -1;  //Fehler
   }
 
