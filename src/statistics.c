@@ -30,7 +30,7 @@ int rate(int count_now, int count_before, int *zwischenspeicher)
     return 0;
 }
 
-int head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, FILE* document)
+int head_document(int spaces, float max_parking, int size, float chance_of_new_cras, int seed, FILE* document)
 {
     // Überprüfung davon, ob der richtige Pointer übergeben wurde
     if (document == NULL)
@@ -39,9 +39,9 @@ int head_document(int spaces, int max_parking, int size, int chance_of_new_cras,
         return -1;
     }
     fprintf(document, "Anzahl der Stellplätze: %d \n", spaces);            //Datein müssen in Main mit dem Modus "w" geöffnet werden
-    fprintf(document, "Maximale Parkdauer: %d \n", max_parking);
+    fprintf(document, "Maximale Parkdauer: %.1f \n", max_parking);
     fprintf(document, "Simulationsdauer: %d \n", size);
-    fprintf(document, "Ankunftswahrscheinlichkeit neuer Fahrzeuge: %d %% \n", chance_of_new_cras);
+    fprintf(document, "Ankunftswahrscheinlichkeit neuer Fahrzeuge: %.1f %% \n", chance_of_new_cras);
     fprintf(document, "Der Zufalls-Seed: %d \n\n\n", seed);
 
     return 0;

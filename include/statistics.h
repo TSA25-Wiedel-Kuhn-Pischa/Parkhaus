@@ -54,7 +54,7 @@ int rate(int count_now, int count_before, int *zwischenspeicher);
 *    @return Bei einem Fehler (beispielsweise der Falschen Angabe eines Pointers) wird der Wert -1 zurück 
 *            gegeben, sonst 0.
 */
-int head_document(int spaces, int max_parking, int size, int chance_of_new_cras, int seed, FILE* document);
+int head_document(int spaces, float max_parking, int size, float chance_of_new_cras, int seed, FILE* document);
 
 /**
 *
