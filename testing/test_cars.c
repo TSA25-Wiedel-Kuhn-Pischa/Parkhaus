@@ -1,4 +1,10 @@
-#ifdef DEBUG
+/*
+ *  File: test_cars.c
+ *  Description: In test_cars.c werden die Funktionen der src-Datei cars.c getestet.
+ */
+
+
+ #ifdef DEBUG
  printf("Debug-Modus aktiv\n");
 
 #include "../include/test_queue.h"

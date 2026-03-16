@@ -1,129 +1,9 @@
 /*
  *  File: simulate.c
  *  Description: In simulate.c werden die Funktionen der src-Dateien zusammengeführt, um eine Simulation
- *               und das Testen der Funktionen zu ermöglichen.
+ *  und das Testen der Funktionen zu ermöglichen.
  */
 
-/*
-
-// Alle include Dateien einbinden
-
-int main(){
-
-  FILE *daten = fopen("../src/Daten.txt", "w")
-  FILE *auswertung = fopen("../src/Auswertung.txt", "w")
-  IF (daten == NULL || auswertung == NULL) DO
-
-    OUTPUT "Fehler beim Öffnen mindestens einer Datei."
-    return 1
-
-  END IF
-
-  //Initialisieren von Simulationsparametern
-  int spaces = 0
-  float max_parking = 0
-  int steps = 0
-  float chance_of_new_cars = 0
-  int seed = 0
-
-  //Einlesen und Setzen der Simulationsparameter
-  input_parameters(&spaces, &max_parking, &steps, &chance_of_new_cars, &seed)
-
-  //Einfügen von Kopfzeilen in den Dateien
-  head_document(spaces, max_parking, steps, chance_of_new_cars, seed, daten)
-  head_document(spaces, max_parking, steps, chance_of_new_cars, seed, auswertung)
-
-  //Datenarray für Simulationswerte initialisieren
-  int data[(size*5)] = {0}
-
-  //Random Seed für Simulation setzen
-  srand(seed) 
-
-  //Array für das Parkhaus initalisieren
-  Car *parking_garage = create_garage(spaces)
-
-  //Warteschlange vor dem Parkhaus initialisieren
-  struct queue *p_queue1 = queue_init()   //Warteschlange vor dem Parkhaus initialisieren
-
-  IF (p_queue1 == NULL) DO
-
-    OUTPUT "Fehler bei der Initialisierung der Warteschlange."
-    return 1
-
-  END IF
-
-  //Simulationsdurchlauf
-  FOR i <- 0 TO steps DO
-
-    manage_parking_garage(parking_garage, i)                              //Überprüfen der Parkzeiten + ggf. Ausparken
-
-    int cars_in_queue = queue_get_size(p_queue1)                          //Anzahl der Autos in der Warteschlange abrufen
-    IF cars_in_queue < 0 DO
-
-      OUTPUT "Fehler beim Abrufen der Anzahl der Autos in der Warteschlange."
-      return 1
-
-    END IF
-    
-    IF (check_for_free_space(parking_garage) > 0 && (cars_in_queue > 0)) DO
-
-      struct car* p_temp_first_car_in_queue = queue_dequeue(p_queue1)     //Auto aus Warteschlange entfernen
-      IF (p_temp_first_car_in_queue == NULL) DO
-
-        OUTPUT "Fehler beim Entfernen eines Autos aus der Warteschlange."
-        return 1
-
-      END IF
-      park_car(p_temp_first_car_in_queue)
-
-    END IF
-
-
-    //Neue Autos mit einer gewissen Wahrscheinlichkeit generieren
-    FOR j <- 0 TO 5 DO
-      IF (random() < chance_of_new_cars) DO
-        car* p_Auto = malloc(sizeof(car))               // Speicher wird hier in der main reserviert
-
-        int result_temp = create_car(max_parking, step, p_Auto, p_queue1)   //Auto erstellen und parken oder in Warteschlange einreihen
-        IF (result_temp != 0) DO
-          OUTPUT "Fehler bei der Erstellung eines Autos."
-          return 1
-        END IF
-
-      END IF
-    END FOR
-
-    int cars_in_line = queue_get_size(p_queue1)   //Anzahl der Autos in der Warteschlange abrufen
-
-    IF (cars_in_line < 0) DO
-      OUTPUT "Fehler beim Abrufen der Anzahl der Autos in der Warteschlange."
-      return 1
-    END IF
-
-
-    output_data(check_for_free_space(parking_garage), spaces, CARS_IN_LINE, daten)
-    save_data(data, steps, check_for_free_space(parking_garage), spaces, CARS_IN_LINE)
-
-
-
-  END FOR
-
-  //Ausgabe der Endstatistiken
-  tabel(data, steps, auswertung)
-  column_chart(data, steps, auswertung)
-  bar_chart(data, steps, auswertung)
-  out_maxval(data, steps, auswertung)
-
-  int success_daten = fclose(daten)
-  int success_auswertung = fclose(auswertung)
-  IF (success_daten == -1 || success_auswertung == -1) DO 
-
-    OUTPUT "Fehler beim Schließen von mindestens einer Datei."
-    return 1
-
-  END IF
-}
-*/
 
 
 // Alle include Dateien einbinden
@@ -207,13 +87,13 @@ int main(){
 
 
     //Neue Autos mit einer gewissen Wahrscheinlichkeit generieren
-    for(j = 0; j < 5; j++)
+    for(int j = 0; j < 5; j++)
     {
       if(random() < chance_of_new_cars)
       {
         car* p_Auto = malloc(sizeof(car));                                  //Speicher wird hier in der main reserviert
 
-        int result_temp = create_car(max_parking, step, p_Auto, p_queue1);  //Auto erstellen und parken oder in Warteschlange einreihen
+        int result_temp = create_car(max_parking, i, p_Auto, p_queue1);  //Auto erstellen und parken oder in Warteschlange einreihen
         if(result_temp != 0)
         {
           printf("Fehler bei der Erstellung eines Autos.");
@@ -231,8 +111,8 @@ int main(){
     }
 
     
-    output_data(check_for_free_space(parking_garage), spaces, CARS_IN_LINE, daten);
-    save_data(data, steps, check_for_free_space(parking_garage), spaces, CARS_IN_LINE);
+    output_data(check_for_free_space(parking_garage), spaces, cars_in_line, daten);
+    save_data(data, steps, check_for_free_space(parking_garage), spaces, cars_in_line);
   }
 
 

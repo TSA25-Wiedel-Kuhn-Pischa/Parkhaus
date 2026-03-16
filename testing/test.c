@@ -1,4 +1,10 @@
-#ifdef DEBUG
+/*
+ *  File: test.c
+ *  Description: In test.c werden die Funktionen der src-Dateien getestet.
+ */
+
+
+ #ifdef DEBUG
  printf("Debug-Modus aktiv\n");
 
 #ifndef ASSERT_H

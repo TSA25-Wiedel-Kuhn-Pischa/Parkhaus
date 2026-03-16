@@ -3,38 +3,6 @@
  * Description: Funktion und struct von Autos
  */
 
-/**
- * Pseudo-Code:
- * create_car - Funktion mit Eingabe: AnkunftsZeit, Car Struct, maximale Parkdauer, Warteschlange Struct
- *
-     * auf ungültige Eingabe prüfen
-     * car id = nächste ID von car_id_counter() Funktion
-     * zufällige Zahl zwischen 1 und 50 generieren
-     * switch je nach Zahl wird:
-     * brand gesetzt
-     * modelname gesetzt
-     * ps gesetzt
-     * int temp_parking_duration = randomize_parking_duration(max_parking_duration)
-     * auf Fehler prüfen
-     * parking_duration auf temp_parking_duration setzen
-     * IF queue_get_size() == 0) && (check_for_free_space() == 1)) DO
-        * park_car(c, struct Car *parking_garage, time_stemp)
-     * ELSE DO
-         * queue_enqueue(queue1, c)
-     * END IF
-     * return 0
-
- * car_id_counter - Funktion ohne Eingabe
-     * einmalig counter auf 0 setzen
-     * counter um 1 erhöhen
-     * counter zurückgeben
-
- * randomize_parking_duration - Funktion mit Eingabe maximale Parkdauer
-     * auf ungültige Eingabe prüfen
-     * zufällige Zahl zwischen 1 und maximale Parkdauer generieren
-     * auf Fehler prüfen
-     * Zeitdauer zurückgeben
- */
 
 #include "../include/cars.h"
 
