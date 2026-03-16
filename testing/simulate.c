@@ -73,7 +73,7 @@ int main(){
       printf("Fehler beim Abrufen der Anzahl der Autos in der Warteschlange.");
       return 1;
     }
-    if(check_for_free_space(parking_garage, spaces) > 0 && (cars_in_queue > 0))
+    while((check_for_free_space(parking_garage, spaces) > 0) && (cars_in_queue > 0))
     {
       struct car* p_temp_first_car_in_queue = queue_dequeue(p_queue1);  //Auto aus Warteschlange entfernen
       if(p_temp_first_car_in_queue == NULL)
@@ -82,6 +82,12 @@ int main(){
         return 1;
       }
       park_car(p_temp_first_car_in_queue, parking_garage, spaces, i);
+      cars_in_queue = queue_get_size(p_queue1);                         //Anzahl der Autos in der Warteschlange abrufen
+      if(cars_in_queue < 0)
+      {
+        printf("Fehler beim Abrufen der Anzahl der Autos in der Warteschlange.");
+        return 1;
+      }
     }
 
 
