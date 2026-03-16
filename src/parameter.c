@@ -8,7 +8,7 @@
 
 void input_parameter(int *spaces, float *max_parking, int *size, float *chance_of_new_cars, int *seed)
 {
-    char *name[] = {"Anzahl der Stellplaetze", "Maximale Parkdauer eines Autos", "Simuationsdauer, also die Zeitschritte,", "Ankunftswahrscheinlichkeit in %% (mind. 1%%)", "Zufalls-Seed"};
+    char *name[] = {"Anzahl der Stellplätze", "Maximale Parkdauer eines Autos", "Simuationsdauer, also die Zeitschritte,", "Ankunftswahrscheinlichkeit in %% (mind. 1%%)", "Zufalls-Seed"};
     int *parameter_int[] = {spaces, 0, size, 0, seed};                               // Array zum Durchlauf der int Parameter
     float *parameter_float[] = {0, max_parking, 0, chance_of_new_cars, 0};        // Array zum Durchlauf der float Parameter
 
@@ -19,7 +19,7 @@ void input_parameter(int *spaces, float *max_parking, int *size, float *chance_o
             printf("Bitte geben Sie die %s an: ", name[i]); 
             if (scanf("%d", parameter_int[i]) != 1 && i >= 0)                    // Falscher Input kontrolle
             {
-                printf("Ungueltige Eingabe, bitte Wiederholen.\n"); 
+                printf("Ungültige Eingabe, bitte Wiederholen.\n"); 
                 i--;                                               // Es wird erneut nach dem Wert gefragt
             }
         } 
@@ -28,7 +28,7 @@ void input_parameter(int *spaces, float *max_parking, int *size, float *chance_o
             printf("Bitte geben Sie die %s an: ", name[i]); 
             if (scanf("%f", parameter_float[i]) != 1 && i >= 0)
             {
-                printf("Ungueltige Eingabe, bitte Wiederholen. \n");
+                printf("Ungültige Eingabe, bitte Wiederholen. \n");
                 i--;
             }
         }
@@ -37,7 +37,7 @@ void input_parameter(int *spaces, float *max_parking, int *size, float *chance_o
             printf("Bitte geben Sie die %s an: ", name[i]); 
             if (scanf("%f", parameter_float[i]) != 1 && i >= 0 && i <= 100)
             {
-                printf("Ungueltige Eingabe, bitte Wiederholen. \n");
+                printf("Ungültige Eingabe, bitte Wiederholen. \n");
                 i--;
             }
         }
@@ -46,7 +46,7 @@ void input_parameter(int *spaces, float *max_parking, int *size, float *chance_o
             printf("Bitte geben Sie einen %s an: ", name[i]);
             if (scanf("%d", parameter_int[i]) != 1 && i >= 0) 
             {
-                printf("Ungueltige Eingabe, bitte Wiederholen. \n"); 
+                printf("Ungültige Eingabe, bitte Wiederholen. \n"); 
                 i--;
             }
         }
