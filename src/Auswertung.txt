@@ -1,0 +1,112 @@
+Anzahl der Stellplätze: 100 
+Maximale Parkdauer: 3 
+Simulationsdauer: 30 
+Ankunftswahrscheinlichkeit neuer Fahrzeuge: 12 % 
+Der Zufalls-Seed: 45678 
+
+
+   | [1m       1[0m | [1m       2[0m | [1m       3[0m | [1m       4[0m | [1m       5[0m | [1m       6[0m | [1m       7[0m | [1m       8[0m | [1m       9[0m | [1m      10[0m | 
+-------------------------------------------------------------------------------------------------------------------
+[1m11[0m |        0 |        0 |      100 |        0 |        0 |        0 |        0 |      100 |        0 |        0 | 
+-------------------------------------------------------------------------------------------------------------------
+[1m12[0m |        0 |      100 |        0 |        0 |        0 |        0 |      100 |        0 |        0 |        0 | 
+-------------------------------------------------------------------------------------------------------------------
+[1m13[0m |        0 |        0 |        0 |        0 |      100 |        0 |        0 |        0 |        0 |      100 | 
+-------------------------------------------------------------------------------------------------------------------
+[1m14[0m |        0 |        0 |      100 |        0 |        0 |        0 |        0 |      100 |        0 |        0 | 
+-------------------------------------------------------------------------------------------------------------------
+[1m15[0m |        0 |        0 |        0 |        0 |        0 |      100 |        0 |        0 |        0 |        0 | 
+-------------------------------------------------------------------------------------------------------------------
+[1m16[0m |        0 |        0 |        0 |        0 |      100 |     -100 |        0 |        0 |        0 |        0 | 
+-------------------------------------------------------------------------------------------------------------------
+
+Legende zur Tabelle: 
+
+[1m 1[0m. =       0. Simulationsschritt
+[1m 2[0m. =       3. Simulationsschritt
+[1m 3[0m. =       6. Simulationsschritt
+[1m 4[0m. =       9. Simulationsschritt
+[1m 5[0m. =      12. Simulationsschritt
+[1m 6[0m. =      15. Simulationsschritt
+[1m 7[0m. =      18. Simulationsschritt
+[1m 8[0m. =      21. Simulationsschritt
+[1m 9[0m. =      24. Simulationsschritt
+[1m10[0m. =      30. Simulationsschritt
+
+[1m11[0m. = Simulationsschritt Saetigung 
+[1m12[0m. = Simulationsschritt Anzahl der freien Parkplaetze 
+[1m13[0m. = Simulationsschritt Anzahl der besetzten Parkplaetze 
+[1m14[0m. = Simulationsschritt Anzahl der Autos in der Warteschlange 
+[1m15[0m. = Simulationsschritt Anzahl aller Autos 
+[1m16[0m. = Simulationsschritt die Änderungsrate 
+
+
+   ^          _                             _                      
+100 |         | |                           | |                     
+ 90 |         | |                           | |                     
+ 80 |         | |                           | |                     
+ 70 |         | |                           | |                     
+ 60 |         | |                           | |                     
+ 50 |         | |                           | |                     
+ 40 |         | |                           | |                     
+ 30 |         | |                           | |                     
+ 20 |         | |                           | |                     
+ 10 |    _    | |    _     _     _     _    | |    _     _     _    
+    ------------------------------------------------------------>
+         1     2     3     4     5     6     7     8     9    10   
+
+[1m 1[0m =       3. Simulationsschritt
+[1m 2[0m =       6. Simulationsschritt
+[1m 3[0m =       9. Simulationsschritt
+[1m 4[0m =      12. Simulationsschritt
+[1m 5[0m =      15. Simulationsschritt
+[1m 6[0m =      18. Simulationsschritt
+[1m 7[0m =      21. Simulationsschritt
+[1m 8[0m =      24. Simulationsschritt
+[1m 9[0m =      27. Simulationsschritt
+[1m10[0m =      30. Simulationsschritt
+
+
+   ^
+   |
+[1m 0[0m |
+   |
+[1m 1[0m |====================
+   |
+[1m 2[0m |
+   |
+[1m 3[0m |
+   |
+[1m 4[0m |
+   |
+[1m 5[0m |
+   |
+[1m 6[0m |====================
+   |
+[1m 7[0m |
+   |
+[1m 8[0m |
+   |
+[1m 9[0m |========================================================================================================================================================================================================
+   |
+   --------------------->   [1m10[0m  [1m12[0m  [1m14[0m  [1m16[0m  [1m18[0m 
+
+Skalierung zur X-Achse:
+[1m10[0m =    0 Autos in der Warteschlange 
+[1m12[0m =   20 Autos in der Warteschlange 
+[1m14[0m =   40 Autos in der Warteschlange 
+[1m16[0m =   60 Autos in der Warteschlange 
+[1m18[0m =   80 Autos in der Warteschlange 
+
+
+- Die [1mSaettigung[0m war mit dem Wert [1m0[0m beim [1m0.[0m Simulationsschritt am groeßten. 
+
+- Die [1mAnzahl der freien Parkplaetze[0m war mit dem Wert [1m100[0m beim [1m0.[0m Simulationsschritt am groeßten. 
+
+- Die [1mAnzahl der besetzten Parkplaetze[0m war mit dem Wert [1m0[0m beim [1m0.[0m Simulationsschritt am groeßten. 
+
+- Die [1mAnzahl der Autos in der Warteschlange[0m war mit dem Wert [1m0[0m beim [1m0.[0m Simulationsschritt am groeßten. 
+
+- Die [1mAnzahl aller Autos[0m war mit dem Wert [1m0[0m beim [1m0.[0m Simulationsschritt am groeßten. 
+
+Eine Bauliche Erweiterung wird [1mnicht[0m empfohlen, da zum 0. Simulationsschritt, nur 0 Autos in der Warteschlange waren.

@@ -176,7 +176,7 @@ int tabel_legend(int steps_x, int size_ary, FILE* auswertung)
 
     printf("\nLegende zur Tabelle: \n\n");
     fprintf(auswertung, "\nLegende zur Tabelle: \n\n");
-    for(int i = 1; i < 18; i++)                                                       
+    for(int i = 1; i < 17; i++)                                                       
     { 
         if (i < 10)                                                                     // Ausgabe der Legende zur Obersten Zeile
         {
