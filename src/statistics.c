@@ -16,7 +16,7 @@ int fullness(int occupied, int all_spaces)
         return -1;
     }
 
-    return von (((float)occupied/all_spaces) * 100.f);
+    return (((float)occupied/all_spaces) * 100.f);
 }
 
 int rate(int count_now, int count_before, int *zwischenspeicher)
@@ -74,12 +74,12 @@ int output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
     printf("%21call cars: %9d \n\n", empty, all_cars);
 
     // Ausgabe in einem externen Document Daten.txt
-    fprintf("Zeitpunkt %8d:  ", i);                                   
-    fprintf("fullness: %8d%%  ", fullness(occupied, all_spaces));
-    fprintf("free spaces: %6d\n", free_spaces);
-    fprintf("%21ccars parked: %6d", empty, occupied);                      
-    fprintf("waiting cars: %5d\n", cars_in_line);
-    fprintf("%21call cars: %9d \n\n", empty, all_cars);
+    fprintf(daten, "Zeitpunkt %8d:  ", i);                                   
+    fprintf(daten, "fullness: %8d%%  ", fullness(occupied, all_spaces));
+    fprintf(daten, "free spaces: %6d\n", free_spaces);
+    fprintf(daten, "%21ccars parked: %6d", empty, occupied);                      
+    fprintf(daten, "waiting cars: %5d\n", cars_in_line);
+    fprintf(daten, "%21call cars: %9d \n\n", empty, all_cars);
     i++;                                                                // Erhöhung des Simulationsschrittes
 
     return 0;
