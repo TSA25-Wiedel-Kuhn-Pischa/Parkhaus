@@ -401,14 +401,14 @@ int column_chart(int data[], int size_ary, FILE* auswertung)
 
     int info[10] = {0};
                           
-    for(int i = steps_x; i <= size_ary;i = i + steps_x)
+    for(int i = steps_x*5 - 5; i <= size_ary*5;i = i + steps_x*5)       // Auslesen mit dem fünfachen, da es fünf Speicherwerte gibt und bei der Initialisierung -5, da bei einem Array ab 0 hochgezählt wird.
     {
         static int f = 0;
         info[f] = round(data[i] / 10.f);                     // Auslesen der Füllmenge und so umformen, das es zur Skalierung passt
         f++;
         if (f == 9)
         {
-            info[f] = round(data[size_ary] / 10.f);
+            info[f] = round(data[size_ary*5] / 10.f);
         }
     }
 
@@ -549,14 +549,14 @@ int bar_chart(int data[], int size_ary, FILE* auswertung)
     int steps_y = round(size_ary / 10.f);                        // Bereuchnung der Skala von der Y-Achse
     int info[10] = {0};
                     
-    for(int i = 3 + steps_y; i <= size_ary; i = i + steps_y)              // Auslesen der Werte mit der Schritweite steps_y und speichern in info[]
+    for(int i = 3 + steps_y*5 - 5; i <= size_ary*5; i = i + steps_y*5)              // Auslesen der Werte mit der Schritweite steps_y*5, da es fünf Speichergrößengibt und speichern in info[]
     {
         static int f = 0;
         info[f] = data[i]; 
         f++;
         if (f == 9) 
         {
-            info[f] = data[size_ary];
+            info[f] = data[size_ary*5];
         }
     }
 
