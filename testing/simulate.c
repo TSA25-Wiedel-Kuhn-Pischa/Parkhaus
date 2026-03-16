@@ -86,13 +86,13 @@ int main(){
 
 
     //Neue Autos mit einer gewissen Wahrscheinlichkeit generieren
-    for(j = 0; j < 5; j++)
+    for(int j = 0; j < 5; j++)
     {
       if(random() < chance_of_new_cars)
       {
         car* p_Auto = malloc(sizeof(car));                                  //Speicher wird hier in der main reserviert
 
-        int result_temp = create_car(max_parking, step, p_Auto, p_queue1);  //Auto erstellen und parken oder in Warteschlange einreihen
+        int result_temp = create_car(max_parking, i, p_Auto, p_queue1);  //Auto erstellen und parken oder in Warteschlange einreihen
         if(result_temp != 0)
         {
           printf("Fehler bei der Erstellung eines Autos.");
@@ -110,8 +110,8 @@ int main(){
     }
 
     
-    output_data(check_for_free_space(parking_garage), spaces, CARS_IN_LINE, daten);
-    save_data(data, steps, check_for_free_space(parking_garage), spaces, CARS_IN_LINE);
+    output_data(check_for_free_space(parking_garage), spaces, cars_in_line, daten);
+    save_data(data, steps, check_for_free_space(parking_garage), spaces, cars_in_line);
   }
 
 
