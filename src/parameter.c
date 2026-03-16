@@ -3,7 +3,7 @@
     Beschreibung: Genauere beschreibung der Funktion zur Eingabe der Parameter.
 */
 
-void input_parameter(int *spaces, float *max_parking, int *size, float *chance_of_new_cars, int *seed)
+int input_parameter(int *spaces, float *max_parking, int *size, float *chance_of_new_cars, int *seed)
 {
     char name[] = {"Anazhl der Stellplätze", "Maximale Parkdauer eines Autos", "Simuationsdauer, also die Zeitschritte,", "Ankunftswahrscheinlichkeit in %% (mind. 1%%)", "Zufalls-Seed"};
     int *parameter_int[] = {spaces, 0, size, 0, seed};                               // Array zum Durchlauf der int Parameter
@@ -14,16 +14,25 @@ void input_parameter(int *spaces, float *max_parking, int *size, float *chance_o
         if (i == 0 || i == 2)                                     // Frage nach spaces oder size
         {
             printf("Bitte geben Sie die %s an: ", name[i]); 
-            if (scanf("%d", parameter_int[i]) != 1)                    // Falscher Input kontrolle
+            if (scanf("%d", parameter_int[i]) != 1 && i >= 0)                    // Falscher Input kontrolle
             {
                 printf("Ungültige Eingabe, bitte Wiederholen.\n"); 
                 i--;                                               // Es wird erneut nach dem Wert gefragt
             }
         } 
-        if (i == 1 || i == 3)                                       // Frage nach max_parking oder chance_of_new_cars da float
+        if (i == 1)                                       // Frage nach max_parking 
         {
             printf("Bitte geben Sie die %s an: ", name[i]); 
-            if (scanf("%f", parameter_float[i]) != 1)
+            if (scanf("%f", parameter_float[i]) != 1 && i >= 0)
+            {
+                printf("Ungültige Eingabe, bitte Wiederholen. \n");
+                i--;
+            }
+        }
+        if (i == 3)                                                // Frage nach chance_of_new_cars 
+        {
+            printf("Bitte geben Sie die %s an: ", name[i]); 
+            if (scanf("%f", parameter_float[i]) != 1 && i >= 0 && i <= 100)
             {
                 printf("Ungültige Eingabe, bitte Wiederholen. \n");
                 i--;
@@ -32,7 +41,7 @@ void input_parameter(int *spaces, float *max_parking, int *size, float *chance_o
         if (i == 4)                                                 // Änderung des Anfänglichen Outputs, passt zum Satzbau für Zufalls-Seed besser
         {
             printf("Bitte geben Sie einen %s an: ", name[i]);
-            if (scanf("%d", parameter_int[i]) != 1) 
+            if (scanf("%d", parameter_int[i]) != 1 && i >= 0) 
             {
                 printf("Ungültige Eingabe, bitte Wiederholen. \n"); 
                 i--;
@@ -40,3 +49,9 @@ void input_parameter(int *spaces, float *max_parking, int *size, float *chance_o
         }
     }
 }
+
+/*
+Da diese Funktion Fehler selber Korigiert und 
+erst Weiter macht, wenn ein gültiger Wert eingegeben wird.
+Ist kein Unit-Test nötig.
+*/

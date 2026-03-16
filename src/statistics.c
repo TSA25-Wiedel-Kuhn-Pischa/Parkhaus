@@ -194,7 +194,8 @@ int tabel_legend(int steps_x, int size_ary, FILE* auswertung)
             fprintf(auswertung, "\033[1m%d\033[0m. = Simulationsschritt %s \n", i, typ[i-11]);
         }
     }
-    
+    printf("\n\n");
+    fprintf(auswertung, "\n\n");
     return 0;
 }
 
@@ -383,6 +384,8 @@ int column_chart_legend(int steps_x, int size_ary, FILE* auswertung)
             fprintf(auswertung, "\033[1m%d\033[0m = %7d. Simulationsschritt\n", i, size_ary);
         }
     }
+    printf("\n\n");
+    fprintf(auswertung, "\n\n");
 
     return 0;
 }
@@ -530,6 +533,8 @@ int bar_chart_legend(int steps_x, int size_ary, FILE* auswertung)
         printf("\033[1m%2d\033[0m = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);             
         fprintf(auswertung, "\033[1m%2d\033[0m = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);
     }
+    printf("\n\n");
+    fprintf(auswertung, "\n\n");
     return 0;
 }
 
