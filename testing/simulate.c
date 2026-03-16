@@ -88,7 +88,7 @@ int main(){
     //Neue Autos mit einer gewissen Wahrscheinlichkeit generieren
     for(int j = 0; j < 5; j++)
     {
-      if(rand() < chance_of_new_cars)
+      if( ((float)rand() / RAND_MAX) * 100 < chance_of_new_cars )
       {
         car* p_Auto = malloc(sizeof(car));                                  //Speicher wird hier in der main reserviert
 
