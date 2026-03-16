@@ -32,7 +32,7 @@ int main(){
   int seed = 0;
 
   //Einlesen und Setzen der Simulationsparameter
-  input_parameters(&spaces, &max_parking, &steps, &chance_of_new_cars, &seed);
+  input_parameter(&spaces, &max_parking, &steps, &chance_of_new_cars, &seed);
 
   //Einfügen von Kopfzeilen in den Dateien
   head_document(spaces, max_parking, steps, chance_of_new_cars, seed, daten);
@@ -45,17 +45,16 @@ int main(){
     data[i] = 0;
   }
 
-  /*
+  
   //Random Seed für Simulation setzen
   srand(seed);
-  */
+  
   //Array für das Parkhaus initalisieren
-
   car **parking_garage = create_garage(spaces);
   
 
   //Warteschlange vor dem Parkhaus initialisieren
-  struct queue *p_queue1 = queue_init();                                //Warteschlange vor dem Parkhaus initialisieren
+  Queue *p_queue1 = queue_init();                                //Warteschlange vor dem Parkhaus initialisieren
 
   if(p_queue1 == NULL)
   {
@@ -89,11 +88,11 @@ int main(){
     //Neue Autos mit einer gewissen Wahrscheinlichkeit generieren
     for(int j = 0; j < 5; j++)
     {
-      if(random() < chance_of_new_cars)
+      if(rand() < chance_of_new_cars)
       {
         car* p_Auto = malloc(sizeof(car));                                  //Speicher wird hier in der main reserviert
 
-        int result_temp = create_car(max_parking, i, p_Auto, p_queue1);  //Auto erstellen und parken oder in Warteschlange einreihen
+        int result_temp = create_car(max_parking, i, p_Auto, p_queue1, parking_garage, spaces);  //Auto erstellen und parken oder in Warteschlange einreihen
         if(result_temp != 0)
         {
           printf("Fehler bei der Erstellung eines Autos.");
