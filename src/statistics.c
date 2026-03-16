@@ -39,9 +39,9 @@ int head_document(int spaces, float max_parking, int size, float chance_of_new_c
         return -1;
     }
     fprintf(document, "Anzahl der Stellplätze: %d \n", spaces);            //Datein müssen in Main mit dem Modus "w" geöffnet werden
-    fprintf(document, "Maximale Parkdauer: %f \n", max_parking);
+    fprintf(document, "Maximale Parkdauer: %0.2f \n", max_parking);
     fprintf(document, "Simulationsdauer: %d \n", size);
-    fprintf(document, "Ankunftswahrscheinlichkeit neuer Fahrzeuge: %f %% \n", chance_of_new_cras);
+    fprintf(document, "Ankunftswahrscheinlichkeit neuer Fahrzeuge: %0.2f %% \n", chance_of_new_cras);
     fprintf(document, "Der Zufalls-Seed: %d \n\n\n", seed);
 
     return 0;
@@ -67,18 +67,18 @@ int output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
 
     // Ausgabe in der Konsole 
     printf("Zeitpunkt %8d:  ", i);                                     // Verwendung von festen Formatierungen, damit die Zeichen sich nicht verschieben
-    printf("Sättigung: %8d%% ", fullness(occupied, all_spaces));
-    printf("Freie Parkplätze: %6d\n", free_spaces);
-    printf("%21cbesetzte Parkplätze: %6d ", empty, occupied);                        // durch empty, wird einen Lücke am Anfang geschaffen
-    printf("Autos in der Warteschlange: %5d\n", cars_in_line);
+    printf("Sättigung: %18d%% ", fullness(occupied, all_spaces));
+    printf("Freie Parkplätze: %14d\n", free_spaces);
+    printf("%21cbesetzte Parkplätze: %8d  ", empty, occupied);                        // durch empty, wird einen Lücke am Anfang geschaffen
+    printf("Autos in der Warteschlange: %4d\n", cars_in_line);
     printf("%21cAnzahl aller Autos: %9d \n\n", empty, all_cars);
 
     // Ausgabe in einem externen Document Daten.txt
     fprintf(daten, "Zeitpunkt %8d:  ", i);                                   
-    fprintf(daten, "Sättigung: %8d%% ", fullness(occupied, all_spaces));
-    fprintf(daten, "Freie Parkplätze: %6d\n", free_spaces);
-    fprintf(daten, "%21cbesetzte Parkplätze: %6d ", empty, occupied);                      
-    fprintf(daten, "Autos in der Warteschlange: %5d\n", cars_in_line);
+    fprintf(daten, "Sättigung: %18d%% ", fullness(occupied, all_spaces));
+    fprintf(daten, "Freie Parkplätze: %14d\n", free_spaces);
+    fprintf(daten, "%21cbesetzte Parkplätze: %8d  ", empty, occupied);                      
+    fprintf(daten, "Autos in der Warteschlange: %4d\n", cars_in_line);
     fprintf(daten, "%21cAnzahl aller Autos: %9d \n\n", empty, all_cars);
     i++;                                                                // Erhöhung des Simulationsschrittes  
     return 0;
@@ -619,13 +619,18 @@ int out_maxval(int data[], int size_ary, FILE* auswertung)
 
     if (max[3] > 15) 
     { 
-        printf("Eine Bauliche Erweiterung \033[1mwird\033[0m empfohlen, da zum %d. Simulationsschritt, %d Autos in der Warteschlange waren.", max[8], max[3]); 
-        fprintf(auswertung, "Eine Bauliche Erweiterung wird empfohlen, da zum %d. Simulationsschritt, %d Autos in der Warteschlange waren.", max[8], max[3]);
+        printf("Eine Bauliche Erweiterung \033[1mwird\033[0m empfohlen, da zum %d. Simulationsschritt, %d Autos in der Warteschlange standen.", max[8], max[3]); 
+        fprintf(auswertung, "Eine Bauliche Erweiterung wird empfohlen, da zum %d. Simulationsschritt, %d Autos in der Warteschlange standen.", max[8], max[3]);
     }
-    else if (max[3] <= 15) 
+    else if (max[3] <= 15 && max[3] != 0) 
     { 
-        printf("Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange waren.", max[8], max[3]); 
-        fprintf(auswertung, "Eine Bauliche Erweiterung wird nicht empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange waren.", max[8], max[3]);
+        printf("Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange standen.", max[8], max[3]); 
+        fprintf(auswertung, "Eine Bauliche Erweiterung wird nicht empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange standen.", max[8], max[3]);
+    }
+    else if (max[3] <= 15 && max[3] != 0) 
+    { 
+        printf("Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da nie Autos in der Warteschlange standen."); 
+        fprintf(auswertung, "Eine Bauliche Erweiterung wird nicht empfohlen, da nie Autos in der Warteschlange standen.");
     }
     
     return 0;
