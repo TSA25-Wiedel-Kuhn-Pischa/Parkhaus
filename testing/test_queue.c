@@ -5,7 +5,6 @@
 
 
  #ifdef DEBUG
- printf("Debug-Modus aktiv\n");
 
 #ifndef ASSERT_H
     #define ASSERT_H
