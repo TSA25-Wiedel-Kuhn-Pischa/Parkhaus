@@ -48,10 +48,11 @@ int main(){
   /*
   //Random Seed für Simulation setzen
   srand(seed);
-
-  //Array für das Parkhaus initalisieren
-  Car *parking_garage = create_garage(spaces);
   */
+  //Array für das Parkhaus initalisieren
+
+  car **parking_garage = create_garage(spaces);
+  
 
   //Warteschlange vor dem Parkhaus initialisieren
   struct queue *p_queue1 = queue_init();                                //Warteschlange vor dem Parkhaus initialisieren
@@ -65,7 +66,7 @@ int main(){
   //Simulationsdurchlauf
   for(int i = 0; i < steps; i++)
   {
-    manage_parking_garage(parking_garage, i);                           //Überprüfen der Parkzeiten + ggf. Ausparken
+    manage_parking_garage(parking_garage, spaces, i);                      //Überprüfen der Parkzeiten + ggf. Ausparken
 
     int cars_in_queue = queue_get_size(p_queue1);                          //Anzahl der Autos in der Warteschlange abrufen
     if(cars_in_queue < 0)
@@ -73,7 +74,7 @@ int main(){
       printf("Fehler beim Abrufen der Anzahl der Autos in der Warteschlange.");
       return 1;
     }
-    if(check_for_free_space(parking_garage) > 0 && (cars_in_queue > 0))
+    if(check_for_free_space(parking_garage, spaces) > 0 && (cars_in_queue > 0))
     {
       struct car* p_temp_first_car_in_queue = queue_dequeue(p_queue1);  //Auto aus Warteschlange entfernen
       if(p_temp_first_car_in_queue == NULL)
@@ -81,7 +82,7 @@ int main(){
         printf("Fehler beim Entfernen eines Autos aus der Warteschlange.");
         return 1;
       }
-      park_car(p_temp_first_car_in_queue);
+      park_car(p_temp_first_car_in_queue, parking_garage, spaces, i);
     }
 
 
@@ -110,8 +111,8 @@ int main(){
     }
 
     
-    output_data(check_for_free_space(parking_garage), spaces, cars_in_line, daten);
-    save_data(data, steps, check_for_free_space(parking_garage), spaces, cars_in_line);
+    output_data(check_for_free_space(parking_garage, spaces), spaces, cars_in_line, daten);
+    save_data(data, steps, check_for_free_space(parking_garage, spaces), spaces, cars_in_line);
   }
 
 
@@ -132,9 +133,8 @@ int main(){
   
   free(p_queue1);                   // Speicher der Warteschlange freigeben
 
-  //Speicher des Parkhauses freigeben und Pointer auf NULL setzen
-  free(ptr_parking_garage);
-  ptr_parking_garage = NULL;
+  free(parking_garage);             // Speicher des Parkhauses freigeben und Pointer auf NULL setzen
+  parking_garage = NULL;
 
   return 0;
 }
