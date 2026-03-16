@@ -501,7 +501,7 @@ int bar_chart_creation(int info[], FILE* auswertung)
                 else if (column % 4 == 0 && column != 0) 
                 {
                     printf("\033[1m%2d\033[0m", f);
-                    printf(auswertung, "\033[1m%2d\033[0m", f);                     
+                    fprintf(auswertung, "\033[1m%2d\033[0m", f);                     
                     f = f + 2;
                 }
             }
@@ -617,18 +617,18 @@ int out_maxval(int data[], int size_ary, FILE* auswertung)
     for (int g = 0; g < 5; g++)
     {
         printf("- Die \033[1m%s\033[0m war mit dem Wert \033[1m%d\033[0m beim \033[1m%d.\033[0m Simulationsschritt am größten. \n\n", typ[g], max[g], max[g+5]); // Ausgabe des jeweils größten Wertes
-        //fprintf(auswertung, "- Die \033[1m%s\033[0m war mit dem Wert \033[1m%d\033[0m beim \033[1m%d.\033[0m Simulationsschritt am größten. \n\n", typ[g], max[g], max[g+5]);                
+        fprintf(auswertung, "- Die \033[1m%s\033[0m war mit dem Wert \033[1m%d\033[0m beim \033[1m%d.\033[0m Simulationsschritt am größten. \n\n", typ[g], max[g], max[g+5]);                
     }
 
     if (max[3] > 15) 
     { 
         printf("Eine Bauliche Erweiterung \033[1mwird\033[0m empfohlen, da zum %d. Simulationsschritt, %d Autos in der Warteschlange waren.", max[8], max[3]); 
-        //fprintf(auswertung, "Eine Bauliche Erweiterung \033[1mwird\033[0m empfohlen, da zum %d. Simulationsschritt, %d Autos in der Warteschlange waren.", max[8], max[3]);
+        fprintf(auswertung, "Eine Bauliche Erweiterung \033[1mwird\033[0m empfohlen, da zum %d. Simulationsschritt, %d Autos in der Warteschlange waren.", max[8], max[3]);
     }
     else if (max[3] <= 15) 
     { 
         printf("Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange waren.", max[8], max[3]); 
-        //fprintf(auswertung, "Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange waren.", max[8], max[3]);
+        fprintf(auswertung, "Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange waren.", max[8], max[3]);
     }
     
     return 0;
