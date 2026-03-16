@@ -4,7 +4,7 @@
  *  und das Testen der Funktionen zu ermöglichen.
  */
 
-
+#ifndef DEBUG
 
 // Alle include Dateien einbinden
 #include "../include/cars.h"
@@ -138,3 +138,4 @@ int main(){
 
   return 0;
 }
+#endif
