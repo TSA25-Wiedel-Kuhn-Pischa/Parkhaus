@@ -10,6 +10,7 @@ Queue* queue_init()
 {
     Queue *p_q = malloc(sizeof(Queue));
     if(p_q == NULL){                              //auf ungültige Eingabe prüfen
+        printf("Fehler bei der Initialisierung der Queue in queue.c");
         return NULL;
     }
     p_q->head = NULL;
@@ -22,11 +23,13 @@ Queue* queue_init()
 int queue_enqueue(Queue *p_q, struct car *p_new_car)
 {
     if(p_q == NULL || p_new_car == NULL){
+        printf("Falsche Werte wurden queue_enqueue() in queue.c übergeben");
         return -1;
     }
 
     Node *new_node = malloc(sizeof(Node));
     if(new_node == NULL){
+        printf("Fehler bei der Erstellung eines neuen Nodes in queue.c");
         return -1;
     }
 
@@ -51,6 +54,7 @@ int queue_enqueue(Queue *p_q, struct car *p_new_car)
 struct car* queue_dequeue(Queue *p_q)
 {
     if(p_q == NULL || p_q->head == NULL){
+        printf("Falsche Werte wurden queue_dequeue() in queue.c übergeben oder die Queue ist leer");
         return NULL;
     }
 
@@ -71,6 +75,7 @@ int queue_get_size(Queue *p_q)
 {
     if(p_q == NULL)
     {
+        printf("Falsche Werte wurden queue_get_size() in queue.c übergeben");
         return -1;
     }
 
