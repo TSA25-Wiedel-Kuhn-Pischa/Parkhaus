@@ -1,507 +1,407 @@
-Anzahl der Stellplätze: 234 
-Maximale Parkdauer: 23 
-Simulationsdauer: 125 
-Ankunftswahrscheinlichkeit neuer Fahrzeuge: 21 % 
-Der Zufalls-Seed: -838423842 
+Anzahl der Stellplätze: 50 
+Maximale Parkdauer: 200.0 
+Simulationsdauer: 100 
+Ankunftswahrscheinlichkeit neuer Fahrzeuge: 75.0 % 
+Der Zufalls-Seed: 123454321 
 
 
-Zeitpunkt        1:  fullness:        0%  free spaces:    234
-                     cars parked:      0 waiting cars:     2
-                     all cars:         2 
+Zeitpunkt        1:  fullness:       10%  free spaces:     45
+                     cars parked:      5 waiting cars:     0
+                     all cars:         5 
 
-Zeitpunkt        2:  fullness:        0%  free spaces:    233
-                     cars parked:      1 waiting cars:     3
-                     all cars:         4 
-
-Zeitpunkt        3:  fullness:        0%  free spaces:    232
-                     cars parked:      2 waiting cars:     4
-                     all cars:         6 
-
-Zeitpunkt        4:  fullness:        1%  free spaces:    231
-                     cars parked:      3 waiting cars:     4
+Zeitpunkt        2:  fullness:       14%  free spaces:     43
+                     cars parked:      7 waiting cars:     0
                      all cars:         7 
 
-Zeitpunkt        5:  fullness:        1%  free spaces:    230
-                     cars parked:      4 waiting cars:     4
-                     all cars:         8 
-
-Zeitpunkt        6:  fullness:        2%  free spaces:    229
-                     cars parked:      5 waiting cars:     4
+Zeitpunkt        3:  fullness:       18%  free spaces:     41
+                     cars parked:      9 waiting cars:     0
                      all cars:         9 
 
-Zeitpunkt        7:  fullness:        2%  free spaces:    228
-                     cars parked:      6 waiting cars:     3
-                     all cars:         9 
-
-Zeitpunkt        8:  fullness:        2%  free spaces:    227
-                     cars parked:      7 waiting cars:     4
-                     all cars:        11 
-
-Zeitpunkt        9:  fullness:        2%  free spaces:    227
-                     cars parked:      7 waiting cars:     5
-                     all cars:        12 
-
-Zeitpunkt       10:  fullness:        2%  free spaces:    227
-                     cars parked:      7 waiting cars:     5
-                     all cars:        12 
-
-Zeitpunkt       11:  fullness:        3%  free spaces:    226
-                     cars parked:      8 waiting cars:     5
+Zeitpunkt        4:  fullness:       26%  free spaces:     37
+                     cars parked:     13 waiting cars:     0
                      all cars:        13 
 
-Zeitpunkt       12:  fullness:        3%  free spaces:    225
-                     cars parked:      9 waiting cars:     4
-                     all cars:        13 
-
-Zeitpunkt       13:  fullness:        4%  free spaces:    224
-                     cars parked:     10 waiting cars:     3
-                     all cars:        13 
-
-Zeitpunkt       14:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:     4
-                     all cars:        15 
-
-Zeitpunkt       15:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:     5
-                     all cars:        16 
-
-Zeitpunkt       16:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     5
+Zeitpunkt        5:  fullness:       34%  free spaces:     33
+                     cars parked:     17 waiting cars:     0
                      all cars:        17 
 
-Zeitpunkt       17:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     8
-                     all cars:        21 
-
-Zeitpunkt       18:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     8
-                     all cars:        20 
-
-Zeitpunkt       19:  fullness:        4%  free spaces:    224
-                     cars parked:     10 waiting cars:     7
-                     all cars:        17 
-
-Zeitpunkt       20:  fullness:        3%  free spaces:    226
-                     cars parked:      8 waiting cars:     7
-                     all cars:        15 
-
-Zeitpunkt       21:  fullness:        3%  free spaces:    226
-                     cars parked:      8 waiting cars:     7
-                     all cars:        15 
-
-Zeitpunkt       22:  fullness:        3%  free spaces:    225
-                     cars parked:      9 waiting cars:     8
-                     all cars:        17 
-
-Zeitpunkt       23:  fullness:        4%  free spaces:    224
-                     cars parked:     10 waiting cars:     8
-                     all cars:        18 
-
-Zeitpunkt       24:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:     7
-                     all cars:        18 
-
-Zeitpunkt       25:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:     7
-                     all cars:        18 
-
-Zeitpunkt       26:  fullness:        4%  free spaces:    224
-                     cars parked:     10 waiting cars:     6
-                     all cars:        16 
-
-Zeitpunkt       27:  fullness:        3%  free spaces:    225
-                     cars parked:      9 waiting cars:     8
-                     all cars:        17 
-
-Zeitpunkt       28:  fullness:        4%  free spaces:    224
-                     cars parked:     10 waiting cars:     8
-                     all cars:        18 
-
-Zeitpunkt       29:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:     7
-                     all cars:        18 
-
-Zeitpunkt       30:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     6
-                     all cars:        18 
-
-Zeitpunkt       31:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:     5
-                     all cars:        16 
-
-Zeitpunkt       32:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     5
-                     all cars:        17 
-
-Zeitpunkt       33:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:     6
-                     all cars:        17 
-
-Zeitpunkt       34:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:     6
-                     all cars:        17 
-
-Zeitpunkt       35:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     6
-                     all cars:        18 
-
-Zeitpunkt       36:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:     5
-                     all cars:        16 
-
-Zeitpunkt       37:  fullness:        4%  free spaces:    224
-                     cars parked:     10 waiting cars:     5
-                     all cars:        15 
-
-Zeitpunkt       38:  fullness:        3%  free spaces:    225
-                     cars parked:      9 waiting cars:     5
-                     all cars:        14 
-
-Zeitpunkt       39:  fullness:        3%  free spaces:    226
-                     cars parked:      8 waiting cars:     5
-                     all cars:        13 
-
-Zeitpunkt       40:  fullness:        3%  free spaces:    225
-                     cars parked:      9 waiting cars:     5
-                     all cars:        14 
-
-Zeitpunkt       41:  fullness:        3%  free spaces:    225
-                     cars parked:      9 waiting cars:     5
-                     all cars:        14 
-
-Zeitpunkt       42:  fullness:        4%  free spaces:    224
-                     cars parked:     10 waiting cars:     4
-                     all cars:        14 
-
-Zeitpunkt       43:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:     4
-                     all cars:        15 
-
-Zeitpunkt       44:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     3
-                     all cars:        15 
-
-Zeitpunkt       45:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     2
-                     all cars:        15 
-
-Zeitpunkt       46:  fullness:        5%  free spaces:    220
-                     cars parked:     14 waiting cars:     3
-                     all cars:        17 
-
-Zeitpunkt       47:  fullness:        5%  free spaces:    220
-                     cars parked:     14 waiting cars:     2
-                     all cars:        16 
-
-Zeitpunkt       48:  fullness:        5%  free spaces:    220
-                     cars parked:     14 waiting cars:     1
-                     all cars:        15 
-
-Zeitpunkt       49:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     3
-                     all cars:        16 
-
-Zeitpunkt       50:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     4
-                     all cars:        16 
-
-Zeitpunkt       51:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     3
-                     all cars:        15 
-
-Zeitpunkt       52:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:     4
-                     all cars:        15 
-
-Zeitpunkt       53:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     5
-                     all cars:        17 
-
-Zeitpunkt       54:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:     5
-                     all cars:        16 
-
-Zeitpunkt       55:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     4
-                     all cars:        16 
-
-Zeitpunkt       56:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     3
-                     all cars:        16 
-
-Zeitpunkt       57:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     4
-                     all cars:        17 
-
-Zeitpunkt       58:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     4
-                     all cars:        17 
-
-Zeitpunkt       59:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     4
-                     all cars:        17 
-
-Zeitpunkt       60:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     4
-                     all cars:        17 
-
-Zeitpunkt       61:  fullness:        5%  free spaces:    220
-                     cars parked:     14 waiting cars:     3
-                     all cars:        17 
-
-Zeitpunkt       62:  fullness:        5%  free spaces:    220
-                     cars parked:     14 waiting cars:     3
-                     all cars:        17 
-
-Zeitpunkt       63:  fullness:        6%  free spaces:    219
-                     cars parked:     15 waiting cars:     3
-                     all cars:        18 
-
-Zeitpunkt       64:  fullness:        6%  free spaces:    218
-                     cars parked:     16 waiting cars:     3
+Zeitpunkt        6:  fullness:       38%  free spaces:     31
+                     cars parked:     19 waiting cars:     0
                      all cars:        19 
 
-Zeitpunkt       65:  fullness:        6%  free spaces:    218
-                     cars parked:     16 waiting cars:     2
-                     all cars:        18 
-
-Zeitpunkt       66:  fullness:        6%  free spaces:    219
-                     cars parked:     15 waiting cars:     1
-                     all cars:        16 
-
-Zeitpunkt       67:  fullness:        6%  free spaces:    219
-                     cars parked:     15 waiting cars:     2
-                     all cars:        17 
-
-Zeitpunkt       68:  fullness:        5%  free spaces:    220
-                     cars parked:     14 waiting cars:     1
-                     all cars:        15 
-
-Zeitpunkt       69:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     1
-                     all cars:        13 
-
-Zeitpunkt       70:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     2
-                     all cars:        15 
-
-Zeitpunkt       71:  fullness:        5%  free spaces:    220
-                     cars parked:     14 waiting cars:     3
-                     all cars:        17 
-
-Zeitpunkt       72:  fullness:        6%  free spaces:    219
-                     cars parked:     15 waiting cars:     3
-                     all cars:        18 
-
-Zeitpunkt       73:  fullness:        6%  free spaces:    218
-                     cars parked:     16 waiting cars:     3
-                     all cars:        19 
-
-Zeitpunkt       74:  fullness:        6%  free spaces:    219
-                     cars parked:     15 waiting cars:     3
-                     all cars:        18 
-
-Zeitpunkt       75:  fullness:        6%  free spaces:    218
-                     cars parked:     16 waiting cars:     5
-                     all cars:        21 
-
-Zeitpunkt       76:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     4
-                     all cars:        17 
-
-Zeitpunkt       77:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     4
-                     all cars:        17 
-
-Zeitpunkt       78:  fullness:        5%  free spaces:    220
-                     cars parked:     14 waiting cars:     6
-                     all cars:        20 
-
-Zeitpunkt       79:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     5
-                     all cars:        18 
-
-Zeitpunkt       80:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     6
-                     all cars:        19 
-
-Zeitpunkt       81:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     7
-                     all cars:        20 
-
-Zeitpunkt       82:  fullness:        5%  free spaces:    220
-                     cars parked:     14 waiting cars:     6
-                     all cars:        20 
-
-Zeitpunkt       83:  fullness:        6%  free spaces:    219
-                     cars parked:     15 waiting cars:     5
-                     all cars:        20 
-
-Zeitpunkt       84:  fullness:        5%  free spaces:    220
-                     cars parked:     14 waiting cars:     5
-                     all cars:        19 
-
-Zeitpunkt       85:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     6
-                     all cars:        19 
-
-Zeitpunkt       86:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     5
-                     all cars:        18 
-
-Zeitpunkt       87:  fullness:        5%  free spaces:    220
-                     cars parked:     14 waiting cars:     4
-                     all cars:        18 
-
-Zeitpunkt       88:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     3
-                     all cars:        15 
-
-Zeitpunkt       89:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     4
-                     all cars:        16 
-
-Zeitpunkt       90:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:     6
-                     all cars:        17 
-
-Zeitpunkt       91:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     6
-                     all cars:        18 
-
-Zeitpunkt       92:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     6
-                     all cars:        19 
-
-Zeitpunkt       93:  fullness:        5%  free spaces:    220
-                     cars parked:     14 waiting cars:     7
-                     all cars:        21 
-
-Zeitpunkt       94:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     7
-                     all cars:        20 
-
-Zeitpunkt       95:  fullness:        5%  free spaces:    220
-                     cars parked:     14 waiting cars:     8
+Zeitpunkt        7:  fullness:       44%  free spaces:     28
+                     cars parked:     22 waiting cars:     0
                      all cars:        22 
 
-Zeitpunkt       96:  fullness:        6%  free spaces:    219
-                     cars parked:     15 waiting cars:     8
-                     all cars:        23 
-
-Zeitpunkt       97:  fullness:        6%  free spaces:    218
-                     cars parked:     16 waiting cars:     7
-                     all cars:        23 
-
-Zeitpunkt       98:  fullness:        6%  free spaces:    218
-                     cars parked:     16 waiting cars:     6
-                     all cars:        22 
-
-Zeitpunkt       99:  fullness:        7%  free spaces:    217
-                     cars parked:     17 waiting cars:     7
+Zeitpunkt        8:  fullness:       48%  free spaces:     26
+                     cars parked:     24 waiting cars:     0
                      all cars:        24 
 
-Zeitpunkt      100:  fullness:        7%  free spaces:    217
-                     cars parked:     17 waiting cars:     7
-                     all cars:        24 
+Zeitpunkt        9:  fullness:       50%  free spaces:     25
+                     cars parked:     25 waiting cars:     0
+                     all cars:        25 
 
-Zeitpunkt      101:  fullness:        6%  free spaces:    219
-                     cars parked:     15 waiting cars:     6
-                     all cars:        21 
+Zeitpunkt       10:  fullness:       54%  free spaces:     23
+                     cars parked:     27 waiting cars:     0
+                     all cars:        27 
 
-Zeitpunkt      102:  fullness:        6%  free spaces:    219
-                     cars parked:     15 waiting cars:     8
-                     all cars:        23 
+Zeitpunkt       11:  fullness:       62%  free spaces:     19
+                     cars parked:     31 waiting cars:     0
+                     all cars:        31 
 
-Zeitpunkt      103:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:     9
-                     all cars:        20 
+Zeitpunkt       12:  fullness:       70%  free spaces:     15
+                     cars parked:     35 waiting cars:     0
+                     all cars:        35 
 
-Zeitpunkt      104:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:    11
-                     all cars:        22 
+Zeitpunkt       13:  fullness:       78%  free spaces:     11
+                     cars parked:     39 waiting cars:     0
+                     all cars:        39 
 
-Zeitpunkt      105:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:    10
-                     all cars:        21 
+Zeitpunkt       14:  fullness:       88%  free spaces:      6
+                     cars parked:     44 waiting cars:     0
+                     all cars:        44 
 
-Zeitpunkt      106:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:    10
-                     all cars:        21 
+Zeitpunkt       15:  fullness:       94%  free spaces:      3
+                     cars parked:     47 waiting cars:     0
+                     all cars:        47 
 
-Zeitpunkt      107:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:    11
-                     all cars:        22 
+Zeitpunkt       16:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:     1
+                     all cars:        51 
 
-Zeitpunkt      108:  fullness:        4%  free spaces:    224
-                     cars parked:     10 waiting cars:    10
-                     all cars:        20 
+Zeitpunkt       17:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:     5
+                     all cars:        55 
 
-Zeitpunkt      109:  fullness:        4%  free spaces:    224
-                     cars parked:     10 waiting cars:    10
-                     all cars:        20 
+Zeitpunkt       18:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:     8
+                     all cars:        58 
 
-Zeitpunkt      110:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:    10
-                     all cars:        21 
+Zeitpunkt       19:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    12
+                     all cars:        62 
 
-Zeitpunkt      111:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:    10
-                     all cars:        22 
+Zeitpunkt       20:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    16
+                     all cars:        66 
 
-Zeitpunkt      112:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     9
-                     all cars:        21 
+Zeitpunkt       21:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    19
+                     all cars:        69 
 
-Zeitpunkt      113:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:     8
-                     all cars:        19 
+Zeitpunkt       22:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    20
+                     all cars:        70 
 
-Zeitpunkt      114:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:     7
-                     all cars:        18 
+Zeitpunkt       23:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    24
+                     all cars:        74 
 
-Zeitpunkt      115:  fullness:        4%  free spaces:    224
-                     cars parked:     10 waiting cars:     7
-                     all cars:        17 
+Zeitpunkt       24:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    28
+                     all cars:        78 
 
-Zeitpunkt      116:  fullness:        3%  free spaces:    225
-                     cars parked:      9 waiting cars:     7
-                     all cars:        16 
+Zeitpunkt       25:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    32
+                     all cars:        82 
 
-Zeitpunkt      117:  fullness:        3%  free spaces:    225
-                     cars parked:      9 waiting cars:     6
-                     all cars:        15 
+Zeitpunkt       26:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    36
+                     all cars:        86 
 
-Zeitpunkt      118:  fullness:        4%  free spaces:    224
-                     cars parked:     10 waiting cars:     5
-                     all cars:        15 
+Zeitpunkt       27:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    40
+                     all cars:        90 
 
-Zeitpunkt      119:  fullness:        4%  free spaces:    224
-                     cars parked:     10 waiting cars:     5
-                     all cars:        15 
+Zeitpunkt       28:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    43
+                     all cars:        93 
 
-Zeitpunkt      120:  fullness:        4%  free spaces:    223
-                     cars parked:     11 waiting cars:     5
-                     all cars:        16 
+Zeitpunkt       29:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    48
+                     all cars:        98 
 
-Zeitpunkt      121:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     4
-                     all cars:        16 
+Zeitpunkt       30:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    53
+                     all cars:       103 
 
-Zeitpunkt      122:  fullness:        5%  free spaces:    221
-                     cars parked:     13 waiting cars:     4
-                     all cars:        17 
+Zeitpunkt       31:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    58
+                     all cars:       108 
 
-Zeitpunkt      123:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     5
-                     all cars:        17 
+Zeitpunkt       32:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    61
+                     all cars:       111 
 
-Zeitpunkt      124:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     4
-                     all cars:        16 
+Zeitpunkt       33:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    65
+                     all cars:       115 
 
-Zeitpunkt      125:  fullness:        5%  free spaces:    222
-                     cars parked:     12 waiting cars:     4
-                     all cars:        16 
+Zeitpunkt       34:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    66
+                     all cars:       116 
+
+Zeitpunkt       35:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    71
+                     all cars:       121 
+
+Zeitpunkt       36:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    72
+                     all cars:       122 
+
+Zeitpunkt       37:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    75
+                     all cars:       125 
+
+Zeitpunkt       38:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    79
+                     all cars:       129 
+
+Zeitpunkt       39:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    83
+                     all cars:       133 
+
+Zeitpunkt       40:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    87
+                     all cars:       137 
+
+Zeitpunkt       41:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    90
+                     all cars:       140 
+
+Zeitpunkt       42:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    93
+                     all cars:       143 
+
+Zeitpunkt       43:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    95
+                     all cars:       145 
+
+Zeitpunkt       44:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    97
+                     all cars:       147 
+
+Zeitpunkt       45:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:    99
+                     all cars:       149 
+
+Zeitpunkt       46:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   104
+                     all cars:       154 
+
+Zeitpunkt       47:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   109
+                     all cars:       159 
+
+Zeitpunkt       48:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   113
+                     all cars:       163 
+
+Zeitpunkt       49:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   117
+                     all cars:       167 
+
+Zeitpunkt       50:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   121
+                     all cars:       171 
+
+Zeitpunkt       51:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   125
+                     all cars:       175 
+
+Zeitpunkt       52:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   126
+                     all cars:       176 
+
+Zeitpunkt       53:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   129
+                     all cars:       179 
+
+Zeitpunkt       54:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   134
+                     all cars:       184 
+
+Zeitpunkt       55:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   138
+                     all cars:       188 
+
+Zeitpunkt       56:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   138
+                     all cars:       188 
+
+Zeitpunkt       57:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   142
+                     all cars:       192 
+
+Zeitpunkt       58:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   144
+                     all cars:       194 
+
+Zeitpunkt       59:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   148
+                     all cars:       198 
+
+Zeitpunkt       60:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   148
+                     all cars:       198 
+
+Zeitpunkt       61:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   153
+                     all cars:       203 
+
+Zeitpunkt       62:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   158
+                     all cars:       208 
+
+Zeitpunkt       63:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   162
+                     all cars:       212 
+
+Zeitpunkt       64:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   166
+                     all cars:       216 
+
+Zeitpunkt       65:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   170
+                     all cars:       220 
+
+Zeitpunkt       66:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   173
+                     all cars:       223 
+
+Zeitpunkt       67:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   177
+                     all cars:       227 
+
+Zeitpunkt       68:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   182
+                     all cars:       232 
+
+Zeitpunkt       69:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   184
+                     all cars:       234 
+
+Zeitpunkt       70:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   186
+                     all cars:       236 
+
+Zeitpunkt       71:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   189
+                     all cars:       239 
+
+Zeitpunkt       72:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   193
+                     all cars:       243 
+
+Zeitpunkt       73:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   196
+                     all cars:       246 
+
+Zeitpunkt       74:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   200
+                     all cars:       250 
+
+Zeitpunkt       75:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   202
+                     all cars:       252 
+
+Zeitpunkt       76:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   206
+                     all cars:       256 
+
+Zeitpunkt       77:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   211
+                     all cars:       261 
+
+Zeitpunkt       78:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   214
+                     all cars:       264 
+
+Zeitpunkt       79:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   216
+                     all cars:       266 
+
+Zeitpunkt       80:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   220
+                     all cars:       270 
+
+Zeitpunkt       81:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   223
+                     all cars:       273 
+
+Zeitpunkt       82:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   227
+                     all cars:       277 
+
+Zeitpunkt       83:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   230
+                     all cars:       280 
+
+Zeitpunkt       84:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   233
+                     all cars:       283 
+
+Zeitpunkt       85:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   237
+                     all cars:       287 
+
+Zeitpunkt       86:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   241
+                     all cars:       291 
+
+Zeitpunkt       87:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   246
+                     all cars:       296 
+
+Zeitpunkt       88:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   250
+                     all cars:       300 
+
+Zeitpunkt       89:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   251
+                     all cars:       301 
+
+Zeitpunkt       90:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   255
+                     all cars:       305 
+
+Zeitpunkt       91:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   260
+                     all cars:       310 
+
+Zeitpunkt       92:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   263
+                     all cars:       313 
+
+Zeitpunkt       93:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   265
+                     all cars:       315 
+
+Zeitpunkt       94:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   270
+                     all cars:       320 
+
+Zeitpunkt       95:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   271
+                     all cars:       321 
+
+Zeitpunkt       96:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   274
+                     all cars:       324 
+
+Zeitpunkt       97:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   279
+                     all cars:       329 
+
+Zeitpunkt       98:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   284
+                     all cars:       334 
+
+Zeitpunkt       99:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   287
+                     all cars:       337 
+
+Zeitpunkt      100:  fullness:      100%  free spaces:      0
+                     cars parked:     50 waiting cars:   291
+                     all cars:       341 
 

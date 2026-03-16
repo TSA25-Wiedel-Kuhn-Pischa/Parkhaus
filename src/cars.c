@@ -292,13 +292,13 @@ int create_car(int max_parking_duration, int time_stemp, struct car* p_c, Queue*
     }
     p_c->parking_duration = temp_parking_duration;
     
-    if((queue_get_size(p_queue1) == 0) && ((check_for_free_space(parking_garage, spaces) == 1)))                  //prüft ob es eine Warteschlange und freie Plätze gibt
+    if((queue_get_size(p_queue1) == 0) && ((check_for_free_space(parking_garage, spaces) > 0)))                  //prüft ob es eine Warteschlange und freie Plätze gibt
     {
-        park_car(p_c, parking_garage, spaces, time_stemp);                      //übergibt das Auto ans Parkhaus
+        park_car(p_c, parking_garage, spaces, time_stemp);                              //übergibt das Auto ans Parkhaus
     }
     else
     {
-        queue_enqueue(p_queue1, p_c);                                                 //Auto wird in Warteschlange / Queue eingereiht
+        queue_enqueue(p_queue1, p_c);                                                   //Auto wird in Warteschlange / Queue eingereiht
     }
 
     return 0;    
