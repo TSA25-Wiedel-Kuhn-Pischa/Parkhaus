@@ -27,7 +27,7 @@ typedef struct car{
 } car;
 
 
-int create_car(int max_parking_duration, int time_stemp, struct car* p_c, Queue* p_queue1);
+int create_car(int max_parking_duration, int time_stemp, struct car* p_c, Queue* p_queue1, struct car **parking_garage, int spaces);
 /**
     * @brief setzt die Werte eines Car-Structs
     *        und parkt das Auto oder setzt es in die Warteschlange
