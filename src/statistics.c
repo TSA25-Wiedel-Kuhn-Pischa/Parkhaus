@@ -470,9 +470,9 @@ int bar_chart_creation(int info[], FILE* auswertung)
         {                              //Setzten der Linie für die X-Achse
             printf("   ");
             fprintf(auswertung, "   ");
-            for(int column = 0; column < 22; column++)
+            for(int column = 0; column < 26; column++)
             {
-                if (column != 21) 
+                if (column != 25) 
                 {
                     printf("%s", spaces[2]);                         
                     fprintf(auswertung, "%s", spaces[2]);
@@ -488,7 +488,7 @@ int bar_chart_creation(int info[], FILE* auswertung)
         else if (line == 0)                               // Setzten der Nummerierungen für die X-Achse
         {
             f = 10;
-            for(int column = 0; column < 22; column++)
+            for(int column = 0; column < 26; column++)
             {
                 if ((column % 4 != 0 && column % 2 != 0) || column == 0) 
                 {             
@@ -525,7 +525,7 @@ int bar_chart_legend(int steps_x, int size_ary, FILE* auswertung)
     fprintf(auswertung, "\n\nSkalierung zur X-Achse:\n");
 
     // Erstellen von einer Legende nur für die X-Achse im Diagramm, da die Werte von dem Säuelendiagramm mit den Zeitpunkten übereinstimmen 
-    for (int i = 0; i < 10; i= i + 2) 
+    for (int i = 0; i < 12; i= i + 2) 
     {
         printf("\033[1m%2d\033[0m = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);             
         fprintf(auswertung, "%2d = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);
@@ -569,21 +569,21 @@ int bar_chart(int data[], int size_ary, FILE* auswertung)
         }
     }
 
-    int steps_x = round(max_x / 10.f);                          // Berechnung der einzelnen Schrittweite der X-Achse
+    float steps_x = round(max_x / 10.f);                          // Berechnung der einzelnen Schrittweite der X-Achse
 
     for (int i = 0; i < 10; i++)
     { 
         info[i] = round((float)info[i] / steps_x);              // Anpassen der Daten an die Skala
         if (i == 9)
         {
-            info[i] = max_x;
+            info[i] = round((float)max_x / steps_x);
         }
     }
 
     //Ausgabe des Balkendiagramms
     bar_chart_creation(info, auswertung);
     //Ausgabe der Legende zum Balkendiagramm
-    bar_chart_legend(steps_x, size_ary, auswertung);
+    bar_chart_legend((int)steps_x, size_ary, auswertung);
 
     return 0;
 }
@@ -601,12 +601,12 @@ int out_maxval(int data[], int size_ary, FILE* auswertung)
 
     for (int g = 0; g < 5; g++) 
     {                             
-        for(int i = g; i <= size_ary; i = i + 5)                 // Sortieren von jedem einzelnem Wert nach dem größten
+        for(int i = g; i <= size_ary*5; i = i + 5)                 // Sortieren von jedem einzelnem Wert nach dem größten
         {
             if (max[g] < data[i])
             {
-                max[g] = data[i];                               // Zuweisung des Wertes
-                max[g+5] = ((i - g) / 5) +1;                         // Zuweisung des Simulationsschrittes
+                max[g] = data[i];                                // Zuweisung des Wertes
+                max[g+5] = ((i - g) / 5) + 1;                         // Zuweisung des Simulationsschrittes
             }
         }                                    
     }
@@ -627,7 +627,7 @@ int out_maxval(int data[], int size_ary, FILE* auswertung)
         printf("Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange standen.", max[8], max[3]); 
         fprintf(auswertung, "Eine Bauliche Erweiterung wird nicht empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange standen.", max[8], max[3]);
     }
-    else if (max[3] <= 15 && max[3] != 0) 
+    else if (max[3] == 0) 
     { 
         printf("Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da nie Autos in der Warteschlange standen."); 
         fprintf(auswertung, "Eine Bauliche Erweiterung wird nicht empfohlen, da nie Autos in der Warteschlange standen.");
