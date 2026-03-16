@@ -5,7 +5,7 @@
 
 
 #ifdef DEBUG
- printf("Debug-Modus aktiv\n");
+ 
 
 // Vorgefertigte Datein includieren
 #include <assert.h>
@@ -23,6 +23,8 @@
 
 
 int main(void) {
+    printf("Debug-Modus aktiv\n");
+
 // Tests für cars.c:
     assert(test_cars() == 0);
 
@@ -30,10 +32,10 @@ int main(void) {
     assert(test_queue() == 0);
 
 // Tests für parking_garage.c:
-    int parking spaces = 100;
+    int parking_spaces = 100;
     assert(test_parking_garage(parking_spaces) == 0);
 
-// Tests für simulate.c:
+// Tests für statistics.c:
     assert(test_statistics() == 0);
 
  printf("Alle Tests wurden erfolgreich bestanden.\n");
