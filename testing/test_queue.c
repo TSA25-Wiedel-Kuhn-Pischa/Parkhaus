@@ -1,4 +1,10 @@
-#ifdef DEBUG
+/*
+ *  File: test_queue.c
+ *  Description: In test_queue.c werden die Funktionen der src-Datei queue.c getestet.
+ */
+
+
+ #ifdef DEBUG
  printf("Debug-Modus aktiv\n");
 
 #ifndef ASSERT_H
