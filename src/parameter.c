@@ -21,6 +21,7 @@ void input_parameter(int *spaces, float *max_parking, int *size, float *chance_o
             {
                 printf("Ungültige Eingabe, bitte Wiederholen.\n"); 
                 i--;                                               // Es wird erneut nach dem Wert gefragt
+                while(getchar() != '\n');
             }
         } 
         if (i == 1)                                       // Frage nach max_parking 
