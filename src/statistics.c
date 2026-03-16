@@ -67,21 +67,20 @@ int output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
 
     // Ausgabe in der Konsole 
     printf("Zeitpunkt %8d:  ", i);                                     // Verwendung von festen Formatierungen, damit die Zeichen sich nicht verschieben
-    printf("fullness: %8d%% ", fullness(occupied, all_spaces));
-    printf("free spaces: %6d\n", free_spaces);
-    printf("%21ccars parked: %6d ", empty, occupied);                        // durch empty, wird einen Lücke am Anfang geschaffen
-    printf("waiting cars: %5d\n", cars_in_line);
-    printf("%21call cars: %9d \n\n", empty, all_cars);
+    printf("Sättigung: %8d%% ", fullness(occupied, all_spaces));
+    printf("Freie Parkplätze: %6d\n", free_spaces);
+    printf("%21cbesetzte Parkplätze: %6d ", empty, occupied);                        // durch empty, wird einen Lücke am Anfang geschaffen
+    printf("Autos in der Warteschlange: %5d\n", cars_in_line);
+    printf("%21cAnzahl aller Autos: %9d \n\n", empty, all_cars);
 
     // Ausgabe in einem externen Document Daten.txt
     fprintf(daten, "Zeitpunkt %8d:  ", i);                                   
-    fprintf(daten, "fullness: %8d%% ", fullness(occupied, all_spaces));
-    fprintf(daten, "free spaces: %6d\n", free_spaces);
-    fprintf(daten, "%21ccars parked: %6d ", empty, occupied);                      
-    fprintf(daten, "waiting cars: %5d\n", cars_in_line);
-    fprintf(daten, "%21call cars: %9d \n\n", empty, all_cars);
-    i++;                                                                // Erhöhung des Simulationsschrittes
-
+    fprintf(daten, "Sättigung: %8d%% ", fullness(occupied, all_spaces));
+    fprintf(daten, "Freie Parkplätze: %6d\n", free_spaces);
+    fprintf(daten, "%21cbesetzte Parkplätze: %6d ", empty, occupied);                      
+    fprintf(daten, "Autos in der Warteschlange: %5d\n", cars_in_line);
+    fprintf(daten, "%21cAnzahl aller Autos: %9d \n\n", empty, all_cars);
+    i++;                                                                // Erhöhung des Simulationsschrittes  
     return 0;
 }
 
@@ -119,7 +118,7 @@ int save_data(int *save_data, int size, int free_spaces, int all_spaces, int car
     }
 
     return 0;
-}
+} 
 
 //***********************************************************************************************************************************
 //Hilfsfunktionen für tabel()
@@ -215,25 +214,23 @@ int tabel(int data[], int size_ary, FILE* auswertung)
 
     for (int g = 0; g < 5; g++)
     {                             
-        for (int i = g + steps_x; i<= size_ary; i= i + steps_x)             // Auslesen der Einzelnen Werte nach der Reinfolge der Speicherung
-        {      
+        for (int i = g + (steps_x*5) - 5; i<= ((size_ary*5)); i= i + (steps_x*5))                   // Auslesen der Einzelnen Werte nach der Reinfolge der Speicherung
+        {                                                                                           // Die Werte werden mit dem Verhältnis von 5 ausgelesen, da es fünf Speichergrößen gibt. Zu Beginn wird -5 gerechnet, da man für den Speicherplatz im Array bei 0 und nicht 1 anfängt.  
             static int f = 0;
             info[f] = data[i];                                              // Speichern des Wertes an der jeweiligen Stelle
-            f = f + 1;
             if ((f-10*g) == 9) 
             {
-                info[f] = data[size_ary];
+                info[f] = data[g + size_ary*5 - 5];
             }
+            f++;
         }                                 
     }
 
-    for (int i = (4 + steps_x); i <= size_ary; i = i+ steps_x)
-    {          
-        static int f = 51;                                  // Beginnt eins Später, da es zum Simulationsbeginn keine Änderungsrate gibt.
+    for (int i = 41; i< 50; i++)                        // Beginnt eins Später, da es zum Simulationsbeginn keine Änderungsrate gibt.
+    {                                        
         static int zwischenspeicher = 0;   
-        rate(data[i], data[i-steps_x], &zwischenspeicher);                                              
-        info[f] = zwischenspeicher;
-        f = f + 1;
+        rate(info[i], info[i-1], &zwischenspeicher);                                              
+        info[i+10] = zwischenspeicher;
     }
 
     tabel_creation(info, auswertung);                       // Erstellen der Tabelle
@@ -599,7 +596,7 @@ int out_maxval(int data[], int size_ary, FILE* auswertung)
         printf("Ein falscher Pointer wurde übergeben");
         return -1;
     }
-    int max[] = {data[0], data[1], data[2], data[3], data[4], 0, 0, 0, 0, 0};
+    int max[] = {data[0], data[1], data[2], data[3], data[4], 1, 1, 1, 1, 1};
     char* typ[] = {"Sättigung", "Anzahl der freien Parkplätze", "Anzahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"};
 
     for (int g = 0; g < 5; g++) 
@@ -608,16 +605,16 @@ int out_maxval(int data[], int size_ary, FILE* auswertung)
         {
             if (max[g] < data[i])
             {
-                max[g] = data[i]; 
-                max[g+5] = (i - g) / 5;
+                max[g] = data[i];                               // Zuweisung des Wertes
+                max[g+5] = ((i - g) / 5) +1;                         // Zuweisung des Simulationsschrittes
             }
         }                                    
     }
 
     for (int g = 0; g < 5; g++)
     {
-        printf("- Die \033[1m%s\033[0m war mit dem Wert \033[1m%d\033[0m beim \033[1m%d.\033[0m Simulationsschritt am groeßten. \n\n", typ[g], max[g], max[g+5]); // Ausgabe des jeweils größten Wertes
-        fprintf(auswertung, "- Die %s war mit dem Wert %d beim %d. Simulationsschritt am groeßten. \n\n", typ[g], max[g], max[g+5]);                
+        printf("- Die \033[1m%s\033[0m war mit dem Wert \033[1m%d\033[0m beim \033[1m%d.\033[0m Simulationsschritt am größten. \n\n", typ[g], max[g], max[g+5]); // Ausgabe des jeweils größten Wertes
+        fprintf(auswertung, "- Die %s war mit dem Wert %d beim %d. Simulationsschritt am größten. \n\n", typ[g], max[g], max[g+5]);                
     }
 
     if (max[3] > 15) 
