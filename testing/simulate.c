@@ -136,15 +136,14 @@ int main(){
 
 //Ab hier der C-Code: 
 int main(){
-  /**
-  FILE *daten = fopen("../src/Daten.txt", "w")
-  FILE *auswertung = fopen("../src/Auswertung.txt", "w") */
+  FILE *daten = fopen("../src/Daten.txt", "w");
+  FILE *auswertung = fopen("../src/Auswertung.txt", "w");
   if(daten == NULL || auswertung == NULL)
   {
     printf("Fehler beim Öffnen mindestens einer Datei.");
     return 1;
   }
-  /**
+  
   //Initialisieren von Simulationsparametern
   int spaces = 0;
   float max_parking = 0;
@@ -160,8 +159,13 @@ int main(){
   head_document(spaces, max_parking, steps, chance_of_new_cars, seed, auswertung);
 
   //Datenarray für Simulationswerte initialisieren
-  int data[(size*5)] = {0};
+  int data[steps * 5];
+  for (int i = 0; i <= (steps * 5); i++)
+  {
+    data[i] = 0;
+  }
 
+  /*
   //Random Seed für Simulation setzen
   srand(seed);
   */
@@ -180,7 +184,7 @@ int main(){
   }
 
   //Simulationsdurchlauf
-  for(i = 0; i < steps; i++)
+  for(int i = 0; i < steps; i++)
   {
     manage_parking_garage(parking_garage, spaces, i);                      //Überprüfen der Parkzeiten + ggf. Ausparken
 
@@ -226,16 +230,13 @@ int main(){
       return 1;
     }
 
-    /**
+    
     output_data(check_for_free_space(parking_garage), spaces, CARS_IN_LINE, daten);
     save_data(data, steps, check_for_free_space(parking_garage), spaces, CARS_IN_LINE);
-    */
-
-
   }
 
 
-  /**
+  
   //Ausgabe der Endstatistiken
   tabel(data, steps, auswertung);
   column_chart(data, steps, auswertung);
@@ -249,7 +250,7 @@ int main(){
     printf("Fehler beim Schließen von mindestens einer Datei.");
     return 1;
   }
-  */
+  
   free(p_queue1);                   // Speicher der Warteschlange freigeben
 
   free(parking_garage);             // Speicher des Parkhauses freigeben und Pointer auf NULL setzen
