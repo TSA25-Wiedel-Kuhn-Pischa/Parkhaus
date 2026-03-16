@@ -16,11 +16,11 @@
 
 //Ab hier der C-Code: 
 int main(){
-  FILE *daten = fopen("../src/Daten.txt", "w");
-  FILE *auswertung = fopen("../src/Auswertung.txt", "w");
+  FILE *daten = fopen("src/Daten.txt", "w");
+  FILE *auswertung = fopen("src/Auswertung.txt", "w");
   if(daten == NULL || auswertung == NULL)
   {
-    printf("Fehler beim Öffnen mindestens einer Datei.");
+    printf("Fehler beim Oeffnen mindestens einer Datei.");
     return 1;
   }
   

@@ -69,7 +69,7 @@ int output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
     printf("Zeitpunkt %8d:  ", i);                                     // Verwendung von festen Formatierungen, damit die Zeichen sich nicht verschieben
     printf("fullness: %8d%%  ", fullness(occupied, all_spaces));
     printf("free spaces: %6d\n", free_spaces);
-    printf("%21ccars parked: %6d", empty, occupied);                        // durch empty, wird einen Lücke am Anfang geschaffen
+    printf("%21ccars parked: %6d ", empty, occupied);                        // durch empty, wird einen Lücke am Anfang geschaffen
     printf("waiting cars: %5d\n", cars_in_line);
     printf("%21call cars: %9d \n\n", empty, all_cars);
 
@@ -77,7 +77,7 @@ int output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
     fprintf(daten, "Zeitpunkt %8d:  ", i);                                   
     fprintf(daten, "fullness: %8d%%  ", fullness(occupied, all_spaces));
     fprintf(daten, "free spaces: %6d\n", free_spaces);
-    fprintf(daten, "%21ccars parked: %6d", empty, occupied);                      
+    fprintf(daten, "%21ccars parked: %6d ", empty, occupied);                      
     fprintf(daten, "waiting cars: %5d\n", cars_in_line);
     fprintf(daten, "%21call cars: %9d \n\n", empty, all_cars);
     i++;                                                                // Erhöhung des Simulationsschrittes
@@ -172,7 +172,7 @@ int tabel_legend(int steps_x, int size_ary, FILE* auswertung)
         printf("Falsche Werte wurden übergeben");
         return -1;
     }
-    char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos", "die Änderungsrate"};
+    char* typ[] = {"Saetigung", "Anzahl der freien Parkplaetze", "Anzahl der besetzten Parkplaetze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos", "die Änderungsrate"};
 
     printf("\nLegende zur Tabelle: \n\n");
     fprintf(auswertung, "\nLegende zur Tabelle: \n\n");
@@ -493,7 +493,7 @@ int bar_chart_creation(int info[], FILE* auswertung)
             f = 10;
             for(int column = 0; column < 22; column++)
             {
-                if (column % 4 != 0 && column % 2 != 0 || column == 0) 
+                if ((column % 4 != 0 && column % 2 != 0) || column == 0) 
                 {             
                     printf("%s", spaces[0]);                                
                     fprintf(auswertung, "%s", spaces[0]);
@@ -600,7 +600,7 @@ int out_maxval(int data[], int size_ary, FILE* auswertung)
         return -1;
     }
     int max[] = {data[0], data[1], data[2], data[3], data[4], 0, 0, 0, 0, 0};
-    char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anazahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"};
+    char* typ[] = {"Saettigung", "Anzahl der freien Parkplaetze", "Anzahl der besetzten Parkplaetze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"};
 
     for (int g = 0; g < 5; g++) 
     {                             
@@ -616,8 +616,8 @@ int out_maxval(int data[], int size_ary, FILE* auswertung)
 
     for (int g = 0; g < 5; g++)
     {
-        printf("- Die \033[1m%s\033[0m war mit dem Wert \033[1m%d\033[0m beim \033[1m%d.\033[0m Simulationsschritt am größten. \n\n", typ[g], max[g], max[g+5]); // Ausgabe des jeweils größten Wertes
-        fprintf(auswertung, "- Die \033[1m%s\033[0m war mit dem Wert \033[1m%d\033[0m beim \033[1m%d.\033[0m Simulationsschritt am größten. \n\n", typ[g], max[g], max[g+5]);                
+        printf("- Die \033[1m%s\033[0m war mit dem Wert \033[1m%d\033[0m beim \033[1m%d.\033[0m Simulationsschritt am groeßten. \n\n", typ[g], max[g], max[g+5]); // Ausgabe des jeweils größten Wertes
+        fprintf(auswertung, "- Die \033[1m%s\033[0m war mit dem Wert \033[1m%d\033[0m beim \033[1m%d.\033[0m Simulationsschritt am groeßten. \n\n", typ[g], max[g], max[g+5]);                
     }
 
     if (max[3] > 15) 
