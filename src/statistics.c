@@ -42,6 +42,7 @@ int head_document(int spaces, float max_parking, int size, float chance_of_new_c
     fprintf(document, "Maximale Parkdauer: %0.2f \n", max_parking);
     fprintf(document, "Simulationsdauer: %d \n", size);
     fprintf(document, "Ankunftswahrscheinlichkeit neuer Fahrzeuge: %0.2f %% \n", chance_of_new_cras);
+
     fprintf(document, "Der Zufalls-Seed: %d \n\n\n", seed);
 
     return 0;
