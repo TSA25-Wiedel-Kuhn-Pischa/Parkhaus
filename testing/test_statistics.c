@@ -13,7 +13,7 @@ int test_statistics()
     if (document == NULL)                                    // Überprüft das der Pointer nicht NULL ist, dann wäre er nämlich nicht zugelassen
     {
         printf("error");
-        return 1;
+        return -1;
     }
 
     // definieren von einem NULL Pointer zum überprüfen der Funktionen
@@ -184,6 +184,7 @@ int test_statistics()
     if (success_test == -1)                                  // Überprüfen, ob die Datei geschlossen wurde 
     {
         printf("error");
-        return 1;
+        return -1;
     }
+    return 0;
 }

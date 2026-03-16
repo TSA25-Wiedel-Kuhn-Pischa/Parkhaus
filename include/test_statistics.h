@@ -13,7 +13,7 @@
 *    Es werden alle Funktionen in statistics.c auf Richtigkeit und Abbruchsicherheit getestet 
 *
 *
-*    @return Es wird 0 zurückgegeben, wenn es ohne Fehler durchläuft
+*    @return Es wird 0 zurückgegeben, wenn es ohne Fehler durchläuft, sonst bei einer Falschen Pointer delkaration -1.
 */
 int test_statistics();
 
