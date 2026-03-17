@@ -180,13 +180,13 @@ int tabel_legend(int steps_x, int size_ary, FILE* auswertung)
     { 
         if (i < 10)                                                                     // Ausgabe der Legende zur Obersten Zeile
         {
-            printf("\033[1m%2d\033[0m. = %7d. Simulationsschritt\n", i, steps_x*(i));
-            fprintf(auswertung, "%2d. = %7d. Simulationsschritt\n", i, steps_x*(i));
+            printf("\033[1m%2d\033[0m. =%8d. Simulationsschritt\n", i, steps_x*(i));
+            fprintf(auswertung, "%2d. =%8d. Simulationsschritt\n", i, steps_x*(i));
         }
         else if (i == 10) 
         {
-            printf("\033[1m%d\033[0m. = %7d. Simulationsschritt\n\n", i, size_ary);
-            fprintf(auswertung, "%d. = %7d. Simulationsschritt\n\nSkalierung der Zeilen: \n", i, size_ary);
+            printf("\033[1m%d\033[0m. =%8d. Simulationsschritt\n\n", i, size_ary);
+            fprintf(auswertung, "%d. =%8d. Simulationsschritt\n\nSkalierung der Zeilen: \n", i, size_ary);
         }
         else if (i > 10)                                                                // Ausgabe der Legende für die einzelenen Zeilen Zeitschritte
         {

@@ -16,3 +16,9 @@ die Ergebnisse der Simulation beeinflussen.
 Während der Simulation, sowie zum Schluss werden die Daten ausgegeben. 
 
 Zum Schluss wird eine Tabelle, ein Säulen- und Balkendiagramm, sowie die Maximalwerte der Simulation ausgegeben.
+
+IMPORTANT INFORMATION 
+
+Damit die Datein in Codespaces kompilieren, muss am Ende des Kompilierungs Befehles -lm stehen.
+
+Damit die Formatierung erhalten bleibt, verwenden Sie bitte keine Eingabewerte mit mehr als 8 Stellen.
