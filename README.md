@@ -19,6 +19,6 @@ Zum Schluss wird eine Tabelle, ein Säulen- und Balkendiagramm, sowie die Maxima
 
 IMPORTANT INFORMATION 
 
-Damit die Datein in Codespaces kompilieren, muss am Ende des Kompilierungs Befehles -lm stehen.
+Damit die Datein in Codespaces kompilieren, muss am Ende des Kompilierbefehls -lm stehen.
 
 Damit die Formatierung erhalten bleibt, verwenden Sie bitte keine Eingabewerte mit mehr als 8 Stellen.
