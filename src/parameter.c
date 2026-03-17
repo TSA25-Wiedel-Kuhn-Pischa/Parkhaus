@@ -43,7 +43,7 @@ void input_parameter(int *spaces, float *max_parking, int *size, float *chance_o
         if (i == 3)                                                // Frage nach chance_of_new_cars 
         {
             printf("Bitte geben Sie die %s an: ", name[i]); 
-            if (scanf("%f", parameter_float[i]) != 1 || *parameter_float[i] < 0 || *parameter_float[i] >= (float)100)
+            if (scanf("%f", parameter_float[i]) != 1 || *parameter_float[i] < 0 || *parameter_float[i] > (float)100)
             {
                 printf("\nUngültige Eingabe, bitte Wiederholen. \n\n");
                 i--;

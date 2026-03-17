@@ -265,7 +265,7 @@ int column_chart_creation(int info[], FILE* auswertung)
                 if(column == 1 && line == 11) 
                 {  
                     printf(" %s", spaces[3]);        // Setztes der Pfeilspitze für die Y-Achse
-                    fprintf(auswertung, "%s", spaces[3]);
+                    fprintf(auswertung, " %s", spaces[3]);
                 }
                 else if (column == 1)                  // Setzten der Pfeillinie für die Y-Achse
                 {
