@@ -39,9 +39,10 @@ int head_document(int spaces, float max_parking, int size, float chance_of_new_c
         return -1;
     }
     fprintf(document, "Anzahl der Stellplätze: %d \n", spaces);            //Datein müssen in Main mit dem Modus "w" geöffnet werden
-    fprintf(document, "Maximale Parkdauer: %.1f \n", max_parking);
+    fprintf(document, "Maximale Parkdauer: %0.2f \n", max_parking);
     fprintf(document, "Simulationsdauer: %d \n", size);
-    fprintf(document, "Ankunftswahrscheinlichkeit neuer Fahrzeuge: %.1f %% \n", chance_of_new_cras);
+    fprintf(document, "Ankunftswahrscheinlichkeit neuer Fahrzeuge: %0.2f %% \n", chance_of_new_cras);
+
     fprintf(document, "Der Zufalls-Seed: %d \n\n\n", seed);
 
     return 0;
@@ -67,21 +68,20 @@ int output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
 
     // Ausgabe in der Konsole 
     printf("Zeitpunkt %8d:  ", i);                                     // Verwendung von festen Formatierungen, damit die Zeichen sich nicht verschieben
-    printf("fullness: %8d%%  ", fullness(occupied, all_spaces));
-    printf("free spaces: %6d\n", free_spaces);
-    printf("%21ccars parked: %6d ", empty, occupied);                        // durch empty, wird einen Lücke am Anfang geschaffen
-    printf("waiting cars: %5d\n", cars_in_line);
-    printf("%21call cars: %9d \n\n", empty, all_cars);
+    printf("Sättigung: %18d%% ", fullness(occupied, all_spaces));
+    printf("Freie Parkplätze: %14d\n", free_spaces);
+    printf("%21cbesetzte Parkplätze: %8d  ", empty, occupied);                        // durch empty, wird einen Lücke am Anfang geschaffen
+    printf("Autos in der Warteschlange: %4d\n", cars_in_line);
+    printf("%21cAnzahl aller Autos: %9d \n\n", empty, all_cars);
 
     // Ausgabe in einem externen Document Daten.txt
     fprintf(daten, "Zeitpunkt %8d:  ", i);                                   
-    fprintf(daten, "fullness: %8d%%  ", fullness(occupied, all_spaces));
-    fprintf(daten, "free spaces: %6d\n", free_spaces);
-    fprintf(daten, "%21ccars parked: %6d ", empty, occupied);                      
-    fprintf(daten, "waiting cars: %5d\n", cars_in_line);
-    fprintf(daten, "%21call cars: %9d \n\n", empty, all_cars);
-    i++;                                                                // Erhöhung des Simulationsschrittes
-
+    fprintf(daten, "Sättigung: %18d%% ", fullness(occupied, all_spaces));
+    fprintf(daten, "Freie Parkplätze: %14d\n", free_spaces);
+    fprintf(daten, "%21cbesetzte Parkplätze: %8d  ", empty, occupied);                      
+    fprintf(daten, "Autos in der Warteschlange: %4d\n", cars_in_line);
+    fprintf(daten, "%21cAnzahl aller Autos: %9d \n\n", empty, all_cars);
+    i++;                                                                // Erhöhung des Simulationsschrittes  
     return 0;
 }
 
@@ -119,7 +119,7 @@ int save_data(int *save_data, int size, int free_spaces, int all_spaces, int car
     }
 
     return 0;
-}
+} 
 
 //***********************************************************************************************************************************
 //Hilfsfunktionen für tabel()
@@ -137,7 +137,7 @@ int tabel_creation(int info[], FILE* auswertung)
     for (int i = 1; i < 11; i++)                            // Ausgabe der Obersten Zeile einer Tabelle (der Zeitschritte)
     {                                                      
         printf("\033[1m%8d\033[0m | ", i);                  // gibt Fettgedruckte Zahlen aus, damit die Skalierung besser unterschieden werden kann
-        fprintf(auswertung,"\033[1m%8d\033[0m | ", i);  
+        fprintf(auswertung,"%8d | ", i);  
     }
 
     printf("\n-------------------------------------------------------------------------------------------------------------------\n"); 
@@ -146,7 +146,7 @@ int tabel_creation(int info[], FILE* auswertung)
     for (int i = 0; i < 6; i++)
     {   
         printf("\033[1m%d\033[0m | ", i+11);
-        fprintf(auswertung, "\033[1m%d\033[0m | ", i+11);                                                 
+        fprintf(auswertung, "%d | ", i+11);                                                 
         for (int g = 0; g < 10; g++)                                                 // Ausgabe der Einzelnen Werte
         {
             printf("%8d | ", info[g + 10*i]);
@@ -172,26 +172,26 @@ int tabel_legend(int steps_x, int size_ary, FILE* auswertung)
         printf("Falsche Werte wurden übergeben");
         return -1;
     }
-    char* typ[] = {"Saetigung", "Anzahl der freien Parkplaetze", "Anzahl der besetzten Parkplaetze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos", "die Änderungsrate"};
+    char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anzahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos", "die Änderungsrate der Anzahl der Fahrtzeuge zu der Spalte davor"};
 
     printf("\nLegende zur Tabelle: \n\n");
-    fprintf(auswertung, "\nLegende zur Tabelle: \n\n");
+    fprintf(auswertung, "\nLegende zur Tabelle: \n\nSkalierung der Spalten:\n");
     for(int i = 1; i < 17; i++)                                                       
     { 
         if (i < 10)                                                                     // Ausgabe der Legende zur Obersten Zeile
         {
-            printf("\033[1m%2d\033[0m. = %7d. Simulationsschritt\n", i, steps_x*(i-1));
-            fprintf(auswertung, "\033[1m%2d\033[0m. = %7d. Simulationsschritt\n", i, steps_x*(i-1));
+            printf("\033[1m%2d\033[0m. = %7d. Simulationsschritt\n", i, steps_x*(i));
+            fprintf(auswertung, "%2d. = %7d. Simulationsschritt\n", i, steps_x*(i));
         }
         else if (i == 10) 
         {
             printf("\033[1m%d\033[0m. = %7d. Simulationsschritt\n\n", i, size_ary);
-            fprintf(auswertung, "\033[1m%d\033[0m. = %7d. Simulationsschritt\n\n", i, size_ary);
+            fprintf(auswertung, "%d. = %7d. Simulationsschritt\n\nSkalierung der Zeilen: \n", i, size_ary);
         }
         else if (i > 10)                                                                // Ausgabe der Legende für die einzelenen Zeilen Zeitschritte
         {
-            printf("\033[1m%d\033[0m. = Simulationsschritt %s \n", i, typ[i-11]);
-            fprintf(auswertung, "\033[1m%d\033[0m. = Simulationsschritt %s \n", i, typ[i-11]);
+            printf("\033[1m%d\033[0m. =  %s \n", i, typ[i-11]);
+            fprintf(auswertung, "%d. =  %s \n", i, typ[i-11]);
         }
     }
     printf("\n\n");
@@ -215,25 +215,23 @@ int tabel(int data[], int size_ary, FILE* auswertung)
 
     for (int g = 0; g < 5; g++)
     {                             
-        for (int i = g; i<= size_ary; i= i + steps_x)                       // Auslesen der Einzelnen Werte nach der Reinfolge der Speicherung
-        {      
+        for (int i = g + (steps_x*5) - 5; i<= ((size_ary*5)); i= i + (steps_x*5))                   // Auslesen der Einzelnen Werte nach der Reinfolge der Speicherung
+        {                                                                                           // Die Werte werden mit dem Verhältnis von 5 ausgelesen, da es fünf Speichergrößen gibt. Zu Beginn wird -5 gerechnet, da man für den Speicherplatz im Array bei 0 und nicht 1 anfängt.  
             static int f = 0;
             info[f] = data[i];                                              // Speichern des Wertes an der jeweiligen Stelle
-            f = f + 1;
             if ((f-10*g) == 9) 
             {
-                info[f] = data[size_ary];
+                info[f] = data[g + size_ary*5 - 5];
             }
+            f++;
         }                                 
     }
 
-    for (int i = (4 + steps_x); i <= size_ary; i = i+ steps_x)
-    {          
-        static int f = 51;                                  // Beginnt eins Später, da es zum Simulationsbeginn keine Änderungsrate gibt.
+    for (int i = 41; i< 50; i++)                        // Beginnt eins Später, da es zum Simulationsbeginn keine Änderungsrate gibt.
+    {                                        
         static int zwischenspeicher = 0;   
-        rate(data[i], data[i-steps_x], &zwischenspeicher);                                              
-        info[f] = zwischenspeicher;
-        f = f + 1;
+        rate(info[i], info[i-1], &zwischenspeicher);                                              
+        info[i+10] = zwischenspeicher;
     }
 
     tabel_creation(info, auswertung);                       // Erstellen der Tabelle
@@ -368,7 +366,7 @@ int column_chart_legend(int steps_x, int size_ary, FILE* auswertung)
         return -1;
     }
     // Erstellen von einer Legende für die Säulen im Diagramm 
-    printf("\n\n"); 
+    printf("\n\nZuweisung der Simulationsschritte:\n"); 
     fprintf(auswertung, "\n\n");
 
     for (int i = 1; i < 11; i++)
@@ -376,12 +374,12 @@ int column_chart_legend(int steps_x, int size_ary, FILE* auswertung)
         if (i < 10) 
         { 
             printf("\033[1m%2d\033[0m = %7d. Simulationsschritt\n", i, steps_x*i);              
-            fprintf(auswertung, "\033[1m%2d\033[0m = %7d. Simulationsschritt\n", i, steps_x*i);
+            fprintf(auswertung, "%2d = %7d. Simulationsschritt\n", i, steps_x*i);
         }
         else
         {
             printf("\033[1m%d\033[0m = %7d. Simulationsschritt\n", i, size_ary);              
-            fprintf(auswertung, "\033[1m%d\033[0m = %7d. Simulationsschritt\n", i, size_ary);
+            fprintf(auswertung, "%d = %7d. Simulationsschritt\n", i, size_ary);
         }
     }
     printf("\n\n");
@@ -404,14 +402,14 @@ int column_chart(int data[], int size_ary, FILE* auswertung)
 
     int info[10] = {0};
                           
-    for(int i = steps_x; i <= size_ary;i = i + steps_x)
+    for(int i = steps_x*5 - 5; i <= size_ary*5;i = i + steps_x*5)       // Auslesen mit dem fünfachen, da es fünf Speicherwerte gibt und bei der Initialisierung -5, da bei einem Array ab 0 hochgezählt wird.
     {
         static int f = 0;
         info[f] = round(data[i] / 10.f);                     // Auslesen der Füllmenge und so umformen, das es zur Skalierung passt
         f++;
         if (f == 9)
         {
-            info[f] = round(data[size_ary] / 10.f);
+            info[f] = round(data[size_ary*5] / 10.f);
         }
     }
 
@@ -436,7 +434,7 @@ int bar_chart_creation(int info[], FILE* auswertung)
     }
     char* spaces[] = {" ", "   ^", "-", ">", "|", "="};   // Verwendete Zeichen zur Erstellung des Balkendiagrams  
 
-    int f = 0;
+    int f = 1;
     for (int line = 22; line > -1; line--)                                      // durchgehen der Zeilen 
     {
 
@@ -458,8 +456,8 @@ int bar_chart_creation(int info[], FILE* auswertung)
         else if (line > 1 && line % 2 == 1)                   // Zeile in der die Balken gesetzt werden
         {
             printf("\033[1m%2d\033[0m %s", f, spaces[4]);  
-            fprintf(auswertung, "\033[1m%2d\033[0m %s", f, spaces[4]);    
-            for (int i = 0; i < (info[f]*2); i++)                       // Bestimmung der Länge der Balken
+            fprintf(auswertung, "%2d %s", f, spaces[4]);    
+            for (int i = 0; i < (info[f-1]*2); i++)                       // Bestimmung der Länge der Balken
             {
                 printf("%s", spaces[5]); 
                 fprintf(auswertung, "%s", spaces[5]);
@@ -473,9 +471,9 @@ int bar_chart_creation(int info[], FILE* auswertung)
         {                              //Setzten der Linie für die X-Achse
             printf("   ");
             fprintf(auswertung, "   ");
-            for(int column = 0; column < 22; column++)
+            for(int column = 0; column < 26; column++)
             {
-                if (column != 21) 
+                if (column != 25) 
                 {
                     printf("%s", spaces[2]);                         
                     fprintf(auswertung, "%s", spaces[2]);
@@ -491,7 +489,7 @@ int bar_chart_creation(int info[], FILE* auswertung)
         else if (line == 0)                               // Setzten der Nummerierungen für die X-Achse
         {
             f = 10;
-            for(int column = 0; column < 22; column++)
+            for(int column = 0; column < 26; column++)
             {
                 if ((column % 4 != 0 && column % 2 != 0) || column == 0) 
                 {             
@@ -501,7 +499,7 @@ int bar_chart_creation(int info[], FILE* auswertung)
                 else if (column % 4 == 0 && column != 0) 
                 {
                     printf("\033[1m%2d\033[0m", f);
-                    fprintf(auswertung, "\033[1m%2d\033[0m", f);                     
+                    fprintf(auswertung, "%2d", f);                     
                     f = f + 2;
                 }
             }
@@ -528,10 +526,10 @@ int bar_chart_legend(int steps_x, int size_ary, FILE* auswertung)
     fprintf(auswertung, "\n\nSkalierung zur X-Achse:\n");
 
     // Erstellen von einer Legende nur für die X-Achse im Diagramm, da die Werte von dem Säuelendiagramm mit den Zeitpunkten übereinstimmen 
-    for (int i = 0; i < 10; i= i + 2) 
+    for (int i = 0; i < 12; i= i + 2) 
     {
         printf("\033[1m%2d\033[0m = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);             
-        fprintf(auswertung, "\033[1m%2d\033[0m = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);
+        fprintf(auswertung, "%2d = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);
     }
     printf("\n\n");
     fprintf(auswertung, "\n\n");
@@ -552,14 +550,14 @@ int bar_chart(int data[], int size_ary, FILE* auswertung)
     int steps_y = round(size_ary / 10.f);                        // Bereuchnung der Skala von der Y-Achse
     int info[10] = {0};
                     
-    for(int i = 3; i <= size_ary; i = i + steps_y)              // Auslesen der Werte mit der Schritweite steps_y und speichern in info[]
+    for(int i = 3 + steps_y*5 - 5; i <= size_ary*5; i = i + steps_y*5)              // Auslesen der Werte mit der Schritweite steps_y*5, da es fünf Speichergrößengibt und speichern in info[]
     {
         static int f = 0;
         info[f] = data[i]; 
         f++;
         if (f == 9) 
         {
-            info[f] = data[size_ary];
+            info[f] = data[size_ary*5];
         }
     }
 
@@ -572,21 +570,21 @@ int bar_chart(int data[], int size_ary, FILE* auswertung)
         }
     }
 
-    int steps_x = round(max_x / 10.f);                          // Berechnung der einzelnen Schrittweite der X-Achse
+    float steps_x = round(max_x / 10.f);                          // Berechnung der einzelnen Schrittweite der X-Achse
 
     for (int i = 0; i < 10; i++)
     { 
         info[i] = round((float)info[i] / steps_x);              // Anpassen der Daten an die Skala
         if (i == 9)
         {
-            info[i] = max_x;
+            info[i] = round((float)max_x / steps_x);
         }
     }
 
     //Ausgabe des Balkendiagramms
     bar_chart_creation(info, auswertung);
     //Ausgabe der Legende zum Balkendiagramm
-    bar_chart_legend(steps_x, size_ary, auswertung);
+    bar_chart_legend((int)steps_x, size_ary, auswertung);
 
     return 0;
 }
@@ -599,36 +597,41 @@ int out_maxval(int data[], int size_ary, FILE* auswertung)
         printf("Ein falscher Pointer wurde übergeben");
         return -1;
     }
-    int max[] = {data[0], data[1], data[2], data[3], data[4], 0, 0, 0, 0, 0};
-    char* typ[] = {"Saettigung", "Anzahl der freien Parkplaetze", "Anzahl der besetzten Parkplaetze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"};
+    int max[] = {data[0], data[1], data[2], data[3], data[4], 1, 1, 1, 1, 1};
+    char* typ[] = {"Sättigung", "Anzahl der freien Parkplätze", "Anzahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos"};
 
     for (int g = 0; g < 5; g++) 
     {                             
-        for(int i = g; i <= size_ary; i = i + 5)                 // Sortieren von jedem einzelnem Wert nach dem größten
+        for(int i = g; i <= size_ary*5; i = i + 5)                 // Sortieren von jedem einzelnem Wert nach dem größten
         {
             if (max[g] < data[i])
             {
-                max[g] = data[i]; 
-                max[g+5] = (i - g) / 5;
+                max[g] = data[i];                                // Zuweisung des Wertes
+                max[g+5] = ((i - g) / 5) + 1;                         // Zuweisung des Simulationsschrittes
             }
         }                                    
     }
 
     for (int g = 0; g < 5; g++)
     {
-        printf("- Die \033[1m%s\033[0m war mit dem Wert \033[1m%d\033[0m beim \033[1m%d.\033[0m Simulationsschritt am groeßten. \n\n", typ[g], max[g], max[g+5]); // Ausgabe des jeweils größten Wertes
-        fprintf(auswertung, "- Die \033[1m%s\033[0m war mit dem Wert \033[1m%d\033[0m beim \033[1m%d.\033[0m Simulationsschritt am groeßten. \n\n", typ[g], max[g], max[g+5]);                
+        printf("- Die \033[1m%s\033[0m war mit dem Wert \033[1m%d\033[0m beim \033[1m%d.\033[0m Simulationsschritt am größten. \n\n", typ[g], max[g], max[g+5]); // Ausgabe des jeweils größten Wertes
+        fprintf(auswertung, "- Die %s war mit dem Wert %d beim %d. Simulationsschritt am größten. \n\n", typ[g], max[g], max[g+5]);                
     }
 
     if (max[3] > 15) 
     { 
-        printf("Eine Bauliche Erweiterung \033[1mwird\033[0m empfohlen, da zum %d. Simulationsschritt, %d Autos in der Warteschlange waren.", max[8], max[3]); 
-        fprintf(auswertung, "Eine Bauliche Erweiterung \033[1mwird\033[0m empfohlen, da zum %d. Simulationsschritt, %d Autos in der Warteschlange waren.", max[8], max[3]);
+        printf("Eine Bauliche Erweiterung \033[1mwird\033[0m empfohlen, da zum %d. Simulationsschritt, %d Autos in der Warteschlange standen.", max[8], max[3]); 
+        fprintf(auswertung, "Eine Bauliche Erweiterung wird empfohlen, da zum %d. Simulationsschritt, %d Autos in der Warteschlange standen.", max[8], max[3]);
     }
-    else if (max[3] <= 15) 
+    else if (max[3] <= 15 && max[3] != 0) 
     { 
-        printf("Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange waren.", max[8], max[3]); 
-        fprintf(auswertung, "Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange waren.", max[8], max[3]);
+        printf("Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange standen.", max[8], max[3]); 
+        fprintf(auswertung, "Eine Bauliche Erweiterung wird nicht empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange standen.", max[8], max[3]);
+    }
+    else if (max[3] == 0) 
+    { 
+        printf("Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da nie Autos in der Warteschlange standen."); 
+        fprintf(auswertung, "Eine Bauliche Erweiterung wird nicht empfohlen, da nie Autos in der Warteschlange standen.");
     }
     
     return 0;
