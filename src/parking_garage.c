@@ -14,7 +14,9 @@ car **create_garage(int parking_spaces){
 
   //Überprüfung, ob die Reservierung erfolgreich war
   if(ptr_parking_garage == NULL){
+    #ifndef DEBUG
     printf("Fehler beim Reservieren von Speicherplatz für das Parkhaus\n");
+    #endif
     return NULL;
   }
   
@@ -29,8 +31,9 @@ int get_free_space(car **parking_garage, int parking_spaces){
       return i;
     }
   }
-
-  printf("Fehler bei dem Aufruf von 'get_free_space'");
+  #ifndef DEBUG
+  printf("Fehler bei dem Aufruf von 'get_free_space'\n");
+  #endif
   return -1;  //Fehler
 }
 
@@ -38,7 +41,9 @@ int park_car(car *car, struct car **parking_garage, int parking_spaces, int time
 
   int index = get_free_space(parking_garage, parking_spaces);
   if(index < 0){
-    printf("Fehler beim Aufruf von 'park_car'");
+    #ifndef DEBUG
+    printf("Fehler beim Aufruf von 'park_car'\n");
+    #endif
     return -1;    //Fehler
   }
 
@@ -64,7 +69,9 @@ int check_parking_time(car *car, int time_step){
   }
 
   if((time_step - car->arrival_time) > car->parking_duration){
+    #ifndef DEBUG
     printf("Fehler: Parkdauer von Auto mit ID %d wurde überschritten\n", car->car_id);
+    #endif
     return -1;  //Fehler
   }
 

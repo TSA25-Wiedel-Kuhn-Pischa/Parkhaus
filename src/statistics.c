@@ -172,7 +172,7 @@ int tabel_legend(int steps_x, int size_ary, FILE* auswertung)
         printf("Falsche Werte wurden übergeben");
         return -1;
     }
-    char* typ[] = {"Sätigung", "Anzahl der freien Parkplätze", "Anzahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos", "die Änderungsrate der Anzahl der Fahrtzeuge zu der Spalte davor"};
+    char* typ[] = {"Sättigung", "Anzahl der freien Parkplätze", "Anzahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos", "die Änderungsrate der Anzahl der Fahrtzeuge zu der Spalte davor"};
 
     printf("\nLegende zur Tabelle: \n\n");
     fprintf(auswertung, "\nLegende zur Tabelle: \n\nSkalierung der Spalten:\n");
