@@ -21,6 +21,7 @@ IMPORTANT INFORMATION
 
 Damit die Datein in Codespaces kompilieren, muss am Ende des Kompilierbefehls -lm stehen.
 Damit die Formatierung erhalten bleibt, verwenden Sie bitte keine Eingabewerte mit mehr als 8 Stellen.
+Die Endstatistik wird aufgrund von Formatierungsgründen erst ab 10 Simulationsschritten ausgegeben.
 
 # Befehle:
 - Simulation
