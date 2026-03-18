@@ -9,18 +9,21 @@
 #include "../include/test_queue.h"
 #include "../include/test_cars.h"
 
+#include <assert.h>
+
 int test_cars()
 {
  // Tests für cars.c:
 
     //Tests für create_car()
+    int parking_spaces = 15;
     struct car test_car_one;
     Queue *test_queue = queue_init();
     assert(test_queue != NULL);                                 //Queue überprüfen
     assert(queue_get_size(test_queue) == 0);                    //Größe der Queue überprüfen
-    car **test_parking_garage = create_garage(10);
+    car **test_parking_garage = create_garage(parking_spaces);
     assert(test_parking_garage != NULL);                        //Parkgarage überprüfen
-    assert(create_car(120, 0, &test_car_one, test_queue, test_parking_garage, 13) == 0);
+    assert(create_car(120, 0, &test_car_one, test_queue, test_parking_garage, parking_spaces) == 0);
     assert(test_car_one.car_id > 0);                            //car_id überprüfen
     assert(test_car_one.parking_duration > 0);                  //Parkdauer überprüfen
     assert(test_car_one.ps > 0);                                //PS überprüfen
@@ -28,7 +31,7 @@ int test_cars()
     assert(test_car_one.modelname[0] != '\0');                  //Modellname überprüfen
     
     struct car test_car_two;
-    assert(create_car(80, 3, &test_car_two, test_queue, test_parking_garage, 14) == 0);
+    assert(create_car(80, 3, &test_car_two, test_queue, test_parking_garage, parking_spaces) == 0);
     assert(test_car_two.car_id > 0);                            //car_id überprüfen
     assert(test_car_two.parking_duration > 0);                  //Parkdauer überprüfen
     assert(test_car_two.ps > 0);                                //PS überprüfen
@@ -57,6 +60,9 @@ int test_cars()
     assert(randomize_parking_duration(120) > 0);
     assert(randomize_parking_duration(0) == -1);
     assert(randomize_parking_duration(-5) == -1);
+
+    free(test_parking_garage);
+    free(test_queue);
 
     return 0; //Tests bestanden
 }

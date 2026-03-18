@@ -51,8 +51,10 @@ int park_car(car *car, struct car **parking_garage, int parking_spaces, int time
 void remove_car(car *car, struct car **parking_garage, int index){
 
   parking_garage[index] = NULL;   //entferne den Pointer aus dem Array
-  free(car);  //Free den Speicherplatz, auf den der Pointer zeigt
-  car = NULL;   //setze den Pointer auf den Speicherplatz auf NULL
+  if (car != NULL) {
+    free(car);  //Free den Speicherplatz, auf den der Pointer zeigt
+    car = NULL;  //Setze den Pointer auf NULL, um Dangling Pointer zu vermeiden
+  }
 }
 
 int check_parking_time(car *car, int time_step){

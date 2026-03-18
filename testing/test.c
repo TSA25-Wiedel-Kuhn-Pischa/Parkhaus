@@ -18,6 +18,7 @@
 #include "../include/statistics.h"
 
 #include "../include/test_cars.h"
+#include "../include/test_parking_garage.h"
 #include "../include/test_queue.h"
 #include "../include/test_statistics.h"
 
