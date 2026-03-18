@@ -13,6 +13,8 @@
 #include "../include/queue.h"
 #include "../include/statistics.h"
 
+#include <stdlib.h>
+
 
 //Ab hier der C-Code: 
 int main(){
@@ -39,8 +41,12 @@ int main(){
   head_document(spaces, max_parking, steps, chance_of_new_cars, seed, auswertung);
 
   //Datenarray für Simulationswerte initialisieren
-  int data[steps * 5];
-  for (int i = 0; i <= (steps * 5); i++)
+  int *data = malloc(steps * 5 * sizeof(int));
+  if (data == NULL) {
+    printf("Fehler bei der Speicherallokation für data.\n");
+    return 1;
+  }
+  for (int i = 0; i < (steps * 5); i++)
   {
     data[i] = 0;
   }
@@ -141,6 +147,8 @@ int main(){
 
   free(parking_garage);             // Speicher des Parkhauses freigeben und Pointer auf NULL setzen
   parking_garage = NULL;
+
+  free(data);                       // Speicher für data freigeben
 
   return 0;
 }
