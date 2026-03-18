@@ -35,9 +35,7 @@ void input_parameter(int *spaces, float *max_parking, int *size, float *chance_o
             }
             if (*max_parking > *size)
             {
-                printf("\nUngültige Eingabe, die Simulationsdauer darf nicht kleiner als die Parkdauer sein. \nBitte Wiederholen.\n\n"); 
-                i--;                                               // Es wird erneut nach dem Wert gefragt
-                while(getchar() != '\n');                          // Die vorherig eingelesenen Werte werden gelöscht  
+                printf("\nAchtung ihre Simulationsdauer ist kleiner als ihre Parkdauer. \nIhre Autos verlassen nie das Parkhaus.\nBitte beachten Sie das für die Simulationsergebnisse.\n\n"); 
             }
         } 
         if (i == 3)                                                // Frage nach chance_of_new_cars 

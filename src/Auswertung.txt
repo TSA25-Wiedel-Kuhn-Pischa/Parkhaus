@@ -1,0 +1,115 @@
+Anzahl der Stellplätze: 32 
+Maximale Parkdauer: 300.00 
+Simulationsdauer: 30 
+Ankunftswahrscheinlichkeit neuer Fahrzeuge: 100.00 % 
+Der Zufalls-Seed: 21321 
+
+
+   |        1 |        2 |        3 |        4 |        5 |        6 |        7 |        8 |        9 |       10 | 
+-------------------------------------------------------------------------------------------------------------------
+11 |       46 |       87 |      100 |      100 |      100 |      100 |      100 |      100 |      100 |      100 | 
+-------------------------------------------------------------------------------------------------------------------
+12 |       17 |        4 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 | 
+-------------------------------------------------------------------------------------------------------------------
+13 |       15 |       28 |       32 |       32 |       32 |       32 |       32 |       32 |       32 |       32 | 
+-------------------------------------------------------------------------------------------------------------------
+14 |        0 |        0 |       11 |       25 |       39 |       54 |       68 |       83 |       98 |      113 | 
+-------------------------------------------------------------------------------------------------------------------
+15 |       15 |       28 |       43 |       57 |       71 |       86 |      100 |      115 |      130 |      145 | 
+-------------------------------------------------------------------------------------------------------------------
+16 |        0 |       13 |       15 |       14 |       14 |       15 |       14 |       15 |       15 |       15 | 
+-------------------------------------------------------------------------------------------------------------------
+
+Legende zur Tabelle: 
+
+Skalierung der Spalten:
+ 1. =       3. Simulationsschritt
+ 2. =       6. Simulationsschritt
+ 3. =       9. Simulationsschritt
+ 4. =      12. Simulationsschritt
+ 5. =      15. Simulationsschritt
+ 6. =      18. Simulationsschritt
+ 7. =      21. Simulationsschritt
+ 8. =      24. Simulationsschritt
+ 9. =      27. Simulationsschritt
+10. =      30. Simulationsschritt
+
+Skalierung der Zeilen: 
+11. =  Sätigung 
+12. =  Anzahl der freien Parkplätze 
+13. =  Anzahl der besetzten Parkplätze 
+14. =  Anzahl der Autos in der Warteschlange 
+15. =  Anzahl aller Autos 
+16. =  die Änderungsrate der Anzahl der Fahrtzeuge zu der Spalte davor 
+
+
+    ^                _     _     _     _     _     _     _     _    
+100 |          _    | |   | |   | |   | |   | |   | |   | |   | |   
+ 90 |         | |   | |   | |   | |   | |   | |   | |   | |   | |   
+ 80 |         | |   | |   | |   | |   | |   | |   | |   | |   | |   
+ 70 |         | |   | |   | |   | |   | |   | |   | |   | |   | |   
+ 60 |    _    | |   | |   | |   | |   | |   | |   | |   | |   | |   
+ 50 |   | |   | |   | |   | |   | |   | |   | |   | |   | |   | |   
+ 40 |   | |   | |   | |   | |   | |   | |   | |   | |   | |   | |   
+ 30 |   | |   | |   | |   | |   | |   | |   | |   | |   | |   | |   
+ 20 |   | |   | |   | |   | |   | |   | |   | |   | |   | |   | |   
+ 10 |   | |   | |   | |   | |   | |   | |   | |   | |   | |   | |   
+    ------------------------------------------------------------>
+         1     2     3     4     5     6     7     8     9    10   
+
+ 1 =       3. Simulationsschritt
+ 2 =       6. Simulationsschritt
+ 3 =       9. Simulationsschritt
+ 4 =      12. Simulationsschritt
+ 5 =      15. Simulationsschritt
+ 6 =      18. Simulationsschritt
+ 7 =      21. Simulationsschritt
+ 8 =      24. Simulationsschritt
+ 9 =      27. Simulationsschritt
+10 =      30. Simulationsschritt
+
+
+   ^
+   |
+ 1 |
+   |
+ 2 |
+   |
+ 3 |==
+   |
+ 4 |====
+   |
+ 5 |========
+   |
+ 6 |==========
+   |
+ 7 |============
+   |
+ 8 |================
+   |
+ 9 |==================
+   |
+10 |====================
+   |
+   ------------------------->   10  12  14  16  18  20 
+
+Skalierung zur X-Achse:
+10 =    0 Autos in der Warteschlange 
+12 =   22 Autos in der Warteschlange 
+14 =   44 Autos in der Warteschlange 
+16 =   66 Autos in der Warteschlange 
+18 =   88 Autos in der Warteschlange 
+20 =  110 Autos in der Warteschlange 
+
+
+- Die Sättigung war mit dem Wert 100 beim 7. Simulationsschritt am größten. 
+
+- Die Anzahl der freien Parkplätze war mit dem Wert 27 beim 1. Simulationsschritt am größten. 
+
+- Die Anzahl der besetzten Parkplätze war mit dem Wert 32 beim 7. Simulationsschritt am größten. 
+
+- Die Anzahl der Autos in der Warteschlange war mit dem Wert 113 beim 30. Simulationsschritt am größten. 
+
+- Die Anzahl aller Autos war mit dem Wert 145 beim 30. Simulationsschritt am größten. 
+
+Eine Bauliche Erweiterung wird empfohlen, da zum 30. Simulationsschritt, 113 Autos in der Warteschlange standen.

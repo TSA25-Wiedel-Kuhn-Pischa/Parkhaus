@@ -1,0 +1,127 @@
+Anzahl der Stellplätze: 32 
+Maximale Parkdauer: 300.00 
+Simulationsdauer: 30 
+Ankunftswahrscheinlichkeit neuer Fahrzeuge: 100.00 % 
+Der Zufalls-Seed: 21321 
+
+
+Zeitpunkt        1:  Sättigung:                 15% Freie Parkplätze:             27
+                     besetzte Parkplätze:        5  Autos in der Warteschlange:    0
+                     Anzahl aller Autos:         5 
+
+Zeitpunkt        2:  Sättigung:                 31% Freie Parkplätze:             22
+                     besetzte Parkplätze:       10  Autos in der Warteschlange:    0
+                     Anzahl aller Autos:        10 
+
+Zeitpunkt        3:  Sättigung:                 46% Freie Parkplätze:             17
+                     besetzte Parkplätze:       15  Autos in der Warteschlange:    0
+                     Anzahl aller Autos:        15 
+
+Zeitpunkt        4:  Sättigung:                 59% Freie Parkplätze:             13
+                     besetzte Parkplätze:       19  Autos in der Warteschlange:    0
+                     Anzahl aller Autos:        19 
+
+Zeitpunkt        5:  Sättigung:                 75% Freie Parkplätze:              8
+                     besetzte Parkplätze:       24  Autos in der Warteschlange:    0
+                     Anzahl aller Autos:        24 
+
+Zeitpunkt        6:  Sättigung:                 87% Freie Parkplätze:              4
+                     besetzte Parkplätze:       28  Autos in der Warteschlange:    0
+                     Anzahl aller Autos:        28 
+
+Zeitpunkt        7:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:    1
+                     Anzahl aller Autos:        33 
+
+Zeitpunkt        8:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:    6
+                     Anzahl aller Autos:        38 
+
+Zeitpunkt        9:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   11
+                     Anzahl aller Autos:        43 
+
+Zeitpunkt       10:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   16
+                     Anzahl aller Autos:        48 
+
+Zeitpunkt       11:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   21
+                     Anzahl aller Autos:        53 
+
+Zeitpunkt       12:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   25
+                     Anzahl aller Autos:        57 
+
+Zeitpunkt       13:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   30
+                     Anzahl aller Autos:        62 
+
+Zeitpunkt       14:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   34
+                     Anzahl aller Autos:        66 
+
+Zeitpunkt       15:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   39
+                     Anzahl aller Autos:        71 
+
+Zeitpunkt       16:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   44
+                     Anzahl aller Autos:        76 
+
+Zeitpunkt       17:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   49
+                     Anzahl aller Autos:        81 
+
+Zeitpunkt       18:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   54
+                     Anzahl aller Autos:        86 
+
+Zeitpunkt       19:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   58
+                     Anzahl aller Autos:        90 
+
+Zeitpunkt       20:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   63
+                     Anzahl aller Autos:        95 
+
+Zeitpunkt       21:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   68
+                     Anzahl aller Autos:       100 
+
+Zeitpunkt       22:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   73
+                     Anzahl aller Autos:       105 
+
+Zeitpunkt       23:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   78
+                     Anzahl aller Autos:       110 
+
+Zeitpunkt       24:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   83
+                     Anzahl aller Autos:       115 
+
+Zeitpunkt       25:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   88
+                     Anzahl aller Autos:       120 
+
+Zeitpunkt       26:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   93
+                     Anzahl aller Autos:       125 
+
+Zeitpunkt       27:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:   98
+                     Anzahl aller Autos:       130 
+
+Zeitpunkt       28:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:  103
+                     Anzahl aller Autos:       135 
+
+Zeitpunkt       29:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:  108
+                     Anzahl aller Autos:       140 
+
+Zeitpunkt       30:  Sättigung:                100% Freie Parkplätze:              0
+                     besetzte Parkplätze:       32  Autos in der Warteschlange:  113
+                     Anzahl aller Autos:       145 
+
