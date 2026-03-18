@@ -12,7 +12,9 @@ int fullness(int occupied, int all_spaces)
 {
     if (occupied > all_spaces || all_spaces <= 0 || occupied <0)
     {
+        #ifndef DEBUG
         printf("Die Falschen Werte wurden übertragen");
+        #endif
         return -1;
     }
 
@@ -23,7 +25,9 @@ int rate(int count_now, int count_before, int *zwischenspeicher)
 {
     if (count_before < 0 || count_now < 0)
     {
+        #ifndef DEBUG
         printf("Die Falschen Werte wurden übertragen");
+        #endif
         return -1;
     }
     *zwischenspeicher = count_now - count_before;
@@ -35,15 +39,18 @@ int head_document(int spaces, float max_parking, int size, float chance_of_new_c
     // Überprüfung davon, ob der richtige Pointer übergeben wurde
     if (document == NULL)
     {
+        #ifndef DEBUG
         printf("Ein falscher Pointer wurde übergeben");
+        #endif
         return -1;
     }
+    #ifndef DEBUG
     fprintf(document, "Anzahl der Stellplätze: %d \n", spaces);            //Datein müssen in Main mit dem Modus "w" geöffnet werden
     fprintf(document, "Maximale Parkdauer: %0.2f \n", max_parking);
     fprintf(document, "Simulationsdauer: %d \n", size);
     fprintf(document, "Ankunftswahrscheinlichkeit neuer Fahrzeuge: %0.2f %% \n", chance_of_new_cras);
-
     fprintf(document, "Der Zufalls-Seed: %d \n\n\n", seed);
+    #endif
 
     return 0;
 }
@@ -53,12 +60,16 @@ int output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
     // Überprüfung davon, ob der richtige Pointer übergeben wurde und ob die richtigen Werte übergeben wurden
     if (daten == NULL)
     {
+        #ifndef DEBUG
         printf("Ein falscher Pointer wurde übergeben");
+        #endif
         return -1;
     }
     else if (all_spaces < free_spaces || cars_in_line < 0 || free_spaces < 0)
     {
+        #ifndef DEBUG
         printf("Falsche Werte wurden übergeben");
+        #endif
         return -1;
     }
     static int i = 1;
@@ -67,20 +78,24 @@ int output_data(int free_spaces, int all_spaces, int cars_in_line, FILE* daten)
     char empty = ' ';
 
     // Ausgabe in der Konsole 
+    #ifndef DEBUG
     printf("Zeitpunkt %8d:  ", i);                                     // Verwendung von festen Formatierungen, damit die Zeichen sich nicht verschieben
     printf("Sättigung: %18d%% ", fullness(occupied, all_spaces));
     printf("Freie Parkplätze: %14d\n", free_spaces);
     printf("%21cbesetzte Parkplätze: %8d  ", empty, occupied);                        // durch empty, wird einen Lücke am Anfang geschaffen
     printf("Autos in der Warteschlange: %4d\n", cars_in_line);
     printf("%21cAnzahl aller Autos: %9d \n\n", empty, all_cars);
+    #endif
 
     // Ausgabe in einem externen Document Daten.txt
+    #ifndef DEBUG
     fprintf(daten, "Zeitpunkt %8d:  ", i);                                   
     fprintf(daten, "Sättigung: %18d%% ", fullness(occupied, all_spaces));
     fprintf(daten, "Freie Parkplätze: %14d\n", free_spaces);
     fprintf(daten, "%21cbesetzte Parkplätze: %8d  ", empty, occupied);                      
     fprintf(daten, "Autos in der Warteschlange: %4d\n", cars_in_line);
     fprintf(daten, "%21cAnzahl aller Autos: %9d \n\n", empty, all_cars);
+    #endif
     i++;                                                                // Erhöhung des Simulationsschrittes  
     return 0;
 }
@@ -90,7 +105,9 @@ int save_data(int *save_data, int size, int free_spaces, int all_spaces, int car
     // Überprüfung davon, ob die richtigen Werte übergeben wurde
     if (all_spaces < free_spaces || cars_in_line < 0 || free_spaces < 0)
     {
+        #ifndef DEBUG
         printf("Falsche Werte wurden übergeben");
+        #endif
         return -1;
     }
     int occupied = all_spaces - free_spaces;                                // Berechnung der einzelnen Parameter
@@ -129,31 +146,45 @@ int tabel_creation(int info[], FILE* auswertung)
     // Überprüfung davon, ob der richtige Pointer übergeben wurde
     if (auswertung == NULL)
     {
+        #ifndef DEBUG
         printf("Ein falscher Pointer wurde übergeben");
+        #endif
         return -1;
     }
+    #ifndef DEBUG
     printf("   | ");
     fprintf(auswertung,"   | ");  
+    #endif
     for (int i = 1; i < 11; i++)                            // Ausgabe der Obersten Zeile einer Tabelle (der Zeitschritte)
-    {                                                      
+    {         
+        #ifndef DEBUG                                             
         printf("\033[1m%8d\033[0m | ", i);                  // gibt Fettgedruckte Zahlen aus, damit die Skalierung besser unterschieden werden kann
         fprintf(auswertung,"%8d | ", i);  
+        #endif
     }
 
+    #ifndef DEBUG
     printf("\n-------------------------------------------------------------------------------------------------------------------\n"); 
     fprintf(auswertung, "\n-------------------------------------------------------------------------------------------------------------------\n");
+    #endif
 
     for (int i = 0; i < 6; i++)
     {   
+        #ifndef DEBUG
         printf("\033[1m%d\033[0m | ", i+11);
-        fprintf(auswertung, "%d | ", i+11);                                                 
+        fprintf(auswertung, "%d | ", i+11);    
+        #endif                                             
         for (int g = 0; g < 10; g++)                                                 // Ausgabe der Einzelnen Werte
         {
+            #ifndef DEBUG
             printf("%8d | ", info[g + 10*i]);
             fprintf(auswertung, "%8d | ", info[g + 10*i]);
+            #endif
         }
+        #ifndef DEBUG
         printf("\n-------------------------------------------------------------------------------------------------------------------\n");
         fprintf(auswertung, "\n-------------------------------------------------------------------------------------------------------------------\n");
+        #endif
     }
 
     return 0;
@@ -164,38 +195,52 @@ int tabel_legend(int steps_x, int size_ary, FILE* auswertung)
     // Überprüfung davon, ob der richtige Pointer übergeben wurde und ob die richtigen Werte übergeben wurden
     if (auswertung == NULL)
     {
+        #ifndef DEBUG
         printf("Ein falscher Pointer wurde übergeben");
+        #endif
         return -1;
     }
     if (steps_x > size_ary)
     {
+        #ifndef DEBUG
         printf("Falsche Werte wurden übergeben");
+        #endif
         return -1;
     }
     char* typ[] = {"Sättigung", "Anzahl der freien Parkplätze", "Anzahl der besetzten Parkplätze", "Anzahl der Autos in der Warteschlange", "Anzahl aller Autos", "die Änderungsrate der Anzahl der Fahrtzeuge zu der Spalte davor"};
 
+    #ifndef DEBUG
     printf("\nLegende zur Tabelle: \n\n");
     fprintf(auswertung, "\nLegende zur Tabelle: \n\nSkalierung der Spalten:\n");
+    #endif
     for(int i = 1; i < 17; i++)                                                       
     { 
         if (i < 10)                                                                     // Ausgabe der Legende zur Obersten Zeile
         {
+            #ifndef DEBUG
             printf("\033[1m%2d\033[0m. =%8d. Simulationsschritt\n", i, steps_x*(i));
             fprintf(auswertung, "%2d. =%8d. Simulationsschritt\n", i, steps_x*(i));
+            #endif
         }
         else if (i == 10) 
         {
+            #ifndef DEBUG
             printf("\033[1m%d\033[0m. =%8d. Simulationsschritt\n\n", i, size_ary);
             fprintf(auswertung, "%d. =%8d. Simulationsschritt\n\nSkalierung der Zeilen: \n", i, size_ary);
+            #endif
         }
         else if (i > 10)                                                                // Ausgabe der Legende für die einzelenen Zeilen Zeitschritte
         {
+            #ifndef DEBUG
             printf("\033[1m%d\033[0m. =  %s \n", i, typ[i-11]);
             fprintf(auswertung, "%d. =  %s \n", i, typ[i-11]);
+            #endif
         }
     }
+    #ifndef DEBUG
     printf("\n\n");
     fprintf(auswertung, "\n\n");
+    #endif
     return 0;
 }
 
@@ -206,7 +251,9 @@ int tabel(int data[], int size_ary, FILE* auswertung)
     // Überprüfung davon, ob der richtige Pointer übergeben wurde
     if (auswertung == NULL)
     {
+        #ifndef DEBUG
         printf("Ein falscher Pointer wurde übergeben");
+        #endif
         return -1;
     }
     int steps_x = round(size_ary / 10.f); 
@@ -234,7 +281,7 @@ int tabel(int data[], int size_ary, FILE* auswertung)
         k = size_ary % 10;                                  // Abzug von der letzten Stelle der Simulationschritte*5 + 1
         z = 1;
     }
-    else if (size_ary == 15)                                // Überprüfe, ob die maximalen Simulationsschritte bei 15 liegen, da dieses einen besonderen Zustand benötigt
+    else if (size_ary == 15 || size_ary == 25)              // Überprüfe, ob die maximalen Simulationsschritte bei 15 oder 25 liegen, da dieses einen besonderen Zustand benötigt
     {
         h = 1;                                              // Abzug von 26
         z = 1;
@@ -250,6 +297,9 @@ int tabel(int data[], int size_ary, FILE* auswertung)
         {                                                                                           // Die Werte werden mit dem Verhältnis von 5 ausgelesen, da es fünf Speichergrößen gibt. Zu Beginn wird -5 gerechnet, da man für den Speicherplatz im Array bei 0 und nicht 1 anfängt.  
             static int f = 0;
             info[f] = data[i];                                              // Speichern des Wertes an der jeweiligen Stelle
+            #ifndef DEBUG
+            printf("%d\n", i);
+            #endif
             if ((f-10*g) == 9) 
             {
                 info[f] = data[g + size_ary*5 - 5];
@@ -265,8 +315,10 @@ int tabel(int data[], int size_ary, FILE* auswertung)
         info[i+10] = zwischenspeicher;
     }
 
+    #ifndef DEBUG
     tabel_creation(info, auswertung);                       // Erstellen der Tabelle
     tabel_legend(steps_x, size_ary, auswertung);            // Erstellen der Legende zur Tabelle 
+    #endif
 
     return 0;
 }
@@ -279,7 +331,9 @@ int column_chart_creation(int info[], FILE* auswertung)
     // Überprüfung davon, ob der richtige Pointer übergeben wurde
     if (auswertung == NULL)
     {
+        #ifndef DEBUG
         printf("Ein falscher Pointer wurde übergeben");
+        #endif
         return -1;
     }
 
@@ -295,44 +349,58 @@ int column_chart_creation(int info[], FILE* auswertung)
             {  
                 if(column == 1 && line == 11) 
                 {  
+                    #ifndef DEBUG
                     printf(" %s", spaces[3]);        // Setztes der Pfeilspitze für die Y-Achse
                     fprintf(auswertung, " %s", spaces[3]);
+                    #endif
                 }
                 else if (column == 1)                  // Setzten der Pfeillinie für die Y-Achse
                 {
+                    #ifndef DEBUG
                     printf("%s", spaces[6]);
                     fprintf(auswertung, "%s", spaces[6]);
+                    #endif
                 }
 
                 else if (column % 2 == 0) 
                 {   
                     if (column == 0 && line != 11)
                     {
+                        #ifndef DEBUG
                         printf("%3d ", line*10);
                         fprintf(auswertung, "%3d ", line*10);
+                        #endif
                     }  
                     else 
                     {
+                        #ifndef DEBUG
                         printf("%s", spaces[2]);                        // Setzten der Lücken zwischen den Säulen
                         fprintf(auswertung, "%s", spaces[2]);
+                        #endif
                     }       
                 }
                 else if (column % 2 == 1 && column != 1) 
                 { 
                     if ((info[f] + 1) == line)              // Überprüfen, ob die Säule eine Zeile Tiefer existiert
                     { 
+                        #ifndef DEBUG
                         printf("%2s ", spaces[1]);                    // Wenn ja, setzten eines Daches für die Säule 
                         fprintf(auswertung, "%2s ", spaces[1]);
+                        #endif
                     }
                     else if (info[f] >= line)               // Überprüfen, ob der Wert groß genug ist, damit die Säule existiert
                     {
+                        #ifndef DEBUG
                         printf("%2s", spaces[0]);                     // Setzten der Säulemwände
                         fprintf(auswertung, "%2s", spaces[0]);
+                        #endif
                     } 
                     else 
                     {
+                        #ifndef DEBUG
                         printf("%s", spaces[2]);
                         fprintf(auswertung, "%s", spaces[2]);
+                        #endif
                     }
                     f++;
                 } 
@@ -342,40 +410,54 @@ int column_chart_creation(int info[], FILE* auswertung)
             {
                 if (column == 22) 
                 {
+                    #ifndef DEBUG
                     printf("%s", spaces[5]);                          
                     fprintf(auswertung, "%s", spaces[5]);
+                    #endif
                 }
                 else if (column > 1)
                 {
+                    #ifndef DEBUG
                     printf("%s", spaces[4]); 
                     fprintf(auswertung, "%s", spaces[4]);
+                    #endif
                 }
                 else 
                 {
+                    #ifndef DEBUG
                     printf("  ");
                     fprintf(auswertung, "  ");
+                    #endif
                 }
             }
         } 
+        #ifndef DEBUG
         printf("\n");
         fprintf(auswertung, ("\n"));
+        #endif
     }
 
     //Erzeugen der Skalierung für die X-Achse
+    #ifndef DEBUG
     printf(" ");
     fprintf(auswertung, " ");
+    #endif
     for (int column = 0; column < 22; column++)
     {
         static int f = 1;
         if (column % 2 == 1 || column == 0) 
         {             
+            #ifndef DEBUG
             printf("%s", spaces[2]);                                 // Setzten der Lücken, genauso wie zwischen den Säulen 
             fprintf(auswertung, "%s", spaces[2]);
+            #endif
         }
         else if (column % 2 == 0 && column != 0)  
         {
+            #ifndef DEBUG
             printf("%3d", f); 
             fprintf(auswertung, "%3d", f);                          // Setzten der Nummerierungen 
+            #endif
             f++;
         }
     }
@@ -388,33 +470,45 @@ int column_chart_legend(int steps_x, int size_ary, FILE* auswertung)
     // Überprüfung davon, ob der richtige Pointer übergeben wurde und ob die richtigen Werte übergeben wurden
     if (auswertung == NULL)
     {
+        #ifndef DEBUG
         printf("Ein falscher Pointer wurde übergeben");
+        #endif
         return -1;
     }
     if (steps_x > size_ary)
     {
+        #ifndef DEBUG
         printf("Falsche Werte wurden übergeben");
+        #endif
         return -1;
     }
-    // Erstellen von einer Legende für die Säulen im Diagramm 
+    // Erstellen von einer Legende für die Säulen im Diagramm
+    #ifndef DEBUG 
     printf("\n\nZuweisung der Simulationsschritte:\n"); 
     fprintf(auswertung, "\n\n");
+    #endif
 
     for (int i = 1; i < 11; i++)
     {
         if (i < 10) 
         { 
+            #ifndef DEBUG
             printf("\033[1m%2d\033[0m = %7d. Simulationsschritt\n", i, steps_x*i);              
             fprintf(auswertung, "%2d = %7d. Simulationsschritt\n", i, steps_x*i);
+            #endif
         }
         else
         {
+            #ifndef DEBUG
             printf("\033[1m%d\033[0m = %7d. Simulationsschritt\n", i, size_ary);              
             fprintf(auswertung, "%d = %7d. Simulationsschritt\n", i, size_ary);
+            #endif
         }
     }
+    #ifndef DEBUG
     printf("\n\n");
     fprintf(auswertung, "\n\n");
+    #endif
 
     return 0;
 }
@@ -457,7 +551,7 @@ int column_chart(int data[], int size_ary, FILE* auswertung)
         k = size_ary % 10;                                  // Abzug von der letzten Stelle der Simulationschritte*5 + 1
         z = 1;
     }
-    else if (size_ary == 15)                                // Überprüfe, ob die maximalen Simulationsschritte bei 15 liegen, da dieses einen besonderen Zustand benötigt
+    else if (size_ary == 15 || size_ary == 25)              // Überprüfe, ob die maximalen Simulationsschritte bei 15 oder 25 liegen, da dieses einen besonderen Zustand benötigt
     {
         h = 1;                                              // Abzug von 26
         z = 1;
@@ -493,7 +587,9 @@ int bar_chart_creation(int info[], FILE* auswertung)
     // Überprüfung davon, ob der richtige Pointer übergeben wurde
     if (auswertung == NULL)
     {
+        #ifndef DEBUG
         printf("Ein falscher Pointer wurde übergeben");
+        #endif
         return -1;
     }
     char* spaces[] = {" ", "   ^", "-", ">", "|", "="};   // Verwendete Zeichen zur Erstellung des Balkendiagrams  
@@ -506,46 +602,62 @@ int bar_chart_creation(int info[], FILE* auswertung)
         {
             if (line == 22) 
             {   
+                #ifndef DEBUG
                 printf("%s\n", spaces[1]);            // Setztes der Pfeilspitze für die Y-Achse
                 fprintf(auswertung, "%s\n", spaces[1]);
                 printf("   %s\n", spaces[4]);
                 fprintf(auswertung, "   %s\n", spaces[4]);
+                #endif
             }
             else 
             {                            // Setzten der Pfeillinie für die Y-Achse
+                #ifndef DEBUG
                 printf("   %s\n", spaces[4]);
                 fprintf(auswertung, "   %s\n", spaces[4]);
+                #endif
             } 
         }
         else if (line > 1 && line % 2 == 1)                   // Zeile in der die Balken gesetzt werden
         {
+            #ifndef DEBUG
             printf("\033[1m%2d\033[0m %s", f, spaces[4]);  
-            fprintf(auswertung, "%2d %s", f, spaces[4]);    
+            fprintf(auswertung, "%2d %s", f, spaces[4]); 
+            #endif   
             for (int i = 0; i < (info[f-1]*2); i++)                       // Bestimmung der Länge der Balken
             {
+                #ifndef DEBUG
                 printf("%s", spaces[5]); 
                 fprintf(auswertung, "%s", spaces[5]);
+                #endif
             }
+            #ifndef DEBUG
             printf ("\n"); 
             fprintf(auswertung, "\n");
+            #endif
             f++;
         }
         // Setzten der X-Achse
         else if (line == 1) 
         {                              //Setzten der Linie für die X-Achse
+            #ifndef DEBUG
             printf("   ");
             fprintf(auswertung, "   ");
+            #endif
             for(int column = 0; column < 26; column++)
             {
                 if (column != 25) 
                 {
+                    #ifndef DEBUG
                     printf("%s", spaces[2]);                         
                     fprintf(auswertung, "%s", spaces[2]);
+                    #endif
                 }
                 else
                 {
+                    #ifndef DEBUG
                     printf("%s\n", spaces[3]);
                     fprintf(auswertung, "%s", spaces[3]);
+                    #endif
                 }
             } 
         }    
@@ -556,14 +668,18 @@ int bar_chart_creation(int info[], FILE* auswertung)
             for(int column = 0; column < 26; column++)
             {
                 if ((column % 4 != 0 && column % 2 != 0) || column == 0) 
-                {             
+                {    
+                    #ifndef DEBUG        
                     printf("%s", spaces[0]);                                
                     fprintf(auswertung, "%s", spaces[0]);
+                    #endif
                 }
                 else if (column % 4 == 0 && column != 0) 
                 {
+                    #ifndef DEBUG
                     printf("\033[1m%2d\033[0m", f);
-                    fprintf(auswertung, "%2d", f);                     
+                    fprintf(auswertung, "%2d", f);  
+                    #endif                   
                     f = f + 2;
                 }
             }
@@ -578,25 +694,35 @@ int bar_chart_legend(int steps_x, int size_ary, FILE* auswertung)
     // Überprüfung davon, ob der richtige Pointer übergeben wurde und ob die richtigen Werte übergeben wurden
     if (auswertung == NULL)
     {
+        #ifndef DEBUG
         printf("Ein falscher Pointer wurde übergeben");
+        #endif
         return -1;
     }
     if (steps_x > size_ary)
     {
+        #ifndef DEBUG
         printf("Falsche Werte wurden übergeben");
+        #endif
         return -1;
     }
+    #ifndef DEBUG
     printf("\n\nSkalierung zur X-Achse:\n"); 
     fprintf(auswertung, "\n\nSkalierung zur X-Achse:\n");
+    #endif
 
     // Erstellen von einer Legende nur für die X-Achse im Diagramm, da die Werte von dem Säuelendiagramm mit den Zeitpunkten übereinstimmen 
     for (int i = 0; i < 12; i= i + 2) 
     {
+        #ifndef DEBUG
         printf("\033[1m%2d\033[0m = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);             
         fprintf(auswertung, "%2d = %4d Autos in der Warteschlange \n", (i+10), steps_x*i);
+        #endif
     }
+    #ifndef DEBUG
     printf("\n\n");
     fprintf(auswertung, "\n\n");
+    #endif
     return 0;
 }
 
@@ -607,7 +733,9 @@ int bar_chart(int data[], int size_ary, FILE* auswertung)
     // Überprüfung davon, ob der Richtige Pointer übergeben wurde
     if (auswertung == NULL)
     {
+        #ifndef DEBUG
         printf("Ein falscher Pointer wurde übergeben");
+        #endif
         return -1;
     }
     //Berechnung der Skalierung der Achsen, sowie das Auslesen der Werte                                                                        
@@ -638,7 +766,7 @@ int bar_chart(int data[], int size_ary, FILE* auswertung)
         k = size_ary % 10;                                  // Abzug von der letzten Stelle der Simulationschritte*5 + 1
         z = 1;
     }
-    else if (size_ary == 15)                                // Überprüfe, ob die maximalen Simulationsschritte bei 15 liegen, da dieses einen besonderen Zustand benötigt
+    else if (size_ary == 15 || size_ary == 25)              // Überprüfe, ob die maximalen Simulationsschritte bei 15 oder 25 liegen, da dieses einen besonderen Zustand benötigt
     {
         h = 1;                                              // Abzug von 26
         z = 1;
@@ -689,7 +817,9 @@ int out_maxval(int data[], int size_ary, FILE* auswertung)
     // Überprüfung davon, ob der Richtige Pointer übergeben wurde
     if (auswertung == NULL)
     {
+        #ifndef DEBUG
         printf("Ein falscher Pointer wurde übergeben");
+        #endif
         return -1;
     }
     int max[] = {data[0], data[1], data[2], data[3], data[4], 1, 1, 1, 1, 1};
@@ -709,24 +839,32 @@ int out_maxval(int data[], int size_ary, FILE* auswertung)
 
     for (int g = 0; g < 5; g++)
     {
+        #ifndef DEBUG
         printf("- Die \033[1m%s\033[0m war mit dem Wert \033[1m%d\033[0m beim \033[1m%d.\033[0m Simulationsschritt am größten. \n\n", typ[g], max[g], max[g+5]); // Ausgabe des jeweils größten Wertes
-        fprintf(auswertung, "- Die %s war mit dem Wert %d beim %d. Simulationsschritt am größten. \n\n", typ[g], max[g], max[g+5]);                
+        fprintf(auswertung, "- Die %s war mit dem Wert %d beim %d. Simulationsschritt am größten. \n\n", typ[g], max[g], max[g+5]);    
+        #endif            
     }
 
     if (max[3] > 15) 
     { 
+        #ifndef DEBUG
         printf("Eine Bauliche Erweiterung \033[1mwird\033[0m empfohlen, da zum %d. Simulationsschritt, %d Autos in der Warteschlange standen.", max[8], max[3]); 
         fprintf(auswertung, "Eine Bauliche Erweiterung wird empfohlen, da zum %d. Simulationsschritt, %d Autos in der Warteschlange standen.", max[8], max[3]);
+        #endif
     }
     else if (max[3] <= 15 && max[3] != 0) 
     { 
+        #ifndef DEBUG
         printf("Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange standen.", max[8], max[3]); 
         fprintf(auswertung, "Eine Bauliche Erweiterung wird nicht empfohlen, da zum %d. Simulationsschritt, nur %d Autos in der Warteschlange standen.", max[8], max[3]);
+        #endif
     }
     else if (max[3] == 0) 
     { 
+        #ifndef DEBUG
         printf("Eine Bauliche Erweiterung wird \033[1mnicht\033[0m empfohlen, da nie Autos in der Warteschlange standen."); 
         fprintf(auswertung, "Eine Bauliche Erweiterung wird nicht empfohlen, da nie Autos in der Warteschlange standen.");
+        #endif
     }
     
     return 0;
