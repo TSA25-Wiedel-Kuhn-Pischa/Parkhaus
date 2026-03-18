@@ -39,7 +39,7 @@ int main(void) {
 // Tests für statistics.c:
     assert(test_statistics() == 0);
 
-    printf("Alle Tests wurden erfolgreich bestanden.\n");
+    printf("\nAlle Tests wurden erfolgreich bestanden.\n");
     return 0; //Tests bestanden
 }
 
