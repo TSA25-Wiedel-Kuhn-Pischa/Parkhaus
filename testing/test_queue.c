@@ -5,11 +5,8 @@
 
 
  #ifdef DEBUG
-
-#ifndef ASSERT_H
-    #define ASSERT_H
-    #include <assert.h>
-#endif
+ 
+#include <assert.h>
 
 //Alle eigenen include Dateien einbinden
 #include "../include/cars.h"

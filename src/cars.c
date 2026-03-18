@@ -13,14 +13,18 @@ int create_car(int max_parking_duration, int time_stemp, struct car* p_c, Queue*
 { 
     if(p_c == NULL || max_parking_duration <= 0 || time_stemp < 0 || p_queue1 == NULL || parking_garage == NULL || spaces <= 0)        //auf ungültige Eingabe prüfen
     {
-        printf("Falsche Werte wurden cars.c übergeben");
+        #ifndef DEBUG
+        printf("Falsche Werte wurden cars.c übergeben\n");
+        #endif
         return -1;
     }
 
     p_c->car_id = car_id_counter();
     if(p_c->car_id <= 0)                            //auf ungültige Eingabe prüfen
     {
-        printf("Fehler car_id_counter() in cars.c");
+        #ifndef DEBUG
+        printf("Fehler car_id_counter() in cars.c\n");
+        #endif
         return -1;
     }
 
@@ -287,7 +291,9 @@ int create_car(int max_parking_duration, int time_stemp, struct car* p_c, Queue*
     int temp_parking_duration = randomize_parking_duration(max_parking_duration);
     if(temp_parking_duration == -1)
     {   
-        printf("Fehler randomize_parking_duration() in cars.c");
+        #ifndef DEBUG
+        printf("Fehler randomize_parking_duration() in cars.c\n");
+        #endif
         return -1;
     }
     p_c->parking_duration = temp_parking_duration;
@@ -317,7 +323,9 @@ int randomize_parking_duration(int r_max_parking_duration)           //maximale 
 {
     if(r_max_parking_duration <= 0)            //auf ungültige Eingabe prüfen
     {
-        printf("Fehler randomize_parking_duration() in cars.c");
+        #ifndef DEBUG
+        printf("Fehler randomize_parking_duration() in cars.c\n");
+        #endif
         return -1;
     }
     int random_parking_duration = 0;            //maximale Parkdauer in maximale Zeitschritte umrechnen
@@ -325,7 +333,9 @@ int randomize_parking_duration(int r_max_parking_duration)           //maximale 
     random_parking_duration = rand() % r_max_parking_duration + 1;   //zufällige Parkdauer berechnen
     if (random_parking_duration <= 0)          //auf ungültige Eingabe prüfen
     {
-        printf("Fehler randomize_parking_duration() in cars.c");
+        #ifndef DEBUG
+        printf("Fehler randomize_parking_duration() in cars.c\n");
+        #endif
         return -1;
     }
 
