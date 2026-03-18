@@ -4,15 +4,17 @@
 */
 #include "../include/test_statistics.h"
 #include "../include/statistics.h"
+
 #include <assert.h>
+#include <stdio.h>
 
 int test_statistics()
 {
     // Öffnen von dem Pointer zum durchführen der gültigen Tests
-    FILE* document = fopen("../src/Daten.txt", "r+");        // öffnen im Lese Modus, damit die Datei nicht überschrieben wird
+    FILE* document = fopen("src/Daten.txt", "r+");        // öffnen im Lese Modus, damit die Datei nicht überschrieben wird
     if (document == NULL)                                    // Überprüft das der Pointer nicht NULL ist, dann wäre er nämlich nicht zugelassen
     {
-        printf("error");
+        printf("test_statistics: failed to open src/Daten.txt\n");
         return -1;
     }
 
@@ -22,6 +24,7 @@ int test_statistics()
     // definieren eines Arrays, welches therotisch die Simulationswerte Speichert
     // Da es die Tests nicht beeinflusst, kann es so deklariert werden
     int data_test[30] = {0};
+
 
     // Unit Tests für statistics.c
 
@@ -40,7 +43,7 @@ int test_statistics()
 
 
     // Tests für rate()
-    
+
     // zugelassene Werte:
     int zwischenspeicher = 0;
     assert(rate(0, 10, &zwischenspeicher) == 0);            // Richtige Übergabe, Test ob ein intendierter Durchgang Funktioniert, ob die Kobinationen Fehlerfrei funktionieren
@@ -53,6 +56,7 @@ int test_statistics()
     assert(rate(-1, -10, &zwischenspeicher) == -1);         // Übergabe von einer aktuellen und vorherigen negativen Anzahl an Autos im Parkhaus
 
 
+
     // Tests für head_document()
 
     // Zugelassene Pointer:
@@ -60,6 +64,7 @@ int test_statistics()
    
     // Nicht zugelassene Pointer:
     assert(head_document(3,3,3,3,3,error) == -1);           // Übrgabe von einem NULL Pointer
+
 
 
     // Tests für output_data()
@@ -178,12 +183,11 @@ int test_statistics()
     assert(out_maxval(data_test,3,error) == -1);                // Übergabe von einem NULL Pointer 
 
 
-
     // Schließen der geöffneten Datei und überprüfen ob es geklappt hat
     int success_test = fclose(document);
     if (success_test == -1)                                  // Überprüfen, ob die Datei geschlossen wurde 
     {
-        printf("error");
+        printf("error\n");
         return -1;
     }
     return 0;
