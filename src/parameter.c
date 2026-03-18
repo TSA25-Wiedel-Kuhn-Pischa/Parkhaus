@@ -8,7 +8,7 @@
 
 void input_parameter(int *spaces, float *max_parking, int *size, float *chance_of_new_cars, int *seed)
 {
-    char *name[] = {"Anzahl der Stellplätze", "Maximale Parkdauer eines Autos (in Simulationsschritten)", "Simulationsdauer, also die Zeitschritte,", "Ankunftswahrscheinlichkeit in %%", "Zufalls-Seed"};
+    char *name[] = {"Anzahl der Stellplätze", "Maximale Parkdauer eines Autos (in Simulationsschritten)", "Simulationsdauer, also die Zeitschritte,", "Ankunftswahrscheinlichkeit in %", "Zufalls-Seed"};
     int *parameter_int[] = {spaces, 0, size, 0, seed};                               // Array zum Durchlauf der int Parameter
     float *parameter_float[] = {0, max_parking, 0, chance_of_new_cars, 0};        // Array zum Durchlauf der float Parameter
 
@@ -35,15 +35,13 @@ void input_parameter(int *spaces, float *max_parking, int *size, float *chance_o
             }
             if (*max_parking > *size)
             {
-                printf("\nUngültige Eingabe, die Simulationsdauer darf nicht kleiner als die Parkdauer sein. \nBitte Wiederholen.\n\n"); 
-                i--;                                               // Es wird erneut nach dem Wert gefragt
-                while(getchar() != '\n');                          // Die vorherig eingelesenen Werte werden gelöscht  
+                printf("\nAchtung ihre Simulationsdauer ist kleiner als ihre Parkdauer. \nIhre Autos verlassen nie das Parkhaus.\nBitte beachten Sie das für die Simulationsergebnisse.\n\n"); 
             }
         } 
         if (i == 3)                                                // Frage nach chance_of_new_cars 
         {
             printf("Bitte geben Sie die %s an: ", name[i]); 
-            if (scanf("%f", parameter_float[i]) != 1 || *parameter_float[i] < 0 || *parameter_float[i] >= (float)100)
+            if (scanf("%f", parameter_float[i]) != 1 || *parameter_float[i] < 0 || *parameter_float[i] > (float)100)
             {
                 printf("\nUngültige Eingabe, bitte Wiederholen. \n\n");
                 i--;

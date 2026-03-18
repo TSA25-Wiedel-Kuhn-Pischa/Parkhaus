@@ -180,13 +180,13 @@ int tabel_legend(int steps_x, int size_ary, FILE* auswertung)
     { 
         if (i < 10)                                                                     // Ausgabe der Legende zur Obersten Zeile
         {
-            printf("\033[1m%2d\033[0m. = %7d. Simulationsschritt\n", i, steps_x*(i));
-            fprintf(auswertung, "%2d. = %7d. Simulationsschritt\n", i, steps_x*(i));
+            printf("\033[1m%2d\033[0m. =%8d. Simulationsschritt\n", i, steps_x*(i));
+            fprintf(auswertung, "%2d. =%8d. Simulationsschritt\n", i, steps_x*(i));
         }
         else if (i == 10) 
         {
-            printf("\033[1m%d\033[0m. = %7d. Simulationsschritt\n\n", i, size_ary);
-            fprintf(auswertung, "%d. = %7d. Simulationsschritt\n\nSkalierung der Zeilen: \n", i, size_ary);
+            printf("\033[1m%d\033[0m. =%8d. Simulationsschritt\n\n", i, size_ary);
+            fprintf(auswertung, "%d. =%8d. Simulationsschritt\n\nSkalierung der Zeilen: \n", i, size_ary);
         }
         else if (i > 10)                                                                // Ausgabe der Legende für die einzelenen Zeilen Zeitschritte
         {
@@ -265,7 +265,7 @@ int column_chart_creation(int info[], FILE* auswertung)
                 if(column == 1 && line == 11) 
                 {  
                     printf(" %s", spaces[3]);        // Setztes der Pfeilspitze für die Y-Achse
-                    fprintf(auswertung, "%s", spaces[3]);
+                    fprintf(auswertung, " %s", spaces[3]);
                 }
                 else if (column == 1)                  // Setzten der Pfeillinie für die Y-Achse
                 {
