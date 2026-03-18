@@ -130,11 +130,18 @@ int main(){
 
   
   //Ausgabe der Endstatistiken
-  tabel(data, steps, auswertung);
-  column_chart(data, steps, auswertung);
-  bar_chart(data, steps, auswertung);
-  out_maxval(data, steps, auswertung);
-
+  if (steps > 10)
+  {
+    tabel(data, steps, auswertung);
+    column_chart(data, steps, auswertung);
+    bar_chart(data, steps, auswertung);
+    out_maxval(data, steps, auswertung);
+  }
+  else 
+  {
+    printf("Ab 10 Simulationsschritten, kann erst eine Endstatistik ausgegeben werden");
+    fprintf(auswertung, "Durch eine zu geringe Anzahl der Simulationsschritte, wird keine Endstatistik ausgegeben.");
+  }
   int success_daten = fclose(daten);
   int success_auswertung = fclose(auswertung);
   if(success_daten == -1 || success_auswertung == -1)
