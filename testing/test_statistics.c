@@ -23,7 +23,7 @@ int test_statistics()
 
     // definieren eines Arrays, welches therotisch die Simulationswerte Speichert
     // Da es die Tests nicht beeinflusst, kann es so deklariert werden
-    int data_test[30] = {0};
+    int data_test[1000] = {0};
 
 
     // Unit Tests für statistics.c
