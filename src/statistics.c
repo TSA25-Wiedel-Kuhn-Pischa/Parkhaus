@@ -297,9 +297,6 @@ int tabel(int data[], int size_ary, FILE* auswertung)
         {                                                                                           // Die Werte werden mit dem Verhältnis von 5 ausgelesen, da es fünf Speichergrößen gibt. Zu Beginn wird -5 gerechnet, da man für den Speicherplatz im Array bei 0 und nicht 1 anfängt.  
             static int f = 0;
             info[f] = data[i];                                              // Speichern des Wertes an der jeweiligen Stelle
-            #ifndef DEBUG
-            printf("%d\n", i);
-            #endif
             if ((f-10*g) == 9) 
             {
                 info[f] = data[g + size_ary*5 - 5];
