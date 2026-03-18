@@ -210,12 +210,43 @@ int tabel(int data[], int size_ary, FILE* auswertung)
         return -1;
     }
     int steps_x = round(size_ary / 10.f); 
+    int steps_max = size_ary;
+    int h = 0;
+    int k = 0;
+    int z = 0;
+
+    if ((steps_x * 9) >= size_ary)
+    {
+        h = 1;
+        steps_x = steps_x -1;
+    }
+    else if ((steps_x * 10) > size_ary)
+    {
+        steps_max = size_ary + steps_x;
+    }
+    if (size_ary < 25 && size_ary > 15)
+    {
+        k = 2;
+        z = 1;
+    }
+    else if (size_ary < 15)
+    {
+        k = size_ary % 10;
+        z = 1;
+    }
+    else if (size_ary == 15)
+    {
+        h = 1;
+        z = 1;
+        k = 1;
+    }
+    
 
     int info[60] = {0};                                                     // Array zur Speicherung der Ausgelsenen Werte
 
     for (int g = 0; g < 5; g++)
     {                             
-        for (int i = g + (steps_x*5) - 5; i<= ((size_ary*5)); i= i + (steps_x*5))                   // Auslesen der Einzelnen Werte nach der Reinfolge der Speicherung
+        for (int i = g + (steps_x*5) - 5; i <= (steps_max*5-(20*h + 5*k)-1*z); i = i + steps_x*5)                   // Auslesen der Einzelnen Werte nach der Reinfolge der Speicherung
         {                                                                                           // Die Werte werden mit dem Verhältnis von 5 ausgelesen, da es fünf Speichergrößen gibt. Zu Beginn wird -5 gerechnet, da man für den Speicherplatz im Array bei 0 und nicht 1 anfängt.  
             static int f = 0;
             info[f] = data[i];                                              // Speichern des Wertes an der jeweiligen Stelle
@@ -401,15 +432,47 @@ int column_chart(int data[], int size_ary, FILE* auswertung)
     int steps_x = round(size_ary / 10.f);                     // Bereuchnung der Skala von der X-Achse
 
     int info[10] = {0};
+
+    int steps_max = size_ary;
+    int h = 0;
+    int k = 0;
+    int z = 0;
+
+    if ((steps_x * 9) >= size_ary)
+    {
+        h = 1;
+        steps_x = steps_x -1;
+    }
+    else if ((steps_x * 10) > size_ary)
+    {
+        steps_max = size_ary + steps_x;
+    }
+    if (size_ary < 25 && size_ary > 15)
+    {
+        k = 2;
+        z = 1;
+    }
+    else if (size_ary < 15)
+    {
+        k = size_ary % 10;
+        z = 1;
+    }
+    else if (size_ary == 15)
+    {
+        h = 1;
+        z = 1;
+        k = 1;
+    }
                           
-    for(int i = steps_x*5 - 5; i <= size_ary*5;i = i + steps_x*5)       // Auslesen mit dem fünfachen, da es fünf Speicherwerte gibt und bei der Initialisierung -5, da bei einem Array ab 0 hochgezählt wird.
+    for(int i = (steps_x*5) - 5; i <= (steps_max*5-(20*h + 5*k)-1*z); i = i + steps_x*5)       // Auslesen mit dem fünfachen, da es fünf Speicherwerte gibt und bei der Initialisierung -5, da bei einem Array ab 0 hochgezählt wird.
     {
         static int f = 0;
         info[f] = round(data[i] / 10.f);                     // Auslesen der Füllmenge und so umformen, das es zur Skalierung passt
         f++;
         if (f == 9)
         {
-            info[f] = round(data[size_ary*5] / 10.f);
+            info[9] = round(data[size_ary*5 - 5] / 10.f);
+            i = steps_max*5;
         }
     }
 
@@ -549,15 +612,46 @@ int bar_chart(int data[], int size_ary, FILE* auswertung)
     //Berechnung der Skalierung der Achsen, sowie das Auslesen der Werte                                                                        
     int steps_y = round(size_ary / 10.f);                        // Bereuchnung der Skala von der Y-Achse
     int info[10] = {0};
-                    
-    for(int i = 3 + steps_y*5 - 5; i <= size_ary*5; i = i + steps_y*5)              // Auslesen der Werte mit der Schritweite steps_y*5, da es fünf Speichergrößengibt und speichern in info[]
+
+    int steps_max = size_ary;
+    int h = 0;
+    int k = 0;
+    int z = 0;
+
+    if ((steps_y * 9) >= size_ary)
+    {
+        h = 1;
+        steps_y = steps_y -1;
+    }
+    else if ((steps_y * 10) > size_ary)
+    {
+        steps_max = size_ary + steps_y;
+    }
+    if (size_ary < 25 && size_ary > 15)
+    {
+        k = 2;
+        z = 1;
+    }
+    else if (size_ary < 15)
+    {
+        k = size_ary % 10;
+        z = 1;
+    }
+    else if (size_ary == 15)
+    {
+        h = 1;
+        z = 1;
+        k = 1;
+    }
+             
+    for(int i = 3 + steps_y*5 - 5; i <= steps_max*5-(20*h + 5*k)-1*z; i = i + steps_y*5)              // Auslesen der Werte mit der Schritweite steps_y*5, da es fünf Speichergrößengibt und speichern in info[]
     {
         static int f = 0;
         info[f] = data[i]; 
         f++;
         if (f == 9) 
         {
-            info[f] = data[size_ary*5];
+            info[f] = data[3 + size_ary*5];
         }
     }
 
