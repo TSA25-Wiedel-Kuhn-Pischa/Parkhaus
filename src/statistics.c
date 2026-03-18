@@ -520,7 +520,9 @@ int column_chart(int data[], int size_ary, FILE* auswertung)
     // Überprüfung davon, ob der richtige Pointer übergeben wurde
     if (auswertung == NULL)
     {
+        #ifndef DEBUG
         printf("Ein falscher Pointer wurde übergeben");
+        #endif
         return -1;
     }                                                                             
     int steps_x = round(size_ary / 10.f);                     // Bereuchnung der Skala von der X-Achse
