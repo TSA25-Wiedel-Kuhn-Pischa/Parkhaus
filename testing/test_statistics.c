@@ -21,7 +21,7 @@ int test_statistics()
 
     // definieren eines Arrays, welches therotisch die Simulationswerte Speichert
     // Da es die Tests nicht beeinflusst, kann es so deklariert werden
-    int data_test[30] = {0};
+    int data_test[3000] = {0};
 
     // Unit Tests für statistics.c
 
@@ -97,7 +97,7 @@ int test_statistics()
     // Tests für tabel_legend()
 
     // Zugelassene Pointer / Werte:
-    assert(tabel_legend(1,10, document) == 0);                  // Richtige Übergabe, Test ob ein intendierter Durchgang Funktioniert
+    assert(tabel_legend(1,1000, document) == 0);                  // Richtige Übergabe, Test ob ein intendierter Durchgang Funktioniert
 
     // Nicht zugelassene Pointer / Werte: 
     assert(tabel_legend(3, 2, document) == -1);                 // Die Schrittweite ist größer als die größe des Arrays
@@ -107,7 +107,7 @@ int test_statistics()
     // Tests für tabel()
 
     // Zugelassene Pointer:
-    assert(tabel(data_test, 3, document) == 0);                 // Richtige Übergabe, Test ob ein intendierter Durchgang Funktioniert
+    assert(tabel(data_test, 1000, document) == 0);                 // Richtige Übergabe, Test ob ein intendierter Durchgang Funktioniert
 
     // Nicht zugelassener Pointer:
     assert(tabel(data_test, 3, error) == -1);                   // Ein NULL Pointer wurde übergeben
@@ -125,7 +125,7 @@ int test_statistics()
     // Tests für column_chart_legend
 
     // Zugelassene Pointer / Werte:
-    assert(column_chart_legend(1,10,document) == 0);            // Richtige Übergabe, Test ob ein intendierter Durchgang Funktioniert
+    assert(column_chart_legend(1,1000,document) == 0);            // Richtige Übergabe, Test ob ein intendierter Durchgang Funktioniert
 
     // Nicht zugelassene Pointer / Werte:
     assert(column_chart_legend(12, 10 , document) == -1);       // Die Anzahl der Schritte auf der X-Achse ist größer als die Y-Achse
@@ -135,7 +135,7 @@ int test_statistics()
     // Tests für column_chart()
 
     // Zugelassene Pointer:
-    assert(column_chart(data_test, 3, document) == 0);          // Richtige Übergabe, Test ob ein intendierter Durchgang Funktioniert
+    assert(column_chart(data_test, 1000, document) == 0);          // Richtige Übergabe, Test ob ein intendierter Durchgang Funktioniert
 
     // Nicht zugelassene Pointer:
     assert(column_chart(data_test, 3, error) == -1);            // Übergabe von einem NULL Pointer
@@ -153,7 +153,7 @@ int test_statistics()
     // Tests für bar_chart_legend()
 
     // Zugelassene Pointer / Werte:
-    assert(bar_chart_legend(1, 10, document) == 0);             // Richtige Übergabe, Test ob ein intendierter Durchgang Funktioniert
+    assert(bar_chart_legend(1, 1000, document) == 0);             // Richtige Übergabe, Test ob ein intendierter Durchgang Funktioniert
 
     // Nicht zugelassene Pointer / Werte:
     assert(bar_chart_legend(12,10,document) == -1);             // Die Schrittweite der X-Achse ist größer als die X-Achse
@@ -163,7 +163,7 @@ int test_statistics()
     // Tests für bar_chart()
 
     // Zugelassene Pointer:
-    assert(bar_chart(data_test,3,document) == 0);               // Richtige Übergabe, Test ob ein intendierter Durchgang Funktioniert
+    assert(bar_chart(data_test, 1000, document) == 0);               // Richtige Übergabe, Test ob ein intendierter Durchgang Funktioniert
 
     // Nicht zugelassene Pointer:
     assert(bar_chart(data_test, 3, error) == -1);               // Übergabe von einem NULL Pointer
@@ -172,7 +172,7 @@ int test_statistics()
     // Tests für out_maxval()
     
     // Zugelassene Pointer:
-    assert(out_maxval(data_test,3,document) == 0);              // Richtige Übergabe, Test ob ein intendierter Durchgang Funktioniert
+    assert(out_maxval(data_test, 1000, document) == 0);              // Richtige Übergabe, Test ob ein intendierter Durchgang Funktioniert
 
     // Nicht zugelassene Pointer:
     assert(out_maxval(data_test,3,error) == -1);                // Übergabe von einem NULL Pointer 

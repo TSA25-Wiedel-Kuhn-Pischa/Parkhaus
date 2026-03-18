@@ -211,32 +211,32 @@ int tabel(int data[], int size_ary, FILE* auswertung)
     }
     int steps_x = round(size_ary / 10.f); 
     int steps_max = size_ary;
-    int h = 0;
-    int k = 0;
-    int z = 0;
+    int h = 0;                                              // Abzug von der Länge der Inneren Schleife mit dem 20 fachen
+    int k = 0;                                              // Abzug von der Länge der Inneren Schleife mit dem 5 fachen
+    int z = 0;                                              // Abzug von der Länge der Inneren Schleife mit dem 1 fachen
 
-    if ((steps_x * 9) >= size_ary)
+    if ((steps_x * 9) >= size_ary)                          // Überprüfe, ob das Array schneller größer wird, als es Groß ist
     {
-        h = 1;
-        steps_x = steps_x -1;
+        h = 1;                                              // Abzug von 20, da durch die kürzeren Schritte die Funktion fürher beendet werden muss
+        steps_x = steps_x -1;                               // Kürzung der Länge der Schrittweite, da es sonst Größer als die maximalen Simulationschritte wird.
     }
-    else if ((steps_x * 10) > size_ary)
+    else if ((steps_x * 10) > size_ary)                     // Überprüfe, ob beim durchlaufen aller Schritte in der inneren Schleife die dunktion eins zu früh abbricht
     {
-        steps_max = size_ary + steps_x;
+        steps_max = size_ary + steps_x;                     // Erweiterung der Länge der Inneren Schleife
     }
-    if (size_ary < 25 && size_ary > 15)
+    if (size_ary < 25 && size_ary > 15)                     // Überprüfe, ob die maximalen Simulationsschritte, zwischen 25 und 15 liegt 
     {
-        k = 2;
+        k = 2;                                              // Abzug von 15
         z = 1;
     }
-    else if (size_ary < 15)
+    else if (size_ary < 15)                                 // Überprüfe, ob die maximalen Simulationschritte, kleiner als 15 sind
     {
-        k = size_ary % 10;
+        k = size_ary % 10;                                  // Abzug von der letzten Stelle der Simulationschritte*5 + 1
         z = 1;
     }
-    else if (size_ary == 15)
+    else if (size_ary == 15)                                // Überprüfe, ob die maximalen Simulationsschritte bei 15 liegen, da dieses einen besonderen Zustand benötigt
     {
-        h = 1;
+        h = 1;                                              // Abzug von 26
         z = 1;
         k = 1;
     }
@@ -246,7 +246,7 @@ int tabel(int data[], int size_ary, FILE* auswertung)
 
     for (int g = 0; g < 5; g++)
     {                             
-        for (int i = g + (steps_x*5) - 5; i <= (steps_max*5-(20*h + 5*k)-1*z); i = i + steps_x*5)                   // Auslesen der Einzelnen Werte nach der Reinfolge der Speicherung
+        for (int i = g + (steps_x*5) - 5; i <= (steps_max*5-(20*h + 5*k + 1*z)); i = i + steps_x*5)                   // Auslesen der Einzelnen Werte nach der Reinfolge der Speicherung. Angepasst an Werte unter 55
         {                                                                                           // Die Werte werden mit dem Verhältnis von 5 ausgelesen, da es fünf Speichergrößen gibt. Zu Beginn wird -5 gerechnet, da man für den Speicherplatz im Array bei 0 und nicht 1 anfängt.  
             static int f = 0;
             info[f] = data[i];                                              // Speichern des Wertes an der jeweiligen Stelle
@@ -434,38 +434,39 @@ int column_chart(int data[], int size_ary, FILE* auswertung)
     int info[10] = {0};
 
     int steps_max = size_ary;
-    int h = 0;
-    int k = 0;
-    int z = 0;
+      int h = 0;                                              // Abzug von der Länge der Inneren Schleife mit dem 20 fachen
+    int k = 0;                                              // Abzug von der Länge der Inneren Schleife mit dem 5 fachen
+    int z = 0;                                              // Abzug von der Länge der Inneren Schleife mit dem 1 fachen
 
-    if ((steps_x * 9) >= size_ary)
+    if ((steps_x * 9) >= size_ary)                          // Überprüfe, ob das Array schneller größer wird, als es Groß ist
     {
-        h = 1;
-        steps_x = steps_x -1;
+        h = 1;                                              // Abzug von 20, da durch die kürzeren Schritte die Funktion fürher beendet werden muss
+        steps_x = steps_x -1;                               // Kürzung der Länge der Schrittweite, da es sonst Größer als die maximalen Simulationschritte wird.
     }
-    else if ((steps_x * 10) > size_ary)
+    else if ((steps_x * 10) > size_ary)                     // Überprüfe, ob beim durchlaufen aller Schritte in der inneren Schleife die dunktion eins zu früh abbricht
     {
-        steps_max = size_ary + steps_x;
+        steps_max = size_ary + steps_x;                     // Erweiterung der Länge der Inneren Schleife
     }
-    if (size_ary < 25 && size_ary > 15)
+    if (size_ary < 25 && size_ary > 15)                     // Überprüfe, ob die maximalen Simulationsschritte, zwischen 25 und 15 liegt 
     {
-        k = 2;
+        k = 2;                                              // Abzug von 15
         z = 1;
     }
-    else if (size_ary < 15)
+    else if (size_ary < 15)                                 // Überprüfe, ob die maximalen Simulationschritte, kleiner als 15 sind
     {
-        k = size_ary % 10;
+        k = size_ary % 10;                                  // Abzug von der letzten Stelle der Simulationschritte*5 + 1
         z = 1;
     }
-    else if (size_ary == 15)
+    else if (size_ary == 15)                                // Überprüfe, ob die maximalen Simulationsschritte bei 15 liegen, da dieses einen besonderen Zustand benötigt
     {
-        h = 1;
+        h = 1;                                              // Abzug von 26
         z = 1;
         k = 1;
     }
+    
                           
-    for(int i = (steps_x*5) - 5; i <= (steps_max*5-(20*h + 5*k)-1*z); i = i + steps_x*5)       // Auslesen mit dem fünfachen, da es fünf Speicherwerte gibt und bei der Initialisierung -5, da bei einem Array ab 0 hochgezählt wird.
-    {
+    for(int i = (steps_x*5) - 5; i <= (steps_max*5-(20*h + 5*k + 1*z)); i = i + steps_x*5)       // Auslesen mit dem fünfachen, da es fünf Speicherwerte gibt und bei der Initialisierung -5, da bei einem Array ab 0 hochgezählt wird.
+    {                                                                                          // Ergänzung der Abzüge, da es sonst bei unter 55 auf falsche Werte zugreift
         static int f = 0;
         info[f] = round(data[i] / 10.f);                     // Auslesen der Füllmenge und so umformen, das es zur Skalierung passt
         f++;
@@ -614,37 +615,37 @@ int bar_chart(int data[], int size_ary, FILE* auswertung)
     int info[10] = {0};
 
     int steps_max = size_ary;
-    int h = 0;
-    int k = 0;
-    int z = 0;
+    int h = 0;                                              // Abzug von der Länge der Inneren Schleife mit dem 20 fachen
+    int k = 0;                                              // Abzug von der Länge der Inneren Schleife mit dem 5 fachen
+    int z = 0;                                              // Abzug von der Länge der Inneren Schleife mit dem 1 fachen
 
-    if ((steps_y * 9) >= size_ary)
+    if ((steps_y * 9) >= size_ary)                          // Überprüfe, ob das Array schneller größer wird, als es Groß ist
     {
-        h = 1;
-        steps_y = steps_y -1;
+        h = 1;                                              // Abzug von 20, da durch die kürzeren Schritte die Funktion fürher beendet werden muss
+        steps_y = steps_y -1;                               // Kürzung der Länge der Schrittweite, da es sonst Größer als die maximalen Simulationschritte wird.
     }
-    else if ((steps_y * 10) > size_ary)
+    else if ((steps_y * 10) > size_ary)                     // Überprüfe, ob beim durchlaufen aller Schritte in der inneren Schleife die dunktion eins zu früh abbricht
     {
-        steps_max = size_ary + steps_y;
+        steps_max = size_ary + steps_y;                     // Erweiterung der Länge der Inneren Schleife
     }
-    if (size_ary < 25 && size_ary > 15)
+    if (size_ary < 25 && size_ary > 15)                     // Überprüfe, ob die maximalen Simulationsschritte, zwischen 25 und 15 liegt 
     {
-        k = 2;
+        k = 2;                                              // Abzug von 15
         z = 1;
     }
-    else if (size_ary < 15)
+    else if (size_ary < 15)                                 // Überprüfe, ob die maximalen Simulationschritte, kleiner als 15 sind
     {
-        k = size_ary % 10;
+        k = size_ary % 10;                                  // Abzug von der letzten Stelle der Simulationschritte*5 + 1
         z = 1;
     }
-    else if (size_ary == 15)
+    else if (size_ary == 15)                                // Überprüfe, ob die maximalen Simulationsschritte bei 15 liegen, da dieses einen besonderen Zustand benötigt
     {
-        h = 1;
+        h = 1;                                              // Abzug von 26
         z = 1;
         k = 1;
-    }
+    }    
              
-    for(int i = 3 + steps_y*5 - 5; i <= steps_max*5-(20*h + 5*k)-1*z; i = i + steps_y*5)              // Auslesen der Werte mit der Schritweite steps_y*5, da es fünf Speichergrößengibt und speichern in info[]
+    for(int i = 3 + steps_y*5 - 5; i <= steps_max*5-(20*h + 5*k + 1*z); i = i + steps_y*5)              // Auslesen der Werte mit der Schritweite steps_y*5, da es fünf Speichergrößengibt und speichern in info[]
     {
         static int f = 0;
         info[f] = data[i]; 
