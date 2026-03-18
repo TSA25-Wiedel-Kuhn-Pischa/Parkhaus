@@ -38,8 +38,8 @@ int main(void) {
 // Tests für statistics.c:
     assert(test_statistics() == 0);
 
- printf("Alle Tests wurden erfolgreich bestanden.\n");
- return 0; //Tests bestanden
+    printf("Alle Tests wurden erfolgreich bestanden.\n");
+    return 0; //Tests bestanden
 }
 
 #endif
